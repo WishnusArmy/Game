@@ -9,8 +9,8 @@ using Microsoft.Xna.Framework.Content;
 
 public class GridLevel : IGameLoopObject
 {
-    const int LEVEL_SIZE = 10;
-    const int GRID_SIZE = 128;
+    const int LEVEL_SIZE = 5;
+    const int GRID_SIZE = 64;
     GridItem[,] grid;
         
     public GridLevel(ContentManager Content)

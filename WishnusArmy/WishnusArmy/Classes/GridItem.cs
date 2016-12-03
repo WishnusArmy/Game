@@ -23,6 +23,7 @@ public class GridItem
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch, Vector2 pos)
     {
         spriteBatch.Draw(tex, pos, Color.White);
+        DrawingHelper.DrawRectangle(new Rectangle((int)pos.X, (int)pos.Y, 64, 64), spriteBatch, Color.Black, 2);
     }
 }
 

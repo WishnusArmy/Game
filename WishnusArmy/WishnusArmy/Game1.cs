@@ -1,17 +1,16 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace WishnusArmy
 {
-    /// <summary>
-    /// This is the main type for your game.
-    /// </summary>
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         GridLevel level;
+        public static Texture2D PIXEL;
 
         public Game1()
         {
@@ -22,6 +21,8 @@ namespace WishnusArmy
         protected override void Initialize()
         {
             level = new GridLevel(Content);
+            this.IsMouseVisible = true;
+            DrawingHelper.Initialize(GraphicsDevice);
             base.Initialize();
         }
 
