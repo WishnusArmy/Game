@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 public class Level : GameObjectList
 {
-    public Level(ContentManager content)
+    public Level(ContentManager content) : base()
     {
         children.Add(new Camera(content));
     }

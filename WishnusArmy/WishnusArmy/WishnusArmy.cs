@@ -2,6 +2,9 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Runtime.InteropServices;
+
+
 
 namespace WishnusArmy
 {
@@ -9,6 +12,9 @@ namespace WishnusArmy
     {
         enum GameStates { Menu, Game, Pause};
         public static Texture2D PIXEL;
+
+        [DllImport("kernel32")]
+        static extern bool AllocConsole();
 
         public WishnusArmy()
         {
@@ -19,6 +25,8 @@ namespace WishnusArmy
         protected override void Initialize()
         {
             this.IsMouseVisible = true;
+            AllocConsole();
+            Console.WriteLine("Hello World");
             DrawingHelper.Initialize(GraphicsDevice);
             base.Initialize();
         }
@@ -27,6 +35,11 @@ namespace WishnusArmy
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             base.LoadContent();
+
+
+            screen = new Point(1920, 1080);
+            windowSize = new Point(1, 1);
+            //FullScreen = true;
 
             gameStateManager.AddGameState("playingState", new PlayingState(Content));
             gameStateManager.SwitchTo("playingState");
@@ -39,7 +52,7 @@ namespace WishnusArmy
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (inputHelper.IsKeyDown(Keys.Escape))
                 Exit();
             base.Update(gameTime);
         }

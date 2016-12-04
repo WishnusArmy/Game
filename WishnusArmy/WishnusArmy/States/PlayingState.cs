@@ -18,7 +18,6 @@ public class PlayingState : IGameLoopObject
         this.content = content;
         currentLevel = 0;
         levels = new List<Level>();
-        
         levels.Add(new Level(content));
     }
 
@@ -34,7 +33,7 @@ public class PlayingState : IGameLoopObject
 
     public virtual void Update(GameTime gameTime)
     {
-
+        levels[currentLevel].Update(gameTime);
     }
 
     public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
