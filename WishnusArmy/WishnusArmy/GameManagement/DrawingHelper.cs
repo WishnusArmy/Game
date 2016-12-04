@@ -12,15 +12,15 @@ public class DrawingHelper
         pixel.SetData(new[] { Color.White });
     }
 
-    public static void DrawRectangle(Rectangle r, SpriteBatch spriteBatch, Color col, int size = 1)
+    public static void DrawRectangle(Rectangle r, SpriteBatch spriteBatch, Color col, int size, float alpha = 1f)
     {
-        spriteBatch.Draw(pixel, new Rectangle(r.Left, r.Top, size, r.Height), col); // Left
-        spriteBatch.Draw(pixel, new Rectangle(r.Right, r.Top, size, r.Height + size), col); // Right
-        spriteBatch.Draw(pixel, new Rectangle(r.Left, r.Top, r.Width, size), col); // Top
-        spriteBatch.Draw(pixel, new Rectangle(r.Left, r.Bottom, r.Width + size, size), col); // Bottom
+        spriteBatch.Draw(pixel, new Rectangle(r.Left, r.Top, size, r.Height), col * alpha); // Left
+        spriteBatch.Draw(pixel, new Rectangle(r.Right, r.Top, size, r.Height + size), col* alpha); // Right
+        spriteBatch.Draw(pixel, new Rectangle(r.Left, r.Top, r.Width, size), col * alpha); // Top
+        spriteBatch.Draw(pixel, new Rectangle(r.Left, r.Bottom, r.Width + size, size), col * alpha); // Bottom
     }
 
-    public static void DrawLine(SpriteBatch spriteBatch, Vector2 start, Vector2 end, Color c, int size = 1)
+    public static void DrawLine(SpriteBatch spriteBatch, Vector2 start, Vector2 end, Color c, int size, float alpha = 1f)
     {
         Vector2 edge = end - start;
         // calculate angle to rotate line
@@ -35,7 +35,7 @@ public class DrawingHelper
                 (int)edge.Length(), //the SpriteBatch will strech the texture to fill this rectangle
                 size), //width of line, change this to make thicker line
             null,
-            c, //colour of the line
+            c * alpha, //colour of the line multiplied with the alpha
             angle,     //angle of line (calulated above)
             new Vector2(0, 0), // point in line about which to rotate
             SpriteEffects.None,

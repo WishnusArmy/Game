@@ -5,22 +5,19 @@ using System;
 
 namespace WishnusArmy
 {
-    public class Game1 : Game
+    public class WishnusArmy : GameEnvironment
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-        GridLevel level;
+        enum GameStates { Menu, Game, Pause};
         public static Texture2D PIXEL;
 
-        public Game1()
+        public WishnusArmy()
         {
-            graphics = new GraphicsDeviceManager(this);
+            //graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
 
         protected override void Initialize()
         {
-            level = new GridLevel(Content);
             this.IsMouseVisible = true;
             DrawingHelper.Initialize(GraphicsDevice);
             base.Initialize();
@@ -29,7 +26,10 @@ namespace WishnusArmy
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            base.LoadContent();
+
+            gameStateManager.AddGameState("playingState", new PlayingState(Content));
+            gameStateManager.SwitchTo("playingState");
         }
 
         protected override void UnloadContent()
@@ -41,7 +41,6 @@ namespace WishnusArmy
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            level.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -50,7 +49,6 @@ namespace WishnusArmy
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-            level.Draw(gameTime, spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);

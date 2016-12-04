@@ -7,50 +7,43 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 
-public class GridLevel : IGameLoopObject
+public class GridLayer : GameObject
 {
     const int LEVEL_SIZE = 5;
-    const int GRID_SIZE = 64;
-    GridItem[,] grid;
+    const int NODE_SIZE = 64;
+    GridNode[,] grid;
         
-    public GridLevel(ContentManager Content)
+    public GridLayer(ContentManager Content)
     {
         //Initialize the grid with the size of the level
-        grid = new GridItem[LEVEL_SIZE, LEVEL_SIZE]; 
+        grid = new GridNode[LEVEL_SIZE, LEVEL_SIZE]; 
         //Fill the grid with GridItems
         for(int x=0; x<LEVEL_SIZE; ++x)
         {
             for(int y=0; y<LEVEL_SIZE; ++y)
             {
-                grid[x, y] = new GridItem(Content);
+                grid[x, y] = new GridNode(Content);
             }
         }
     }
 
-    public virtual void HandleInput(InputHelper inputHelper)
+    public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-
-    }
-
-    public virtual void Update(GameTime gameTime)
-    {
-
-    }
-
-    public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-    {
+        base.Draw(gameTime, spriteBatch);
         //Execute the draw event for every GridItem in the grid
         for(int x=0; x<LEVEL_SIZE; ++x)
         {
             for(int y=0; y<LEVEL_SIZE; ++y)
             {
-                grid[x, y].Draw(gameTime, spriteBatch, new Vector2(GRID_SIZE*x, GRID_SIZE*y));
+                grid[x, y].Draw(gameTime, spriteBatch, new Vector2(NODE_SIZE*x, NODE_SIZE*y));
             }
         }
-    }
 
-    public virtual void Reset()
-    {
-
+        //Draw the grid outlines
+        for (int i = 0; i < LEVEL_SIZE + 1; ++i)
+        {
+            DrawingHelper.DrawLine(spriteBatch, Position + new Vector2(NODE_SIZE*i, 0), Position + new Vector2(NODE_SIZE*i, LEVEL_SIZE * NODE_SIZE), Color.Black, 2, 0.4f);
+            DrawingHelper.DrawLine(spriteBatch, Position + new Vector2(0, NODE_SIZE*i), Position + new Vector2(LEVEL_SIZE * NODE_SIZE, NODE_SIZE*i), Color.Black, 2, 0.4f);
+        }
     }
 }
