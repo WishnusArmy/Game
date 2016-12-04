@@ -7,22 +7,24 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 
-public class GridNode
+public class GridNode : GameObject
 {
     int obj; //Indicator for what is placed on the square (0 for emtpy)
     int texture; //Indicator for what texture is placed on the square
     Texture2D tex;
 
-    public GridNode(ContentManager Content, int texture = 0, int obj = 0)
+    public GridNode(ContentManager Content, Vector2 position, int texture = 0, int obj = 0)
     {
         this.texture = texture;
         this.obj = obj;
+        this.position = position;
         tex = Content.Load<Texture2D>("Content/Textures/tex_grass");
     }
 
-    public void Draw(GameTime gameTime, SpriteBatch spriteBatch, Vector2 pos)
+    public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(tex, pos, Color.White);
+        base.Draw(gameTime, spriteBatch);
+        spriteBatch.Draw(tex, GlobalPosition, Color.White);
     }
 }
 

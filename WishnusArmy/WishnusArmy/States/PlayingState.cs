@@ -18,6 +18,7 @@ public class PlayingState : IGameLoopObject
         this.content = content;
         currentLevel = 0;
         levels = new List<Level>();
+        
         levels.Add(new Level(content));
     }
 

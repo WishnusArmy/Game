@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 
-public class GridLayer : GameObject
+public class GridLayer : GameObjectList
 {
     const int LEVEL_SIZE = 5;
     const int NODE_SIZE = 64;
@@ -22,7 +22,7 @@ public class GridLayer : GameObject
         {
             for(int y=0; y<LEVEL_SIZE; ++y)
             {
-                grid[x, y] = new GridNode(Content);
+                grid[x, y] = new GridNode(Content, new Vector2(NODE_SIZE*x, NODE_SIZE*y));
             }
         }
     }
@@ -35,7 +35,7 @@ public class GridLayer : GameObject
         {
             for(int y=0; y<LEVEL_SIZE; ++y)
             {
-                grid[x, y].Draw(gameTime, spriteBatch, new Vector2(NODE_SIZE*x, NODE_SIZE*y));
+                grid[x, y].Draw(gameTime, spriteBatch);
             }
         }
 

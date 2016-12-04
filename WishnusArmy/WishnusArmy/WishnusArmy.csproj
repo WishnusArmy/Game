@@ -38,6 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Classes\Camera.cs" />
     <Compile Include="Classes\GridNode.cs" />
     <Compile Include="Classes\GridLevel.cs" />
     <Compile Include="Classes\Level.cs" />
