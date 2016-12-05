@@ -23,7 +23,7 @@ public class PlayingState : IGameLoopObject
 
     public virtual void HandleInput(InputHelper inputHelper)
     {
-
+        levels[currentLevel].HandleInput(inputHelper);
     }
 
     public virtual void Reset()

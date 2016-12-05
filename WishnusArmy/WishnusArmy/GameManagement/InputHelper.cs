@@ -38,6 +38,16 @@ public class InputHelper
         get { return (new Vector2(currentMouseState.X, currentMouseState.Y) - offset ) / scale; }
     }
 
+    public bool MouseInRectangle(Rectangle r)
+    {
+        if (MousePosition.X >= r.X && MousePosition.X < r.X + r.Width &&
+            MousePosition.Y >= r.Y && MousePosition.Y < r.Y + r.Height)
+        {
+            return true;
+        }
+        return false;
+    }
+
     public bool MouseLeftButtonPressed()
     {
         return currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released;

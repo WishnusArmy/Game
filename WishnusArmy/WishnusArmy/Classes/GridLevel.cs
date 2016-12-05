@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Content;
 
 public class GridLevel : GameObjectList
 {
-    const int LEVEL_SIZE = 5;
+    const int LEVEL_SIZE = 100;
     const int NODE_SIZE = 64;
     GridNode[,] grid;
         

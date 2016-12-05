@@ -25,6 +25,7 @@ namespace WishnusArmy
         protected override void Initialize()
         {
             this.IsMouseVisible = true;
+            Mouse.WindowHandle = Window.Handle;
             AllocConsole();
             Console.WriteLine("Hello World");
             DrawingHelper.Initialize(GraphicsDevice);
@@ -38,7 +39,8 @@ namespace WishnusArmy
 
 
             screen = new Point(1920, 1080);
-            windowSize = new Point(1, 1);
+            windowSize = new Point(800, 600);
+            ApplyResolutionSettings();
             //FullScreen = true;
 
             gameStateManager.AddGameState("playingState", new PlayingState(Content));
