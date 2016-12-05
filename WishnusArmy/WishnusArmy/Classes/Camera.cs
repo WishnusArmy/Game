@@ -5,11 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using static Constant;
 
 public class Camera : GameObjectList
 {
-    const int SLIDE_BORDER = 100; //Defines the width of the edge that will respond to the mouse.
-    const int SLIDE_SPEED = 5; //The speed at which the window slides.
     //Every object in this class will move with the camera. 
     //HUD items should therefore be put in the playingState children list.
     public Camera(ContentManager content) : base()
@@ -27,7 +26,7 @@ public class Camera : GameObjectList
 
     public override void HandleInput(InputHelper inputHelper)
     {
-        Console.WriteLine(inputHelper.MousePosition.X + ", " + inputHelper.MousePosition.Y);
+        Console.WriteLine(inputHelper.MousePosition.X + " ][ " + inputHelper.MousePosition.Y);
 
         Vector2 mp = inputHelper.MousePosition;
         if (mp.X < SLIDE_BORDER)

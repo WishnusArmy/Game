@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using static Constant;
 
 public class GridLevel : GameObjectList
 {
-    const int LEVEL_SIZE = 25;
-    const int NODE_SIZE = 64;
     GridNode[,] grid;
         
     public GridLevel(ContentManager content) : base()
@@ -23,7 +22,8 @@ public class GridLevel : GameObjectList
             for(int y=0; y<LEVEL_SIZE; ++y)
             {
                 grid[x, y] = new GridNode(content, new Vector2(NODE_SIZE*x, NODE_SIZE*y));
-                grid[x, y].Parent = this;
+                grid[x, y].Parent = this; //Note that the grid array is not part of the standard children list
+                                          //and must therefore be handled manually
             }
         }
     }
@@ -35,7 +35,7 @@ public class GridLevel : GameObjectList
         {
             for(int y=0; y<LEVEL_SIZE; ++y)
             {
-                grid[x, y].Update(gameTime);
+                grid[x, y].Update(gameTime); //grid is seperate from children list
             }
         }
     }
@@ -48,7 +48,7 @@ public class GridLevel : GameObjectList
         {
             for(int y=0; y<LEVEL_SIZE; ++y)
             {
-                grid[x, y].Draw(gameTime, spriteBatch);
+                grid[x, y].Draw(gameTime, spriteBatch); //Grid is seperate from children list
             }
         }
 
