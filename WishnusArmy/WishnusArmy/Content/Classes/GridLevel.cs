@@ -55,8 +55,8 @@ public class GridLevel : GameObjectList
         //Draw the grid outlines
         for (int i = 0; i < LEVEL_SIZE + 1; ++i)
         {
-            DrawingHelper.DrawLine(spriteBatch, GlobalPosition + new Vector2(NODE_SIZE*i, 0), GlobalPosition + new Vector2(NODE_SIZE*i, LEVEL_SIZE * NODE_SIZE), Color.Black, 2, 0.05f);
-            DrawingHelper.DrawLine(spriteBatch, GlobalPosition + new Vector2(0, NODE_SIZE*i), GlobalPosition + new Vector2(LEVEL_SIZE * NODE_SIZE, NODE_SIZE*i), Color.Black, 2, 0.05f);
+            DrawingHelper.DrawLine(spriteBatch, GlobalPosition + new Vector2(NODE_SIZE*i, 0), GlobalPosition + new Vector2(NODE_SIZE*i, LEVEL_SIZE * NODE_SIZE), Color.Black, 2, 0.2f);
+            DrawingHelper.DrawLine(spriteBatch, GlobalPosition + new Vector2(0, NODE_SIZE*i), GlobalPosition + new Vector2(LEVEL_SIZE * NODE_SIZE, NODE_SIZE*i), Color.Black, 2, 0.2f);
         }
     }
 }

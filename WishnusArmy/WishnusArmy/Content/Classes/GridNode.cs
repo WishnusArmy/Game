@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
-using static ContentImporter.Textures;
 
 public class GridNode : GameObjectList
 {
@@ -19,10 +18,7 @@ public class GridNode : GameObjectList
         this.texture = texture;
         this.obj = obj;
         this.position = position;
-        if (WishnusArmy.WishnusArmy.Random.Next(2) == 0)
-            tex = TEX_GRASS;
-        else
-            tex = TEX_GRASS_DIRT;
+        tex = Content.Load<Texture2D>("Content/Textures/tex_grass");
     }
 
     public override void Update(GameTime gameTime)

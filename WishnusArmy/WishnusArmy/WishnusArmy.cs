@@ -28,6 +28,7 @@ namespace WishnusArmy
             Mouse.WindowHandle = Window.Handle;
             AllocConsole();
             Console.WriteLine("Hello World");
+            ContentImporter.Initialize(Content);
             DrawingHelper.Initialize(GraphicsDevice);
             base.Initialize();
         }

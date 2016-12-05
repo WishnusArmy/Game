@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="Classes\Camera.cs" />
     <Compile Include="Classes\Constant.cs" />
+    <Compile Include="Classes\ContentImporter.cs" />
     <Compile Include="Classes\GridNode.cs" />
     <Compile Include="Classes\GridLevel.cs" />
     <Compile Include="Classes\Level.cs" />

@@ -11,8 +11,8 @@ internal static class Constant
      Please use all caps and lower bars (_) for new constants to make them easy to spot */
 
     //LEVEL
-    internal const int NODE_SIZE = 64; //The size of a node in the grid
-    internal const int LEVEL_SIZE = 50; //The size of the level grid
+    internal const int NODE_SIZE = 128; //The size of a node in the grid
+    internal const int LEVEL_SIZE = 25; //The size of the level grid
 
     //CAMERA
     internal const int SLIDE_BORDER = 100; //Defines the width of the edge that will respond to the mouse.
