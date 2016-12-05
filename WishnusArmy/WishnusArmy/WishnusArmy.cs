@@ -39,7 +39,7 @@ namespace WishnusArmy
 
 
             screen = new Point(1920, 1080);
-            windowSize = new Point(800, 600);
+            windowSize = new Point(1920/2, 1080/2);
             ApplyResolutionSettings();
             //FullScreen = true;
 
