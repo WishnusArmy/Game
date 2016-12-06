@@ -7,13 +7,16 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using static Constant;
+using static ContentImporter.Textures;
 
-public class GridLevel : GameObjectList
+public class GridPlane: GameObjectList
 {
-    GridNode[,] grid;
+    public GridNode[,] grid;
+    public Camera.Plane plane;
         
-    public GridLevel(ContentManager content) : base()
+    public GridPlane(Camera.Plane plane) : base()
     {
+        this.plane = plane;
         //Initialize the grid with the size of the level
         grid = new GridNode[LEVEL_SIZE, LEVEL_SIZE]; 
         //Fill the grid with GridItems
@@ -21,7 +24,7 @@ public class GridLevel : GameObjectList
         {
             for(int y=0; y<LEVEL_SIZE; ++y)
             {
-                grid[x, y] = new GridNode(content, new Vector2(NODE_SIZE*x, NODE_SIZE*y));
+                grid[x, y] = new GridNode(new Vector2(NODE_SIZE*x, NODE_SIZE*y), TEX_GRASS);
                 grid[x, y].Parent = this; //Note that the grid array is not part of the standard children list
                                           //and must therefore be handled manually
             }

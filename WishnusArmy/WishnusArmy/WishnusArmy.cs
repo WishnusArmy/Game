@@ -11,7 +11,7 @@ namespace WishnusArmy
     public class WishnusArmy : GameEnvironment
     {
         enum GameStates { Menu, Game, Pause};
-        public static Texture2D PIXEL;
+        
 
         [DllImport("kernel32")]
         static extern bool AllocConsole();
@@ -44,8 +44,8 @@ namespace WishnusArmy
             ApplyResolutionSettings();
             //FullScreen = true;
 
-            gameStateManager.AddGameState("PlayingState", new PlayingState(Content));
-            gameStateManager.AddGameState("LevelBuilderState", new LevelBuilderState(Content));
+            gameStateManager.AddGameState("PlayingState", new PlayingState());
+            gameStateManager.AddGameState("LevelBuilderState", new LevelBuilderState());
             gameStateManager.SwitchTo("LevelBuilderState");
         }
 

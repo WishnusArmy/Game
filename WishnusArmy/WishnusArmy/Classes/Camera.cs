@@ -11,11 +11,15 @@ public class Camera : GameObjectList
 {
     //Every object in this class will move with the camera. 
     //HUD items should therefore be put in the playingState children list.
-    public Camera(ContentManager content) : base()
+    public enum Plane { Underground, Land, Air };
+    public Plane currentPlane;
+
+    public Camera() : base()
     {
+        currentPlane = Plane.Air;
         for(int i=0; i<3; ++i)
         {
-            Add(new GridLevel(content)); //Add the three layers of the game
+            Add(new GridPlane((Plane)i)); //Add the three layers of the game
         }
     }
 
@@ -26,7 +30,6 @@ public class Camera : GameObjectList
 
     public override void HandleInput(InputHelper inputHelper)
     {
-        Console.WriteLine("Camera Position: " + Position.X + " ][ " + Position.Y);
         Vector2 mp = inputHelper.MousePosition;
         if (mp.X < SLIDE_BORDER)
             position.X += SLIDE_SPEED;

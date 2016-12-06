@@ -10,13 +10,11 @@ using Microsoft.Xna.Framework.Content;
 public class LevelBuilderState : IGameLoopObject
 {
     Level level;
-    protected ContentManager content;
 
-    public LevelBuilderState(ContentManager content)
+    public LevelBuilderState()
     {
-        this.content = content;
-        level = new Level(content);
-        level.Add(new LevelBuilderHud()); //Add the HUD to the level;
+        level = new Level();
+        level.Add(new LevelBuilder()); //Add the HUD to the level;
     }
 
     public virtual void HandleInput(InputHelper inputHelper)

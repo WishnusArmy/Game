@@ -12,19 +12,18 @@ using static ContentImporter.Textures;
 public class GridNode : GameObject
 {
     int obj; //Indicator for what is placed on the square (0 for emtpy)
-    int texture; //Indicator for what texture is placed on the square
-    Texture2D tex;
-    bool selected;
+    public Texture2D texture;
+    public bool selected;
 
-    public GridNode(ContentManager Content, Vector2 position, int texture = 0, int obj = 0) : base()
+    public GridNode(Vector2 position, Texture2D texture, int obj = 0) : base()
     {
         this.texture = texture;
         this.obj = obj;
         this.position = position;
         if (WishnusArmy.WishnusArmy.Random.Next(2) == 0)
-            tex = TEX_GRASS;
+            this.texture = TEX_GRASS;
         else
-            tex = TEX_GRASS_DIRT;
+            this.texture = TEX_GRASS_DIRT;
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -45,7 +44,7 @@ public class GridNode : GameObject
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
-        spriteBatch.Draw(tex, GlobalPosition, Color.White);
+        spriteBatch.Draw(texture, GlobalPosition, Color.White);
         if (selected)
         {
             DrawingHelper.DrawRectangleFilled(new Rectangle(new Point((int)GlobalPosition.X, (int)GlobalPosition.Y), new Point(NODE_SIZE)), spriteBatch, Color.Black, 0.2f);

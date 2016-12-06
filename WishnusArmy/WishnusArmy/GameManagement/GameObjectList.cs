@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 public class GameObjectList : GameObject
 {
@@ -36,7 +37,7 @@ public class GameObjectList : GameObject
         obj.Parent = null;
     }
 
-    public GameObject Find(string id)
+    public GameObject FindById(string id)
     {
         foreach (GameObject obj in children)
         {
@@ -47,7 +48,7 @@ public class GameObjectList : GameObject
             if (obj is GameObjectList)
             {
                 GameObjectList objList = obj as GameObjectList;
-                GameObject subObj = objList.Find(id);
+                GameObject subObj = objList.FindById(id);
                 if (subObj != null)
                 {
                     return subObj;
@@ -55,6 +56,30 @@ public class GameObjectList : GameObject
             }
         }
         return null;
+    }
+
+    public List<T> FindByType<T>() where T : GameObject
+    {
+        List<T> list = new List<T>();
+        foreach (GameObject obj in children)
+        {
+            if (obj is T)
+            {
+                list.Add(obj as T);
+            }
+            if (obj is GameObjectList)
+            {
+                GameObjectList objList = obj as GameObjectList;
+                List<T> subList = objList.FindByType<T>();
+                if (subList != null)
+                {
+                    list.AddRange(subList);
+                }
+            }
+        }
+        if (list.Count == 0)
+            return null;
+        return list;
     }
 
     public override void HandleInput(InputHelper inputHelper)

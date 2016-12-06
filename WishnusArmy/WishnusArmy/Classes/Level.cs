@@ -8,10 +8,10 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 public class Level : GameObjectList
-{
-    public Level(ContentManager content) : base()
+{ 
+    public Level() : base()
     {
-        children.Add(new Camera(content));
+        children.Add(new Camera());
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

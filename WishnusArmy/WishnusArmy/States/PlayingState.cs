@@ -11,14 +11,12 @@ public class PlayingState : IGameLoopObject
 {
     protected List<Level> levels;
     protected int currentLevel;
-    protected ContentManager content;
 
-    public PlayingState(ContentManager content)
+    public PlayingState()
     {
-        this.content = content;
         currentLevel = 0;
         levels = new List<Level>();
-        levels.Add(new Level(content));
+        levels.Add(new Level());
     }
 
     public virtual void HandleInput(InputHelper inputHelper)
