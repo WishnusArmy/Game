@@ -28,6 +28,18 @@ public class GridLevel : GameObjectList
         }
     }
 
+    public override void HandleInput(InputHelper inputHelper)
+    {
+        base.HandleInput(inputHelper);
+        for(int x=0; x<LEVEL_SIZE; ++x)
+        {
+            for(int y=0; y<LEVEL_SIZE; ++y)
+            {
+                grid[x, y].HandleInput(inputHelper);
+            }
+        }
+    }
+
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);

@@ -44,6 +44,9 @@
     <Compile Include="Classes\GridNode.cs" />
     <Compile Include="Classes\GridLevel.cs" />
     <Compile Include="Classes\Level.cs" />
+    <Compile Include="Classes\LevelBuilder\LevelBuilderHUD.cs" />
+    <Compile Include="Classes\LevelBuilder\ToolSelectionBar.cs" />
+    <Compile Include="States\LevelBuilderState.cs" />
     <Compile Include="WishnusArmy.cs" />
     <Compile Include="GameManagement\AnimatedGameObject.cs" />
     <Compile Include="GameManagement\Animation.cs" />

@@ -37,3 +37,9 @@
 /processorParam:TextureFormat=Color
 /build:Content/Textures/tex_grass_dirt.jpg
 
+#begin Content/Fonts/fnt_level_builder.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:Content/Fonts/fnt_level_builder.spritefont
+

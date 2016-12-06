@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Runtime.InteropServices;
-
+using static Constant;
 
 
 namespace WishnusArmy
@@ -39,13 +39,14 @@ namespace WishnusArmy
             base.LoadContent();
 
 
-            screen = new Point(1920, 1080);
-            windowSize = new Point(1920/2, 1080/2);
+            screen = SCREEN_SIZE;
+            windowSize = WINDOW_SIZE;
             ApplyResolutionSettings();
             //FullScreen = true;
 
-            gameStateManager.AddGameState("playingState", new PlayingState(Content));
-            gameStateManager.SwitchTo("playingState");
+            gameStateManager.AddGameState("PlayingState", new PlayingState(Content));
+            gameStateManager.AddGameState("LevelBuilderState", new LevelBuilderState(Content));
+            gameStateManager.SwitchTo("LevelBuilderState");
         }
 
         protected override void UnloadContent()

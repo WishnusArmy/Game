@@ -26,7 +26,7 @@ public class Camera : GameObjectList
 
     public override void HandleInput(InputHelper inputHelper)
     {
-        Console.WriteLine(Position.X + " ][ " + Position.Y);
+        Console.WriteLine("Camera Position: " + Position.X + " ][ " + Position.Y);
         Vector2 mp = inputHelper.MousePosition;
         if (mp.X < SLIDE_BORDER)
             position.X += SLIDE_SPEED;

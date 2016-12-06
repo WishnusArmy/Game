@@ -20,6 +20,11 @@ public class DrawingHelper
         spriteBatch.Draw(pixel, new Rectangle(r.Left, r.Bottom, r.Width + size, size), col * alpha); // Bottom
     }
 
+    public static void DrawRectangleFilled(Rectangle r, SpriteBatch spriteBatch, Color col, float alpha = 1f)
+    {
+        spriteBatch.Draw(pixel, r, col * alpha);
+    }
+
     public static void DrawLine(SpriteBatch spriteBatch, Vector2 start, Vector2 end, Color c, int size, float alpha = 1f)
     {
         Vector2 edge = end - start;
@@ -40,5 +45,13 @@ public class DrawingHelper
             new Vector2(0, 0), // point in line about which to rotate
             SpriteEffects.None,
             0);
+    }
+
+    public static void DrawText(SpriteBatch spriteBatch, SpriteFont font, string str, Vector2 pos, Color col, bool center = false, float alpha = 1f)
+    {
+        if (center)
+            pos -= new Vector2(font.MeasureString(str).X, font.MeasureString(str).Y) / 2;
+
+        spriteBatch.DrawString(font, str, pos, col * alpha);
     }
 }

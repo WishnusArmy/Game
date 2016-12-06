@@ -1,0 +1,91 @@
+[33mcommit 9b70b17417e5947760b37b947e27f56ea6a87d5a[m
+Author: Hugo Peters <hpeters1024@gmail.com>
+Date:   Mon Dec 5 23:36:10 2016 +0100
+
+    Added a ContentImporter class which
+    acts similar like the Constant class
+    for Content items.
+    Also added another texture.
+
+[33mcommit 2e91260461d95e126df4309a9d238614a1d12bad[m
+Author: Hugo Peters <hpeters1024@gmail.com>
+Date:   Mon Dec 5 23:10:35 2016 +0100
+
+    Changed the grid size and added camera sliding
+    borders.
+
+[33mcommit 204b5aa6274f1117a7e4c8221c2e8cbfb2812eec[m
+Author: Hugo Peters <hpeters1024@gmail.com>
+Date:   Mon Dec 5 16:03:27 2016 +0100
+
+    Created an Internal static Constant class to
+    easily keep track of and use global constants.
+
+[33mcommit ae2aaa9938a000e7b68a14b2b383e8c2cf4f2445[m
+Author: Hugo Peters <hpeters1024@gmail.com>
+Date:   Mon Dec 5 12:47:44 2016 +0100
+
+    Added constants to the camera to control
+    it's behaviour more generically
+
+[33mcommit 038b1434df80a46da11d0832e21cd4cbd43b3412[m
+Author: Hugo Peters <hpeters1024@gmail.com>
+Date:   Mon Dec 5 11:14:26 2016 +0100
+
+    Added rough camera movement.
+    Fixed a bug with the InputHelper chain
+    Added console debugging.
+
+[33mcommit 7dd4efa5d4cf77b9247ed2a83cc7204198f6f2a3[m
+Author: Hugo Peters <hpeters1024@gmail.com>
+Date:   Sun Dec 4 23:47:43 2016 +0100
+
+    Fixed a bug in the camera class.
+    GameObjectList : Add doesn't require
+    a list prefix aparently.
+
+[33mcommit 6d058be098f43bc77e266d56b34da028a4bb8e5b[m
+Author: Hugo Peters <hpeters1024@gmail.com>
+Date:   Sun Dec 4 15:14:22 2016 +0100
+
+    Added a camera class to the Hierarchy.
+    Every object of the level
+    should be a child of the Camera and
+    every Hud a child of PlayingState, alongside
+    the camera.
+
+[33mcommit 7a6ab17d3e5c85d65fa1ec75e6df15d93c4c3c80[m
+Author: Hugo Peters <hpeters1024@gmail.com>
+Date:   Sun Dec 4 14:52:35 2016 +0100
+
+    Implemented the GameStates Mechanism and added
+    a PlayingState.
+    Also added a world environment that allow three
+    different Grids to coexist. (Underground, Base, Air)
+
+[33mcommit 181e0c6347189875860a624d68165e5e1b4551ae[m
+Author: Hugo Peters <hpeters1024@gmail.com>
+Date:   Sat Dec 3 23:49:20 2016 +0100
+
+    Added rectangles to every grid node
+    and extended the DrawingHelper class
+    with a DrawLine function.
+
+[33mcommit 31a75d7d34129ed11ec5f61967f0147e747e6fca[m
+Author: Hugo Peters <hpeters1024@gmail.com>
+Date:   Thu Dec 1 17:38:53 2016 +0100
+
+    Added GridLevel and GridItem class and
+    implemented a simple texture.
+
+[33mcommit 83743016a2997430580cb5836a8639aaf3af3b44[m
+Author: Wouter Castelein <wmcastelein@gmail.com>
+Date:   Thu Dec 1 12:48:37 2016 +0100
+
+    GameManagement classed adden
+
+[33mcommit d50ea734ce688333fb3a276b8aa77d5073b238e2[m
+Author: Wouter Castelein <wmcastelein@gmail.com>
+Date:   Thu Dec 1 12:36:11 2016 +0100
+
+    New project
