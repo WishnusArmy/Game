@@ -1,12 +1,16 @@
 ﻿using System;
+using System.IO;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Graphics;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
 using static Constant;
+
 
 public class LevelBuilder : GameObjectList
 {
@@ -28,6 +32,7 @@ public class LevelBuilder : GameObjectList
 
     public void SaveLevel()
     {
+        /*
         IniFile file = new IniFile("level.ini");
         int i = 0; //general index counter
         foreach (GameObject obj in GameWorld.FindByType<GameObject>())
@@ -50,5 +55,30 @@ public class LevelBuilder : GameObjectList
             }
             ++i;
         }
+        */
+        int i = 0;
+        Hashtable file = new Hashtable();
+        foreach (GameObject obj in GameWorld.FindByType<GameObject>())
+        {
+            file.Add(i.ToString() + ".X", obj.Position.X.ToString());
+            if (obj is GridPlane)
+            {
+                GridPlane subObj = obj as GridPlane;
+                for (int x = 0; x < LEVEL_SIZE; ++x)
+                {
+                    for(int y=0; y< LEVEL_SIZE; ++y)
+                    {
+                        file.Add(i.ToString() + ".Texture" + x.ToString() + "x" + y.ToString(), subObj.grid[x, y].texture.Name.ToString());
+                    }
+                }
+            }
+            ++i;
+        }
+        FileStream fs = new FileStream("level.dat", FileMode.Create);
+        BinaryFormatter formatter = new BinaryFormatter();
+        formatter.Serialize(fs, file);
+        fs.Close();
+        
+
     }
 }
