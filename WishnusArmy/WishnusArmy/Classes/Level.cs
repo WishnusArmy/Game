@@ -11,7 +11,7 @@ public class Level : GameObjectList
 { 
     public Level() : base()
     {
-        children.Add(new Camera());
+        Add(new Camera());
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
