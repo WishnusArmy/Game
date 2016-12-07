@@ -32,45 +32,16 @@ public class LevelBuilder : GameObjectList
 
     public void SaveLevel()
     {
-        /*
-        IniFile file = new IniFile("level.ini");
-        int i = 0; //general index counter
-        foreach (GameObject obj in GameWorld.FindByType<GameObject>())
-        {
-            file.Write("X", obj.Position.X.ToString(), i.ToString());
-            file.Write("Y", obj.Position.Y.ToString(), i.ToString());
-            if (obj is GridPlane)
-            {
-                GridPlane subObj = obj as GridPlane;
-                for(int x=0; x<LEVEL_SIZE; ++x)
-                {
-                    for(int y=0; y<LEVEL_SIZE; ++y)
-                    {
-                        GridNode node = subObj.grid[x, y]; //container for easy acces
-                        //Split the filepath at "/" and get the last element to get only the filename
-                        string[] str = node.texture.ToString().Split('/');
-                        file.Write("Texture"+x.ToString()+"x"+y.ToString(), str[str.Length - 1], i.ToString());
-                    }
-                }
-            }
-            ++i;
-        }
-        */
         int i = 0;
         Hashtable file = new Hashtable();
         foreach (GameObject obj in GameWorld.FindByType<GameObject>())
         {
             file.Add(i.ToString() + ".X", obj.Position.X.ToString());
-            if (obj is GridPlane)
+            if (obj is GridNode)
             {
-                GridPlane subObj = obj as GridPlane;
-                for (int x = 0; x < LEVEL_SIZE; ++x)
-                {
-                    for(int y=0; y< LEVEL_SIZE; ++y)
-                    {
-                        file.Add(i.ToString() + ".Texture" + x.ToString() + "x" + y.ToString(), subObj.grid[x, y].texture.Name.ToString());
-                    }
-                }
+                GridNode subObj = obj as GridNode;
+                string[] str = subObj.texture.ToString().Split('/');
+                file.Add(i.ToString() + ".Texture", str[str.Length - 1]);
             }
             ++i;
         }

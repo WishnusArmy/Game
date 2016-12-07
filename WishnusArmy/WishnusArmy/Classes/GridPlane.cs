@@ -25,8 +25,7 @@ public class GridPlane: GameObjectList
             for(int y=0; y<LEVEL_SIZE; ++y)
             {
                 grid[x, y] = new GridNode(new Vector2(NODE_SIZE*x, NODE_SIZE*y), TEX_GRASS);
-                grid[x, y].Parent = this; //Note that the grid array is not part of the standard children list
-                                          //and must therefore be handled manually
+                Add(grid[x, y]);
             }
         }
     }
@@ -34,44 +33,21 @@ public class GridPlane: GameObjectList
     public override void HandleInput(InputHelper inputHelper)
     {
         base.HandleInput(inputHelper);
-        for(int x=0; x<LEVEL_SIZE; ++x)
-        {
-            for(int y=0; y<LEVEL_SIZE; ++y)
-            {
-                grid[x, y].HandleInput(inputHelper);
-            }
-        }
     }
 
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
-        for(int x=0; x<LEVEL_SIZE; ++x)
-        {
-            for(int y=0; y<LEVEL_SIZE; ++y)
-            {
-                grid[x, y].Update(gameTime); //grid is seperate from children list
-            }
-        }
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
-        //Execute the draw event for every GridItem in the grid
-        for(int x=0; x<LEVEL_SIZE; ++x)
-        {
-            for(int y=0; y<LEVEL_SIZE; ++y)
-            {
-                grid[x, y].Draw(gameTime, spriteBatch); //Grid is seperate from children list
-            }
-        }
-
         //Draw the grid outlines
         for (int i = 0; i < LEVEL_SIZE + 1; ++i)
         {
-            DrawingHelper.DrawLine(spriteBatch, GlobalPosition + new Vector2(NODE_SIZE*i, 0), GlobalPosition + new Vector2(NODE_SIZE*i, LEVEL_SIZE * NODE_SIZE), Color.Black, 2, 0.05f);
-            DrawingHelper.DrawLine(spriteBatch, GlobalPosition + new Vector2(0, NODE_SIZE*i), GlobalPosition + new Vector2(LEVEL_SIZE * NODE_SIZE, NODE_SIZE*i), Color.Black, 2, 0.05f);
+            DrawingHelper.DrawLine(spriteBatch, GlobalPosition + new Vector2(NODE_SIZE * i, 0), GlobalPosition + new Vector2(NODE_SIZE * i, LEVEL_SIZE * NODE_SIZE), Color.Black, 2, 0.05f);
+            DrawingHelper.DrawLine(spriteBatch, GlobalPosition + new Vector2(0, NODE_SIZE * i), GlobalPosition + new Vector2(LEVEL_SIZE * NODE_SIZE, NODE_SIZE * i), Color.Black, 2, 0.05f);
         }
     }
 }
