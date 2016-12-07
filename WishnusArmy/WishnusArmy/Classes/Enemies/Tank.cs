@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-{
-    class Tank
+
+    public class Tank : Enemy
     {
     }
-}
+
