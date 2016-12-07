@@ -28,6 +28,13 @@ public class LevelBuilder : GameObjectList
             SaveLevel();
             Console.WriteLine("DONE!");
         }
+
+        if (inputHelper.KeyPressed(Keys.L))
+        {
+            Console.Write("Loading Level...");
+            LoadLevel();
+            Console.WriteLine("DONE!");
+        }
     }
 
     public void SaveLevel()
@@ -37,6 +44,7 @@ public class LevelBuilder : GameObjectList
         foreach (GameObject obj in GameWorld.FindByType<GameObject>())
         {
             file.Add(i.ToString() + ".X", obj.Position.X.ToString());
+            file.Add(i.ToString() + ".AAType", obj.GetType());
             if (obj is GridNode)
             {
                 GridNode subObj = obj as GridNode;
@@ -49,7 +57,44 @@ public class LevelBuilder : GameObjectList
         BinaryFormatter formatter = new BinaryFormatter();
         formatter.Serialize(fs, file);
         fs.Close();
-        
-
     }
+
+    public void LoadLevel()
+    {
+        Hashtable file = null;
+        FileStream fs = new FileStream("level.dat", FileMode.Open);
+        try
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+
+            // Deserialize the hashtable from the file and 
+            // assign the reference to the local variable.
+            file = (Hashtable)formatter.Deserialize(fs);
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine("Deserialization failed: " + e.Message);
+        }
+
+        int i = 0;
+        List<string> list = new List<string>();
+        foreach(DictionaryEntry obj in file)
+        {
+            list.Add(obj.Key.ToString() + "." + obj.Value.ToString());
+            ++i;
+        }
+        list.Sort();
+        for(int z=0; z<list.Count; ++z)
+        {
+            HashContainer hash = new HashContainer(list[z++]);
+            string type = hash.value;
+            hash = new HashContainer(list[z++]);
+            while (hash.type != "Type")
+            {
+                hash = new HashContainer(list[z++]);
+            }
+        }
+    }
+
+    
 }
