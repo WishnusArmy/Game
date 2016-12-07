@@ -19,7 +19,7 @@ public class Camera : GameObjectList
         currentPlane = Plane.Air;
         for(int i=0; i<3; ++i)
         {
-            Add(new GridPlane((Plane)i)); //Add the three layers of the game
+            Add(new GridPlane((Plane)i)); //Adds the three layers of the game
         }
     }
 
