@@ -12,6 +12,15 @@ internal static class ContentImporter
     {
         Textures.Initialize(Content);
         Fonts.Iniatilize(Content);
+        Sprites.Initialize(Content);
+    }
+
+    internal static class Sprites
+    {
+        public static void Initialize(ContentManager Content)
+        {
+
+        }
     }
 
 
