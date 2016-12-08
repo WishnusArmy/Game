@@ -13,6 +13,8 @@ public class Base : GameObject
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
-        spriteBatch.Draw(SPR_BASE, new Vector2(0, 0), Color.White);
+        spriteBatch.Draw(SPR_BASE, (new Vector2((LEVEL_SIZE * NODE_SIZE / 2) - 128, (LEVEL_SIZE * NODE_SIZE / 2) - 128) + GlobalPosition), Color.White);
+
+
     }
 }
