@@ -11,16 +11,14 @@ class Pulse : Projectile
 {
     protected int radiusMax;
     private int radiusCurrent;
-    Texture2D sprite;
 
     public Pulse(int damage, Vector2 velocity, int radius) : base()
     {
-        Position = new Vector2(1600, 200);
+        Position = velocity;
         this.radiusMax = radius;
         radiusCurrent = 1;
         this.damage = damage;
         this.velocity = velocity;
-        this.sprite = PARTICLE;
         layer = 0;
     }
 
@@ -31,25 +29,11 @@ class Pulse : Projectile
             return;
         base.Draw(gameTime, spriteBatch);
 
-        int pixels = radiusCurrent;
-
-        Vector2[] vertex = new Vector2[pixels];
-
-        double increment = Math.PI * 2.0 / pixels;
-        double theta = 0.0;
-
-        for (int i = 0; i < pixels; i++)
-        {
-            vertex[i] = radiusCurrent * new Vector2((float)Math.Cos(theta), (float)Math.Sin(theta));
-            theta += increment;
-        }
-        for (int i = 0; i < pixels; i++)
-        {
-            spriteBatch.Draw(sprite,
-                GlobalPosition + vertex[i], 
-                Color.White);
-        }
-        Console.WriteLine("pulse size" + radiusCurrent);
+        spriteBatch.Draw(SPR_PARTICLE,
+               new Rectangle((int)GlobalPosition.X, (int)GlobalPosition.Y, radiusCurrent, radiusCurrent),
+               new Rectangle(0, 0, SPR_PARTICLE.Width, SPR_PARTICLE.Height),
+               Color.White);
+    
     }
 
     public override void Update(GameTime gameTime)
