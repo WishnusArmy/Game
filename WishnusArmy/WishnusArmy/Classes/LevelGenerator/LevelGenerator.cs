@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Input;
 using static Constant;
 using static ContentImporter.Textures;
 
@@ -13,10 +14,14 @@ public class LevelGenerator : GameObject
 {
     int[,] grid;
     public LevelGenerator() : base()
+    {
+        GenerateLevel();
+    }
 
+    public void GenerateLevel()
     {
         //Determine occurance of each tile type and how many times to smoothen.
-        int mountainRatio = 50;
+        int mountainRatio = 45;
         int smoothingPasses = 5;
 
         //Initialize grid with random tiles
@@ -37,13 +42,14 @@ public class LevelGenerator : GameObject
             }
         }
 
+        //"Smoothen" the grid to create believable clusters of ti
         for (int i = 0; i < smoothingPasses; i++)
         {
             SmoothenGrid();
         }
     }
 
-    //Adjust tiles to match their surroundings
+    //Go over the grid tile by tile, and adjust them to match their neighbours
     public void SmoothenGrid()
     {
         int[,] smoothGrid = new int[LEVEL_SIZE, LEVEL_SIZE];
@@ -82,6 +88,7 @@ public class LevelGenerator : GameObject
                 break;
 
             case 3:
+            default:
                 for (int x = LEVEL_SIZE - 1; x >= 0; x--)
                 {
                     for (int y = LEVEL_SIZE - 1; y >= 0; y--)
@@ -90,19 +97,10 @@ public class LevelGenerator : GameObject
                     }
                 }
                 break;
-
-            default:
-                for (int x = 0; x < LEVEL_SIZE; x++)
-                {
-                    for (int y = 0; y < LEVEL_SIZE; y++)
-                    {
-                        ChangeTiles(x, y);
-                    }
-                }
-                break;
         }
     }
 
+    //If a tile neighbours many tiles of the same type, change it to that type
     public void ChangeTiles(int x, int y)
     {
         int neighbouringMountains = GetSurroundings(x, y, 1);
@@ -116,6 +114,7 @@ public class LevelGenerator : GameObject
         }
     }
 
+    //Count how many tiles of a certain type are neighbouring this tile
     public int GetSurroundings(int gridX, int gridY, int tileType)
     {
         int count = 0;
@@ -136,6 +135,15 @@ public class LevelGenerator : GameObject
             }
         }
         return count;
+    }
+
+    public override void HandleInput(InputHelper inputHelper)
+    {
+        base.HandleInput(inputHelper);
+        if (inputHelper.KeyPressed(Keys.Space))
+        {
+            GenerateLevel();
+        }
     }
 
     public override void Update(GameTime gameTime)

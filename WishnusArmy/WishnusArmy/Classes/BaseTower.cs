@@ -29,5 +29,15 @@ public class Base : Tower
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
+<<<<<<< HEAD
+=======
+        spriteBatch.Draw(SPR_BASE,(GameMiddle - BaseOrigin + GlobalPosition), Color.White);
+
+        float rotation;
+        rotation = (float)Math.Atan2(mouseposition.Y - GameMiddle.Y - BaseOrigin.Y, mouseposition.X - GameMiddle.X - BaseOrigin.X);
+        spriteBatch.Draw(SPR_BASEGUN, (GameMiddle + GlobalPosition), null, null, BaseOrigin , rotation, null, null, 0);
+
+
+>>>>>>> master
     }
 }
