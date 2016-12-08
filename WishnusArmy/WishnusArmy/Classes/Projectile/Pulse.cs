@@ -33,7 +33,6 @@ class Pulse : Projectile
                new Rectangle((int)GlobalPosition.X - radiusCurrent, (int)GlobalPosition.Y -radiusCurrent, radiusCurrent*2, radiusCurrent*2),
                new Rectangle(0, 0, SPR_PARTICLE.Width, SPR_PARTICLE.Height),
                Color.White);
-    
     }
 
     public override void Update(GameTime gameTime)
