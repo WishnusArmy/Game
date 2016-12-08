@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 public class Button : GameObject
 {
     protected bool pressed;
+    protected bool hover;
     protected Texture2D imageAsset;
 
     public Button(Texture2D imageAsset, int layer = 0, string id = "")
@@ -21,12 +22,17 @@ public class Button : GameObject
     {
         pressed = inputHelper.MouseLeftButtonPressed() &&
             BoundingBox.Contains((int)inputHelper.MousePosition.X, (int)inputHelper.MousePosition.Y);
+        hover = BoundingBox.Contains((int)inputHelper.MousePosition.X, (int)inputHelper.MousePosition.Y);
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
-        spriteBatch.Draw(imageAsset, this.position, Color.White);
+
+        if (hover)
+            spriteBatch.Draw(imageAsset, this.position, Color.Orange);
+        else
+            spriteBatch.Draw(imageAsset, this.position, Color.White);
     }
 
     public override void Reset()
@@ -38,5 +44,13 @@ public class Button : GameObject
     public bool Pressed
     {
         get { return pressed; }
+    }
+
+    public override Rectangle BoundingBox
+    {
+        get
+        {
+            return new Rectangle((int)GlobalPosition.X, (int)GlobalPosition.Y, imageAsset.Width, imageAsset.Height);
+        }
     }
 }

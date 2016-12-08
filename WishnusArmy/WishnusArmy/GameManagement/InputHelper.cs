@@ -7,6 +7,7 @@ public class InputHelper
     protected KeyboardState currentKeyboardState, previousKeyboardState;
     protected Vector2 scale, offset;
 
+
     public InputHelper()
     {
         scale = Vector2.One;
