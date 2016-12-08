@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using static Constant;
 using static ContentImporter.Textures;
+using WishnusArmy.Classes.Towers;
 
 public class GridPlane: GameObjectList
 {
