@@ -29,12 +29,14 @@ internal static class ContentImporter
         internal static List<Texture2D> LIST_FLOOR_TEXTURES;
         internal static Texture2D
             TEX_GRASS,
-            TEX_GRASS_DIRT;
+            TEX_GRASS_DIRT,
+            PARTICLE;
 
         public static void Initialize(ContentManager Content)
         {
             TEX_GRASS = Content.Load<Texture2D>("Content/Textures/tex_grass");
             TEX_GRASS_DIRT = Content.Load<Texture2D>("Content/Textures/tex_grass_dirt");
+            PARTICLE = Content.Load<Texture2D>("Content/Textures/particle_test");
             LIST_FLOOR_TEXTURES = new List<Texture2D>
             {
                 TEX_GRASS,

@@ -43,3 +43,15 @@
 /processorParam:TextureFormat=Compressed
 /build:Content/Fonts/fnt_level_builder.spritefont
 
+#begin Content/Textures/particle_test.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Textures/particle_test.jpg
+
