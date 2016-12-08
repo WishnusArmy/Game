@@ -19,4 +19,3 @@ public class Level : GameObjectList
         base.Draw(gameTime, spriteBatch);
     }
 }
-
