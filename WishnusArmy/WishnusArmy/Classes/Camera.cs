@@ -19,15 +19,7 @@ public class Camera : GameObjectList
         currentPlane = Plane.Land;
         for(int i=0; i<3; ++i)
         {
-<<<<<<< HEAD
             Add(new GridPlane((Plane)i)); //Adds the three layers of the game
-=======
-            Add(new GridPlane((Plane)i)); //Add the three layers of the game
-            if(i==1)
-            {
-                Add(new Base());
-            }
->>>>>>> origin/master
         }
         Pulse p = new Pulse(10, new Vector2(2, 2), 300);
         Add(p);
