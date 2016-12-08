@@ -87,6 +87,7 @@ public class LevelBuilder : GameObjectList
         list.Sort();
         for(int z=0; z<list.Count; ++z)
         {
+            //Console.WriteLine(list[z]);
         }
     }
 

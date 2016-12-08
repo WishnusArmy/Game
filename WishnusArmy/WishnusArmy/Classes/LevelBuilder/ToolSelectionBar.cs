@@ -44,6 +44,7 @@ public class ToolSelectionBar : GameObjectList
                         GridNode node = planes[(int)currentPlane].grid[x, y]; //store in node for easy acces
                         if (node.selected)
                         {
+                            Console.WriteLine("CLICKING......!");
                             node.texture = LIST_FLOOR_TEXTURES[0];
                         }
                     }
