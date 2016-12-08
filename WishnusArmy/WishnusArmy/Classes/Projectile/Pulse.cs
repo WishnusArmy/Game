@@ -14,7 +14,7 @@ class Pulse : Projectile
 
     public Pulse(int damage, Vector2 velocity, int radius) : base()
     {
-        Position = velocity;
+        Position = new Vector2(800, 800);
         this.radiusMax = radius;
         radiusCurrent = 1;
         this.damage = damage;
@@ -30,7 +30,7 @@ class Pulse : Projectile
         base.Draw(gameTime, spriteBatch);
 
         spriteBatch.Draw(SPR_PARTICLE,
-               new Rectangle((int)GlobalPosition.X, (int)GlobalPosition.Y, radiusCurrent, radiusCurrent),
+               new Rectangle((int)GlobalPosition.X - radiusCurrent, (int)GlobalPosition.Y -radiusCurrent, radiusCurrent*2, radiusCurrent*2),
                new Rectangle(0, 0, SPR_PARTICLE.Width, SPR_PARTICLE.Height),
                Color.White);
     
@@ -38,11 +38,16 @@ class Pulse : Projectile
 
     public override void Update(GameTime gameTime)
     {
+
+
+
+
+
         if (radiusCurrent > radiusMax)
         {
             radiusCurrent = 0; ;
             return;
         }
-        radiusCurrent++;
+        radiusCurrent += (int)velocity.X;
     }
 }

@@ -35,7 +35,6 @@ internal static class ContentImporter
             TEX_GRASS,
             TEX_GRASS_DIRT,
             SPR_PARTICLE;
-            //SPR_PULSE;
 
         public static void Initialize(ContentManager Content)
         {
