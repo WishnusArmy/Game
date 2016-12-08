@@ -1,12 +1,16 @@
 ﻿using System;
+using System.IO;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Graphics;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
 using static Constant;
+
 
 public class LevelBuilder : GameObjectList
 {
@@ -24,31 +28,73 @@ public class LevelBuilder : GameObjectList
             SaveLevel();
             Console.WriteLine("DONE!");
         }
+
+        if (inputHelper.KeyPressed(Keys.L))
+        {
+            Console.Write("Loading Level...");
+            LoadLevel();
+            Console.WriteLine("DONE!");
+        }
     }
 
     public void SaveLevel()
     {
-        IniFile file = new IniFile("level.ini");
-        int i = 0; //general index counter
+        int i = 0;
+        Hashtable file = new Hashtable();
         foreach (GameObject obj in GameWorld.FindByType<GameObject>())
         {
-            file.Write("X", obj.Position.X.ToString(), i.ToString());
-            file.Write("Y", obj.Position.Y.ToString(), i.ToString());
-            if (obj is GridPlane)
+            file.Add(i.ToString() + ".X", obj.Position.X.ToString());
+            file.Add(i.ToString() + ".AAType", obj.GetType());
+            if (obj is GridNode)
             {
-                GridPlane subObj = obj as GridPlane;
-                for(int x=0; x<LEVEL_SIZE; ++x)
-                {
-                    for(int y=0; y<LEVEL_SIZE; ++y)
-                    {
-                        GridNode node = subObj.grid[x, y]; //container for easy acces
-                        //Split the filepath at "/" and get the last element to get only the filename
-                        string[] str = node.texture.ToString().Split('/');
-                        file.Write("Texture"+x.ToString()+"x"+y.ToString(), str[str.Length - 1], i.ToString());
-                    }
-                }
+                GridNode subObj = obj as GridNode;
+                string[] str = subObj.texture.ToString().Split('/');
+                file.Add(i.ToString() + ".Texture", str[str.Length - 1]);
             }
             ++i;
         }
+        FileStream fs = new FileStream("level.dat", FileMode.Create);
+        BinaryFormatter formatter = new BinaryFormatter();
+        formatter.Serialize(fs, file);
+        fs.Close();
     }
+
+    public void LoadLevel()
+    {
+        Hashtable file = null;
+        FileStream fs = new FileStream("level.dat", FileMode.Open);
+        try
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+
+            // Deserialize the hashtable from the file and 
+            // assign the reference to the local variable.
+            file = (Hashtable)formatter.Deserialize(fs);
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine("Deserialization failed: " + e.Message);
+        }
+
+        int i = 0;
+        List<string> list = new List<string>();
+        foreach(DictionaryEntry obj in file)
+        {
+            list.Add(obj.Key.ToString() + "." + obj.Value.ToString());
+            ++i;
+        }
+        list.Sort();
+        for(int z=0; z<list.Count; ++z)
+        {
+            HashContainer hash = new HashContainer(list[z++]);
+            string type = hash.value;
+            hash = new HashContainer(list[z++]);
+            while (hash.type != "Type")
+            {
+                hash = new HashContainer(list[z++]);
+            }
+        }
+    }
+
+    
 }

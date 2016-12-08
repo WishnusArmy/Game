@@ -40,7 +40,7 @@
   <ItemGroup>
     <Compile Include="Classes\Button.cs" />
     <Compile Include="Classes\Camera.cs" />
-    <Compile Include="Classes\BaseTurret.cs" />
+    <Compile Include="Classes\BaseTower.cs" />
     <Compile Include="Classes\Constant.cs" />
     <Compile Include="Classes\ContentImporter.cs" />
     <Compile Include="Classes\GridNode.cs" />
@@ -48,6 +48,7 @@
     <Compile Include="Classes\IniFile.cs" />
     <Compile Include="Classes\Level.cs" />
     <Compile Include="Classes\LevelBuilder\LevelBuilder.cs" />
+    <Compile Include="Classes\LevelBuilder\HashContainer.cs" />
     <Compile Include="Classes\LevelBuilder\ToolSelectionBar.cs" />
     <Compile Include="States\LevelBuilderState.cs" />
     <Compile Include="States\MainMenuState.cs" />

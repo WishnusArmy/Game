@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WishnusArmy.Classes
+namespace WishnusArmy.Classes.LevelBuilder
 {
-    class Class1
+    class Projectile
     {
     }
 }

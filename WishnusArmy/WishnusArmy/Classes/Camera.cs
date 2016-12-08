@@ -16,10 +16,18 @@ public class Camera : GameObjectList
 
     public Camera() : base()
     {
-        currentPlane = Plane.Air;
+        currentPlane = Plane.Land;
         for(int i=0; i<3; ++i)
         {
+<<<<<<< HEAD
             Add(new GridPlane((Plane)i)); //Adds the three layers of the game
+=======
+            Add(new GridPlane((Plane)i)); //Add the three layers of the game
+            if(i==1)
+            {
+                Add(new Base());
+            }
+>>>>>>> origin/master
         }
     }
 
@@ -52,3 +60,4 @@ public class Camera : GameObjectList
     }
 }
 
+// wow ik hoop dat dit werkt
