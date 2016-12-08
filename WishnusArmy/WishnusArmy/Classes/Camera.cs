@@ -56,3 +56,4 @@ public class Camera : GameObjectList
     }
 }
 
+// wow ik hoop dat dit werkt
