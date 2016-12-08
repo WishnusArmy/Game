@@ -59,5 +59,3 @@ public class Camera : GameObjectList
         base.HandleInput(inputHelper);
     }
 }
-
-// wow ik hoop dat dit werkt

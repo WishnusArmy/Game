@@ -14,6 +14,7 @@ internal static class Constant
     //APPLLICATION
     internal static readonly Point WINDOW_SIZE = new Point(1920 / 2, 1080 / 2);
     internal static readonly Point SCREEN_SIZE = new Point(1920, 1080);
+    internal static Random RANDOM = new Random();
 
     //LEVEL
     internal const int NODE_SIZE = 64; //The size of a node in the grid
