@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using static Constant;
+using WishnusArmy.Classes.Towers;
 
 public class Camera : GameObjectList
 {
@@ -44,6 +45,11 @@ public class Camera : GameObjectList
             position.Y += SLIDE_SPEED;
         if (mp.Y > WishnusArmy.WishnusArmy.Screen.Y - SLIDE_BORDER)
             position.Y -= SLIDE_SPEED;
+        if (inputHelper.MouseLeftButtonPressed())
+        {
+            Console.WriteLine((float)Math.Floor((inputHelper.MousePosition.X / NODE_SIZE)));
+            Add(new Tower(new Vector2((float)Math.Floor(((inputHelper.MousePosition.X - position.X)/NODE_SIZE)), (float) Math.Floor((inputHelper.MousePosition.Y - position.Y)/NODE_SIZE))));
+        }
 
         //
         if (position.X > 0) { position.X = 0; }

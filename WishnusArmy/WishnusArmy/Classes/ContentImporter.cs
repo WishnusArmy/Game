@@ -18,10 +18,14 @@ internal static class ContentImporter
     internal static class Sprites
     {
         internal static Texture2D
-            SPR_BASE;
+            SPR_BASE,
+            SPR_ABSTRACT_TOWER,
+            SPR_ABSTRACT_CANNON;
         public static void Initialize(ContentManager Content)
         {
             SPR_BASE = Content.Load<Texture2D>("Content/Sprites/BaseSprite");
+            SPR_ABSTRACT_TOWER = Content.Load<Texture2D>("Content/Sprites/abstractTower");
+            SPR_ABSTRACT_CANNON = Content.Load<Texture2D>("Content/Sprites/cannon");
         }
     }
 
@@ -32,6 +36,7 @@ internal static class ContentImporter
         internal static Texture2D
             TEX_GRASS,
             TEX_GRASS_DIRT;
+            
 
         public static void Initialize(ContentManager Content)
         {
