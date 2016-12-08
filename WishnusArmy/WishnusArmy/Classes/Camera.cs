@@ -22,9 +22,10 @@ public class Camera : GameObjectList
             Add(new GridPlane((Plane)i)); //Add the three layers of the game
             if(i==1)
             {
-                Add(new Base());
+               
             }
         }
+        Add(new Base());
     }
 
     public override void Update(GameTime gameTime)
