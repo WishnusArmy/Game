@@ -187,3 +187,13 @@
 /processorParam:TextureFormat=Color
 /build:Content/Sprites/HelpBackground.jpg
 
+#begin Content/Sprites/abstractTower.png
+/importer:
+/processor:
+/build:Content/Sprites/abstractTower.png
+
+#begin Content/Sprites/cannon.png
+/importer:
+/processor:
+/build:Content/Sprites/cannon.png
+
