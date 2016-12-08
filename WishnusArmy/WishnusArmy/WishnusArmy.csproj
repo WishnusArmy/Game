@@ -49,6 +49,8 @@
     <Compile Include="Classes\LevelBuilder\LevelBuilder.cs" />
     <Compile Include="Classes\LevelBuilder\HashContainer.cs" />
     <Compile Include="Classes\LevelBuilder\ToolSelectionBar.cs" />
+    <Compile Include="Classes\LevelGenerator\LevelGenerator.cs" />
+    <Compile Include="States\LevelGeneratorState.cs" />
     <Compile Include="States\LevelBuilderState.cs" />
     <Compile Include="WishnusArmy.cs" />
     <Compile Include="GameManagement\AnimatedGameObject.cs" />
