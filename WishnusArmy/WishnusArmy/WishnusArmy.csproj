@@ -38,6 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Classes\Button.cs" />
     <Compile Include="Classes\Camera.cs" />
     <Compile Include="Classes\BaseTower.cs" />
     <Compile Include="Classes\Constant.cs" />
@@ -51,7 +52,15 @@
     <Compile Include="Classes\LevelBuilder\ToolSelectionBar.cs" />
     <Compile Include="Classes\Towers\ProjectileTower.cs" />
     <Compile Include="Classes\Towers\Tower.cs" />
+    <Compile Include="Classes\LevelGenerator\LevelGenerator.cs" />
+    <Compile Include="States\LevelGeneratorState.cs" />
+    <Compile Include="Classes\MainMenu.cs" />
+    <Compile Include="Classes\Projectile\Bullet.cs" />
+    <Compile Include="Classes\Projectile\Flame.cs" />
+    <Compile Include="Classes\Projectile\Projectile.cs" />
+    <Compile Include="Classes\Projectile\Pulse.cs" />
     <Compile Include="States\LevelBuilderState.cs" />
+    <Compile Include="States\MainMenuState.cs" />
     <Compile Include="WishnusArmy.cs" />
     <Compile Include="GameManagement\AnimatedGameObject.cs" />
     <Compile Include="GameManagement\Animation.cs" />
