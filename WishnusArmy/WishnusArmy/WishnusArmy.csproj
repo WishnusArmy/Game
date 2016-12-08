@@ -52,7 +52,7 @@
     <Compile Include="Classes\LevelBuilder\ToolSelectionBar.cs" />
     <Compile Include="Classes\MainMenu.cs" />
     <Compile Include="Classes\Projectile\Bullet.cs" />
-    <Compile Include="Classes\Projectile\Flame.cs" />
+    <Compile Include="Classes\Projectile\Laser.cs" />
     <Compile Include="Classes\Projectile\Projectile.cs" />
     <Compile Include="Classes\Projectile\Pulse.cs" />
     <Compile Include="States\LevelBuilderState.cs" />
