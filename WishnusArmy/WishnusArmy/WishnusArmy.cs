@@ -49,7 +49,7 @@ namespace WishnusArmy
             gameStateManager.AddGameState("HelpState", new HelpState());
             gameStateManager.AddGameState("PlayingState", new PlayingState());
             gameStateManager.AddGameState("LevelBuilderState", new LevelBuilderState());
-            gameStateManager.SwitchTo("MainMenuState");
+            gameStateManager.SwitchTo("LevelBuilderState");
         }
 
         protected override void UnloadContent()
