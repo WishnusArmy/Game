@@ -18,10 +18,12 @@ internal static class ContentImporter
     internal static class Sprites
     {
         internal static Texture2D
-            SPR_BASE;
+            SPR_BASE,
+            SPR_BASEGUN;
         public static void Initialize(ContentManager Content)
         {
             SPR_BASE = Content.Load<Texture2D>("Content/Sprites/BaseSprite");
+            SPR_BASEGUN = Content.Load<Texture2D>("Content/Sprites/BaseGun");
         }
     }
 
