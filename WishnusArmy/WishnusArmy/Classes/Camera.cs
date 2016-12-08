@@ -21,8 +21,14 @@ public class Camera : GameObjectList
         {
             Add(new GridPlane((Plane)i)); //Add the three layers of the game
         }
-        Pulse p = new Pulse(10, new Vector2(2, 2), 300);
-        Add(p);
+
+        for (int i = 0; i <10; i++)
+        {
+            Pulse p = new Pulse(10, new Vector2(i * 100, i * 100), i * 75 +20);
+            Add(p);
+        }
+        
+        
     }
 
     public override void Update(GameTime gameTime)
