@@ -47,6 +47,8 @@
     <Compile Include="Classes\Level.cs" />
     <Compile Include="Classes\LevelBuilder\LevelBuilder.cs" />
     <Compile Include="Classes\LevelBuilder\ToolSelectionBar.cs" />
+    <Compile Include="Classes\Towers\ProjectileTower.cs" />
+    <Compile Include="Classes\Towers\Tower.cs" />
     <Compile Include="States\LevelBuilderState.cs" />
     <Compile Include="WishnusArmy.cs" />
     <Compile Include="GameManagement\AnimatedGameObject.cs" />
