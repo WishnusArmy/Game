@@ -49,7 +49,7 @@ class Pulse : Projectile
                 GlobalPosition + vertex[i], 
                 Color.White);
         }
-        Console.WriteLine("pulse size" + radiusCurrent);
+        //Console.WriteLine("pulse size" + radiusCurrent);
     }
 
     public override void Update(GameTime gameTime)
