@@ -43,8 +43,9 @@ public class LevelBuilder : GameObjectList
         Hashtable file = new Hashtable();
         foreach (GameObject obj in GameWorld.FindByType<GameObject>())
         {
-            file.Add(i.ToString() + ".X", obj.Position.X.ToString());
             file.Add(i.ToString() + ".AAType", obj.GetType());
+            file.Add(i.ToString() + ".X", obj.Position.X.ToString());
+            file.Add(i.ToString() + ".Y", obj.Position.Y.ToString());
             if (obj is GridNode)
             {
                 GridNode subObj = obj as GridNode;
@@ -86,13 +87,6 @@ public class LevelBuilder : GameObjectList
         list.Sort();
         for(int z=0; z<list.Count; ++z)
         {
-            HashContainer hash = new HashContainer(list[z++]);
-            string type = hash.value;
-            hash = new HashContainer(list[z++]);
-            while (hash.type != "Type")
-            {
-                hash = new HashContainer(list[z++]);
-            }
         }
     }
 

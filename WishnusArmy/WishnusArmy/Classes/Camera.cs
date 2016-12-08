@@ -26,6 +26,10 @@ public class Camera : GameObjectList
                 Add(new Base());
             }
         }
+
+        Pulse p = new Pulse(10, new Vector2(2, 2), 300);
+        Add(p);
+        Add(new Base());
     }
 
     public override void Update(GameTime gameTime)
@@ -61,5 +65,3 @@ public class Camera : GameObjectList
         base.HandleInput(inputHelper);
     }
 }
-
-// wow ik hoop dat dit werkt
