@@ -105,3 +105,13 @@
 /processorParam:TextureFormat=Color
 /build:Content\Sprites\Pulse.png
 
+#begin Content/Sprites/abstractTower.png
+/importer:
+/processor:
+/build:Content/Sprites/abstractTower.png
+
+#begin Content/Sprites/cannon.png
+/importer:
+/processor:
+/build:Content/Sprites/cannon.png
+
