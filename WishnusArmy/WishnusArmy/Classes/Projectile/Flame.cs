@@ -4,9 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WishnusArmy.Classes
+class Flame : Projectile
 {
-    class Class1
-    {
-    }
 }

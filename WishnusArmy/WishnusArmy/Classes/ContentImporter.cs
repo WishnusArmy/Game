@@ -17,26 +17,40 @@ internal static class ContentImporter
 
     internal static class Sprites
     {
+        internal static Texture2D
+            SPR_BASE, 
+            SPR_MAINMENUBACKGROUND,
+            SPR_PLAYBUTTON,
+            SPR_PULSE,
+			SPR_BASEGUN;
+
         public static void Initialize(ContentManager Content)
         {
-
+            SPR_BASE = Content.Load<Texture2D>("Content/Sprites/BaseSprite");
+            SPR_MAINMENUBACKGROUND = Content.Load<Texture2D>("Content/Sprites/MainMenuBackground");
+            SPR_PLAYBUTTON = Content.Load<Texture2D>("Content/Sprites/Buttons/PlayButton");
+            SPR_PULSE = Content.Load<Texture2D>("Content/Sprites/Pulse");
+            SPR_BASEGUN = Content.Load<Texture2D>("Content/Sprites/BaseGun");
         }
     }
 
 
     internal static class Textures
     {
-        internal static List<Texture2D> LIST_FLOOR_TEXTURES;
+        internal static List<Texture2D> LIST_FLOOR_TEXTURES; //This is used for the levelbuilder toolbar.
         internal static Texture2D
             TEX_GRASS,
-            TEX_GRASS_DIRT;
+            TEX_GRASS_DIRT,
+            SPR_PARTICLE;
 
         public static void Initialize(ContentManager Content)
         {
             TEX_GRASS = Content.Load<Texture2D>("Content/Textures/tex_grass");
             TEX_GRASS_DIRT = Content.Load<Texture2D>("Content/Textures/tex_grass_dirt");
+            SPR_PARTICLE = Content.Load<Texture2D>("Content/Textures/particle_test");
             LIST_FLOOR_TEXTURES = new List<Texture2D>
             {
+                //Textures that should show up in the LevelBuilder Toolbar
                 TEX_GRASS,
                 TEX_GRASS_DIRT
             };

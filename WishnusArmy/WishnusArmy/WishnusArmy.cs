@@ -44,6 +44,7 @@ namespace WishnusArmy
             ApplyResolutionSettings();
             //FullScreen = true;
 
+            gameStateManager.AddGameState("MainMenuState", new MainMenuState());
             gameStateManager.AddGameState("PlayingState", new PlayingState());
             gameStateManager.AddGameState("LevelBuilderState", new LevelBuilderState());
             gameStateManager.AddGameState("LevelGeneratorState", new LevelGeneratorState());
