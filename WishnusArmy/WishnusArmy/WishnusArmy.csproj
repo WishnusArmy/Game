@@ -50,6 +50,10 @@
     <Compile Include="Classes\LevelBuilder\LevelBuilder.cs" />
     <Compile Include="Classes\LevelBuilder\HashContainer.cs" />
     <Compile Include="Classes\LevelBuilder\ToolSelectionBar.cs" />
+    <Compile Include="Classes\Projectile\Bullet.cs" />
+    <Compile Include="Classes\Projectile\Flame.cs" />
+    <Compile Include="Classes\Projectile\Projectile.cs" />
+    <Compile Include="Classes\Projectile\Pulse.cs" />
     <Compile Include="States\LevelBuilderState.cs" />
     <Compile Include="States\MainMenuState.cs" />
     <Compile Include="WishnusArmy.cs" />

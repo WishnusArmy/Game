@@ -29,6 +29,8 @@ public class Camera : GameObjectList
             }
 >>>>>>> origin/master
         }
+        Pulse p = new Pulse(10, new Vector2(2, 2), 300);
+        Add(p);
     }
 
     public override void Update(GameTime gameTime)

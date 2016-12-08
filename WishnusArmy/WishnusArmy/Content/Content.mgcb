@@ -44,6 +44,7 @@
 /build:Content/Fonts/fnt_level_builder.spritefont
 
 #begin Content/Sprites/BaseSprite.png
+#begin Content/Textures/particle_test.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -54,4 +55,5 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Sprites/BaseSprite.png
+/build:Content/Textures/particle_test.jpg
 
