@@ -34,13 +34,13 @@ internal static class ContentImporter
         internal static Texture2D
             TEX_GRASS,
             TEX_GRASS_DIRT,
-            PARTICLE;
+            SPR_PARTICLE;
 
         public static void Initialize(ContentManager Content)
         {
             TEX_GRASS = Content.Load<Texture2D>("Content/Textures/tex_grass");
             TEX_GRASS_DIRT = Content.Load<Texture2D>("Content/Textures/tex_grass_dirt");
-            PARTICLE = Content.Load<Texture2D>("Content/Textures/particle_test");
+            SPR_PARTICLE = Content.Load<Texture2D>("Content/Textures/particle_test");
             LIST_FLOOR_TEXTURES = new List<Texture2D>
             {
                 //Textures that should show up in the LevelBuilder Toolbar
