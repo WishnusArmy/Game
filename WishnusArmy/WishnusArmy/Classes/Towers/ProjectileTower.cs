@@ -11,7 +11,6 @@ namespace WishnusArmy.Classes.Towers
         
     {
         public ProjectileTower(Vector2 Position)
-            : base(Position)
         {
 
         }

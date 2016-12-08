@@ -52,7 +52,9 @@ public class Camera : GameObjectList
         if (inputHelper.MouseLeftButtonPressed())
         {
             Console.WriteLine((float)Math.Floor((inputHelper.MousePosition.X / NODE_SIZE)));
-            Add(new Tower(new Vector2((float)Math.Floor(((inputHelper.MousePosition.X - position.X)/NODE_SIZE)), (float) Math.Floor((inputHelper.MousePosition.Y - position.Y)/NODE_SIZE))));
+            Tower t = new Tower();
+            t.gridPosition = new Vector2((float)Math.Floor(((inputHelper.MousePosition.X - position.X) / NODE_SIZE)), (float)Math.Floor((inputHelper.MousePosition.Y - position.Y) / NODE_SIZE));
+            Add(t);
         }
 
         //
