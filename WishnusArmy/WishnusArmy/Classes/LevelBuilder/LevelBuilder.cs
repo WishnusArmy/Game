@@ -87,20 +87,6 @@ public class LevelBuilder : GameObjectList
         list.Sort();
         for(int z=0; z<list.Count; ++z)
         {
-            HashContainer hash = new HashContainer(list[z++]);
-            string type = hash.type;
-            hash = new HashContainer(list[z++]);
-            float x = float.Parse(hash.value);
-            hash = new HashContainer(list[z++]);
-            float y = float.Parse(hash.value);
-            switch(type)
-            {
-                case "GridNode":
-                    hash = new HashContainer(list[z++]);
-                    string texture = hash.value;
-                    Console.WriteLine(texture);
-                    break;
-            }
         }
     }
 
