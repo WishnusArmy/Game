@@ -45,9 +45,11 @@ namespace WishnusArmy
             //FullScreen = true;
 
             gameStateManager.AddGameState("MainMenuState", new MainMenuState());
+            gameStateManager.AddGameState("CreditsState", new CreditsState());
+            gameStateManager.AddGameState("HelpState", new HelpState());
             gameStateManager.AddGameState("PlayingState", new PlayingState());
             gameStateManager.AddGameState("LevelBuilderState", new LevelBuilderState());
-            gameStateManager.SwitchTo("LevelBuilderState");
+            gameStateManager.SwitchTo("MainMenuState");
         }
 
         protected override void UnloadContent()
