@@ -29,6 +29,8 @@ public class Button : GameObject
     {
         base.Draw(gameTime, spriteBatch);
 
+
+        //Hey Abel, als je hier nou gewoon een rectangle tekent met de width van de tekst? (SpriteFont.MeasureString(string).X)
         if (hover)
             spriteBatch.Draw(imageAsset, this.position, Color.Orange);
         else
