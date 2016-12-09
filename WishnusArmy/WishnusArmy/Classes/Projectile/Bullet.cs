@@ -24,7 +24,6 @@ class Bullet : Projectile
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
-        spriteBatch.Draw(SPR_CAMPAIGNBUTTON, GlobalPosition, Color.White);
     }
 
     public override void Update(GameTime gameTime)
