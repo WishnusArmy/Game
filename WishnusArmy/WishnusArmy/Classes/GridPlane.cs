@@ -32,7 +32,7 @@ public class GridPlane: GameObjectList
         //ADD LEVEL OBJECTS HERE (AFTER THE GRID)
         for (int i = 0; i < 10; ++i)
         {
-            Pulse p = new Pulse(10, new Vector2(2, 2), 300);
+            Pulse p = new Pulse(10, new Vector2(2, 2), new Vector2(100, 100), 300);
             Add(p);
         }
     }
