@@ -10,9 +10,6 @@ namespace WishnusArmy
 {
     public class WishnusArmy : GameEnvironment
     {
-        enum GameStates { Menu, Game, Pause};
-        
-
         [DllImport("kernel32")]
         static extern bool AllocConsole();
 
@@ -50,7 +47,7 @@ namespace WishnusArmy
             gameStateManager.AddGameState("PlayingState", new PlayingState());
             gameStateManager.AddGameState("LevelBuilderState", new LevelBuilderState());
             gameStateManager.AddGameState("LevelGeneratorState", new LevelGeneratorState());
-            gameStateManager.SwitchTo("PlayingState");
+            gameStateManager.SwitchTo("LevelBuilderState");
         }
 
         protected override void UnloadContent()

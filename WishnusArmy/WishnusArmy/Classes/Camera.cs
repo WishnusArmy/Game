@@ -14,17 +14,16 @@ public class Camera : GameObjectList
     //Every object in this class will move with the camera. 
     //HUD items should therefore be put in the playingState children list.
     public enum Plane { Underground, Land, Air };
-    public Plane currentPlane;
+    public GridPlane currentPlane;
     public GridPlane Underground, Land, Air;
     List<GridPlane> planes;
 
     public Camera() : base()
     {
-        currentPlane = Plane.Land;
-        for(int i=0; i<3; ++i)
+        planes = new List<GridPlane>();
+        for (int i=0; i<3; ++i)
         { 
             GridPlane p = new GridPlane((Plane)i);
-            planes = new List<GridPlane>();
             switch((Plane)i)
             {
                 case Plane.Underground:
@@ -46,13 +45,24 @@ public class Camera : GameObjectList
                     //Add items to the air plane (p.Add)
                     break;
             }
-            Add(new GridPlane((Plane)i)); //Add the three layers of the game
-        } 
+        }
+        currentPlane = planes[(int)Plane.Land]; //Reference the current plane to one of the three
+        Console.WriteLine("Current Plane: " + currentPlane.planeType.ToString());
+        Add(currentPlane); //Add the currenPlane to the children list. This way, only one plane at a time will be handled
     }
 
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
+        //Manually Update all the planes (except currentPlane)
+        //This way only one will be drawn, but all will update.
+        for (int i = 0; i < 3; ++i)
+        {
+            if (planes[i].planeType != currentPlane.planeType)
+            {
+                planes[i].Update(gameTime);
+            }
+        }
     }
 
     public override void HandleInput(InputHelper inputHelper)

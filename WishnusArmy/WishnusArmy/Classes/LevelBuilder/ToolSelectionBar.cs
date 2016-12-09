@@ -31,28 +31,25 @@ public class ToolSelectionBar : GameObjectList
         base.HandleInput(inputHelper);
         if (inputHelper.MouseLeftButtonDown())
         {
-            Camera.Plane currentPlane;
-            List<GridPlane> planes;
+            GridPlane currentPlane;
             try
             {
                 currentPlane = GameWorld.FindByType<Camera>()[0].currentPlane; //Get the index for the current plane
-                planes = GameWorld.FindByType<GridPlane>();  //Get a list of all the planes
                 for (int x = 0; x < LEVEL_SIZE; ++x)
                 {
                     for (int y = 0; y < LEVEL_SIZE; ++y)
                     {
-                        GridNode node = planes[(int)currentPlane].grid[x, y]; //store in node for easy acces
+                        GridNode node = currentPlane.grid[x, y]; //store in node for easy acces
                         if (node.selected)
                         {
-                            Console.WriteLine("CLICKING......!");
-                            node.texture = LIST_FLOOR_TEXTURES[0];
+                            node.texture = 0;
                         }
                     }
                 }
             }
             catch(Exception e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(e.Message);
             }
         }
     }

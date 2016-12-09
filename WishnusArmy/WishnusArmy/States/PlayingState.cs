@@ -36,9 +36,6 @@ public class PlayingState : IGameLoopObject
 
     public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        for(int i=0; i<levels.Count; ++i)
-        {
-            levels[i].Draw(gameTime, spriteBatch);
-        }
+        levels[currentLevel].Draw(gameTime, spriteBatch);
     }
 }
