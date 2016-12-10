@@ -26,4 +26,7 @@ internal static class Constant
 
     //PROJECTILES
     internal const int LASER_TIME = 20; // Animation lenght of laser per target
+
+    //LEVEL BUILDER
+    internal static readonly Point TOOLBAR_SIZE = new Point(SCREEN_SIZE.X, 150);
 }

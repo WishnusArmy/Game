@@ -42,7 +42,13 @@ public class GridNode : GameObject
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
-        spriteBatch.Draw(LIST_FLOOR_TEXTURES[texture], GlobalPosition, Color.White);
+        /* Experimentel way of smoothing the textures to make their combinations look more natural
+        spriteBatch.Draw(LIST_LAND_TEXTURES[texture], GlobalPosition + new Vector2(10, 0), Color.White * 0.2f);
+        spriteBatch.Draw(LIST_LAND_TEXTURES[texture], GlobalPosition + new Vector2(-10, 0), Color.White * 0.2f);
+        spriteBatch.Draw(LIST_LAND_TEXTURES[texture], GlobalPosition + new Vector2(0, 10), Color.White * 0.2f);
+        spriteBatch.Draw(LIST_LAND_TEXTURES[texture], GlobalPosition + new Vector2(0, -10), Color.White * 0.2f);
+        */
+        spriteBatch.Draw(LIST_LAND_TEXTURES[texture], GlobalPosition, Color.White);
         if (selected)
         {
             DrawingHelper.DrawRectangleFilled(new Rectangle(new Point((int)GlobalPosition.X, (int)GlobalPosition.Y), new Point(NODE_SIZE)), spriteBatch, Color.Black, 0.2f);

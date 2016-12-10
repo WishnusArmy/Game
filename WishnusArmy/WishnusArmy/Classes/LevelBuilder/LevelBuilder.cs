@@ -16,7 +16,8 @@ public class LevelBuilder : GameObjectList
 {
     public LevelBuilder() : base()
     {
-        Add(new ToolSelectionBar());
+        Add(new ToolBar());
+        Add(new ToolbarSelector());
     }
 
     public override void HandleInput(InputHelper inputHelper)

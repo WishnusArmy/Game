@@ -50,8 +50,9 @@
     <Compile Include="Classes\Level.cs" />
     <Compile Include="Classes\LevelBuilder\LevelBuilder.cs" />
     <Compile Include="Classes\LevelBuilder\HashContainer.cs" />
-    <Compile Include="Classes\LevelBuilder\ToolSelectionBar.cs" />
+    <Compile Include="Classes\LevelBuilder\ToolBar.cs" />
     <Compile Include="Classes\CreditsMenu.cs" />
+    <Compile Include="Classes\LevelBuilder\ToolBarSelector.cs" />
     <Compile Include="Classes\Towers\ProjectileTower.cs" />
     <Compile Include="Classes\Towers\Tower.cs" />
     <Compile Include="Classes\LevelGenerator\LevelGenerator.cs" />

@@ -14,10 +14,10 @@ public class DrawingHelper
 
     public static void DrawRectangle(Rectangle r, SpriteBatch spriteBatch, Color col, int size, float alpha = 1f)
     {
-        spriteBatch.Draw(pixel, new Rectangle(r.Left, r.Top, size, r.Height), col * alpha); // Left
-        spriteBatch.Draw(pixel, new Rectangle(r.Right, r.Top, size, r.Height + size), col* alpha); // Right
-        spriteBatch.Draw(pixel, new Rectangle(r.Left, r.Top, r.Width, size), col * alpha); // Top
-        spriteBatch.Draw(pixel, new Rectangle(r.Left, r.Bottom, r.Width + size, size), col * alpha); // Bottom
+        spriteBatch.Draw(pixel, new Rectangle(r.Left - size/2, r.Top, size, r.Height +size), col * alpha); // Left
+        spriteBatch.Draw(pixel, new Rectangle(r.Right - size/2, r.Top, size, r.Height + size), col* alpha); // Right
+        spriteBatch.Draw(pixel, new Rectangle(r.Left - size/2, r.Top - size/2, r.Width + size, size), col * alpha); // Top
+        spriteBatch.Draw(pixel, new Rectangle(r.Left - size/2, r.Bottom - size/2, r.Width + size, size), col * alpha); // Bottom
     }
 
     public static void DrawRectangleFilled(Rectangle r, SpriteBatch spriteBatch, Color col, float alpha = 1f)
