@@ -20,6 +20,7 @@ public class Base : Tower
         this.gridPosition = new Vector2(LEVEL_SIZE / 2, LEVEL_SIZE / 2) - BaseOrigin/NODE_SIZE;
         this.cannonTexture = SPR_BASEGUN;
         this.baseTexture = SPR_BASE;
+        this.range = (int)Math.Sqrt(2 * (LEVEL_SIZE * LEVEL_SIZE)) * NODE_SIZE;
     }
     public override void HandleInput(InputHelper inputHelper)
     {
