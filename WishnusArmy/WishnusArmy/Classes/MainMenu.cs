@@ -46,15 +46,13 @@ public class MainMenu : GameObjectList
         base.Update(gameTime);
 
         if (campaignButton.Pressed)
-        {
             GameEnvironment.GameStateManager.SwitchTo("LevelBuilderState");
-        }else if (creditsButton.Pressed)
-        {
+        else if (survivalButton.Pressed)
+            GameEnvironment.GameStateManager.SwitchTo("PlayingState");
+        else if (creditsButton.Pressed)    
             GameEnvironment.GameStateManager.SwitchTo("CreditsState");
-        }else if (helpButton.Pressed)
-        {
+        else if (helpButton.Pressed)     
             GameEnvironment.GameStateManager.SwitchTo("HelpState");
-        }
 
     }
 
