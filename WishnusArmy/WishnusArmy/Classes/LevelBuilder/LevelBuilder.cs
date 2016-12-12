@@ -16,7 +16,8 @@ public class LevelBuilder : GameObjectList
 {
     public LevelBuilder() : base()
     {
-        Add(new ToolSelectionBar());
+        Add(new ToolBar());
+        Add(new ToolbarSelector());
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -87,6 +88,7 @@ public class LevelBuilder : GameObjectList
         list.Sort();
         for(int z=0; z<list.Count; ++z)
         {
+            //Console.WriteLine(list[z]);
         }
     }
 
