@@ -54,8 +54,8 @@
     <Compile Include="Classes\CreditsMenu.cs" />
     <Compile Include="Classes\LevelBuilder\ToolBarSelector.cs" />
     <Compile Include="Classes\Towers\ProjectileTower.cs" />
-    <Compile Include="Classes\Towers\Tower.cs" />
     <Compile Include="Classes\LevelGenerator\LevelGenerator.cs" />
+    <Compile Include="Classes\Towers\Tower.cs" />
     <Compile Include="States\LevelGeneratorState.cs" />
     <Compile Include="Classes\MainMenu.cs" />
     <Compile Include="Classes\Projectile\Bullet.cs" />
@@ -97,9 +97,7 @@
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <MonoGameContentReference Include="Content\Content.mgcb" />
-  </ItemGroup>
-  <ItemGroup>
+    <Folder Include="Content\" />
     <Folder Include="Levels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
