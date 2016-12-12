@@ -17,23 +17,23 @@ public class MainMenu : GameObjectList
     public MainMenu()
     {
         //Add campaign button
-        campaignButton = new Button(SPR_CAMPAIGNBUTTON);
-        campaignButton.Position = new Vector2((GameEnvironment.Screen.X - SPR_CAMPAIGNBUTTON.Width)/2, (GameEnvironment.Screen.Y - SPR_CAMPAIGNBUTTON.Height) / 2);
+        campaignButton = new Button("CAMPAIGN", Color.Red);
+        campaignButton.Position = new Vector2((GameEnvironment.Screen.X - campaignButton.Dimensions.X)/2, (GameEnvironment.Screen.Y - campaignButton.Dimensions.Y) / 2);
         Add(campaignButton);
 
         //Add survival button
-        survivalButton = new Button(SPR_SURVIVALBUTTON);
-        survivalButton.Position = new Vector2((GameEnvironment.Screen.X - SPR_SURVIVALBUTTON.Width) / 2, (GameEnvironment.Screen.Y - SPR_SURVIVALBUTTON.Height) / 2 + 2 * SPR_SURVIVALBUTTON.Height);
+        survivalButton = new Button("SURVIVAL", Color.Red);
+        survivalButton.Position = new Vector2((GameEnvironment.Screen.X - survivalButton.Dimensions.X) / 2, (GameEnvironment.Screen.Y - survivalButton.Dimensions.Y) / 2 + 2 * survivalButton.Dimensions.Y);
         Add(survivalButton);
 
         //Add help button
-        helpButton = new Button(SPR_HELPBUTTON);
-        helpButton.Position = new Vector2((GameEnvironment.Screen.X - SPR_HELPBUTTON.Width) / 2, (GameEnvironment.Screen.Y - SPR_HELPBUTTON.Height) / 2 + 4 * SPR_SURVIVALBUTTON.Height);
+        helpButton = new Button("HELP", Color.Red);
+        helpButton.Position = new Vector2((GameEnvironment.Screen.X - helpButton.Dimensions.X) / 2, (GameEnvironment.Screen.Y - helpButton.Dimensions.Y) / 2 + 4 * helpButton.Dimensions.Y);
         Add(helpButton);
 
         //Add credits button
-        creditsButton = new Button(SPR_CREDITSBUTTON);
-        creditsButton.Position = new Vector2((GameEnvironment.Screen.X - SPR_CREDITSBUTTON.Width) / 2, (GameEnvironment.Screen.Y - SPR_CREDITSBUTTON.Height) / 2 + 6 * SPR_SURVIVALBUTTON.Height);
+        creditsButton = new Button("CREDITS", Color.Red);
+        creditsButton.Position = new Vector2((GameEnvironment.Screen.X - creditsButton.Dimensions.X) / 2, (GameEnvironment.Screen.Y - creditsButton.Dimensions.Y) / 2 + 6 * creditsButton.Dimensions.Y);
         Add(creditsButton);
     }
     public override void HandleInput(InputHelper inputHelper)

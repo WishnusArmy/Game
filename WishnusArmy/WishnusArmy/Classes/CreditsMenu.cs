@@ -14,8 +14,8 @@ public class CreditsMenu : GameObjectList
     public CreditsMenu()
     {
         //Add back button
-        backButton = new Button(SPR_BACKBUTTON);
-        backButton.Position = new Vector2((GameEnvironment.Screen.X - SPR_BACKBUTTON.Width)/2, (GameEnvironment.Screen.Y - 3 *SPR_BACKBUTTON.Height));
+        backButton = new Button("BACK", Color.Red);
+        backButton.Position = new Vector2((GameEnvironment.Screen.X - backButton.Dimensions.X) / 2, (GameEnvironment.Screen.Y - backButton.Dimensions.Y) / 1.25f);
         Add(backButton);
     }
     public override void HandleInput(InputHelper inputHelper)
