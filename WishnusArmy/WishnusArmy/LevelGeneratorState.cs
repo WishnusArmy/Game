@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using static Constant;
+using static ContentImporter.Textures;
 
-public class PlayingState : IGameLoopObject
+public class LevelGeneratorState : IGameLoopObject
 {
-    protected List<Level> levels;
-    protected int currentLevel;
+    Level level;
 
-    public PlayingState()
+    public LevelGeneratorState()
     {
-        currentLevel = 0;
-        levels = new List<Level>();
-        levels.Add(new Level());
+        level = new Level();
+        level.Add(new LevelGenerator());
     }
 
     public virtual void HandleInput(InputHelper inputHelper)
     {
-        levels[currentLevel].HandleInput(inputHelper);
+        level.HandleInput(inputHelper);
     }
 
     public virtual void Reset()
@@ -31,11 +31,11 @@ public class PlayingState : IGameLoopObject
 
     public virtual void Update(GameTime gameTime)
     {
-        levels[currentLevel].Update(gameTime);
+        level.Update(gameTime);
     }
 
     public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        levels[currentLevel].Draw(gameTime, spriteBatch);
+        level.Draw(gameTime, spriteBatch);
     }
 }

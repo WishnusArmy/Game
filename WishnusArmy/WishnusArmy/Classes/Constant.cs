@@ -23,4 +23,10 @@ internal static class Constant
     //CAMERA
     internal const int SLIDE_BORDER = 100; //Defines the width of the edge that will respond to the mouse.
     internal const int SLIDE_SPEED = 10; //The speed at which the window slides.
+
+    //PROJECTILES
+    internal const int LASER_TIME = 20; // Animation lenght of laser per target
+
+    //LEVEL BUILDER
+    internal static readonly Point TOOLBAR_SIZE = new Point(SCREEN_SIZE.X, 150);
 }

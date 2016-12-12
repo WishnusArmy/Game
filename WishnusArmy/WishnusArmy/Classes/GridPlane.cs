@@ -8,15 +8,16 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using static Constant;
 using static ContentImporter.Textures;
+using WishnusArmy.Classes.Towers;
 
 public class GridPlane: GameObjectList
 {
     public GridNode[,] grid;
-    public Camera.Plane plane;
+    public Camera.Plane planeType;
         
-    public GridPlane(Camera.Plane plane) : base()
+    public GridPlane(Camera.Plane planeType) : base()
     {
-        this.plane = plane;
+        this.planeType = planeType;
         //Initialize the grid with the size of the level
         grid = new GridNode[LEVEL_SIZE, LEVEL_SIZE]; 
         //Fill the grid with GridItems
@@ -24,16 +25,12 @@ public class GridPlane: GameObjectList
         {
             for(int y=0; y<LEVEL_SIZE; ++y)
             {
-                grid[x, y] = new GridNode(new Vector2(NODE_SIZE*x, NODE_SIZE*y), TEX_GRASS);
+                grid[x, y] = new GridNode(new Vector2(NODE_SIZE*x, NODE_SIZE*y), 0);
                 Add(grid[x, y]);
             }
         }
-        //ADD LEVEL OBJECTS HERE (AFTER THE GRID)
-        for (int i = 0; i < 10; ++i)
-        {
-            Pulse p = new Pulse(10, new Vector2(2, 2), 300);
-            Add(p);
-        }
+        //ADD LEVEL OBJECTS IN THE CAMERA CLASS.
+        //ADDING THEM HERE WILL ADD THEM TO EVERY PLANE AL THE SAME
     }
 
     public override void HandleInput(InputHelper inputHelper)
