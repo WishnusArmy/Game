@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Input;
 using static Constant;
 using static ContentImporter;
+
 public class Tower : GameObject
 {
     protected MouseState state = new MouseState();
@@ -32,6 +33,7 @@ public class Tower : GameObject
         spriteBatch.Draw(baseTexture, pos);
         spriteBatch.Draw(cannonTexture, pos + new Vector2(baseTexture.Width / 2, baseTexture.Height / 2), null, null, new Vector2(cannonTexture.Width / 2, cannonTexture.Height / 2), rotation);
     }
+
     public override void HandleInput(InputHelper inputHelper)
     {
         //calculate the rotation of the cannonbarrel
@@ -41,6 +43,7 @@ public class Tower : GameObject
 
         mousePosition = inputHelper.MousePosition;
     }
+
     public virtual Vector2 findTarget()
     {
         //Calculate the distance of the target
@@ -64,6 +67,7 @@ public class Tower : GameObject
     {
 
     }
+
     public virtual void Upgrade()
     {
 

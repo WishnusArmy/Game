@@ -82,7 +82,7 @@ public class Camera : GameObjectList
         if (position.X > 0) { position.X = 0; }
         if (position.Y > 0) { position.Y = 0; }
         if (position.X < -NODE_SIZE * LEVEL_SIZE + WishnusArmy.WishnusArmy.Screen.X ) { position.X = -NODE_SIZE * LEVEL_SIZE + WishnusArmy.WishnusArmy.Screen.X;  }
-        if (position.Y < -NODE_SIZE * LEVEL_SIZE + WishnusArmy.WishnusArmy.Screen.Y) { position.Y = -NODE_SIZE * LEVEL_SIZE + WishnusArmy.WishnusArmy.Screen.Y; }
+        if (position.Y < -NODE_SIZE * LEVEL_SIZE/2 + WishnusArmy.WishnusArmy.Screen.Y) { position.Y = -NODE_SIZE * LEVEL_SIZE/2 + WishnusArmy.WishnusArmy.Screen.Y; }
 
 
         base.HandleInput(inputHelper);
