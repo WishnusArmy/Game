@@ -29,4 +29,7 @@ internal static class Constant
 
     //LEVEL BUILDER
     internal static readonly Point TOOLBAR_SIZE = new Point(SCREEN_SIZE.X, 150);
+
+    //BUTTON MARGIN
+    internal static readonly Point BUTTON_MARGIN = new Point(20, 10);
 }
