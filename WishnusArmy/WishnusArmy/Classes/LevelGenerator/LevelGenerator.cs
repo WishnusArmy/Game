@@ -12,8 +12,7 @@ using static ContentImporter.Textures;
 
 public class LevelGenerator : GameObject
 {
-    int forestRatio = 50, mountainRatio = 45, riverRatio = 0, cityRatio = 0;
-    int[,] levelGrid = new int[LEVEL_SIZE, LEVEL_SIZE];
+    int[,] groundGrid = new int[LEVEL_SIZE, LEVEL_SIZE], airGrid = new int[LEVEL_SIZE, LEVEL_SIZE], undergroundGrid = new int[LEVEL_SIZE, LEVEL_SIZE];
     bool[,] tempGrid = new bool[LEVEL_SIZE, LEVEL_SIZE];
 
     public LevelGenerator() : base()
@@ -24,74 +23,45 @@ public class LevelGenerator : GameObject
     public void GenerateNewLevel()
     {
         ClearGrid();
-        GenerateForests();
-        GenerateMountains();
-        //GenerateRivers();
-        //GenerateVillages();
+        GenerateSpecialTiles(1, 50, 10);     //Populate the ground level with forests
+        GenerateSpecialTiles(2, 45, 5);     //Populate the ground level with mountains
+        GenerateSpecialTiles(3, 5, 1);      //Populate the ground level with rivers
     }
 
-    //Change all tiles in the level to fields (tile type 0)
+    //Change all tiles in the level to fields
     public void ClearGrid()
     {
         for (int x = 0; x < LEVEL_SIZE; x++)
         {
             for (int y = 0; y < LEVEL_SIZE; y++)
             {
-                levelGrid[x, y] = 0;
+                groundGrid[x, y] = 0;
             }
         }
     }
 
-    //Populate the level with forests (tile type 1)
-    public void GenerateForests()
+    //Populate the level with special tiles
+    public void GenerateSpecialTiles(int tileType, int initialRatio, int smoothingPasses)
     {
-        PopulateNewGrid(forestRatio);
+        PopulateNewGrid(initialRatio);
 
-        int smoothingPasses = 5;
         for (int i = 0; i < smoothingPasses; i++)
         {
-            SmoothenGrid(1);
+            SmoothenGrid(tileType, initialRatio);
         }
 
-        AddTempGrid(1);
+        AddTempGrid(tileType);
         ClearNewGrid();
     }
 
-    //Populate the level with mountains (tile type 2)
-    public void GenerateMountains()
-    {
-        PopulateNewGrid(mountainRatio);
-
-        int smoothingPasses = 5;
-        for (int i = 0; i < smoothingPasses; i++)
-        {
-            SmoothenGrid(2);
-        }
-
-        AddTempGrid(2);
-        ClearNewGrid();
-    }
-
-    //Populate the level with rivers (tile type 3)
-    public void GenerateRivers()
-    {
-
-    }
-
-    //Populate the level with villages (tile type 4)
-    public void GenerateVillages()
-    {
-
-    }
-
-    //Generate initial spread of special tiles in tempGrid. newGrid is used to hold and edit the distribution of special tiles before they are added to the level
-    public void PopulateNewGrid(int tileRatio)
+    //Generate initial spread of special tiles in tempGrid. tempGrid is used to hold and edit the distribution of special tiles before they are added to the level
+    public void PopulateNewGrid(int initialRatio)
     {
         for (int x = 0; x < LEVEL_SIZE; x++)
         {
             for (int y = 0; y < LEVEL_SIZE; y++)
             {
-                if (RANDOM.Next(100) < tileRatio)
+                if (RANDOM.Next(100) < initialRatio)
                 {
                     tempGrid[x, y] = true;
                 }
@@ -100,7 +70,7 @@ public class LevelGenerator : GameObject
     }
 
     //Go over the newGrid tile by tile, and adjust each tile's value to match the surroundings
-    public void SmoothenGrid(int tileType)
+    public void SmoothenGrid(int tileType, int initialRatio)
     {
         //Choose direction to smoothen in
         switch (RANDOM.Next(3))
@@ -110,7 +80,7 @@ public class LevelGenerator : GameObject
                 {
                     for (int y = 0; y < LEVEL_SIZE; y++)
                     {
-                        ChangeTiles(x, y, tileType);
+                        ChangeTiles(x, y, tileType, initialRatio);
                     }
                 }
                 break;
@@ -120,7 +90,7 @@ public class LevelGenerator : GameObject
                 {
                     for (int y = LEVEL_SIZE - 1; y >= 0; y--)
                     {
-                        ChangeTiles(x, y, tileType);
+                        ChangeTiles(x, y, tileType, initialRatio);
                     }
                 }
                 break;
@@ -130,7 +100,7 @@ public class LevelGenerator : GameObject
                 {
                     for (int y = 0; y < LEVEL_SIZE; y++)
                     {
-                        ChangeTiles(x, y, tileType);
+                        ChangeTiles(x, y, tileType, initialRatio);
                     }
                 }
                 break;
@@ -141,7 +111,7 @@ public class LevelGenerator : GameObject
                 {
                     for (int y = LEVEL_SIZE - 1; y >= 0; y--)
                     {
-                        ChangeTiles(x, y, tileType);
+                        ChangeTiles(x, y, tileType, initialRatio);
                     }
                 }
                 break;
@@ -149,9 +119,9 @@ public class LevelGenerator : GameObject
     }
 
     //If a tile neighbours many tiles of the same type, change it to that type
-    public void ChangeTiles(int x, int y, int tileType)
+    public void ChangeTiles(int x, int y, int tileType, int initialRatio)
     {
-        int neighbouringTiles = GetSurroundings(x, y, tileType);
+        int neighbouringTiles = GetSurroundings(x, y, tileType, initialRatio);
 
         //Determine smoothing behavior
         switch (tileType)
@@ -160,11 +130,11 @@ public class LevelGenerator : GameObject
                 break;
 
             case 1:
-                if (neighbouringTiles > 4)
+                if (neighbouringTiles > 5)
                 {
                     tempGrid[x, y] = true;
                 }
-                else if (neighbouringTiles < 4)
+                else if (neighbouringTiles < 3)
                 {
                     tempGrid[x, y] = false;
                 }
@@ -182,15 +152,23 @@ public class LevelGenerator : GameObject
                 break;
 
             case 3:
-                break;
+                if (neighbouringTiles < 2 || neighbouringTiles > 2)
+                {
+                    tempGrid[x, y] = false;
+                }
+                else
+                {
+                    tempGrid[x, y] = true;
+                }
+                    break;
 
             default:
                 break;
         }
     }
 
-    //Count how many tiles of the same type are neighbouring this tile
-    public int GetSurroundings(int gridX, int gridY, int tileType)
+    //Count how many tiles neighbouring this tile are set to true
+    public int GetSurroundings(int gridX, int gridY, int tileType, int initialRatio)
     {
         int count = 0;
 
@@ -209,12 +187,19 @@ public class LevelGenerator : GameObject
                         }
                     }
                 }
+                else
+                {
+                    if (RANDOM.Next(100) < initialRatio)
+                    {
+                        count++;
+                    }
+                }
             }
         }
         return count;
     }
 
-    //Use the distribution in tempGrid to add special tiles to the levelGrid
+    //Use the distribution in tempGrid to add special tiles to the level grids
     public void AddTempGrid(int tileType)
     {
         for (int x = 0; x < LEVEL_SIZE; x++)
@@ -223,7 +208,7 @@ public class LevelGenerator : GameObject
             {
                 if (tempGrid[x, y] == true)
                 {
-                    levelGrid[x, y] = tileType;
+                    groundGrid[x, y] = tileType;
                 }
             }
         }
@@ -264,7 +249,7 @@ public class LevelGenerator : GameObject
         {
             for (int y = 0; y < LEVEL_SIZE; y++)
             {
-                switch (levelGrid[x, y])
+                switch (groundGrid[x, y])
                 {
                     case 0:
                         spriteBatch.Draw(TEX_EMPTY, new Vector2(NODE_SIZE * x, NODE_SIZE * y) + camPos, Color.LawnGreen);
@@ -275,11 +260,11 @@ public class LevelGenerator : GameObject
                         break;
 
                     case 2:
-                        spriteBatch.Draw(TEX_EMPTY, new Vector2(NODE_SIZE * x, NODE_SIZE * y) + camPos, Color.SaddleBrown);
+                        spriteBatch.Draw(TEX_EMPTY, new Vector2(NODE_SIZE * x, NODE_SIZE * y) + camPos, Color.Brown);
                         break;
 
                     case 3:
-                        spriteBatch.Draw(TEX_EMPTY, new Vector2(NODE_SIZE * x, NODE_SIZE * y) + camPos, Color.Blue);
+                        spriteBatch.Draw(TEX_EMPTY, new Vector2(NODE_SIZE * x, NODE_SIZE * y) + camPos, Color.CornflowerBlue);
                         break;
 
                     default:
