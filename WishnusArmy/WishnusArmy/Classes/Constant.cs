@@ -17,7 +17,8 @@ internal static class Constant
     internal static Random RANDOM = new Random();
 
     //LEVEL
-    internal const int NODE_SIZE = 64; //The size of a node in the grid
+    internal const int NODE_TEXTURE_SIZE = 64; //The raw, square size of a node
+    internal const int NODE_SIZE = 90; //The size of a node in the grid
     internal const int LEVEL_SIZE = 50; //The size of the level grid
 
     //CAMERA

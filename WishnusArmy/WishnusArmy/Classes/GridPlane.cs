@@ -25,7 +25,14 @@ public class GridPlane: GameObjectList
         {
             for(int y=0; y<LEVEL_SIZE; ++y)
             {
-                grid[x, y] = new GridNode(new Vector2(NODE_SIZE*x, NODE_SIZE*y), 0);
+                if (y % 2 == 0)
+                {
+                    grid[x, y] = new GridNode(new Vector2(NODE_SIZE * x, NODE_SIZE/2 * y), 0);
+                }
+                else
+                {
+                    grid[x, y] = new GridNode(new Vector2(NODE_SIZE * x + NODE_SIZE/2, NODE_SIZE/2 * y), 0);
+                }
                 Add(grid[x, y]);
             }
         }
@@ -47,10 +54,12 @@ public class GridPlane: GameObjectList
     {
         base.Draw(gameTime, spriteBatch);
         //Draw the grid outlines
-        for (int i = 0; i < LEVEL_SIZE + 1; ++i)
+        for (int i = 0; i < LEVEL_SIZE * LEVEL_SIZE; ++i)
         {
-            DrawingHelper.DrawLine(spriteBatch, GlobalPosition + new Vector2(NODE_SIZE * i, 0), GlobalPosition + new Vector2(NODE_SIZE * i, LEVEL_SIZE * NODE_SIZE), Color.Black, 2, 0.05f);
-            DrawingHelper.DrawLine(spriteBatch, GlobalPosition + new Vector2(0, NODE_SIZE * i), GlobalPosition + new Vector2(LEVEL_SIZE * NODE_SIZE, NODE_SIZE * i), Color.Black, 2, 0.05f);
+            //Right to left
+           DrawingHelper.DrawLine(spriteBatch, GlobalPosition + new Vector2(LEVEL_SIZE * NODE_SIZE - NODE_SIZE * i, 0), GlobalPosition + new Vector2(LEVEL_SIZE * NODE_SIZE, NODE_SIZE * i), Color.Black, 2, 0.08f);
+            //Left to right
+           DrawingHelper.DrawLine(spriteBatch, GlobalPosition + new Vector2(NODE_SIZE * i, 0), GlobalPosition + new Vector2(0, NODE_SIZE * i), Color.Black, 2, 0.08f);
         }
     }
 }
