@@ -44,13 +44,7 @@ internal static class ContentImporter
             SPR_MAINMENUBACKGROUND = Content.Load<Texture2D>("Content/Sprites/MainMenuBackground");
             SPR_CREDITSBACKGROUND = Content.Load<Texture2D>("Content/Sprites/CreditsBackground");
             SPR_HELPBACKGROUND = Content.Load<Texture2D>("Content/Sprites/HelpBackground");
-            SPR_CAMPAIGNBUTTON = Content.Load<Texture2D>("Content/Sprites/Buttons/CampaignButton");
-            SPR_SURVIVALBUTTON = Content.Load<Texture2D>("Content/Sprites/Buttons/SurvivalButton");
-            SPR_HELPBUTTON = Content.Load<Texture2D>("Content/Sprites/Buttons/HelpButton");
-            SPR_CREDITSBUTTON = Content.Load<Texture2D>("Content/Sprites/Buttons/CreditsButton");
-            SPR_BACKBUTTON = Content.Load<Texture2D>("Content/Sprites/Buttons/BackButton");
             SPR_WHITEPIXEL = Content.Load<Texture2D>("Content/Sprites/WhitePixel");
-            SPR_PULSE = Content.Load<Texture2D>("Content/Sprites/Pulse");
             SPR_BASEGUN = Content.Load<Texture2D>("Content/Sprites/BaseGun");
 			SPR_ABSTRACT_TOWER = Content.Load<Texture2D>("Content/Sprites/abstractTower");
             SPR_ABSTRACT_CANNON = Content.Load<Texture2D>("Content/Sprites/cannon");
