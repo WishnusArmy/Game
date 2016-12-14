@@ -10,9 +10,6 @@ namespace WishnusArmy
 {
     public class WishnusArmy : GameEnvironment
     {
-        enum GameStates { Menu, Game, Pause};
-        
-
         [DllImport("kernel32")]
         static extern bool AllocConsole();
 

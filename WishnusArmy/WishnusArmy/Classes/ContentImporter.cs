@@ -31,8 +31,10 @@ internal static class ContentImporter
             SPR_CREDITSBUTTON,
             SPR_BACKBUTTON,
 			SPR_BASEGUN,
+            SPR_WHITEPIXEL,
 
             // Projectiles
+
             SPR_PULSE,
             SPR_BULLET;
 
@@ -47,6 +49,8 @@ internal static class ContentImporter
             SPR_HELPBUTTON = Content.Load<Texture2D>("Content/Sprites/Buttons/HelpButton");
             SPR_CREDITSBUTTON = Content.Load<Texture2D>("Content/Sprites/Buttons/CreditsButton");
             SPR_BACKBUTTON = Content.Load<Texture2D>("Content/Sprites/Buttons/BackButton");
+            SPR_WHITEPIXEL = Content.Load<Texture2D>("Content/Sprites/WhitePixel");
+            SPR_PULSE = Content.Load<Texture2D>("Content/Sprites/Pulse");
             SPR_BASEGUN = Content.Load<Texture2D>("Content/Sprites/BaseGun");
 			SPR_ABSTRACT_TOWER = Content.Load<Texture2D>("Content/Sprites/abstractTower");
             SPR_ABSTRACT_CANNON = Content.Load<Texture2D>("Content/Sprites/cannon");
@@ -60,20 +64,29 @@ internal static class ContentImporter
 
     internal static class Textures
     {
-        internal static List<Texture2D> LIST_FLOOR_TEXTURES; //This is used for the levelbuilder toolbar.
+        internal static List<Texture2D> LIST_LAND_TEXTURES; //This is used for the levelbuilder toolbar.
         internal static Texture2D
             TEX_GRASS,
-            TEX_GRASS_DIRT;
+            TEX_GRASS_DIRT,
+            TEX_EMPTY,
+            TEX_EMPTY_SMALL,
+            TEX_STONE_ROAD,
+            SPR_PARTICLE;
 
         public static void Initialize(ContentManager Content)
         {
             TEX_GRASS = Content.Load<Texture2D>("Content/Textures/tex_grass");
             TEX_GRASS_DIRT = Content.Load<Texture2D>("Content/Textures/tex_grass_dirt");
-            LIST_FLOOR_TEXTURES = new List<Texture2D>
+            TEX_EMPTY = Content.Load<Texture2D>("Content/Textures/emptytexture");
+            TEX_EMPTY_SMALL = Content.Load<Texture2D>("Content/Textures/emptytexturesmall");
+            TEX_STONE_ROAD = Content.Load<Texture2D>("Content/Textures/tex_stone_road");
+            SPR_PARTICLE = Content.Load<Texture2D>("Content/Textures/particle_test");
+            LIST_LAND_TEXTURES = new List<Texture2D>
             {
-                //Textures that should show up in the LevelBuilder Toolbar
+                //Textures that should show up in the LevelBuilder Toolbar Land
                 TEX_GRASS,
-                TEX_GRASS_DIRT
+                TEX_GRASS_DIRT,
+                TEX_STONE_ROAD
             };
         }
     }

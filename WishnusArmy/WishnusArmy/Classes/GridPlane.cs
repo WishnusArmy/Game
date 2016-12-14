@@ -13,11 +13,11 @@ using WishnusArmy.Classes.Towers;
 public class GridPlane: GameObjectList
 {
     public GridNode[,] grid;
-    public Camera.Plane plane;
+    public Camera.Plane planeType;
         
-    public GridPlane(Camera.Plane plane) : base()
+    public GridPlane(Camera.Plane planeType) : base()
     {
-        this.plane = plane;
+        this.planeType = planeType;
         //Initialize the grid with the size of the level
         grid = new GridNode[LEVEL_SIZE, LEVEL_SIZE]; 
         //Fill the grid with GridItems
@@ -25,14 +25,20 @@ public class GridPlane: GameObjectList
         {
             for(int y=0; y<LEVEL_SIZE; ++y)
             {
-                grid[x, y] = new GridNode(new Vector2(NODE_SIZE*x, NODE_SIZE*y), TEX_GRASS);
+                if (y % 2 == 0)
+                {
+                    grid[x, y] = new GridNode(new Vector2(NODE_SIZE * x, NODE_SIZE/2 * y), 0);
+                }
+                else
+                {
+                    grid[x, y] = new GridNode(new Vector2(NODE_SIZE * x + NODE_SIZE/2, NODE_SIZE/2 * y), 0);
+                }
                 Add(grid[x, y]);
             }
         }
-        //ADD LEVEL OBJECTS HERE (AFTER THE GRID)
-        
-        Add(new Pulse(10, new Vector2(1, 2), new Vector2(300, 300), 300));
-        Add(new Bullet(10, new Vector2(5, 5), Vector2.Zero));
+
+        //ADD LEVEL OBJECTS IN THE CAMERA CLASS.
+        //ADDING THEM HERE WILL ADD THEM TO EVERY PLANE AL THE SAME
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -49,10 +55,12 @@ public class GridPlane: GameObjectList
     {
         base.Draw(gameTime, spriteBatch);
         //Draw the grid outlines
-        for (int i = 0; i < LEVEL_SIZE + 1; ++i)
+        for (int i = 0; i < LEVEL_SIZE * LEVEL_SIZE; ++i)
         {
-            DrawingHelper.DrawLine(spriteBatch, GlobalPosition + new Vector2(NODE_SIZE * i, 0), GlobalPosition + new Vector2(NODE_SIZE * i, LEVEL_SIZE * NODE_SIZE), Color.Black, 2, 0.05f);
-            DrawingHelper.DrawLine(spriteBatch, GlobalPosition + new Vector2(0, NODE_SIZE * i), GlobalPosition + new Vector2(LEVEL_SIZE * NODE_SIZE, NODE_SIZE * i), Color.Black, 2, 0.05f);
+            //Right to left
+           DrawingHelper.DrawLine(spriteBatch, GlobalPosition + new Vector2(LEVEL_SIZE * NODE_SIZE - NODE_SIZE * i, 0), GlobalPosition + new Vector2(LEVEL_SIZE * NODE_SIZE, NODE_SIZE * i), Color.Black, 2, 0.08f);
+            //Left to right
+           DrawingHelper.DrawLine(spriteBatch, GlobalPosition + new Vector2(NODE_SIZE * i, 0), GlobalPosition + new Vector2(0, NODE_SIZE * i), Color.Black, 2, 0.08f);
         }
     }
 }
