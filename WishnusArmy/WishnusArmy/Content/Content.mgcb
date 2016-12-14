@@ -103,18 +103,6 @@
 /processorParam:TextureFormat=Color
 /build:Content\Sprites\Pulse.png
 
-#begin Content/Sprites/CreditsBackground.jpg
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Sprites/CreditsBackground.jpg
-
 #begin Content/Sprites/HelpBackground.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -222,4 +210,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Sprites/WhitePixel.png
+
+#begin Content/Sprites/CreditsBackground.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Sprites/CreditsBackground.jpg
 
