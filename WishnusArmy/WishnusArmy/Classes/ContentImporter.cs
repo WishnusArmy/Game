@@ -30,8 +30,11 @@ internal static class ContentImporter
             SPR_HELPBUTTON,
             SPR_CREDITSBUTTON,
             SPR_BACKBUTTON,
+			SPR_BASEGUN,
+
+            // Projectiles
             SPR_PULSE,
-			SPR_BASEGUN;
+            SPR_BULLET;
 
         public static void Initialize(ContentManager Content)
         {
@@ -44,10 +47,13 @@ internal static class ContentImporter
             SPR_HELPBUTTON = Content.Load<Texture2D>("Content/Sprites/Buttons/HelpButton");
             SPR_CREDITSBUTTON = Content.Load<Texture2D>("Content/Sprites/Buttons/CreditsButton");
             SPR_BACKBUTTON = Content.Load<Texture2D>("Content/Sprites/Buttons/BackButton");
-            SPR_PULSE = Content.Load<Texture2D>("Content/Sprites/Pulse");
             SPR_BASEGUN = Content.Load<Texture2D>("Content/Sprites/BaseGun");
 			SPR_ABSTRACT_TOWER = Content.Load<Texture2D>("Content/Sprites/abstractTower");
             SPR_ABSTRACT_CANNON = Content.Load<Texture2D>("Content/Sprites/cannon");
+
+            //Projectiles
+            SPR_PULSE = Content.Load<Texture2D>("Content/Sprites/Projectiles/SPR_PULSE");
+            SPR_BULLET = Content.Load<Texture2D>("Content/Sprites/Projectiles/SPR_BULLET");
         }
     }
 
@@ -57,14 +63,12 @@ internal static class ContentImporter
         internal static List<Texture2D> LIST_FLOOR_TEXTURES; //This is used for the levelbuilder toolbar.
         internal static Texture2D
             TEX_GRASS,
-            TEX_GRASS_DIRT,
-            SPR_PARTICLE;
+            TEX_GRASS_DIRT;
 
         public static void Initialize(ContentManager Content)
         {
             TEX_GRASS = Content.Load<Texture2D>("Content/Textures/tex_grass");
             TEX_GRASS_DIRT = Content.Load<Texture2D>("Content/Textures/tex_grass_dirt");
-            SPR_PARTICLE = Content.Load<Texture2D>("Content/Textures/particle_test");
             LIST_FLOOR_TEXTURES = new List<Texture2D>
             {
                 //Textures that should show up in the LevelBuilder Toolbar

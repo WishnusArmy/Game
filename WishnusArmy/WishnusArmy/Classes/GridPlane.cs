@@ -30,11 +30,9 @@ public class GridPlane: GameObjectList
             }
         }
         //ADD LEVEL OBJECTS HERE (AFTER THE GRID)
-        for (int i = 0; i < 10; ++i)
-        {
-            Pulse p = new Pulse(10, new Vector2(2, 2), 300);
-            Add(p);
-        }
+        
+        Add(new Pulse(10, new Vector2(1, 2), new Vector2(300, 300), 300));
+        Add(new Bullet(10, new Vector2(5, 5), Vector2.Zero));
     }
 
     public override void HandleInput(InputHelper inputHelper)
