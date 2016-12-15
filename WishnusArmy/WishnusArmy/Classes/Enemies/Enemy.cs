@@ -28,7 +28,9 @@ public class Enemy : GameObject
     {
         base.Update(gameTime);
         //leuk draaieffect
-        rotation += 0.01f;
+        double opposite = targetPosition().Y - position.Y;
+        double adjacent = targetPosition().X - position.X;
+        rotation = (float)Math.Atan2(opposite, adjacent);
 
         //sprite beweegt richting de muis met vaste snelheid (speed)
         velocity = (targetPosition() - position);

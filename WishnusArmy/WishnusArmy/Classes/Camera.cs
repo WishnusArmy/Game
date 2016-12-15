@@ -85,21 +85,19 @@ public class Camera : GameObjectList
         //Camera Movement
         Vector2 mp = inputHelper.MousePosition;
         if (mp.X < SLIDE_BORDER)
-            pos.X += SLIDE_SPEED;
+            position.X += SLIDE_SPEED;
         if (mp.X > WishnusArmy.WishnusArmy.Screen.X - SLIDE_BORDER)
-            pos.X -= SLIDE_SPEED;
+            position.X -= SLIDE_SPEED;
         if (mp.Y < SLIDE_BORDER)
-            pos.Y += SLIDE_SPEED;
+            position.Y += SLIDE_SPEED;
         if (mp.Y > WishnusArmy.WishnusArmy.Screen.Y - SLIDE_BORDER)
-            pos.Y -= SLIDE_SPEED;
+            position.Y -= SLIDE_SPEED;
 
         //Make sure the camera doesn't move out of bounds
-        if (pos.X > 0) { pos.X = 0; }
-        if (pos.Y > 0) { pos.Y = 0; }
-        if (pos.X < -NODE_SIZE * LEVEL_SIZE + WishnusArmy.WishnusArmy.Screen.X ) { pos.X = -NODE_SIZE * LEVEL_SIZE + WishnusArmy.WishnusArmy.Screen.X;  }
-        if (pos.Y < -NODE_SIZE * LEVEL_SIZE + WishnusArmy.WishnusArmy.Screen.Y) { pos.Y = -NODE_SIZE * LEVEL_SIZE + WishnusArmy.WishnusArmy.Screen.Y; }
-
-
+        if (position.X > 0) { position.X = 0; }
+        if (position.Y > 0) { position.Y = 0; }
+        if (position.X < -NODE_SIZE * LEVEL_SIZE + WishnusArmy.WishnusArmy.Screen.X ) { position.X = -NODE_SIZE * LEVEL_SIZE + WishnusArmy.WishnusArmy.Screen.X;  }
+        if (position.Y < -NODE_SIZE * LEVEL_SIZE/2 + WishnusArmy.WishnusArmy.Screen.Y) { position.Y = -NODE_SIZE * LEVEL_SIZE/2 + WishnusArmy.WishnusArmy.Screen.Y; }
         base.HandleInput(inputHelper);
     }
 }

@@ -23,12 +23,12 @@ class Pulse : Projectile
 
     public void Reset()
     {
-        radiusCurrent = 1;
+        radiusCurrent = 0;
     }
 
-    public bool CheckCollision()
+    public void CheckCollision()
     {
-        return true;
+        return;
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -46,13 +46,15 @@ class Pulse : Projectile
                    radiusCurrent*2),
                new Rectangle(0, 0, SPR_PULSE.Width, SPR_PULSE.Height),
                Color.Blue);
-        
     }
 
-    public override void Update(GameTime gameTime) { 
+    public override void Update(GameTime gameTime) {
+        if (!visible)
+            return;
         base.Update(gameTime);
         radiusCurrent += 2;
         if (radiusCurrent > radiusMax)
             Reset();
+        CheckCollision();
     }
 }
