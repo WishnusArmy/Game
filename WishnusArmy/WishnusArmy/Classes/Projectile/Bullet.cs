@@ -13,12 +13,13 @@ class Bullet : Projectile
     private float rotation;
     Vector2 target;
     int speed;
+    public Enemy enemy;
 
     public Bullet(int damage, int speed, Vector2 startPosition, Vector2 targetPosition) : base()
     {
         this.damage = damage;
         this.speed = speed;
-        Position = startPosition;
+        Position = startPosition + GlobalPosition;
         this.target = targetPosition;
         calculateRotation();
         calculateVelocity();
@@ -34,9 +35,12 @@ class Bullet : Projectile
 
     private void calculateRotation()
     {
-        double opposite = target.Y - SPR_BULLET.Width / 2 - GlobalPosition.Y;
-        double adjacent = target.X - SPR_BULLET.Width / 2 - GlobalPosition.X;
-        rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
+        if (enemy != null)
+        {
+            double opposite = enemy.Position.Y - SPR_BULLET.Width / 2 - GlobalPosition.Y;
+            double adjacent = enemy.Position.X - SPR_BULLET.Width / 2 - GlobalPosition.X;
+            rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
+        }
     }
 
     public Vector2 Target

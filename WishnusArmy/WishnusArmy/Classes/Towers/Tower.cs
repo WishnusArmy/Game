@@ -17,11 +17,13 @@ public class Tower : GameObject
     public Texture2D cannonTexture;
     public Camera camera;
     protected Enemy target;
+    Bullet projectile;
     float rotation;
     protected int range = 5 * Constant.NODE_SIZE;
     int level = 1;
     int cost;
     int damage;
+    double reloadTime = 5d;
 
     public Tower()
     {
@@ -35,6 +37,9 @@ public class Tower : GameObject
         pos = gridPosition * NODE_SIZE + GlobalPosition;
         spriteBatch.Draw(baseTexture, pos);
         spriteBatch.Draw(cannonTexture, pos + new Vector2(baseTexture.Width / 2, baseTexture.Height / 2), null, null, new Vector2(cannonTexture.Width / 2, cannonTexture.Height / 2), rotation);
+
+        if (projectile != null)
+        projectile.Draw(gameTime, spriteBatch);
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -45,10 +50,22 @@ public class Tower : GameObject
             rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
 
         mousePosition = inputHelper.MousePosition;
+
+        if (projectile != null)
+            projectile.HandleInput(inputHelper);
     }
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
+        reloadTime -= gameTime.ElapsedGameTime.TotalSeconds;
+        if (target != null && reloadTime <= 0)
+        { 
+            Attack();
+            reloadTime = 5d;
+        }
+
+        if (projectile != null)
+            projectile.Update(gameTime);
     }
     public virtual Vector2 findTarget()
     {
@@ -90,7 +107,9 @@ public class Tower : GameObject
 
     public virtual void Attack()
     {
-
+        projectile = new Bullet(damage, 2, pos + new Vector2(baseTexture.Width / 2, baseTexture.Height / 2), new Vector2(0, 0));
+        projectile.enemy = target;
+        projectile.Visible = true;
     }
 
     public virtual void Upgrade()
