@@ -26,11 +26,6 @@ internal static class ContentImporter
             SPR_CREDITSBACKGROUND,
             SPR_ENEMY,
             SPR_HELPBACKGROUND,
-            SPR_CAMPAIGNBUTTON,
-            SPR_SURVIVALBUTTON,
-            SPR_HELPBUTTON,
-            SPR_CREDITSBUTTON,
-            SPR_BACKBUTTON,
 			SPR_BASEGUN,
             SPR_WHITEPIXEL,
 
