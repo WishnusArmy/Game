@@ -25,18 +25,26 @@ class Pulse : Projectile
 
     public void Reset()
     {
-        
+        radiusCurrent = 0;
     }
 
     public void CheckCollision()
     {
         foreach (Enemy enemy in GameWorld.FindByType<Enemy>())
         {
-            //if (CollidesWith(enemy))
-            //{
-                
-            //}
+            double distance = Distance(Position, enemy.Position);
+            int offset = speed/2;
+            if (distance < radiusCurrent + offset && distance > radiusCurrent - offset)
+            {
+                enemy.DealDamage = damage;
+            }
         }
+    }
+
+    public double Distance(Vector2 v1, Vector2 v2)
+    {
+        Vector2 v3 = v1 - v2;
+        return Math.Sqrt(v3.X * v3.X + v3.Y * v3.Y);
     }
 
 
