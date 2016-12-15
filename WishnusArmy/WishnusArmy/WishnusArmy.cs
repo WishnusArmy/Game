@@ -39,7 +39,7 @@ namespace WishnusArmy
             screen = SCREEN_SIZE;
             windowSize = WINDOW_SIZE;
             ApplyResolutionSettings();
-            //FullScreen = true;
+            FullScreen = true;
 
             gameStateManager.AddGameState("MainMenuState", new MainMenuState());
             gameStateManager.AddGameState("CreditsState", new CreditsState());
@@ -47,7 +47,7 @@ namespace WishnusArmy
             gameStateManager.AddGameState("PlayingState", new PlayingState());
             gameStateManager.AddGameState("LevelBuilderState", new LevelBuilderState());
             gameStateManager.AddGameState("LevelGeneratorState", new LevelGeneratorState());
-            gameStateManager.SwitchTo("LevelBuilderState");
+            gameStateManager.SwitchTo("MainMenuState");
         }
 
         protected override void UnloadContent()

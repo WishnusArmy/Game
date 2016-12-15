@@ -46,6 +46,7 @@
     <Compile Include="Classes\HelpMenu.cs" />
     <Compile Include="Classes\GridNode.cs" />
     <Compile Include="Classes\GridPlane.cs" />
+    <Compile Include="Classes\Hud.cs" />
     <Compile Include="Classes\IniFile.cs" />
     <Compile Include="Classes\Level.cs" />
     <Compile Include="Classes\LevelBuilder\LevelBuilder.cs" />
