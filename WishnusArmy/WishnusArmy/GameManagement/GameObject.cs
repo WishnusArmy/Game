@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public abstract class GameObject : IGameLoopObject
 {
     protected GameObject parent;
-    protected Vector2 position, velocity;
+    protected Vector2 pos, velocity;
     protected int layer;
     protected string id;
     protected bool visible;
@@ -14,7 +14,7 @@ public abstract class GameObject : IGameLoopObject
     {
         this.layer = layer;
         this.id = id;
-        position = Vector2.Zero;
+        pos = Vector2.Zero;
         velocity = Vector2.Zero; 
         visible = true;
     }
@@ -25,7 +25,7 @@ public abstract class GameObject : IGameLoopObject
 
     public virtual void Update(GameTime gameTime)
     {
-        position += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+        pos += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
     }
 
     public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -39,8 +39,8 @@ public abstract class GameObject : IGameLoopObject
 
     public virtual Vector2 Position
     {
-        get { return position; }
-        set { position = value; }
+        get { return pos; }
+        set { pos = value; }
     }
 
     public virtual Vector2 Velocity

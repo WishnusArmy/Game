@@ -32,9 +32,9 @@ public class Button : GameObject
 
         //Hey Abel, als je hier nou gewoon een rectangle tekent met de width van de tekst? (SpriteFont.MeasureString(string).X)
         if (hover)
-            spriteBatch.Draw(imageAsset, this.position, Color.Orange);
+            spriteBatch.Draw(imageAsset, this.pos, Color.Orange);
         else
-            spriteBatch.Draw(imageAsset, this.position, Color.White);
+            spriteBatch.Draw(imageAsset, this.pos, Color.White);
     }
 
     public override void Reset()

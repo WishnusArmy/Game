@@ -20,7 +20,7 @@ public class GridNode : GameObject
     {
         this.texture = texture;
         this.obj = obj;
-        this.position = position;
+        this.pos = position;
         this.texture = RANDOM.Next(2);
     }
 
