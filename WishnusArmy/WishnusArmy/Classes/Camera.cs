@@ -37,6 +37,21 @@ public class Camera : GameObjectList
                     planes.Add(Land);
                     //Add items to the land plane (p.Add)
                     p.Add(new Base());
+
+                    //(testcode) plaatst torens en voegt een enemy toe
+                    int y = 0;
+                        for (int t = 0; t < 20; t++)
+                        {
+                            {
+                                Tower x = new Tower();
+                                x.camera = this;
+                                x.gridPosition = new Vector2(t, y);
+                                p.Add(x);
+                                p.Add(new Enemy());
+                                y++;
+                            }
+                        }
+                    //einde testcode
                     break;
 
                 case Plane.Air:
@@ -83,8 +98,6 @@ public class Camera : GameObjectList
         if (position.Y > 0) { position.Y = 0; }
         if (position.X < -NODE_SIZE * LEVEL_SIZE + WishnusArmy.WishnusArmy.Screen.X ) { position.X = -NODE_SIZE * LEVEL_SIZE + WishnusArmy.WishnusArmy.Screen.X;  }
         if (position.Y < -NODE_SIZE * LEVEL_SIZE/2 + WishnusArmy.WishnusArmy.Screen.Y) { position.Y = -NODE_SIZE * LEVEL_SIZE/2 + WishnusArmy.WishnusArmy.Screen.Y; }
-
-
         base.HandleInput(inputHelper);
     }
 }

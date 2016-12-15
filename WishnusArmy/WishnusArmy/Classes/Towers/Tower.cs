@@ -15,10 +15,13 @@ public class Tower : GameObject
     public Vector2 gridPosition, pos, mousePosition, previousPosition = new Vector2(0, 0);
     public Texture2D baseTexture;
     public Texture2D cannonTexture;
+    public Camera camera;
+    protected Enemy target;
     float rotation;
     protected int range = 5 * Constant.NODE_SIZE;
     int level = 1;
     int cost;
+    int damage;
 
     public Tower()
     {
@@ -37,29 +40,51 @@ public class Tower : GameObject
     public override void HandleInput(InputHelper inputHelper)
     {
         //calculate the rotation of the cannonbarrel
-        double opposite = findTarget().Y - cannonTexture.Width / 2 - pos.Y;
-        double adjacent = findTarget().X - cannonTexture.Width / 2 - pos.X;
-        rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
+            double opposite = findTarget().Y - cannonTexture.Width / 2 - pos.Y;
+            double adjacent = findTarget().X - cannonTexture.Width / 2 - pos.X;
+            rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
 
         mousePosition = inputHelper.MousePosition;
     }
-
+    public override void Update(GameTime gameTime)
+    {
+        base.Update(gameTime);
+    }
     public virtual Vector2 findTarget()
     {
-        //Calculate the distance of the target
-        double A = mousePosition.Y - pos.Y;
-        double B = mousePosition.X - pos.X;
-        double distance = Math.Sqrt(A * A + B * B);
 
-        // if target is withing the tower range
-        if (distance <= range)
+        //if there already is a target that is within the tower range
+        if (target != null && CalculateDistance(target.Position, pos) < range)
         {
-            previousPosition = mousePosition;
-            return mousePosition;
-            //Change this into closest enemy position
+            previousPosition = target.Position;
+            return target.Position;
         }
         else
-            return previousPosition;
+            //necessary so that the tower only follows enemies withing range
+            target = null;
+
+        //set distance to find a new enemy that is under that distance
+        double distance = range;
+
+
+        // look through all the enemies
+        foreach (Enemy x in camera.FindByType<Enemy>())
+        {
+            //Calculate the distance of the target
+            double enemyDistance = CalculateDistance(x.Position, pos);
+            //if the enemy is closer than the last;
+            if (enemyDistance <= distance)
+            {
+                distance = enemyDistance;
+                //set this enemy as the target
+                target = x;    
+            }
+        }
+        //if a target is found
+        if (target != null)
+            return target.Position;
+        else
+            return previousPosition + GlobalPosition;
 
     }
 
@@ -71,5 +96,14 @@ public class Tower : GameObject
     public virtual void Upgrade()
     {
 
+    }
+
+    //returns the length of the direct line between two points
+    public double CalculateDistance(Vector2 A, Vector2 B)
+    {
+        double K = A.Y - B.Y;
+        double L = A.X - B.X;
+        double distance = Math.Sqrt(K * K + L * L);
+        return distance;
     }
 }
