@@ -36,6 +36,7 @@ public class GridPlane: GameObjectList
                 Add(grid[x, y]);
             }
         }
+
         //ADD LEVEL OBJECTS IN THE CAMERA CLASS.
         //ADDING THEM HERE WILL ADD THEM TO EVERY PLANE AL THE SAME
     }

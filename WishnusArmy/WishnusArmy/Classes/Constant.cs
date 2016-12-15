@@ -26,11 +26,43 @@ internal static class Constant
     internal const int SLIDE_SPEED = 10; //The speed at which the window slides.
 
     //PROJECTILES
-    internal const int LASER_TIME = 20; // Animation lenght of laser per target
+    internal const int LASER_TIME = 40; // Animation lenght of laser per target
 
     //LEVEL BUILDER
     internal static readonly Point TOOLBAR_SIZE = new Point(SCREEN_SIZE.X, 150);
 
     //BUTTON MARGIN
     internal static readonly Point BUTTON_MARGIN = new Point(20, 10);
+
+    //STATS (edit it however you like ;)
+    internal static int getTowerDamage(int level)
+    {
+        switch (level)
+        {
+            case 3: return 60;      // level 3
+            case 2: return 45;      // level 2
+            default: return 20;     // level 1
+        }
+    }
+    internal static int getTowerFireRate(int level)
+    {
+        switch (level)
+        {
+            case 3: return 4;      // level 3
+            case 2: return 3;      // level 2
+            default: return 1;     // level 1
+        }
+    }
+
+    internal static int getEnemyHealth(int level)
+    {
+        switch (level)
+        {
+            case 3: return 100;      // level 3
+            case 2: return 60;      // level 2
+            default: return 40;     // level 1
+        }
+    }
+
+
 }

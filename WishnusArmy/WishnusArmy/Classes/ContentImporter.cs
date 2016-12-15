@@ -24,10 +24,20 @@ internal static class ContentImporter
             SPR_ABSTRACT_CANNON,
             SPR_MAINMENUBACKGROUND,
             SPR_CREDITSBACKGROUND,
+            SPR_ENEMY,
             SPR_HELPBACKGROUND,
+            SPR_CAMPAIGNBUTTON,
+            SPR_SURVIVALBUTTON,
+            SPR_HELPBUTTON,
+            SPR_CREDITSBUTTON,
+            SPR_BACKBUTTON,
+			SPR_BASEGUN,
             SPR_WHITEPIXEL,
+
+            // Projectiles
+
             SPR_PULSE,
-			SPR_BASEGUN;
+            SPR_BULLET;
 
         public static void Initialize(ContentManager Content)
         {
@@ -35,11 +45,15 @@ internal static class ContentImporter
             SPR_MAINMENUBACKGROUND = Content.Load<Texture2D>("Content/Sprites/MainMenuBackground");
             SPR_CREDITSBACKGROUND = Content.Load<Texture2D>("Content/Sprites/CreditsBackground");
             SPR_HELPBACKGROUND = Content.Load<Texture2D>("Content/Sprites/HelpBackground");
+            SPR_ENEMY = Content.Load<Texture2D>("Content/Sprites/enemySprite");
             SPR_WHITEPIXEL = Content.Load<Texture2D>("Content/Sprites/WhitePixel");
-            SPR_PULSE = Content.Load<Texture2D>("Content/Sprites/Pulse");
             SPR_BASEGUN = Content.Load<Texture2D>("Content/Sprites/BaseGun");
 			SPR_ABSTRACT_TOWER = Content.Load<Texture2D>("Content/Sprites/abstractTower");
             SPR_ABSTRACT_CANNON = Content.Load<Texture2D>("Content/Sprites/cannon");
+
+            //Projectiles
+            SPR_PULSE = Content.Load<Texture2D>("Content/Sprites/Projectiles/SPR_PULSE");
+            SPR_BULLET = Content.Load<Texture2D>("Content/Sprites/Projectiles/SPR_BULLET");
         }
     }
 

@@ -8,27 +8,86 @@ using Microsoft.Xna.Framework.Graphics;
 using static ContentImporter.Sprites;
 
 class Bullet : Projectile
+    
 {
-    public Bullet(int damage, Vector2 velocity, Vector2 startPosition) : base()
+    private float rotation;
+    Vector2 target;
+    int speed;
+
+    public Bullet(int damage, int speed, Vector2 startPosition, Vector2 targetPosition) : base()
     {
         this.damage = damage;
-        this.velocity = velocity;
+        this.speed = speed;
         Position = startPosition;
-
+        this.target = targetPosition;
+        calculateRotation();
+        calculateVelocity();
+        
     }
-    public bool CheckCollision()
+
+    private void calculateVelocity()
     {
-        return true;
+        int x = (int) (Math.Cos(rotation-0.5*Math.PI) * 5 * speed);
+        int y = (int)(Math.Sin(rotation-0.5 * Math.PI) * 5 * speed);
+        velocity = new Vector2(x,y);
+    }
+
+    private void calculateRotation()
+    {
+        double opposite = target.Y - SPR_BULLET.Width / 2 - GlobalPosition.Y;
+        double adjacent = target.X - SPR_BULLET.Width / 2 - GlobalPosition.X;
+        rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
+    }
+
+    public Vector2 Target
+    {
+        set
+        {
+            this.target = value;
+        }
+    }
+
+    public void CheckCollision()
+    {
+        return;
+    }
+
+    public override void HandleInput(InputHelper inputHelper)
+    {
+        target = inputHelper.MousePosition;
+        calculateRotation();
+        calculateVelocity();
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
+        if (!visible)
+            return;
         base.Draw(gameTime, spriteBatch);
+        // find target and get his position
+        //GameObject target = GameWorld.FindById(targetId) as GameObject;
+        //Vector2 targetPosition = target.GlobalPosition;
+        // calculate the rotation of the sprite
+
+        // draw the sprite
+        Vector2 origin = new Vector2(SPR_BULLET.Width/2, SPR_BULLET.Height/2);
+        spriteBatch.Draw(SPR_BULLET, 
+            new Rectangle((int)GlobalPosition.X, (int)GlobalPosition.Y, SPR_BULLET.Width, SPR_BULLET.Height),
+            null,
+            Color.White,
+            rotation,
+            origin,
+            SpriteEffects.None,
+            0f);
+        
     }
 
     public override void Update(GameTime gameTime)
     {
-        Position += this.velocity;
+        if (!visible)
+            return;
         base.Update(gameTime);
+        Position += this.velocity;
+        CheckCollision();
     }
 }

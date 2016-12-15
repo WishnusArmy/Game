@@ -43,6 +43,7 @@
     <Compile Include="Classes\BaseTower.cs" />
     <Compile Include="Classes\Constant.cs" />
     <Compile Include="Classes\ContentImporter.cs" />
+    <Compile Include="Classes\Enemies\Enemy.cs" />
     <Compile Include="Classes\HelpMenu.cs" />
     <Compile Include="Classes\GridNode.cs" />
     <Compile Include="Classes\GridPlane.cs" />
