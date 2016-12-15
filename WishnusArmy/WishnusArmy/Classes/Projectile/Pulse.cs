@@ -32,10 +32,10 @@ class Pulse : Projectile
     {
         foreach (Enemy enemy in GameWorld.FindByType<Enemy>())
         {
-            if (CollidesWith(enemy))
-            {
+            //if (CollidesWith(enemy))
+            //{
                 
-            }
+            //}
         }
     }
 
