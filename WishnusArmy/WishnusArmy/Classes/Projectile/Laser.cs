@@ -28,28 +28,36 @@ class Laser : Projectile
     {
         set
         {
-            if (timer > LASER_TIME)
-            {
-                this.target = value;
-                Reset();
-            }
+            this.target = value;
         }
     }
     
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        if (target == null)
+        if (target == null || !visible)
             return;
         base.Draw(gameTime, spriteBatch);
-        DrawingHelper.DrawLine(spriteBatch, GlobalPosition, target + GlobalPosition, Color.Red, 8);
+        DrawingHelper.DrawLine(spriteBatch, GlobalPosition, target, new Color(255 - timer*2,0, timer*5), 16);
+    }
+
+    public override void HandleInput(InputHelper inputHelper)
+    {
+        Target = inputHelper.MousePosition;
     }
 
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
         timer++;
+        
         if (timer > LASER_TIME)
+        {
             visible = false;
+        }
+        if (timer > LASER_TIME * 2)
+        {
+            Reset();
+        }
     }
 
     private void Reset()

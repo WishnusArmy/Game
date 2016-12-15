@@ -6,18 +6,20 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using static ContentImporter.Sprites;
+using static Constant;
 
 class Pulse : Projectile
 {
     private int radiusMax;
     private int radiusCurrent;
+    private int speed;
 
-    public Pulse(int damage, Vector2 velocity, Vector2 position, int radius) : base()
+    public Pulse(int damage, int speed, Vector2 position, int radius) : base()
     {
         Position = position;
         this.radiusMax = radius;
         this.damage = damage;
-        this.velocity = velocity;
+        this.speed = speed;
         Reset();
     }
 
@@ -28,8 +30,24 @@ class Pulse : Projectile
 
     public void CheckCollision()
     {
-        return;
+        foreach (Enemy enemy in GameWorld.FindByType<Enemy>())
+        {
+            double distance = Distance(Position, enemy.Position);
+            int offset = speed/2;
+            if (distance < radiusCurrent + offset && distance > radiusCurrent - offset)
+            {
+                enemy.DealDamage = damage;
+            }
+        }
     }
+
+    public double Distance(Vector2 v1, Vector2 v2)
+    {
+        Vector2 v3 = v1 - v2;
+        return Math.Sqrt(v3.X * v3.X + v3.Y * v3.Y);
+    }
+
+
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
@@ -45,16 +63,16 @@ class Pulse : Projectile
                    radiusCurrent*2, 
                    radiusCurrent*2),
                new Rectangle(0, 0, SPR_PULSE.Width, SPR_PULSE.Height),
-               Color.Blue);
+               Color.Yellow);
     }
 
     public override void Update(GameTime gameTime) {
         if (!visible)
             return;
         base.Update(gameTime);
-        radiusCurrent += 2;
+        radiusCurrent += speed;
+        CheckCollision();
         if (radiusCurrent > radiusMax)
             Reset();
-        CheckCollision();
     }
 }

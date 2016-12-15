@@ -10,7 +10,7 @@ namespace WishnusArmy.Classes.Towers
     class ProjectileTower : Tower
         
     {
-        public ProjectileTower(Vector2 Position)
+        public ProjectileTower()
         {
 
         }
