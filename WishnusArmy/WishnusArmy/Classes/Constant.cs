@@ -18,7 +18,7 @@ internal static class Constant
 
     //LEVEL
     internal const int NODE_TEXTURE_SIZE = 64; //The raw, square size of a node
-    internal const int NODE_SIZE = 90; //The size of a node in the grid
+    internal static readonly Point NODE_SIZE  =  new Point(128, 64); //The size of a node in the grid
     internal const int LEVEL_SIZE = 50; //The size of the level grid
 
     //CAMERA

@@ -12,15 +12,15 @@ using WishnusArmy.Classes.Towers;
 
 public class Base : Tower
 {
-    Vector2 GameMiddle = new Vector2(LEVEL_SIZE * NODE_SIZE / 2, LEVEL_SIZE * NODE_SIZE / 4);
+    Vector2 GameMiddle = new Vector2(LEVEL_SIZE * NODE_SIZE.X / 2, LEVEL_SIZE * NODE_SIZE.Y / 4);
     Vector2 BaseOrigin = new Vector2(SPR_BASEGUN.Width / 2, SPR_BASEGUN.Height / 2);
 
     public Base()
     {
-        this.gridPosition = new Vector2(LEVEL_SIZE / 2, LEVEL_SIZE / 4) - BaseOrigin/NODE_SIZE;
+        this.gridPosition = new Vector2(LEVEL_SIZE / 2, LEVEL_SIZE / 4) - BaseOrigin/NODE_SIZE.X;
         this.cannonTexture = SPR_BASEGUN;
         this.baseTexture = SPR_BASE;
-        this.range = (int)Math.Sqrt(2 * (LEVEL_SIZE * LEVEL_SIZE)) * NODE_SIZE;
+        this.range = (int)Math.Sqrt(2 * (LEVEL_SIZE * LEVEL_SIZE)) * NODE_SIZE.X;
     }
 
     public override void HandleInput(InputHelper inputHelper)
