@@ -45,11 +45,16 @@ public class Enemy : GameObject
         startPosition += velocity;
         position = startPosition + GlobalPosition;
 
+        // tijdelijk toegevoegd door maurin
+        // zet visible naar false als health < 0
+        visible = IsAlive;
 
 
     }
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
+        if (!visible)
+            return;
         base.Draw(gameTime, spriteBatch);
         spriteBatch.Draw(Sprite, position,null, null, new Vector2(Sprite.Width/2,Sprite.Height/2), rotation);
 
@@ -68,6 +73,18 @@ public class Enemy : GameObject
         return target + GlobalPosition;
         
 
+    }
+
+    // deal damage to enemy
+    public int DealDamage
+    {
+        set { health -= value; }
+    }
+
+    // hiermee kunnen alle enemies uit de lijst verwijderd worden dmv !enemy.IsAlive
+    public bool IsAlive
+    {
+        get { return health > 0; }
     }
 
 
