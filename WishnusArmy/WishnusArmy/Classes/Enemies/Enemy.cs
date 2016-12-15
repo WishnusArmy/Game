@@ -8,7 +8,7 @@ using static ContentImporter.Sprites;
 using Microsoft.Xna.Framework;
 public class Enemy : GameObject
 {
-    Texture2D Sprite;
+    public Texture2D Sprite;
     float rotation, healthRatio;
     Vector2 position, mousePosition, target = new Vector2(200,200), startPosition = new Vector2(200,200);
     float speed = 5;
@@ -49,7 +49,6 @@ public class Enemy : GameObject
         // zet visible naar false als health < 0
         visible = IsAlive;
 
-
     }
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
@@ -67,14 +66,12 @@ public class Enemy : GameObject
 
         //The position never truly equals the target position so 5 pixels lower or higher.
 
-        if (target.X + GlobalPosition.X > (position).X - 5 && target.X + GlobalPosition.X < (position).X + 5 && target.Y + GlobalPosition.Y > (position).Y - 5 && target.Y + +GlobalPosition.Y < (position).Y + 5)
+        if (CalculateDistance(target + GlobalPosition, position) < 4)
             //get a random target within 1000,1000
             target = new Vector2((int)(1000*Constant.RANDOM.NextDouble()), Constant.RANDOM.Next(1000));
         return target + GlobalPosition;
-        
 
     }
-
     // deal damage to enemy
     public int DealDamage
     {
@@ -86,8 +83,6 @@ public class Enemy : GameObject
     {
         get { return health > 0; }
     }
-
-
     //om de position te krijgen
     public Vector2 Position
     {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 
 public abstract class GameObject : IGameLoopObject
@@ -116,5 +117,13 @@ public abstract class GameObject : IGameLoopObject
         {
             return new Rectangle((int)GlobalPosition.X, (int)GlobalPosition.Y, 0, 0);
         }
+    }
+    //returns the length of the direct line between two points
+    public double CalculateDistance(Vector2 A, Vector2 B)
+    {
+        double K = A.Y - B.Y;
+        double L = A.X - B.X;
+        double distance = Math.Sqrt(K * K + L * L);
+        return distance;
     }
 }

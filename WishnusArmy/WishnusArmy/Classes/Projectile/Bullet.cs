@@ -14,6 +14,7 @@ class Bullet : Projectile
     Vector2 target;
     int speed;
     public Enemy enemy;
+    Boolean arrived = false;
 
     public Bullet(int damage, int speed, Vector2 startPosition, Vector2 targetPosition) : base()
     {
@@ -37,23 +38,24 @@ class Bullet : Projectile
     {
         if (enemy != null)
         {
-            double opposite = enemy.Position.Y - SPR_BULLET.Width / 2 - GlobalPosition.Y;
-            double adjacent = enemy.Position.X - SPR_BULLET.Width / 2 - GlobalPosition.X;
+            double opposite = Target().Y - SPR_BULLET.Width / 2 - GlobalPosition.Y;
+            double adjacent = Target().X - SPR_BULLET.Width / 2 - GlobalPosition.X;
             rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
         }
     }
 
-    public Vector2 Target
+    public Vector2 Target()
     {
-        set
-        {
-            this.target = value;
-        }
+        return enemy.Position;
     }
 
     public void CheckCollision()
     {
-        return;
+        if (CalculateDistance(enemy.Position, position) < 30)
+        {
+            enemy.DealDamage = damage;
+            visible = false;
+        }
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -85,7 +87,6 @@ class Bullet : Projectile
             0f);
         
     }
-
     public override void Update(GameTime gameTime)
     {
         if (!visible)
