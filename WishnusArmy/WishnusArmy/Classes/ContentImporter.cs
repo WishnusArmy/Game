@@ -24,6 +24,7 @@ internal static class ContentImporter
             SPR_ABSTRACT_CANNON,
             SPR_MAINMENUBACKGROUND,
             SPR_CREDITSBACKGROUND,
+            SPR_ENEMY,
             SPR_HELPBACKGROUND,
 			SPR_BASEGUN,
             SPR_WHITEPIXEL,
@@ -39,6 +40,7 @@ internal static class ContentImporter
             SPR_MAINMENUBACKGROUND = Content.Load<Texture2D>("Content/Sprites/MainMenuBackground");
             SPR_CREDITSBACKGROUND = Content.Load<Texture2D>("Content/Sprites/CreditsBackground");
             SPR_HELPBACKGROUND = Content.Load<Texture2D>("Content/Sprites/HelpBackground");
+            SPR_ENEMY = Content.Load<Texture2D>("Content/Sprites/enemySprite");
             SPR_WHITEPIXEL = Content.Load<Texture2D>("Content/Sprites/WhitePixel");
             SPR_BASEGUN = Content.Load<Texture2D>("Content/Sprites/BaseGun");
 			SPR_ABSTRACT_TOWER = Content.Load<Texture2D>("Content/Sprites/abstractTower");
