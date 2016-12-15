@@ -13,6 +13,9 @@ internal static class Constant
 
     //APPLLICATION
     internal static readonly Point WINDOW_SIZE = new Point(1920 / 2, 1080 / 2);
+
+    
+
     internal static readonly Point SCREEN_SIZE = new Point(1920, 1080);
     internal static Random RANDOM = new Random();
 
@@ -26,7 +29,7 @@ internal static class Constant
     internal const int SLIDE_SPEED = 10; //The speed at which the window slides.
 
     //PROJECTILES
-    internal const int LASER_TIME = 40; // Animation lenght of laser per target
+    internal const int LASER_TIME = 3; // Animation lenght of laser per target
 
     //LEVEL BUILDER
     internal static readonly Point TOOLBAR_SIZE = new Point(SCREEN_SIZE.X, 150);
@@ -35,15 +38,7 @@ internal static class Constant
     internal static readonly Point BUTTON_MARGIN = new Point(20, 10);
 
     //STATS (edit it however you like ;)
-    internal static int getTowerDamage(int level)
-    {
-        switch (level)
-        {
-            case 3: return 60;      // level 3
-            case 2: return 45;      // level 2
-            default: return 20;     // level 1
-        }
-    }
+    
     internal static int getTowerFireRate(int level)
     {
         switch (level)
@@ -61,6 +56,27 @@ internal static class Constant
             case 3: return 100;      // level 3
             case 2: return 60;      // level 2
             default: return 40;     // level 1
+        }
+    }
+
+    // Projectiles
+    internal static int getBulletDamage(int level)
+    {
+        switch (level)
+        {
+            case 3: return 100;      // level 3
+            case 2: return 80;      // level 2
+            default: return 50;     // level 1
+        }
+    }
+
+    internal static int getBulletSpeed(int level)
+    {
+        switch (level)
+        {
+            case 3: return 3;      // level 3
+            case 2: return 2;      // level 2
+            default: return 1;     // level 1
         }
     }
 

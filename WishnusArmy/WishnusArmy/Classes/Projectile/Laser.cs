@@ -9,7 +9,7 @@ using static Constant;
 
 class Laser : Projectile
 {
-    private Vector2 target;
+    private Enemy target;
     private int timer;
 
 
@@ -21,15 +21,29 @@ class Laser : Projectile
     public Laser(Vector2 startPosition) : base()
     {
         Position = startPosition;
-        Reset();
+        timer = 0;
+        damage = 4;
     }
     
-    public Vector2 Target
+    
+
+    public void Target()
     {
-        set
+        Enemy targetEnemy = null;
+        foreach(Enemy enemy in GameWorld.FindByType<Enemy>())
         {
-            this.target = value;
+            if (enemy.Visible)
+            {
+                targetEnemy = enemy;
+            }
+                
         }
+        if (targetEnemy != null)
+        {
+            this.target = targetEnemy;
+            targetEnemy.DealDamage = damage;
+        }
+        
     }
     
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -37,33 +51,27 @@ class Laser : Projectile
         if (target == null || !visible)
             return;
         base.Draw(gameTime, spriteBatch);
-        DrawingHelper.DrawLine(spriteBatch, GlobalPosition, target, new Color(255 - timer*2,0, timer*5), 16);
+        if (target.Visible || timer < LASER_TIME/4)
+        DrawingHelper.DrawLine(spriteBatch, GlobalPosition, target.Position, new Color(255 - timer*2,0, timer*5), 16);
     }
 
-    public override void HandleInput(InputHelper inputHelper)
-    {
-        Target = inputHelper.MousePosition;
-    }
+    
 
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
         timer++;
-        
         if (timer > LASER_TIME)
-        {
-            visible = false;
-        }
-        if (timer > LASER_TIME * 2)
         {
             Reset();
         }
     }
 
-    private void Reset()
+    public override void Reset()
     {
         timer = 0;
         visible = true;
+        Target();
     }
 
 }
