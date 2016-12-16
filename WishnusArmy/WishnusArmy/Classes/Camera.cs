@@ -43,7 +43,7 @@ public class Camera : GameObjectList
                         for (int t = 0; t < 20; t++)
                         {
                             {
-                                Tower x = new Tower();
+                                ProjectileTower x = new ProjectileTower();
                                 x.camera = this;
                                 x.gridPosition = new Vector2(t, y);
                                 p.Add(x);

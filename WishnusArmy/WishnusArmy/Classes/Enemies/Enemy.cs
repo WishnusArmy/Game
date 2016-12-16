@@ -26,8 +26,10 @@ public class Enemy : GameObject
     }
     public override void Update(GameTime gameTime)
     {
+        if (!visible)
+            return;
         base.Update(gameTime);
-        //leuk draaieffect
+        //Enemy is in de goede richting gedraaid
         double opposite = targetPosition().Y - position.Y;
         double adjacent = targetPosition().X - position.X;
         rotation = (float)Math.Atan2(opposite, adjacent);

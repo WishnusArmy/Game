@@ -50,7 +50,7 @@ internal static class Constant
         {
             case 3: return 4;      // level 3
             case 2: return 3;      // level 2
-            default: return 1;     // level 1
+            default: return 10;     // level 1
         }
     }
 

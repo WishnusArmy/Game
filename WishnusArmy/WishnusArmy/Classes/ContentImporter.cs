@@ -38,7 +38,9 @@ internal static class ContentImporter
             SPR_ABSTRACT_CANNON,
             SPR_BASE,
             SPR_BASEGUN,
-            SPR_RADIUS;
+            SPR_RADIUS,
+            SPR_LASER_TOWER,
+            SPR_PULSE_TOWER;
 
         public static void Initialize(ContentManager Content)
         {
@@ -56,11 +58,13 @@ internal static class ContentImporter
             SPR_BULLET = Content.Load<Texture2D>("Content/Sprites/Projectiles/SPR_BULLET");
 
             //Towers
-            SPR_ABSTRACT_TOWER = Content.Load<Texture2D>("Content/Sprites/abstractTower");
-            SPR_ABSTRACT_CANNON = Content.Load<Texture2D>("Content/Sprites/cannon");
-            SPR_BASE = Content.Load<Texture2D>("Content/Sprites/BaseSprite");
-            SPR_BASEGUN = Content.Load<Texture2D>("Content/Sprites/BaseGun");
+            SPR_ABSTRACT_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/abstractTower");
+            SPR_ABSTRACT_CANNON = Content.Load<Texture2D>("Content/Sprites/Towers/cannon");
+            SPR_BASE = Content.Load<Texture2D>("Content/Sprites/Towers/BaseSprite");
+            SPR_BASEGUN = Content.Load<Texture2D>("Content/Sprites/Towers/BaseGun");
             SPR_RADIUS = Content.Load<Texture2D>("Content/Sprites/Towers/radius");
+            SPR_LASER_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/laserTower");
+            SPR_PULSE_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/pulseTower");
         }
     }
 

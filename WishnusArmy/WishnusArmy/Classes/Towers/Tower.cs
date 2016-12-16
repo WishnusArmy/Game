@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Input;
 using static Constant;
-using static ContentImporter;
+using static ContentImporter.Sprites;
 
 public class Tower : GameObject
 {
@@ -18,20 +18,18 @@ public class Tower : GameObject
     public Camera camera;
     protected Enemy target;
     public Boolean hover = false;
-    Bullet projectile;
     float rotation;
-    protected int range = 5 * Constant.NODE_SIZE;
-    int level = 1;
-    int cost;
-    int damage;
+    protected int damage, cost, level = 1, range = 5 * Constant.NODE_SIZE;
     double reloadTime = 2d;
+    
 
     public Tower()
     {
-        baseTexture = Sprites.SPR_ABSTRACT_TOWER; //Texture of the (unanimated) base of the tower
-        cannonTexture = Sprites.SPR_ABSTRACT_CANNON; // The moving part of a tower
+        baseTexture = SPR_ABSTRACT_TOWER; //Texture of the (unanimated) base of the tower
+        cannonTexture = SPR_ABSTRACT_CANNON; // The moving part of a tower
         damage = Constant.getTowerDamage(level);
         reloadTime = 1d/Constant.getTowerFireRate(level);
+        
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -42,10 +40,7 @@ public class Tower : GameObject
         spriteBatch.Draw(cannonTexture, pos + new Vector2(baseTexture.Width / 2, baseTexture.Height / 2), null, null, new Vector2(cannonTexture.Width / 2, cannonTexture.Height / 2), rotation);
 
         if (hover)
-            spriteBatch.Draw(Sprites.SPR_RADIUS, pos + new Vector2(baseTexture.Width/2, baseTexture.Height/2), null, null, new Vector2(Sprites.SPR_RADIUS.Width / 2, Sprites.SPR_RADIUS.Height / 2),0f, new Vector2(1f,1f) *((float)range/((float)Sprites.SPR_RADIUS.Width/2)), new Color(0.2f,0.2f,0.2f, 0.1f));
-
-        if (projectile != null)
-        projectile.Draw(gameTime, spriteBatch);
+            spriteBatch.Draw(SPR_RADIUS, pos + new Vector2(baseTexture.Width/2, baseTexture.Height/2), null, null, new Vector2(SPR_RADIUS.Width / 2, SPR_RADIUS.Height / 2),0f, new Vector2(1f,1f) *((float)range/((float)SPR_RADIUS.Width/2)), new Color(0.2f,0.2f,0.2f, 0.1f));
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -58,9 +53,6 @@ public class Tower : GameObject
         mousePosition = inputHelper.MousePosition;
         if (range != 0 && BoundingBox.Contains(mousePosition)) { hover = true; }
         else { hover = false; }
-
-        if (projectile != null)
-            projectile.HandleInput(inputHelper);
     }
     public override void Update(GameTime gameTime)
     {
@@ -71,10 +63,9 @@ public class Tower : GameObject
             Attack();
             reloadTime = 1d/Constant.getTowerFireRate(level);
         }
-
-        if (projectile != null)
-            projectile.Update(gameTime);
     }
+
+
     public virtual Vector2 findTarget()
     {
         if (target != null && target.Visible == false)
@@ -119,9 +110,6 @@ public class Tower : GameObject
 
     public virtual void Attack()
     {
-        projectile = new Bullet(damage, 2, pos + new Vector2(baseTexture.Width / 2, baseTexture.Height / 2), new Vector2(0, 0));
-        projectile.enemy = target;
-        projectile.Visible = true;
     }
 
     public virtual void Upgrade()

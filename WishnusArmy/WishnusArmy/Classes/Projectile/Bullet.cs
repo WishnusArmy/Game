@@ -11,17 +11,15 @@ class Bullet : Projectile
     
 {
     private float rotation;
-    Vector2 target;
     int speed;
     public Enemy enemy;
     Boolean arrived = false;
 
-    public Bullet(int damage, int speed, Vector2 startPosition, Vector2 targetPosition) : base()
+    public Bullet(int damage, int speed, Vector2 startPosition) : base()
     {
         this.damage = damage;
         this.speed = speed;
         Position = startPosition + GlobalPosition;
-        this.target = targetPosition;
         calculateRotation();
         calculateVelocity();
         
@@ -60,7 +58,6 @@ class Bullet : Projectile
 
     public override void HandleInput(InputHelper inputHelper)
     {
-        target = inputHelper.MousePosition;
         calculateRotation();
         calculateVelocity();
     }
