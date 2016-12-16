@@ -14,16 +14,16 @@ class Pulse : Projectile
     private int radiusCurrent;
     private int speed;
 
-    public Pulse(int damage, int speed, Vector2 position, int radius) : base()
+    public Pulse(int level, Vector2 position, int radius) : base()
     {
         Position = position;
-        this.radiusMax = radius;
-        this.damage = damage;
-        this.speed = speed;
+        this.radiusMax = PULSE_RADIUS[level];
+        this.damage = PULSE_DAMAGE[level];
+        this.speed = PULSE_SPEED[level];
         Reset();
     }
 
-    public void Reset()
+    public override void Reset()
     {
         radiusCurrent = 0;
     }
@@ -32,7 +32,7 @@ class Pulse : Projectile
     {
         foreach (Enemy enemy in GameWorld.FindByType<Enemy>())
         {
-            double distance = Distance(Position, enemy.Position);
+            double distance = DISTANCE(Position, enemy.Position);
             int offset = speed/2;
             if (distance < radiusCurrent + offset && distance > radiusCurrent - offset)
             {
@@ -40,14 +40,7 @@ class Pulse : Projectile
             }
         }
     }
-
-    public double Distance(Vector2 v1, Vector2 v2)
-    {
-        Vector2 v3 = v1 - v2;
-        return Math.Sqrt(v3.X * v3.X + v3.Y * v3.Y);
-    }
-
-
+    
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {

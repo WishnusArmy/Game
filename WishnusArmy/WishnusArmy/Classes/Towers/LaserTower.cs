@@ -5,25 +5,50 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using static Constant;
 
-namespace WishnusArmy.Classes.Towers
+class LaserTower : Tower
 {
-    class LaserTower : Tower
+    Laser laser;
+    public LaserTower()
     {
-        public LaserTower()
+        damage = Constant.LASER_DAMAGE[level];
+        this.range = LASER_RADIUS[level];
+    }
+    public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+    {
+        base.Draw(gameTime, spriteBatch);
+        if (laser != null)
+            laser.Draw(gameTime, spriteBatch);
+    }
+    public override void HandleInput(InputHelper inputHelper)
+    {
+        base.HandleInput(inputHelper);
+        if (laser != null)
+            laser.HandleInput(inputHelper);
+    }
+    public override void Update(GameTime gameTime)
+    {
+        if (target != null)
         {
+            Attack();
         }
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        if (laser != null)
         {
-            base.Draw(gameTime, spriteBatch);
+            laser.Update(gameTime);
+            laser.Position = gridPosition * NODE_SIZE.X + new Vector2(baseTexture.Width/2, baseTexture.Height/2)+ GlobalPosition;
         }
-        public override void HandleInput(InputHelper inputHelper)
-        {
-            base.HandleInput(inputHelper);
-        }
-        public override void Upgrade()
-        {
-            base.Upgrade();
-        }
+        //if target is out of range
+        if (target != null && DISTANCE(target.Position + GlobalPosition, pos) > range)
+            target = null;
+    }
+    public override void Attack()
+    {
+        base.Attack();
+        laser = new Laser(pos);
+        laser.target = target;
+        laser.damage = damage;
+
     }
 }
+

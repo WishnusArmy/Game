@@ -19,23 +19,24 @@ public class Tower : GameObject
     protected Enemy target;
     public Boolean hover = false;
     float rotation;
-    protected int damage, cost, level = 1, range = 5 * Constant.NODE_SIZE;
-    double reloadTime = 2d;
-    
+    protected int damage, cost, level = 0, range = 5 * Constant.NODE_SIZE.X;
+    protected double reloadTime;
+    int[] levels; // {cost, damage, firerate, radius }
+
 
     public Tower()
     {
         baseTexture = SPR_ABSTRACT_TOWER; //Texture of the (unanimated) base of the tower
         cannonTexture = SPR_ABSTRACT_CANNON; // The moving part of a tower
-        damage = Constant.getTowerDamage(level);
-        reloadTime = 1d/Constant.getTowerFireRate(level);
-        
+        reloadTime = 1d / Constant.FIRE_RATE[level];
+        levels = new int[] {
+            0,0,0,0
+        };
     }
-
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
-        pos = gridPosition * NODE_SIZE + GlobalPosition;
+        pos = gridPosition * NODE_SIZE.X + GlobalPosition;
         spriteBatch.Draw(baseTexture, pos);
         spriteBatch.Draw(cannonTexture, pos + new Vector2(baseTexture.Width / 2, baseTexture.Height / 2), null, null, new Vector2(cannonTexture.Width / 2, cannonTexture.Height / 2), rotation);
 
@@ -51,6 +52,8 @@ public class Tower : GameObject
             rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
 
         mousePosition = inputHelper.MousePosition;
+
+        //check if mouse is hovering over tower
         if (range != 0 && BoundingBox.Contains(mousePosition)) { hover = true; }
         else { hover = false; }
     }
@@ -61,7 +64,7 @@ public class Tower : GameObject
         if (target != null && reloadTime <= 0)
         { 
             Attack();
-            reloadTime = 1d/Constant.getTowerFireRate(level);
+            reloadTime = 1d/Constant.FIRE_RATE[level];
         }
     }
 
@@ -71,12 +74,12 @@ public class Tower : GameObject
         if (target != null && target.Visible == false)
             target = null;
         //if there already is a target that is within the tower range
-        if (target != null && CalculateDistance(target.Position, pos) < range)
+        if (target != null && Constant.DISTANCE(target.Position, pos) < range)
         {
             previousPosition = target.Position;
             return target.Position;
         }
-            //necessary so that the tower only follows enemies withing range
+            //necessary so that the tower only follows enemies within range
         else
             target = null;
         

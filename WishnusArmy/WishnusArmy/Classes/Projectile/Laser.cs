@@ -9,9 +9,9 @@ using static Constant;
 
 class Laser : Projectile
 {
-    private Vector2 target;
+    public Enemy target;
     private int timer;
-
+    private int radius;
 
     // Call Laser like 
     //      Laser(towerPosition)
@@ -21,15 +21,18 @@ class Laser : Projectile
     public Laser(Vector2 startPosition) : base()
     {
         Position = startPosition;
-        Reset();
+        timer = 0;
     }
     
-    public Vector2 Target
+    
+
+    public void Target()
     {
-        set
+        if (target != null)
         {
-            this.target = value;
+            target.DealDamage = damage;
         }
+        
     }
     
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -37,33 +40,25 @@ class Laser : Projectile
         if (target == null || !visible)
             return;
         base.Draw(gameTime, spriteBatch);
-        DrawingHelper.DrawLine(spriteBatch, GlobalPosition, target, new Color(255 - timer*2,0, timer*5), 16);
+        if (target.Visible)
+        DrawingHelper.DrawLine(spriteBatch, GlobalPosition, target.Position, new Color(255 - timer*2,0, timer*5), 16);
     }
 
-    public override void HandleInput(InputHelper inputHelper)
-    {
-        Target = inputHelper.MousePosition;
-    }
+    
 
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
         timer++;
-        
-        if (timer > LASER_TIME)
-        {
-            visible = false;
-        }
-        if (timer > LASER_TIME * 2)
-        {
             Reset();
-        }
+        position += position - GlobalPosition;
     }
 
-    private void Reset()
+    public override void Reset()
     {
         timer = 0;
         visible = true;
+        Target();
     }
 
 }

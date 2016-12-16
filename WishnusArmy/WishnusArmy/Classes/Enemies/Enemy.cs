@@ -6,13 +6,15 @@ using System.Text;
 using System.Threading.Tasks;
 using static ContentImporter.Sprites;
 using Microsoft.Xna.Framework;
+using static Constant;
+
 public class Enemy : GameObject
 {
     public Texture2D Sprite;
     float rotation, healthRatio;
     Vector2 position, mousePosition, target = new Vector2(200,200), startPosition = new Vector2(200,200);
     float speed = 5;
-    int health = 100;
+    int health = ENEMY_HEALTH[1];
     public Enemy()
     {
         this.position = startPosition + GlobalPosition;

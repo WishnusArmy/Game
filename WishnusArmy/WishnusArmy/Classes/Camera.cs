@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using static Constant;
-using WishnusArmy.Classes.Towers;
 using Microsoft.Xna.Framework.Graphics;
 
 public class Camera : GameObjectList
@@ -37,20 +36,26 @@ public class Camera : GameObjectList
                     planes.Add(Land);
                     //Add items to the land plane (p.Add)
                     p.Add(new Base());
-                    //p.Add(new Pulse(20, 8, new Vector2(300, 300), 600));
                     //(testcode) plaatst torens en voegt een enemy toe
                     int y = 0;
                         for (int t = 0; t < 20; t++)
                         {
                             {
-                                ProjectileTower x = new ProjectileTower();
-                                x.camera = this;
-                                x.gridPosition = new Vector2(t, y);
-                                p.Add(x);
+
                                 p.Add(new Enemy());
                                 y++;
-                            }
+                            /*
+                            p.Add(new Laser(new Vector2(200, 200)));
+                            p.Add(new Laser(new Vector2(600, 600)));
+                            p.Add(new Laser(new Vector2(900, 900)));
+                            */
+
                         }
+                        }
+                    LaserTower x = new LaserTower();
+                    x.camera = this;
+                    x.gridPosition = new Vector2(6, 6);
+                    p.Add(x);
                     //einde testcode
                     break;
 
@@ -96,8 +101,10 @@ public class Camera : GameObjectList
         //Make sure the camera doesn't move out of bounds
         if (position.X > 0) { position.X = 0; }
         if (position.Y > 0) { position.Y = 0; }
-        if (position.X < -NODE_SIZE * LEVEL_SIZE + WishnusArmy.WishnusArmy.Screen.X ) { position.X = -NODE_SIZE * LEVEL_SIZE + WishnusArmy.WishnusArmy.Screen.X;  }
-        if (position.Y < -NODE_SIZE * LEVEL_SIZE/2 + WishnusArmy.WishnusArmy.Screen.Y) { position.Y = -NODE_SIZE * LEVEL_SIZE/2 + WishnusArmy.WishnusArmy.Screen.Y; }
+
+        if (position.X < -NODE_SIZE.X * LEVEL_SIZE + WishnusArmy.WishnusArmy.Screen.X ) { position.X = -NODE_SIZE.X * LEVEL_SIZE + WishnusArmy.WishnusArmy.Screen.X;  }
+        if (position.Y < -NODE_SIZE.X * LEVEL_SIZE/2 + WishnusArmy.WishnusArmy.Screen.Y) { position.Y = -NODE_SIZE.X * LEVEL_SIZE/2 + WishnusArmy.WishnusArmy.Screen.Y; }
+
         base.HandleInput(inputHelper);
     }
 }

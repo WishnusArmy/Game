@@ -5,56 +5,53 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
-
-namespace WishnusArmy.Classes.Towers
-{
-    class ProjectileTower : Tower
+class ProjectileTower : Tower
         
+{
+    List<Bullet> bulletList;
+    public ProjectileTower()
     {
-        List<Bullet> bulletList;
-        public ProjectileTower()
+        damage = Constant.BULLET_DAMAGE[level];
+        bulletList = new List<Bullet>();
+    }
+    public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+    {
+        base.Draw(gameTime, spriteBatch);
+        foreach (Bullet x in bulletList)
         {
-            bulletList = new List<Bullet>();
+            x.Draw(gameTime, spriteBatch);
         }
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+    }
+    public override void HandleInput(InputHelper inputHelper)
+    {
+        base.HandleInput(inputHelper);
+        foreach (Bullet x in bulletList)
         {
-            base.Draw(gameTime, spriteBatch);
-            foreach (Bullet x in bulletList)
-            {
-                x.Draw(gameTime, spriteBatch);
-            }
+            x.HandleInput(inputHelper);
         }
-        public override void HandleInput(InputHelper inputHelper)
+    }
+    public override void Update(GameTime gameTime)
+    {
+        base.Update(gameTime);
+        //remove bullets from the list that are finished
+        for (int t = bulletList.Count - 1; t > -1; t--)
         {
-            base.HandleInput(inputHelper);
-            foreach (Bullet x in bulletList)
-            {
-                x.HandleInput(inputHelper);
-            }
+            if (bulletList.ElementAt(t).Visible == false)
+                bulletList.Remove(bulletList.ElementAt(t));
         }
-        public override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
-            //remove bullets from the list that are finished
-            for (int t = bulletList.Count - 1; t > -1; t--)
-            {
-                if (bulletList.ElementAt(t).Visible == false)
-                    bulletList.Remove(bulletList.ElementAt(t));
-            }
 
-            //update the bullets
-            foreach (Bullet x in bulletList)
-            {
-                x.Update(gameTime);
-            }
-        }
-        public override void Attack()
+        //update the bullets
+        foreach (Bullet x in bulletList)
         {
-            base.Attack();
-            Bullet x = new Bullet(damage, 2, pos + new Vector2(baseTexture.Width / 2, baseTexture.Height / 2), new Vector2(0, 0));
-            x.enemy = target;
-            x.Visible = true;
-            bulletList.Add(x);
+            x.Update(gameTime);
         }
+    }
+    public override void Attack()
+    {
+        base.Attack();
+        Bullet x = new Bullet(damage, 2, pos + new Vector2(baseTexture.Width / 2, baseTexture.Height / 2));
+        x.enemy = target;
+        x.Visible = true;
+        bulletList.Add(x);
     }
 }

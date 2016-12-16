@@ -8,17 +8,16 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using static ContentImporter.Sprites;
 using static Constant;
-using WishnusArmy.Classes.Towers;
 
 public class Base : Tower
 {
-    Vector2 GameMiddle = new Vector2(LEVEL_SIZE * NODE_SIZE / 2, LEVEL_SIZE * NODE_SIZE / 4);
+    Vector2 GameMiddle = new Vector2(LEVEL_SIZE * NODE_SIZE.X / 2, LEVEL_SIZE * NODE_SIZE.Y / 4);
     Vector2 BaseOrigin = new Vector2(SPR_BASEGUN.Width / 2, SPR_BASEGUN.Height / 2);
 
     public Base()
     {
+        //this.gridPosition = new Vector2(LEVEL_SIZE / 2, LEVEL_SIZE / 4) - BaseOrigin/NODE_SIZE.X;
         this.gridPosition = new Vector2(5,5);
-            //new Vector2(LEVEL_SIZE / 2, LEVEL_SIZE / 4) - BaseOrigin/NODE_SIZE;
         this.cannonTexture = SPR_BASEGUN;
         this.baseTexture = SPR_BASE;
         this.range = 0; //(aimed manually)

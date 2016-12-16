@@ -13,12 +13,15 @@ internal static class Constant
 
     //APPLLICATION
     internal static readonly Point WINDOW_SIZE = new Point(1920 / 2, 1080 / 2);
+
+    
+
     internal static readonly Point SCREEN_SIZE = new Point(1920, 1080);
     internal static Random RANDOM = new Random();
 
     //LEVEL
     internal const int NODE_TEXTURE_SIZE = 64; //The raw, square size of a node
-    internal const int NODE_SIZE = 90; //The size of a node in the grid
+    internal static readonly Point NODE_SIZE  =  new Point(128, 64); //The size of a node in the grid
     internal const int LEVEL_SIZE = 50; //The size of the level grid
 
     //CAMERA
@@ -26,7 +29,21 @@ internal static class Constant
     internal const int SLIDE_SPEED = 10; //The speed at which the window slides.
 
     //PROJECTILES
-    internal const int LASER_TIME = 40; // Animation lenght of laser per target
+    // damage/speed/radius per level
+    internal static int[] BULLET_DAMAGE = new int[] { 60, 100, 120 };       
+    internal static int[] BULLET_SPEED = new int[] { 5, 8, 10 };
+    internal static int[] PULSE_DAMAGE = new int[] { 10, 30, 40 };
+    internal static int[] PULSE_SPEED = new int[] { 4, 6, 8 };
+    internal static int[] PULSE_RADIUS = new int[] { 200, 400, 600 };
+    internal static int[] LASER_DAMAGE = new int[] { 1, 2, 4 };
+    internal static int[] LASER_RADIUS = new int[] { 150, 400, 800 };
+    internal const int LASER_TIME = 4;
+
+    //TOWERS
+    internal static int[] FIRE_RATE = new int[] { 1, 2, 3 };
+
+    //ENEMIES
+    internal static int[] ENEMY_HEALTH = new int[] { 100, 250, 600 };
 
     //LEVEL BUILDER
     internal static readonly Point TOOLBAR_SIZE = new Point(SCREEN_SIZE.X, 150);
@@ -34,35 +51,14 @@ internal static class Constant
     //BUTTON MARGIN
     internal static readonly Point BUTTON_MARGIN = new Point(20, 10);
 
-    //STATS (edit it however you like ;)
-    internal static int getTowerDamage(int level)
+    //MATH
+    internal static double DISTANCE(Vector2 v1, Vector2 v2)
     {
-        switch (level)
-        {
-            case 3: return 60;      // level 3
-            case 2: return 45;      // level 2
-            default: return 1;     // level 1
-        }
-    }
-    internal static int getTowerFireRate(int level)
-    {
-        switch (level)
-        {
-            case 3: return 4;      // level 3
-            case 2: return 3;      // level 2
-            default: return 10;     // level 1
-        }
+        Vector2 v3 = v1 - v2;
+        return Math.Sqrt(v3.X*v3.X + v3.Y*v3.Y);
     }
 
-    internal static int getEnemyHealth(int level)
-    {
-        switch (level)
-        {
-            case 3: return 100;      // level 3
-            case 2: return 60;      // level 2
-            default: return 40;     // level 1
-        }
-    }
+
 
 
 }
