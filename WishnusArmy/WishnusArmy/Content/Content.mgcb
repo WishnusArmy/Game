@@ -211,83 +211,7 @@
 /processorParam:TextureFormat=Color
 /build:Content/Sprites/Projectiles/SPR_PULSE.png
 
-<<<<<<< HEAD
-#begin Content/Sprites/WhitePixel.png
-=======
-#begin Content/Sprites/enemySprite.png
->>>>>>> master
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-<<<<<<< HEAD
-/build:Content/Sprites/WhitePixel.png
-
-#begin Content/Sprites/tex_grass.png
-=======
-/build:Content/Sprites/enemySprite.png
-
-#begin Content/Sprites/Buttons/BackButton.png
->>>>>>> master
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-<<<<<<< HEAD
-/build:Content/Sprites/tex_grass.png
-
-#begin Content/Sprites/tex_grass_dirt.png
-=======
-/build:Content/Sprites/Buttons/BackButton.png
-
-#begin Content/Sprites/Buttons/CampaignButton.png
->>>>>>> master
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-<<<<<<< HEAD
-/build:Content/Sprites/tex_grass_dirt.png
-
-#begin Content/Sprites/tex_stone_road.png
-=======
-/build:Content/Sprites/Buttons/CampaignButton.png
-
-#begin Content/Sprites/Buttons/CreditsButton.png
->>>>>>> master
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-<<<<<<< HEAD
-/build:Content/Sprites/tex_stone_road.png
-
 #begin Content/Textures/tex_grass.png
-=======
-/build:Content/Sprites/Buttons/CreditsButton.png
-
-#begin Content/Sprites/Buttons/HelpButton.png
->>>>>>> master
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -297,15 +221,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-<<<<<<< HEAD
 /build:Content/Textures/tex_grass.png
 
 #begin Content/Textures/tex_grass_dirt.png
-=======
-/build:Content/Sprites/Buttons/HelpButton.png
-
-#begin Content/Sprites/Buttons/PlayButton.png
->>>>>>> master
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -315,15 +233,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-<<<<<<< HEAD
 /build:Content/Textures/tex_grass_dirt.png
 
 #begin Content/Textures/tex_stone_road.png
-=======
-/build:Content/Sprites/Buttons/PlayButton.png
-
-#begin Content/Sprites/Buttons/SurvivalButton.png
->>>>>>> master
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -333,12 +245,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-<<<<<<< HEAD
 /build:Content/Textures/tex_stone_road.png
-=======
-/build:Content/Sprites/Buttons/SurvivalButton.png
 
-#begin Content/Sprites/playButton.png
+#begin Content/Sprites/enemySprite.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -348,6 +257,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Content/Sprites/playButton.png
->>>>>>> master
+/build:Content/Sprites/enemySprite.png
 

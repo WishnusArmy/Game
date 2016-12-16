@@ -29,9 +29,9 @@ public class GridNode : GameObject
         base.HandleInput(inputHelper);
         selected = false;
         Vector2 mousePos = inputHelper.MousePosition;
-        if (mousePos.X >= GlobalPosition.X - NODE_SIZE.X/2 && mousePos.X < GlobalPosition.X + NODE_SIZE.X/2 &&
-           mousePos.Y >= GlobalPosition.Y - NODE_SIZE.Y/2 + Math.Abs(GlobalPosition.X + NODE_SIZE.X/2 - mousePos.X) * (NODE_SIZE.Y / NODE_SIZE.X))
-           //mousePos.Y < GlobalPosition.Y + NODE_SIZE.Y/2 + NODE_SIZE.X/2 - Math.Abs(GlobalPosition.X + NODE_SIZE.X/2 - mousePos.X) * (NODE_SIZE.Y/NODE_SIZE.X))
+        if (mousePos.X >= GlobalPosition.X && mousePos.X < GlobalPosition.X + NODE_SIZE.X &&
+            mousePos.Y >= GlobalPosition.Y + Math.Abs(GlobalPosition.X + NODE_SIZE.X/2 - mousePos.X) / (NODE_SIZE.X/NODE_SIZE.Y) &&
+            mousePos.Y < GlobalPosition.Y + NODE_SIZE.Y - Math.Abs(GlobalPosition.X + NODE_SIZE.X/2 - mousePos.X) / (NODE_SIZE.X/NODE_SIZE.Y))
         {
             selected = true;
         }
@@ -49,9 +49,9 @@ public class GridNode : GameObject
         spriteBatch.Draw(LIST_LAND_TEXTURES[texture], GlobalPosition, Color.White);
         if (selected)
         {
-            //DrawingHelper.DrawRectangleFilled(new Rectangle(new Point((int)GlobalPosition.X, (int)GlobalPosition.Y), new Point(NODE_SIZE)), spriteBatch, Color.Black, 0.2f);
+            //DrawingHelper.DrawRectangleFilled(new Rectangle(new Point((int)GlobalPosition.X, (int)GlobalPosition.Y), new Point(NODE_SIZE.X)), spriteBatch, Color.Black, 0.2f);
             //spriteBatch.Draw(TEX_EMPTY, GlobalPosition, null, Color.Black * 0.2f, (float)(0.25 * Math.PI), Vector2.Zero, 1f, SpriteEffects.None, 0);
-            DrawingHelper.DrawRectangleFilled(new Rectangle(new Point((int)GlobalPosition.X, (int)GlobalPosition.Y), new Point(10)), spriteBatch, Color.Black, 0.4f);
+            spriteBatch.Draw(LIST_LAND_TEXTURES[texture], GlobalPosition, Color.Black * 0.4f);
         }
     }
 }

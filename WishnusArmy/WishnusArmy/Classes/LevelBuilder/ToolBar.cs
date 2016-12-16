@@ -36,7 +36,7 @@ public class ToolBar : GameObject
             DrawingHelper.DrawText(spriteBatch, FNT_LEVEL_BUILDER, str[str.Length-1], new Vector2(140 * i + 75 + NODE_SIZE.X/2, SCREEN_SIZE.Y - 20), Color.Black, true);
             if (i == selected)
             {
-                DrawingHelper.DrawRectangle(new Rectangle(new Point(140 * i + 70, SCREEN_SIZE.Y - 125), new Point(74)), spriteBatch, Color.Black, 3);
+                DrawingHelper.DrawRectangle(new Rectangle(new Point(140 * i + 70, SCREEN_SIZE.Y - 125), new Point(NODE_SIZE.X + 10, 74)), spriteBatch, Color.Black, 3);
             }
         }
     }
