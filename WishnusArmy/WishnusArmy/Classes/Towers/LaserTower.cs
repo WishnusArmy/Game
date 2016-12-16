@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using static Constant;
+using static ContentImporter.Sprites;
 
 class LaserTower : Tower
 {
@@ -14,6 +15,7 @@ class LaserTower : Tower
     {
         damage = Constant.LASER_DAMAGE[level];
         this.range = LASER_RADIUS[level];
+        this.baseTexture = SPR_LASER_TOWER;
     }
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
