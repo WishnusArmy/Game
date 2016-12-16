@@ -19,7 +19,7 @@
 /processorParam:TextureFormat=Compressed
 /build:Content/Fonts/fnt_level_builder.spritefont
 
-#begin Content/Sprites/BaseSprite.png
+#begin Content/Sprites/Projectiles/SPR_BULLET.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -29,9 +29,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Content/Sprites/BaseSprite.png
+/build:Content/Sprites/Projectiles/SPR_BULLET.png
 
-#begin Content/Textures/particle_test.jpg
+#begin Content/Sprites/Projectiles/SPR_PULSE.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -41,7 +41,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Content/Textures/particle_test.jpg
+/build:Content/Sprites/Projectiles/SPR_PULSE.png
+
+#begin Content/Sprites/abstractTower.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Sprites/abstractTower.png
 
 #begin Content/Sprites/BaseGun.png
 /importer:TextureImporter
@@ -55,7 +67,7 @@
 /processorParam:TextureFormat=Color
 /build:Content/Sprites/BaseGun.png
 
-#begin Content/Sprites/MainMenuBackground.jpg
+#begin Content/Sprites/BaseSprite.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -65,7 +77,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Content/Sprites/MainMenuBackground.jpg
+/build:Content/Sprites/BaseSprite.png
+
+#begin Content/Sprites/cannon.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Sprites/cannon.png
 
 #begin Content/Sprites/CreditsBackground.jpg
 /importer:TextureImporter
@@ -91,7 +115,7 @@
 /processorParam:TextureFormat=Color
 /build:Content/Sprites/HelpBackground.jpg
 
-#begin Content/Textures/abstractTower.png
+#begin Content/Sprites/MainMenuBackground.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -101,79 +125,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Content/Textures/abstractTower.png
-
-#begin Content/Textures/cannon.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Textures/cannon.png
-
-#begin Content/Textures/emptytexture.bmp
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Textures/emptytexture.bmp
-
-#begin Content/Sprites/abstractTower.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Sprites/abstractTower.png
-
-#begin Content/Textures/emptytexturesmall.bmp
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Textures/emptytexturesmall.bmp
-
-#begin Content/Sprites/cannon.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Sprites/cannon.png
-
-#begin Content/Textures/tex_stone_road.jpg
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Textures/tex_stone_road.jpg
+/build:Content/Sprites/MainMenuBackground.jpg
 
 #begin Content/Sprites/WhitePixel.png
 /importer:TextureImporter
@@ -187,7 +139,7 @@
 /processorParam:TextureFormat=Color
 /build:Content/Sprites/WhitePixel.png
 
-#begin Content/Sprites/Projectiles/SPR_BULLET.png
+#begin Content/Textures/emptytexture.bmp
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -197,9 +149,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Content/Sprites/Projectiles/SPR_BULLET.png
+/build:Content/Textures/emptytexture.bmp
 
-#begin Content/Sprites/Projectiles/SPR_PULSE.png
+#begin Content/Textures/emptytexturesmall.bmp
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -209,8 +161,57 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Content/Sprites/Projectiles/SPR_PULSE.png
+/build:Content/Textures/emptytexturesmall.bmp
 
+#begin Content/Textures/particle_test.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Textures/particle_test.jpg
+
+#begin Content/Textures/tex_grass.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Textures/tex_grass.jpg
+
+#begin Content/Textures/tex_grass_dirt.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Textures/tex_grass_dirt.jpg
+
+#begin Content/Textures/tex_stone_road.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Textures/tex_stone_road.jpg
+
+<<<<<<< HEAD
 #begin Content/Textures/tex_grass.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -247,6 +248,8 @@
 /processorParam:TextureFormat=Color
 /build:Content/Textures/tex_stone_road.png
 
+=======
+>>>>>>> master
 #begin Content/Sprites/enemySprite.png
 /importer:TextureImporter
 /processor:TextureProcessor

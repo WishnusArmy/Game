@@ -48,7 +48,7 @@ public class MainMenu : GameObjectList
         if (campaignButton.Pressed)
             GameEnvironment.GameStateManager.SwitchTo("LevelBuilderState");
         else if (survivalButton.Pressed)
-            GameEnvironment.GameStateManager.SwitchTo("PlayingState");
+            GameEnvironment.GameStateManager.SwitchTo("LevelGeneratorState");
         else if (creditsButton.Pressed)    
             GameEnvironment.GameStateManager.SwitchTo("CreditsState");
         else if (helpButton.Pressed)     
