@@ -49,7 +49,11 @@ public class Camera : GameObjectList
                                 p.Add(x);
                                 p.Add(new Enemy());
                                 y++;
-                            }
+                            p.Add(new Laser(new Vector2(200, 200)));
+                            p.Add(new Laser(new Vector2(600, 600)));
+                            p.Add(new Laser(new Vector2(900, 900)));
+
+                        }
                         }
                     //einde testcode
                     break;

@@ -29,13 +29,15 @@ internal static class Constant
     internal const int SLIDE_SPEED = 10; //The speed at which the window slides.
 
     //PROJECTILES
-    internal const int LASER_TIME = 3; // Animation lenght of laser per target
-            // damage/speed/radius per level
+    // damage/speed/radius per level
     internal static int[] BULLET_DAMAGE = new int[] { 60, 100, 120 };       
     internal static int[] BULLET_SPEED = new int[] { 5, 8, 10 };
     internal static int[] PULSE_DAMAGE = new int[] { 10, 30, 40 };
     internal static int[] PULSE_SPEED = new int[] { 4, 6, 8 };
     internal static int[] PULSE_RADIUS = new int[] { 200, 400, 600 };
+    internal static int[] LASER_DAMAGE = new int[] { 1, 2, 4 };
+    internal static int[] LASER_RADIUS = new int[] { 150, 400, 800 };
+    internal const int LASER_TIME = 4;
 
     //TOWERS
     internal static int[] FIRE_RATE = new int[] { 1, 2, 3 };
@@ -48,9 +50,15 @@ internal static class Constant
 
     //BUTTON MARGIN
     internal static readonly Point BUTTON_MARGIN = new Point(20, 10);
-    
-    
-    
-    
+
+    //MATH
+    internal static double DISTANCE(Vector2 v1, Vector2 v2)
+    {
+        Vector2 v3 = v1 - v2;
+        return Math.Sqrt(v3.X*v3.X + v3.Y*v3.Y);
+    }
+
+
+
 
 }

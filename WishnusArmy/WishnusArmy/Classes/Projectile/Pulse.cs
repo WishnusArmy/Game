@@ -32,7 +32,7 @@ class Pulse : Projectile
     {
         foreach (Enemy enemy in GameWorld.FindByType<Enemy>())
         {
-            double distance = Distance(Position, enemy.Position);
+            double distance = DISTANCE(Position, enemy.Position);
             int offset = speed/2;
             if (distance < radiusCurrent + offset && distance > radiusCurrent - offset)
             {
@@ -40,14 +40,7 @@ class Pulse : Projectile
             }
         }
     }
-
-    public double Distance(Vector2 v1, Vector2 v2)
-    {
-        Vector2 v3 = v1 - v2;
-        return Math.Sqrt(v3.X * v3.X + v3.Y * v3.Y);
-    }
-
-
+    
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {

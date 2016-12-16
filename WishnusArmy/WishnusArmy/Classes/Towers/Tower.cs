@@ -19,7 +19,7 @@ public class Tower : GameObject
     protected Enemy target;
     float rotation;
     protected int range = 5 * Constant.NODE_SIZE;
-    int level = 1;
+    int[] levels; // {cost, damage, firerate, radius }
     int cost;
     int damage;
 
@@ -27,6 +27,9 @@ public class Tower : GameObject
     {
         baseTexture = Sprites.SPR_ABSTRACT_TOWER; //Texture of the (unanimated) base of the tower
         cannonTexture = Sprites.SPR_ABSTRACT_CANNON; // The moving part of a tower
+        levels = new int[] {
+            0,0,0,0
+        };
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

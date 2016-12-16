@@ -11,7 +11,7 @@ class Laser : Projectile
 {
     private Enemy target;
     private int timer;
-
+    private int radius;
 
     // Call Laser like 
     //      Laser(towerPosition)
@@ -22,26 +22,26 @@ class Laser : Projectile
     {
         Position = startPosition;
         timer = 0;
-        damage = 4;
+        damage = LASER_DAMAGE[0];
+        radius = LASER_RADIUS[1];
     }
     
     
 
     public void Target()
     {
-        Enemy targetEnemy = null;
+        target = null;
         foreach(Enemy enemy in GameWorld.FindByType<Enemy>())
         {
-            if (enemy.Visible)
+            if (enemy.Visible && DISTANCE(enemy.Position, Position) < radius)
             {
-                targetEnemy = enemy;
+                this.target = enemy;
             }
                 
         }
-        if (targetEnemy != null)
+        if (target != null)
         {
-            this.target = targetEnemy;
-            targetEnemy.DealDamage = damage;
+            target.DealDamage = damage;
         }
         
     }
