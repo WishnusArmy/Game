@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using static ContentImporter.Textures;
 
 internal static class Constant
 {
@@ -47,6 +49,10 @@ internal static class Constant
 
     //LEVEL BUILDER
     internal static readonly Point TOOLBAR_SIZE = new Point(SCREEN_SIZE.X, 150);
+    internal static readonly List<List<Texture2D>> TOOLBAR_LIST = new List<List<Texture2D>>
+    {
+        LIST_LAND_TEXTURES
+    };
 
     //BUTTON MARGIN
     internal static readonly Point BUTTON_MARGIN = new Point(20, 10);

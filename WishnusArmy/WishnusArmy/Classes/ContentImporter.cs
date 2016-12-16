@@ -61,8 +61,7 @@ internal static class ContentImporter
             TEX_GRASS_DIRT,
             TEX_EMPTY,
             TEX_EMPTY_SMALL,
-            TEX_STONE_ROAD,
-            SPR_PARTICLE;
+            TEX_STONE_ROAD;
 
         public static void Initialize(ContentManager Content)
         {
@@ -71,10 +70,10 @@ internal static class ContentImporter
             TEX_EMPTY = Content.Load<Texture2D>("Content/Textures/emptytexture");
             TEX_EMPTY_SMALL = Content.Load<Texture2D>("Content/Textures/emptytexturesmall");
             TEX_STONE_ROAD = Content.Load<Texture2D>("Content/Textures/tex_stone_road");
-            SPR_PARTICLE = Content.Load<Texture2D>("Content/Textures/particle_test");
-            LIST_LAND_TEXTURES = new List<Texture2D>
+
+            //Textures that should show up in the LevelBuilder Toolbar Land
+            LIST_LAND_TEXTURES = new List<Texture2D> 
             {
-                //Textures that should show up in the LevelBuilder Toolbar Land
                 TEX_GRASS,
                 TEX_GRASS_DIRT,
                 TEX_STONE_ROAD
