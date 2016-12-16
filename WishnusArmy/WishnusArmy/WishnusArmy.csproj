@@ -54,8 +54,10 @@
     <Compile Include="Classes\LevelBuilder\ToolBar.cs" />
     <Compile Include="Classes\CreditsMenu.cs" />
     <Compile Include="Classes\LevelBuilder\ToolBarSelector.cs" />
+    <Compile Include="Classes\Towers\LaserTower.cs" />
     <Compile Include="Classes\Towers\ProjectileTower.cs" />
     <Compile Include="Classes\LevelGenerator\LevelGenerator.cs" />
+    <Compile Include="Classes\Towers\PulseTower.cs" />
     <Compile Include="Classes\Towers\Tower.cs" />
     <Compile Include="GameManagement\AnimatedGameObject.cs" />
     <Compile Include="GameManagement\Animation.cs" />

@@ -8,7 +8,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using static ContentImporter.Sprites;
 using static Constant;
-using WishnusArmy.Classes.Towers;
 
 public class Base : Tower
 {
@@ -21,7 +20,7 @@ public class Base : Tower
         this.gridPosition = new Vector2(5,5);
         this.cannonTexture = SPR_BASEGUN;
         this.baseTexture = SPR_BASE;
-        this.range = (int)Math.Sqrt(2 * (LEVEL_SIZE * LEVEL_SIZE)) * NODE_SIZE.X;
+        this.range = 0; //(aimed manually)
     }
 
     public override void HandleInput(InputHelper inputHelper)

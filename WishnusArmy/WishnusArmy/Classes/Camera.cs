@@ -36,24 +36,26 @@ public class Camera : GameObjectList
                     planes.Add(Land);
                     //Add items to the land plane (p.Add)
                     p.Add(new Base());
-                    
                     //(testcode) plaatst torens en voegt een enemy toe
                     int y = 0;
                         for (int t = 0; t < 20; t++)
                         {
                             {
-                                Tower x = new Tower();
-                                x.camera = this;
-                                x.gridPosition = new Vector2(t, y);
-                                p.Add(x);
+
                                 p.Add(new Enemy());
                                 y++;
+                            /*
                             p.Add(new Laser(new Vector2(200, 200)));
                             p.Add(new Laser(new Vector2(600, 600)));
                             p.Add(new Laser(new Vector2(900, 900)));
+                            */
 
                         }
                         }
+                    LaserTower x = new LaserTower();
+                    x.camera = this;
+                    x.gridPosition = new Vector2(6, 6);
+                    p.Add(x);
                     //einde testcode
                     break;
 
