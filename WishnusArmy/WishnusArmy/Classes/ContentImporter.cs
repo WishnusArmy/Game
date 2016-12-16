@@ -19,36 +19,48 @@ internal static class ContentImporter
     {
         internal static Texture2D
 
-            SPR_BASE,
-            SPR_ABSTRACT_TOWER,
-            SPR_ABSTRACT_CANNON,
+
             SPR_MAINMENUBACKGROUND,
             SPR_CREDITSBACKGROUND,
             SPR_ENEMY,
             SPR_HELPBACKGROUND,
-			SPR_BASEGUN,
+
             SPR_WHITEPIXEL,
 
             // Projectiles
 
             SPR_PULSE,
-            SPR_BULLET;
+            SPR_BULLET,
+
+            // Towers
+
+            SPR_ABSTRACT_TOWER,
+            SPR_ABSTRACT_CANNON,
+            SPR_BASE,
+            SPR_BASEGUN,
+            SPR_RADIUS;
 
         public static void Initialize(ContentManager Content)
         {
-            SPR_BASE = Content.Load<Texture2D>("Content/Sprites/BaseSprite");
+            
             SPR_MAINMENUBACKGROUND = Content.Load<Texture2D>("Content/Sprites/MainMenuBackground");
             SPR_CREDITSBACKGROUND = Content.Load<Texture2D>("Content/Sprites/CreditsBackground");
             SPR_HELPBACKGROUND = Content.Load<Texture2D>("Content/Sprites/HelpBackground");
             SPR_ENEMY = Content.Load<Texture2D>("Content/Sprites/enemySprite"); 
             SPR_WHITEPIXEL = Content.Load<Texture2D>("Content/Sprites/WhitePixel");
-            SPR_BASEGUN = Content.Load<Texture2D>("Content/Sprites/BaseGun");
-			SPR_ABSTRACT_TOWER = Content.Load<Texture2D>("Content/Sprites/abstractTower");
-            SPR_ABSTRACT_CANNON = Content.Load<Texture2D>("Content/Sprites/cannon");
+            
+			
 
             //Projectiles
             SPR_PULSE = Content.Load<Texture2D>("Content/Sprites/Projectiles/SPR_PULSE");
             SPR_BULLET = Content.Load<Texture2D>("Content/Sprites/Projectiles/SPR_BULLET");
+
+            //Towers
+            SPR_ABSTRACT_TOWER = Content.Load<Texture2D>("Content/Sprites/abstractTower");
+            SPR_ABSTRACT_CANNON = Content.Load<Texture2D>("Content/Sprites/cannon");
+            SPR_BASE = Content.Load<Texture2D>("Content/Sprites/BaseSprite");
+            SPR_BASEGUN = Content.Load<Texture2D>("Content/Sprites/BaseGun");
+            SPR_RADIUS = Content.Load<Texture2D>("Content/Sprites/Towers/radius");
         }
     }
 

@@ -17,6 +17,7 @@ public class Tower : GameObject
     public Texture2D cannonTexture;
     public Camera camera;
     protected Enemy target;
+    public Boolean hover = false;
     Bullet projectile;
     float rotation;
     protected int range = 5 * Constant.NODE_SIZE;
@@ -40,6 +41,9 @@ public class Tower : GameObject
         spriteBatch.Draw(baseTexture, pos);
         spriteBatch.Draw(cannonTexture, pos + new Vector2(baseTexture.Width / 2, baseTexture.Height / 2), null, null, new Vector2(cannonTexture.Width / 2, cannonTexture.Height / 2), rotation);
 
+        if (hover)
+            spriteBatch.Draw(Sprites.SPR_RADIUS, pos + new Vector2(baseTexture.Width/2, baseTexture.Height/2), null, null, new Vector2(Sprites.SPR_RADIUS.Width / 2, Sprites.SPR_RADIUS.Height / 2),0f, new Vector2(1f,1f) *((float)range/((float)Sprites.SPR_RADIUS.Width/2)), new Color(0.2f,0.2f,0.2f, 0.1f));
+
         if (projectile != null)
         projectile.Draw(gameTime, spriteBatch);
     }
@@ -52,6 +56,8 @@ public class Tower : GameObject
             rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
 
         mousePosition = inputHelper.MousePosition;
+        if (range != 0 && BoundingBox.Contains(mousePosition)) { hover = true; }
+        else { hover = false; }
 
         if (projectile != null)
             projectile.HandleInput(inputHelper);
@@ -63,7 +69,7 @@ public class Tower : GameObject
         if (target != null && reloadTime <= 0)
         { 
             Attack();
-            reloadTime = 5d;
+            reloadTime = 1d/Constant.getTowerFireRate(level);
         }
 
         if (projectile != null)
@@ -121,6 +127,13 @@ public class Tower : GameObject
     public virtual void Upgrade()
     {
 
+    }
+    public override Rectangle BoundingBox
+    {
+        get
+        {
+            return new Rectangle((int)pos.X, (int)pos.Y, baseTexture.Width, baseTexture.Height);
+        }
     }
 
 }

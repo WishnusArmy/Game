@@ -21,7 +21,7 @@ public class Base : Tower
             //new Vector2(LEVEL_SIZE / 2, LEVEL_SIZE / 4) - BaseOrigin/NODE_SIZE;
         this.cannonTexture = SPR_BASEGUN;
         this.baseTexture = SPR_BASE;
-        this.range = (int)Math.Sqrt(2 * (LEVEL_SIZE * LEVEL_SIZE)) * NODE_SIZE;
+        this.range = 0; //(aimed manually)
     }
 
     public override void HandleInput(InputHelper inputHelper)
