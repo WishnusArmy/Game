@@ -18,7 +18,7 @@ public class Tower : GameObject
     public Camera camera;
     protected Enemy target;
     float rotation;
-    protected int range = 5 * Constant.NODE_SIZE;
+    protected int range = 5 * Constant.NODE_SIZE.X;
     int[] levels; // {cost, damage, firerate, radius }
     int cost;
     int damage;
