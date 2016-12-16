@@ -18,7 +18,7 @@ public class Tower : GameObject
     public Camera camera;
     protected Enemy target;
     float rotation;
-    protected int range = 5 * Constant.NODE_SIZE;
+    protected int range = 5 * NODE_SIZE.X;
     int level = 1;
     int cost;
     int damage;
@@ -32,7 +32,7 @@ public class Tower : GameObject
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
-        pos = gridPosition * NODE_SIZE + GlobalPosition;
+        pos = gridPosition * NODE_SIZE.X + GlobalPosition;
         spriteBatch.Draw(baseTexture, pos);
         spriteBatch.Draw(cannonTexture, pos + new Vector2(baseTexture.Width / 2, baseTexture.Height / 2), null, null, new Vector2(cannonTexture.Width / 2, cannonTexture.Height / 2), rotation);
     }

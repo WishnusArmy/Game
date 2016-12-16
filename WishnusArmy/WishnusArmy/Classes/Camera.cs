@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using static Constant;
-using WishnusArmy.Classes.Towers;
 using Microsoft.Xna.Framework.Graphics;
 
 public class Camera : GameObjectList
@@ -84,21 +83,21 @@ public class Camera : GameObjectList
     {
         //Camera Movement
         Vector2 mp = inputHelper.MousePosition;
-        if (inputHelper.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.A))
+        if (mp.X < SLIDE_BORDER)
             position.X += SLIDE_SPEED;
-        if (inputHelper.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.D))
+        if (mp.X > WishnusArmy.WishnusArmy.Screen.X - SLIDE_BORDER)
             position.X -= SLIDE_SPEED;
-        if (inputHelper.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.W))
+        if (mp.Y < SLIDE_BORDER)
             position.Y += SLIDE_SPEED;
-        if (inputHelper.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.S))
+        if (mp.Y > WishnusArmy.WishnusArmy.Screen.Y - SLIDE_BORDER)
             position.Y -= SLIDE_SPEED;
 
         //Make sure the camera doesn't move out of bounds
-        if (position.X > NODE_SIZE * 0.5) { position.X = NODE_SIZE * 0.5f; }
+        if (position.X > 0) { position.X = 0; }
         if (position.Y > 0) { position.Y = 0; }
-        if (position.X < -NODE_SIZE * LEVEL_SIZE + WishnusArmy.WishnusArmy.Screen.X - NODE_SIZE * 4) { position.X = -NODE_SIZE * LEVEL_SIZE + WishnusArmy.WishnusArmy.Screen.X - NODE_SIZE * 4;  }
-        if (position.Y < -NODE_SIZE * LEVEL_SIZE/2 + WishnusArmy.WishnusArmy.Screen.Y - NODE_SIZE * 2.5)  { position.Y = -NODE_SIZE * LEVEL_SIZE/2 + WishnusArmy.WishnusArmy.Screen.Y - NODE_SIZE * 2.5f; }
 
+        if (position.X < -NODE_SIZE.X * LEVEL_SIZE + WishnusArmy.WishnusArmy.Screen.X ) { position.X = -NODE_SIZE.X * LEVEL_SIZE + WishnusArmy.WishnusArmy.Screen.X;  }
+        if (position.Y < -NODE_SIZE.X * LEVEL_SIZE/2 + WishnusArmy.WishnusArmy.Screen.Y) { position.Y = -NODE_SIZE.X * LEVEL_SIZE/2 + WishnusArmy.WishnusArmy.Screen.Y; }
 
         base.HandleInput(inputHelper);
     }
