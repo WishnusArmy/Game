@@ -30,55 +30,27 @@ internal static class Constant
 
     //PROJECTILES
     internal const int LASER_TIME = 3; // Animation lenght of laser per target
+            // damage/speed/radius per level
+    internal static int[] BULLET_DAMAGE = new int[] { 60, 100, 120 };       
+    internal static int[] BULLET_SPEED = new int[] { 5, 8, 10 };
+    internal static int[] PULSE_DAMAGE = new int[] { 10, 30, 40 };
+    internal static int[] PULSE_SPEED = new int[] { 4, 6, 8 };
+    internal static int[] PULSE_RADIUS = new int[] { 200, 400, 600 };
+
+    //TOWERS
+    internal static int[] FIRE_RATE = new int[] { 1, 2, 3 };
+
+    //ENEMIES
+    internal static int[] ENEMY_HEALTH = new int[] { 100, 250, 600 };
 
     //LEVEL BUILDER
     internal static readonly Point TOOLBAR_SIZE = new Point(SCREEN_SIZE.X, 150);
 
     //BUTTON MARGIN
     internal static readonly Point BUTTON_MARGIN = new Point(20, 10);
-
-    //STATS (edit it however you like ;)
     
-    internal static int getTowerFireRate(int level)
-    {
-        switch (level)
-        {
-            case 3: return 4;      // level 3
-            case 2: return 3;      // level 2
-            default: return 1;     // level 1
-        }
-    }
-
-    internal static int getEnemyHealth(int level)
-    {
-        switch (level)
-        {
-            case 3: return 100;      // level 3
-            case 2: return 60;      // level 2
-            default: return 40;     // level 1
-        }
-    }
-
-    // Projectiles
-    internal static int getBulletDamage(int level)
-    {
-        switch (level)
-        {
-            case 3: return 100;      // level 3
-            case 2: return 80;      // level 2
-            default: return 50;     // level 1
-        }
-    }
-
-    internal static int getBulletSpeed(int level)
-    {
-        switch (level)
-        {
-            case 3: return 3;      // level 3
-            case 2: return 2;      // level 2
-            default: return 1;     // level 1
-        }
-    }
-
+    
+    
+    
 
 }

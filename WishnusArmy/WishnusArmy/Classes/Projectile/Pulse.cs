@@ -14,16 +14,16 @@ class Pulse : Projectile
     private int radiusCurrent;
     private int speed;
 
-    public Pulse(int damage, int speed, Vector2 position, int radius) : base()
+    public Pulse(int level, Vector2 position, int radius) : base()
     {
         Position = position;
-        this.radiusMax = radius;
-        this.damage = damage;
-        this.speed = speed;
+        this.radiusMax = PULSE_RADIUS[level];
+        this.damage = PULSE_DAMAGE[level];
+        this.speed = PULSE_SPEED[level];
         Reset();
     }
 
-    public void Reset()
+    public override void Reset()
     {
         radiusCurrent = 0;
     }
