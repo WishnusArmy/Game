@@ -29,7 +29,8 @@ public class GridNode : GameObject
         base.HandleInput(inputHelper);
         selected = false;
         Vector2 mousePos = inputHelper.MousePosition;
-        if (mousePos.X >= GlobalPosition.X && mousePos.X < GlobalPosition.X + NODE_SIZE.X &&
+        if (inputHelper.MouseInGameWindow &&
+            mousePos.X >= GlobalPosition.X && mousePos.X < GlobalPosition.X + NODE_SIZE.X &&
             mousePos.Y >= GlobalPosition.Y + Math.Abs(GlobalPosition.X + NODE_SIZE.X/2 - mousePos.X) / (NODE_SIZE.X/NODE_SIZE.Y) &&
             mousePos.Y < GlobalPosition.Y + NODE_SIZE.Y - Math.Abs(GlobalPosition.X + NODE_SIZE.X/2 - mousePos.X) / (NODE_SIZE.X/NODE_SIZE.Y))
         {

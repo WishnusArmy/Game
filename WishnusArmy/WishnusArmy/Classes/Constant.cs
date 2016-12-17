@@ -16,11 +16,12 @@ internal static class Constant
 
     //APPLLICATION
     internal static readonly Point WINDOW_SIZE = new Point(1920 / 2, 1080 / 2);
-
-    
-
     internal static readonly Point SCREEN_SIZE = new Point(1920, 1080);
     internal static Random RANDOM = new Random();
+
+    //OVERLAY
+    internal static readonly Point OVERLAY_SIZE = new Point(300, 200);
+    internal static readonly Point GAME_WINDOW_SIZE = SCREEN_SIZE - OVERLAY_SIZE;
 
     //LEVEL
     internal const int NODE_TEXTURE_SIZE = 64; //The raw, square size of a node
@@ -67,7 +68,9 @@ internal static class Constant
     {
         //The name string must be a valid type!
         new ToolBarObjectsItem("Enemy", SPR_ENEMY),
-        new ToolBarObjectsItem("Base", SPR_BASE)
+        new ToolBarObjectsItem("Base", SPR_BASE),
+        new ToolBarObjectsItem("LaserTower", SPR_LASER_TOWER),
+        new ToolBarObjectsItem("PulseTower", SPR_PULSE_TOWER)
     };
 
 //BUTTON MARGIN

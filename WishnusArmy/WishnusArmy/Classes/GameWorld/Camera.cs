@@ -56,7 +56,6 @@ public class Camera : GameObjectList
                         }
                     }
                     LaserTower x = new LaserTower();
-                    x.camera = this;
                     x.gridPosition = new Vector2(6, 6);
                     p.Add(x);
                     //einde testcode
@@ -88,8 +87,7 @@ public class Camera : GameObjectList
         base.Draw(gameTime, spriteBatch);
         //Only draw the active plane;
         currentPlane.Draw(gameTime, spriteBatch);
-        Console.WriteLine("Number of Tanks: " + GameWorld.FindByType<Enemy>().Count);
-    }
+}
 
 
     public override void HandleInput(InputHelper inputHelper)
