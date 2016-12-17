@@ -14,10 +14,16 @@ using static Constant;
 
 public class LevelBuilder : GameObjectList
 {
+    ToolBarTextures tbTextures;
+    ToolBarObjects tbObjects;
     public LevelBuilder() : base()
     {
-        Add(new ToolBar());
-        Add(new ToolbarSelector());
+        tbTextures = new ToolBarTextures();
+        Add(tbTextures);
+        tbObjects = new ToolBarObjects();
+        tbObjects.active = false;
+        Add(tbObjects);
+        Add(new ToolBarSelector(tbTextures, tbObjects));
     }
 
     public override void HandleInput(InputHelper inputHelper)

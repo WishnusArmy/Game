@@ -39,19 +39,22 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Classes\Button.cs" />
-    <Compile Include="Classes\Camera.cs" />
-    <Compile Include="Classes\BaseTower.cs" />
+    <Compile Include="Classes\GameWorld\Camera.cs" />
+    <Compile Include="Classes\Base.cs" />
     <Compile Include="Classes\Constant.cs" />
     <Compile Include="Classes\ContentImporter.cs" />
     <Compile Include="Classes\Enemies\Enemy.cs" />
     <Compile Include="Classes\HelpMenu.cs" />
-    <Compile Include="Classes\GridNode.cs" />
-    <Compile Include="Classes\GridPlane.cs" />
+    <Compile Include="Classes\GameWorld\GridNode.cs" />
+    <Compile Include="Classes\GameWorld\GridPlane.cs" />
     <Compile Include="Classes\IniFile.cs" />
-    <Compile Include="Classes\Level.cs" />
+    <Compile Include="Classes\GameWorld\Level.cs" />
     <Compile Include="Classes\LevelBuilder\LevelBuilder.cs" />
     <Compile Include="Classes\LevelBuilder\HashContainer.cs" />
-    <Compile Include="Classes\LevelBuilder\ToolBar.cs" />
+    <Compile Include="Classes\LevelBuilder\ToolBarObjects.cs" />
+    <Compile Include="Classes\LevelBuilder\ToolBarObjectsItem.cs" />
+    <Compile Include="Classes\LevelBuilder\ToolBarSelectorItem.cs" />
+    <Compile Include="Classes\LevelBuilder\ToolBarTextures.cs" />
     <Compile Include="Classes\CreditsMenu.cs" />
     <Compile Include="Classes\LevelBuilder\ToolBarSelector.cs" />
     <Compile Include="Classes\Towers\LaserTower.cs" />

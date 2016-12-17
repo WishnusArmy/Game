@@ -71,7 +71,6 @@ internal static class ContentImporter
 
     internal static class Textures
     {
-        internal static List<Texture2D> LIST_LAND_TEXTURES; //This is used for the levelbuilder toolbar.
         internal static Texture2D
             TEX_GRASS,
             TEX_GRASS_DIRT,
@@ -86,14 +85,6 @@ internal static class ContentImporter
             TEX_EMPTY = Content.Load<Texture2D>("Content/Textures/emptytexture");
             TEX_EMPTY_SMALL = Content.Load<Texture2D>("Content/Textures/emptytexturesmall");
             TEX_STONE_ROAD = Content.Load<Texture2D>("Content/Textures/tex_stone_road");
-
-            //Textures that should show up in the LevelBuilder Toolbar Land
-            LIST_LAND_TEXTURES = new List<Texture2D> 
-            {
-                TEX_GRASS,
-                TEX_GRASS_DIRT,
-                TEX_STONE_ROAD
-            };
         }
     }
 

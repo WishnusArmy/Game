@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using static ContentImporter.Textures;
+using static ContentImporter.Sprites;
 
 internal static class Constant
 {
@@ -49,13 +50,28 @@ internal static class Constant
 
     //LEVEL BUILDER
     internal static readonly Point TOOLBAR_SIZE = new Point(SCREEN_SIZE.X, 150);
-    internal static readonly List<List<Texture2D>> TOOLBAR_LIST = new List<List<Texture2D>>
+    internal static readonly Point TOOLBAR_SELECTOR_SIZE = new Point(400, SCREEN_SIZE.Y - TOOLBAR_SIZE.Y);
+    internal static readonly Point TOOLBAR_ITEM_SIZE = new Point(TOOLBAR_SELECTOR_SIZE.X - 20, 100);
+    internal const int TOOLBAR_ITEM_SPACING = 20;
+    //LISTS
+
+    //Textures that should show up in the LevelBuilder Toolbar Land
+    internal static readonly List<Texture2D> LIST_LAND_TEXTURES = new List<Texture2D> 
     {
-        LIST_LAND_TEXTURES
+        TEX_GRASS,
+        TEX_GRASS_DIRT,
+        TEX_STONE_ROAD
     };
 
-    //BUTTON MARGIN
-    internal static readonly Point BUTTON_MARGIN = new Point(20, 10);
+    internal static readonly List<ToolBarObjectsItem> LIST_OBJECTS = new List<ToolBarObjectsItem>
+    {
+        //The name string must be a valid type!
+        new ToolBarObjectsItem("Enemy", SPR_ENEMY),
+        new ToolBarObjectsItem("Base", SPR_BASE)
+    };
+
+//BUTTON MARGIN
+internal static readonly Point BUTTON_MARGIN = new Point(20, 10);
 
     //MATH
     internal static double DISTANCE(Vector2 v1, Vector2 v2)
@@ -63,6 +79,7 @@ internal static class Constant
         Vector2 v3 = v1 - v2;
         return Math.Sqrt(v3.X*v3.X + v3.Y*v3.Y);
     }
+
 
 
 
