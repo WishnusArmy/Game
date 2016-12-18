@@ -30,6 +30,7 @@ class Bullet : Projectile
         int x = (int) (Math.Cos(rotation-0.5*Math.PI) * 5 * speed);
         int y = (int)(Math.Sin(rotation-0.5 * Math.PI) * 5 * speed);
         velocity = new Vector2(x,y);
+        
     }
 
     private void calculateRotation()
@@ -89,7 +90,7 @@ class Bullet : Projectile
         if (!visible)
             return;
         base.Update(gameTime);
-        Position += this.velocity;
+        position += velocity;
         CheckCollision();
     }
 }
