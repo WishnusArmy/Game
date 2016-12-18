@@ -57,9 +57,9 @@ public class GridPlane: GameObjectList
         for (int i = 0; i < LEVEL_SIZE * 2; ++i)
         {
             //Right to left
-           DrawingHelper.DrawLine(spriteBatch, GlobalPosition + new Vector2(LEVEL_SIZE * NODE_SIZE.X - NODE_SIZE.X * i, 0), GlobalPosition + new Vector2(LEVEL_SIZE * NODE_SIZE.X, NODE_SIZE.Y * i), Color.Black, 2, 0.08f);
+           DrawingHelper.DrawLine(spriteBatch, GlobalPosition + new Vector2(LEVEL_SIZE * NODE_SIZE.X - NODE_SIZE.X * i, 0), GlobalPosition + new Vector2(LEVEL_SIZE * NODE_SIZE.X, NODE_SIZE.Y * i), Color.Black, 2, 0.0f);
             //Left to right
-           DrawingHelper.DrawLine(spriteBatch, GlobalPosition + new Vector2(NODE_SIZE.X * i, 0), GlobalPosition + new Vector2(0, NODE_SIZE.Y * i), Color.Black, 2, 0.08f);
+           DrawingHelper.DrawLine(spriteBatch, GlobalPosition + new Vector2(NODE_SIZE.X * i, 0), GlobalPosition + new Vector2(0, NODE_SIZE.Y * i), Color.Black, 2, 0.0f);
         }
     }
 }

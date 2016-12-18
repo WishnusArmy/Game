@@ -57,11 +57,13 @@ internal static class Constant
     //LISTS
 
     //Textures that should show up in the LevelBuilder Toolbar Land
-    internal static readonly List<Texture2D> LIST_LAND_TEXTURES = new List<Texture2D> 
+    internal static readonly List<Texture2D> LIST_LAND_TEXTURES = new List<Texture2D>
     {
         TEX_GRASS,
         TEX_GRASS_DIRT,
-        TEX_STONE_ROAD
+        TEX_STONE_ROAD,
+        TEX_DIRT,
+        TEX_WATER
     };
 
     internal static readonly List<ToolBarObjectsItem> LIST_OBJECTS = new List<ToolBarObjectsItem>

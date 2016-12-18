@@ -76,7 +76,9 @@ internal static class ContentImporter
             TEX_GRASS_DIRT,
             TEX_EMPTY,
             TEX_EMPTY_SMALL,
-            TEX_STONE_ROAD;
+            TEX_STONE_ROAD,
+            TEX_DIRT,
+            TEX_WATER;
 
         public static void Initialize(ContentManager Content)
         {
@@ -85,6 +87,8 @@ internal static class ContentImporter
             TEX_EMPTY = Content.Load<Texture2D>("Content/Textures/emptytexture");
             TEX_EMPTY_SMALL = Content.Load<Texture2D>("Content/Textures/emptytexturesmall");
             TEX_STONE_ROAD = Content.Load<Texture2D>("Content/Textures/tex_stone_road");
+            TEX_DIRT = Content.Load<Texture2D>("Content/Textures/tex_dirt");
+            TEX_WATER = Content.Load<Texture2D>("Content/Textures/tex_water");
         }
     }
 

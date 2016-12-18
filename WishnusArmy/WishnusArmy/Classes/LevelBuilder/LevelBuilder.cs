@@ -139,17 +139,4 @@ public class LevelBuilder : GameObjectList
             return "";
         }
     }
-
-    int getHashNumber(string str)
-    {
-        try
-        {
-            return int.Parse(str.Split('.')[1].Split(']')[1].Remove(1));
-        }
-        catch(Exception e)
-        {
-            Console.WriteLine(e.Message);
-            return -1;
-        }
-    }
 }
