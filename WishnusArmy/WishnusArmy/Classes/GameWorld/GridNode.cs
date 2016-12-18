@@ -15,13 +15,15 @@ public class GridNode : GameObject
     public int texture;
     public bool solid;
     public bool selected;
+    public Camera.Plane plane;
 
-    public GridNode(Vector2 position, int texture, int obj = 0) : base()
+    public GridNode(Camera.Plane plane, Vector2 position, int texture, int obj = 0) : base()
     {
         this.texture = texture;
         this.obj = obj;
         this.position = position;
         this.texture = RANDOM.Next(2);
+        this.plane = plane;
     }
 
     public override void HandleInput(InputHelper inputHelper)

@@ -26,11 +26,11 @@ public class GridPlane: GameObjectList
             {
                 if (y % 2 == 0)
                 {
-                    grid[x, y] = new GridNode(new Vector2(NODE_SIZE.X * x, NODE_SIZE.Y/2 * y), 0);
+                    grid[x, y] = new GridNode(planeType, new Vector2(NODE_SIZE.X * x, NODE_SIZE.Y/2 * y), 0);
                 }
                 else
                 {
-                    grid[x, y] = new GridNode(new Vector2(NODE_SIZE.X * x + NODE_SIZE.X/2, NODE_SIZE.Y/2 * y), 0);
+                    grid[x, y] = new GridNode(planeType, new Vector2(NODE_SIZE.X * x + NODE_SIZE.X/2, NODE_SIZE.Y/2 * y), 0);
                 }
                 Add(grid[x, y]);
             }
