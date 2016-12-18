@@ -17,7 +17,10 @@ public partial class Enemy : GameObject
         GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane;
         GridNode startNode = plane.NodeAt(origin);
         GridNode targetNode = plane.NodeAt(target);
-        Console.WriteLine("Target Pos: " + targetNode.Position.X + ", " + targetNode.Position.Y);
+        if(startNode == null || targetNode == null)
+        {
+            throw new Exception("One of the nodes was null.");
+        }
         foreach (GridNode node in world)
         {
             node.Hval = (int)(Math.Abs(node.Position.X - targetNode.Position.X) + Math.Abs(node.Position.Y - targetNode.Position.Y));
@@ -42,6 +45,10 @@ public partial class Enemy : GameObject
             openList.RemoveAt(0); //Remove self from the openList
         }
         closedList.Add(node); //Add itself to the closedList
+        if (node == null)
+        {
+            Console.WriteLine("Yup...");
+        }
         List<GridNode> next = node.Neighbours; //Find all the neighbours
         for(int i=0; i<next.Count; ++i)
         {
@@ -49,7 +56,6 @@ public partial class Enemy : GameObject
             {
                 targetNode.pathParent = node;
                 openList.Clear();
-                Console.WriteLine("FOUND");
                 break;
             }
             if (onList(next[i], openList))
@@ -60,7 +66,7 @@ public partial class Enemy : GameObject
                     next[i].Fval = node.Gval + 10; //Update the Fval
                 }
             }
-            if (!onList(next[i], openList) && !onList(next[i], closedList))
+            if (!onList(next[i], openList) && !onList(next[i], closedList) && !next[i].solid)
             {
                 openList.Add(next[i]); //Add Neighbour to the openList
                 next[i].pathParent = node; //Make it a parent

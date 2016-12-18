@@ -13,7 +13,20 @@ using static ContentImporter.Fonts;
 public class GridNode : GameObject
 {
     int obj; //Indicator for what is placed on the square (0 for emtpy)
-    public int texture;
+    int _texture;
+    public int texture
+    {
+        get { return _texture;  }
+        set
+        {
+            solid = false;
+            _texture = value;
+            switch(value)
+            {
+                case 4: solid = true; break; //water
+            }
+        }
+    }
     public bool solid;
     public bool selected;
     public Camera.Plane plane;
@@ -64,17 +77,28 @@ public class GridNode : GameObject
         base.HandleInput(inputHelper);
         selected = false;
         Vector2 mousePos = inputHelper.MousePosition;
-        if (inputHelper.MouseInGameWindow && HoversMe(mousePos))
+        if (inputHelper.MouseInGameWindow && HoversMeRelative(mousePos))
         {
            selected = true;
         }
     }
 
-    public bool HoversMe(Vector2 pos)
+    public bool HoversMeRelative(Vector2 pos)
     {
         if (pos.X >= GlobalPosition.X && pos.X < GlobalPosition.X + NODE_SIZE.X &&
         pos.Y >= GlobalPosition.Y + Math.Abs(GlobalPosition.X + NODE_SIZE.X / 2 - pos.X) / (NODE_SIZE.X / NODE_SIZE.Y) &&
         pos.Y < GlobalPosition.Y + NODE_SIZE.Y - Math.Abs(GlobalPosition.X + NODE_SIZE.X / 2 - pos.X) / (NODE_SIZE.X / NODE_SIZE.Y))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool HoversMe(Vector2 pos)
+    {
+        if (pos.X >= Position.X && pos.X < Position.X + NODE_SIZE.X &&
+        pos.Y >= Position.Y + Math.Abs(Position.X + NODE_SIZE.X / 2 - pos.X) / (NODE_SIZE.X / NODE_SIZE.Y) &&
+        pos.Y < Position.Y + NODE_SIZE.Y - Math.Abs(Position.X + NODE_SIZE.X / 2 - pos.X) / (NODE_SIZE.X / NODE_SIZE.Y))
         {
             return true;
         }

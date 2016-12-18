@@ -17,6 +17,7 @@ public partial class Enemy : GameObject
     float speed = 5;
     int health = ENEMY_HEALTH[1];
     List<GridNode> path;
+    int pathIndex;
 
     public Enemy()
     {
@@ -24,26 +25,43 @@ public partial class Enemy : GameObject
         this.Sprite = SPR_ENEMY;
         healthRatio = (float)this.Sprite.Width / (float) this.health;
         path = new List<GridNode>();
+        pathIndex = 0;
     }
     public override void HandleInput(InputHelper inputHelper)
     {
         base.HandleInput(inputHelper);
-        GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane;
+        /*
         if (inputHelper.KeyPressed(Keys.P))
         {
             foreach(GridNode node in plane.grid)
             {
                 node.beacon = false;
             }
-            path = getPath(position, new Vector2(500, 500));
+            path = getPath(GlobalPosition, new Vector2(500, 500));
             foreach(GridNode node in path)
             {
                 node.beacon = true;
             }
         }
+        */
     }
     public override void Update(GameTime gameTime)
     {
+        if (pathIndex == 0)
+        {
+            GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane;
+            foreach(GridNode node in plane.grid)
+            {
+                node.beacon = false;
+            }
+            path = getPath(Position, new Vector2(RANDOM.Next(2000)+128, RANDOM.Next(600)+100));
+            foreach(GridNode node in path)
+            {
+                node.beacon = true;
+            }
+            pathIndex = path.Count - 1;
+        }
+        target = path[pathIndex].Position;
         if (!visible)
             return;
         base.Update(gameTime);
@@ -52,12 +70,14 @@ public partial class Enemy : GameObject
         double adjacent = target.X - position.X;
         rotation = (float)Math.Atan2(opposite, adjacent);
 
+        
         //The position never truly equals the target position so 5 pixels lower or higher.
         if (CalculateDistance(target, position) < 5)
         {
-            //get a random target within 1000,1000
-            target = new Vector2((int)(1000 * Constant.RANDOM.NextDouble()), Constant.RANDOM.Next(1000));
+            //target = new Vector2((int)(1000 * Constant.RANDOM.NextDouble()), Constant.RANDOM.Next(1000));
+            pathIndex -= 1;
         }
+        
 
         //sprite beweegt richting de muis met vaste snelheid (speed)
         velocity = (target - position);
