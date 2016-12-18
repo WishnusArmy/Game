@@ -6,25 +6,41 @@ using System.Text;
 using System.Threading.Tasks;
 using static ContentImporter.Sprites;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using static Constant;
 
-public class Enemy : GameObject
+public partial class Enemy : GameObject
 {
     public Texture2D Sprite;
     float rotation, healthRatio;
-    Vector2 mousePosition, target = new Vector2(200,200), startPosition = new Vector2(200,200);
+    Vector2 target = new Vector2(200,200), startPosition = new Vector2(200,200);
     float speed = 5;
     int health = ENEMY_HEALTH[1];
+    List<GridNode> path;
+
     public Enemy()
     {
         //position = startPosition + GlobalPosition;
         this.Sprite = SPR_ENEMY;
         healthRatio = (float)this.Sprite.Width / (float) this.health;
+        path = new List<GridNode>();
     }
     public override void HandleInput(InputHelper inputHelper)
     {
         base.HandleInput(inputHelper);
-        mousePosition = inputHelper.MousePosition;
+        GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane;
+        if (inputHelper.KeyPressed(Keys.P))
+        {
+            foreach(GridNode node in plane.grid)
+            {
+                node.beacon = false;
+            }
+            path = getPath(position, new Vector2(500, 500));
+            foreach(GridNode node in path)
+            {
+                node.beacon = true;
+            }
+        }
     }
     public override void Update(GameTime gameTime)
     {
