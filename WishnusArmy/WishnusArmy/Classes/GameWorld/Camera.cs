@@ -23,6 +23,8 @@ public class Camera : GameObjectList
         for (int i=0; i<3; ++i)
         { 
             GridPlane p = new GridPlane((Plane)i);
+            p.active = false;
+            Add(p);
             switch((Plane)i)
             {
                 case Plane.Underground:
@@ -38,22 +40,22 @@ public class Camera : GameObjectList
                     p.Add(new Base());
                     //(testcode) plaatst torens en voegt een enemy toe
                     int y = 0;
-                        for (int t = 0; t < 20; t++)
+                    for (int t = 0; t < 20; t++)
+                    {
                         {
-                            {
-
-                                p.Add(new Enemy());
-                                y++;
-                            /*
-                            p.Add(new Laser(new Vector2(200, 200)));
-                            p.Add(new Laser(new Vector2(600, 600)));
-                            p.Add(new Laser(new Vector2(900, 900)));
-                            */
+                            Enemy e = new Enemy();
+                            e.Position = new Vector2(RANDOM.Next(1000), RANDOM.Next(1000));
+                            p.Add(e);
+                            y++;
+                        /*
+                        p.Add(new Laser(new Vector2(200, 200)));
+                        p.Add(new Laser(new Vector2(600, 600)));
+                        p.Add(new Laser(new Vector2(900, 900)));
+                        */
 
                         }
-                        }
+                    }
                     LaserTower x = new LaserTower();
-                    x.camera = this;
                     x.gridPosition = new Vector2(6, 6);
                     p.Add(x);
                     //einde testcode
@@ -68,25 +70,31 @@ public class Camera : GameObjectList
         }
         currentPlane = planes[(int)Plane.Land]; //Reference the current plane to one of the three
         Console.WriteLine("Current Plane: " + currentPlane.planeType.ToString());
-        Add(currentPlane); //Add the currenPlane to the children list. This way, only one plane at a time will be handled
     }
 
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
-        //Manually Update all the planes (except currentPlane)
-        //This way only one will be drawn, but all will update.
-        for (int i = 0; i < 3; ++i)
+        //Manually handle the updates because the planes are inactive.
+        for(int i=0; i<3; ++i)
         {
-            if (planes[i].planeType != currentPlane.planeType)
-            {
-                planes[i].Update(gameTime);
-            }
+            planes[i].Update(gameTime);
         }
     }
 
+    public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+    {
+        base.Draw(gameTime, spriteBatch);
+        //Only draw the active plane;
+        currentPlane.Draw(gameTime, spriteBatch);
+}
+
+
     public override void HandleInput(InputHelper inputHelper)
     {
+        //Manually handle the input of the active plan
+        currentPlane.HandleInput(inputHelper);
+
         //Camera Movement
         Vector2 mp = inputHelper.MousePosition;
         if (mp.X < SLIDE_BORDER)

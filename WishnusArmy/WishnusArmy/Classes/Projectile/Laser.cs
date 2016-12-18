@@ -41,7 +41,7 @@ class Laser : Projectile
             return;
         base.Draw(gameTime, spriteBatch);
         if (target.Visible)
-        DrawingHelper.DrawLine(spriteBatch, GlobalPosition, target.Position, new Color(255 - timer*2,0, timer*5), 16);
+        DrawingHelper.DrawLine(spriteBatch, GlobalPosition, target.GlobalPosition, new Color(255 - timer*2,0, timer*5), 16);
     }
 
     

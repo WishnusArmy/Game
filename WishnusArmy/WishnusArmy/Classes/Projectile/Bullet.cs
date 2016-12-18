@@ -13,7 +13,6 @@ class Bullet : Projectile
     private float rotation;
     int speed;
     public Enemy enemy;
-    Boolean arrived = false;
 
     public Bullet(int damage, int speed, Vector2 startPosition) : base()
     {
