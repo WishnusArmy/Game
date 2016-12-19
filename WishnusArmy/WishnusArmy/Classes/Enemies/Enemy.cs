@@ -15,7 +15,7 @@ public partial class Enemy : GameObject
     float rotation, healthRatio;
     Vector2 target = new Vector2(200,200), startPosition = new Vector2(200,200);
     float speed = 5;
-    int health = ENEMY_HEALTH[1];
+    int health = ENEMY_HEALTH[0];
     List<GridNode> path;
     int pathIndex;
 

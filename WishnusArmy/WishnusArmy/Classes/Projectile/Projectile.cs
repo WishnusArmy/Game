@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 class Projectile : SpriteGameObject
 {
     public int damage;
+    public int range;
+    public double speed;
 
     public Projectile() : base("")
     {
         
     }
-
-    
 
 }
