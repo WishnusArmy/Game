@@ -17,13 +17,10 @@ public partial class Enemy : GameObject
         GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane;
         GridNode startNode = plane.NodeAt(origin);
         GridNode targetNode = plane.NodeAt(target);
-        if(startNode == null || targetNode == null)
-        {
-            throw new Exception("One of the nodes was null.");
-        }
         foreach (GridNode node in world)
         {
-            node.Hval = (int)(Math.Abs(node.Position.X - targetNode.Position.X) + Math.Abs(node.Position.Y - targetNode.Position.Y));
+            node.Hval = (int)(Math.Abs(node.Position.X - targetNode.Position.X) + Math.Abs(node.Position.Y - targetNode.Position.Y))/16;
+            node.pathParent = node;
         }
         calcNode(startNode, targetNode, openList, closedList);
         bool done = false;
@@ -31,7 +28,7 @@ public partial class Enemy : GameObject
         while(!done)
         {
             path.Add(currentNode);
-            if (currentNode == startNode)
+            if (currentNode == startNode || currentNode == currentNode.pathParent) //Path found || stuck
                 done = true;
             currentNode = currentNode.pathParent;
         }
@@ -45,10 +42,6 @@ public partial class Enemy : GameObject
             openList.RemoveAt(0); //Remove self from the openList
         }
         closedList.Add(node); //Add itself to the closedList
-        if (node == null)
-        {
-            Console.WriteLine("Yup...");
-        }
         List<GridNode> next = node.Neighbours; //Find all the neighbours
         for(int i=0; i<next.Count; ++i)
         {
@@ -60,10 +53,10 @@ public partial class Enemy : GameObject
             }
             if (onList(next[i], openList))
             {
-                if (node.Gval + 10 < next[i].Fval) //If the path from here to there is faster than the previous path
+                if (node.Gval + 10 < next[i].Gval) //If the path from here to there is faster than the previous path
                 {
                     next[i].pathParent = node; //Reparent to me
-                    next[i].Fval = node.Gval + 10; //Update the Fval
+                    next[i].Gval = node.Gval + 10; //Update the Fval
                 }
             }
             if (!onList(next[i], openList) && !onList(next[i], closedList) && !next[i].solid)

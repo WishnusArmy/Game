@@ -37,7 +37,9 @@ public class Camera : GameObjectList
                     Land = p;
                     planes.Add(Land);
                     //Add items to the land plane (p.Add)
-                    p.Add(new Base());
+                    Base b = new Base();
+                    b.Position = LEVEL_CENTER;
+                    p.Add(b);
                     //(testcode) plaatst torens en voegt een enemy toe
                     for (int q = 0; q < 1; ++q)
                     {
@@ -45,9 +47,6 @@ public class Camera : GameObjectList
                         e.Position = new Vector2(RANDOM.Next(500)+100, RANDOM.Next(600)+100);
                         p.Add(e);
                     }
-                    LaserTower x = new LaserTower();
-                    x.gridPosition = new Vector2(6, 6);
-                    //p.Add(x);
                     //einde testcode
                     break;
 

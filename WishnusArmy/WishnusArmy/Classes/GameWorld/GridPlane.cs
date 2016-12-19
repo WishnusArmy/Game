@@ -52,7 +52,8 @@ public class GridPlane: GameObjectList
                 }
             }
         }
-        return null;
+        Console.WriteLine("No node found at: " + pos.X + ", " + pos.Y);
+        throw new Exception("No node found at: " + pos.X + ", " + pos.Y);
     }
 
     public override void HandleInput(InputHelper inputHelper)

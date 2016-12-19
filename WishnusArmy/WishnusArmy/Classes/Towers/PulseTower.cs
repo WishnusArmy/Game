@@ -9,7 +9,7 @@ using static ContentImporter.Sprites;
 
 class PulseTower : Tower
 {
-    public PulseTower()
+    public PulseTower() : base()
     {
         damage = Constant.PULSE_DAMAGE[level];
         this.baseTexture = SPR_PULSE_TOWER;
