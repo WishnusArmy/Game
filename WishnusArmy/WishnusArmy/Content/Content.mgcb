@@ -169,12 +169,6 @@
 /processorParam:Quality=Best
 /build:Content/Music/mainMenu.mp3
 
-#begin Content/Sprites/Music/mainMenu.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Content/Sprites/Music/mainMenu.mp3
-
 #begin Content/Sprites/Towers/abstractTower.png
 /importer:TextureImporter
 /processor:TextureProcessor
