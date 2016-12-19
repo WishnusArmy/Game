@@ -49,7 +49,7 @@ public class Enemy : GameObject
 
         // tijdelijk toegevoegd door maurin
         // zet visible naar false als health < 0
-        visible = IsAlive;
+        Kill = !IsAlive;
 
     }
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

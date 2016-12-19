@@ -9,6 +9,7 @@ public abstract class GameObject : IGameLoopObject
     protected int layer;
     protected string id;
     protected bool visible;
+    protected bool kill;
 
     public GameObject(int layer = 0, string id = "")
     {
@@ -17,6 +18,7 @@ public abstract class GameObject : IGameLoopObject
         position = Vector2.Zero;
         velocity = Vector2.Zero; 
         visible = true;
+        kill = false;
     }
 
     public virtual void HandleInput(InputHelper inputHelper)
@@ -108,6 +110,11 @@ public abstract class GameObject : IGameLoopObject
     {
         get { return visible; }
         set { visible = value; }
+    }
+    public bool Kill
+    {
+        get { return kill; }
+        set { kill = value; }
     }
 
     public virtual Rectangle BoundingBox
