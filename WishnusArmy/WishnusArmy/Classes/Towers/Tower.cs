@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 using static Constant;
 using static ContentImporter.Sprites;
 
-public class Tower : GameObject
+public class Tower : GameObjectList
 {
     protected MouseState state = new MouseState();
     public Vector2 gridPosition, mousePosition, previousPosition = new Vector2(0, 0);

@@ -60,7 +60,18 @@ public class GridNode : GameObject
             List<GridNode> n = new List<GridNode>(); //Make a container
             GridPlane plane = Parent as GridPlane; //Get the parent plane
             List<GridNode> all = plane.FindByType<GridNode>(); //Get all the nodes in the plane
-            for(int i=0; i<all.Count; ++i)
+            /*
+            GridNode temp;
+            temp = plane.NodeAt(new Vector2(100));
+            if (temp != null) { n.Add(temp); }
+            temp = plane.NodeAt(position + new Vector2(-NODE_SIZE.X / 2, NODE_SIZE.Y / 2));
+            if (temp != null) { n.Add(temp); }
+            temp = plane.NodeAt(position + new Vector2(-NODE_SIZE.X / 2, -NODE_SIZE.Y / 2));
+            if (temp != null) { n.Add(temp); }
+            temp = plane.NodeAt(position + new Vector2(NODE_SIZE.X / 2, -NODE_SIZE.Y / 2));
+            if (temp != null) { n.Add(temp); }
+            */
+            for (int i = 0; i < all.Count; ++i)
             {
                 if (all[i].position == position + new Vector2(NODE_SIZE.X / 2, NODE_SIZE.Y / 2) ||
                     all[i].position == position + new Vector2(-NODE_SIZE.X / 2, NODE_SIZE.Y / 2) ||

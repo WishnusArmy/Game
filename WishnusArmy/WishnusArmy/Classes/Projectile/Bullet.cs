@@ -55,7 +55,7 @@ class Bullet : Projectile
     
     public void CheckCollision()
     {
-        if (CalculateDistance(enemy.Position, position) < 50)
+        if (CalculateDistance(enemy.GlobalPosition, GlobalPosition) < 50)
         {
             enemy.DealDamage = damage;
             Kill = true;

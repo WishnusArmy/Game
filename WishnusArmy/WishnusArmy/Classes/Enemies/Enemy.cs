@@ -55,7 +55,16 @@ public partial class Enemy : GameObject
             {
                 node.beacon = false;
             }
-            path = getPath(Position, new Vector2(RANDOM.Next(1500)+128, RANDOM.Next(600)+100));
+
+            try
+            {
+                Vector2 p = Position;
+                if (p.X < 0) { p.X = 0; }
+                if (p.Y < 0) { p.Y = 0; }
+                path = getPath(p, new Vector2(RANDOM.Next(1500) + 128, RANDOM.Next(600) + 100));
+            }
+            catch(Exception e) { Console.WriteLine(e.Message); }
+
             foreach(GridNode node in path)
             {
                 node.beacon = true;
