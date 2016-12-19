@@ -49,7 +49,6 @@
     <Compile Include="Classes\HelpMenu.cs" />
     <Compile Include="Classes\GameWorld\GridNode.cs" />
     <Compile Include="Classes\GameWorld\GridPlane.cs" />
-    <Compile Include="Classes\IniFile.cs" />
     <Compile Include="Classes\GameWorld\Level.cs" />
     <Compile Include="Classes\LevelBuilder\LevelBuilder.cs" />
     <Compile Include="Classes\LevelBuilder\ToolBarObjects.cs" />
