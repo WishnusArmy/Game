@@ -57,17 +57,17 @@ public class GridNode : GameObject
     {
         get
         {
-            List<GridNode> n = new List<GridNode>();
-            GridPlane plane = Parent as GridPlane;
-            List<GridNode> all = plane.FindByType<GridNode>();
+            List<GridNode> n = new List<GridNode>(); //Make a container
+            GridPlane plane = Parent as GridPlane; //Get the parent plane
+            List<GridNode> all = plane.FindByType<GridNode>(); //Get all the nodes in the plane
             for(int i=0; i<all.Count; ++i)
             {
-                if (all[i].position == position + new Vector2(NODE_SIZE.X/2, NODE_SIZE.Y/2) ||
+                if (all[i].position == position + new Vector2(NODE_SIZE.X / 2, NODE_SIZE.Y / 2) ||
                     all[i].position == position + new Vector2(-NODE_SIZE.X / 2, NODE_SIZE.Y / 2) ||
                     all[i].position == position + new Vector2(-NODE_SIZE.X / 2, -NODE_SIZE.Y / 2) ||
                     all[i].position == position + new Vector2(NODE_SIZE.X / 2, -NODE_SIZE.Y / 2))
                 {
-                    n.Add(all[i]);
+                    n.Add(all[i]); //Add if it's a neighbour
                 }
             }
             return n;
