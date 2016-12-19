@@ -24,7 +24,7 @@ public class GridPlane: GameObjectList
         {
             for(int y=0; y<LEVEL_SIZE; ++y)
             {
-                if (y % 2 == 0)
+                if (y % 2 == 0) //All odd rows will be shifted half a node in order to lock together
                 {
                     grid[x, y] = new GridNode(planeType, new Vector2(NODE_SIZE.X * x, NODE_SIZE.Y/2 * y), 0);
                 }
@@ -53,7 +53,8 @@ public class GridPlane: GameObjectList
             }
         }
         Console.WriteLine("No node found at: " + pos.X + ", " + pos.Y);
-        throw new Exception("No node found at: " + pos.X + ", " + pos.Y);
+        //throw new Exception("No node found at: " + pos.X + ", " + pos.Y);
+        return null;
     }
 
     public override void HandleInput(InputHelper inputHelper)

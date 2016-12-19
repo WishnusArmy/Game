@@ -29,14 +29,14 @@ public class ToolBarObjects : GameObject
             GridPlane currentPlane;
             try
             {
-                Camera cam = GameWorld.FindByType<Camera>()[0];
+                Camera cam = GameWorld.FindByType<Camera>()[0]; //Get a reference to the camera
                 currentPlane = cam.currentPlane; //Get the index for the current plane
-                GridNode nodeAt = currentPlane.NodeAt(inputHelper.MousePosition - cam.Position);
-                Type t = Type.GetType(toolList[selected].name);
-                object temp = Activator.CreateInstance(t);
-                GameObject obj = temp as GameObject;
-                obj.Position = nodeAt.Position;
-                currentPlane.Add(obj);
+                GridNode nodeAt = currentPlane.NodeAt(inputHelper.MousePosition - cam.Position);  //Get the node at the mouse
+                Type t = Type.GetType(toolList[selected].name); //Get the type of the object
+                object temp = Activator.CreateInstance(t); //Create an instance of that object
+                GameObject obj = temp as GameObject; //Cast it as a GameObject
+                obj.Position = nodeAt.Position; //Set it's position at the mouse node
+                currentPlane.Add(obj); //Add it to the plane
             }
             catch (Exception e)
             {

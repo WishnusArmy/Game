@@ -63,8 +63,6 @@ public partial class Enemy : GameObject
             pathIndex = path.Count - 1;
         }
         target = path[pathIndex].Position;
-        if (!visible)
-            return;
         base.Update(gameTime);
         //Enemy is in de goede richting gedraaid
         double opposite = target.Y - position.Y;
