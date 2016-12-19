@@ -97,17 +97,14 @@ public class LevelBuilder : GameObjectList
         while(z < list.Count-1)
         {
             /*0*/string typeString = getHash(list[z++], 2);
-            //Console.WriteLine(typeString);
             /*1*/float x = float.Parse(getHash(list[z++], 2));
             /*2*/float y = float.Parse(getHash(list[z++], 2));
-            //.WriteLine("Position: " + x + ", " + y);
 
             switch (typeString)
             {
                 case "GridNode":
                     /*3*/int tex = int.Parse(getHash(list[z++], 2));
                     /*4*/Camera.Plane plane = (Camera.Plane)int.Parse(getHash(list[z++], 2));
-                    //Console.WriteLine("plane: " + plane);
                     for(int i=0; i<nodes.Count; ++i)
                     {
                         if (nodes[i].Position == new Vector2(x, y) && nodes[i].plane == plane)

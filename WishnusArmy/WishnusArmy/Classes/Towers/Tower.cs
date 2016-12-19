@@ -15,7 +15,6 @@ public class Tower : GameObject
     public Vector2 gridPosition, pos, mousePosition, previousPosition = new Vector2(0, 0);
     public Texture2D baseTexture;
     public Texture2D cannonTexture;
-    public Camera camera;
     protected Enemy target;
     public Boolean hover = false;
     float rotation;

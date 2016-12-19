@@ -39,6 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Classes\Button.cs" />
+    <Compile Include="Classes\Enemies\Enemy_AI.cs" />
     <Compile Include="Classes\GameWorld\Camera.cs" />
     <Compile Include="Classes\Base.cs" />
     <Compile Include="Classes\Constant.cs" />
