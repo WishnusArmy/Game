@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Input;
 using static Constant;
-using static ContentImporter;
+using static ContentImporter.Sprites;
 
 public class Tower : GameObject
 {
@@ -15,29 +15,32 @@ public class Tower : GameObject
     public Vector2 gridPosition, pos, mousePosition, previousPosition = new Vector2(0, 0);
     public Texture2D baseTexture;
     public Texture2D cannonTexture;
-    public Camera camera;
     protected Enemy target;
+    public Boolean hover = false;
     float rotation;
-    protected int range = 5 * Constant.NODE_SIZE.X;
+    protected int damage, cost, level = 0, range = 5 * Constant.NODE_SIZE.X;
+    protected double reloadTime;
     int[] levels; // {cost, damage, firerate, radius }
-    int cost;
-    int damage;
 
-    public Tower()
+
+    public Tower() : base()
     {
-        baseTexture = Sprites.SPR_ABSTRACT_TOWER; //Texture of the (unanimated) base of the tower
-        cannonTexture = Sprites.SPR_ABSTRACT_CANNON; // The moving part of a tower
+        baseTexture = SPR_ABSTRACT_TOWER; //Texture of the (unanimated) base of the tower
+        cannonTexture = SPR_ABSTRACT_CANNON; // The moving part of a tower
+        reloadTime = 1d / Constant.FIRE_RATE[level];
         levels = new int[] {
             0,0,0,0
         };
     }
-
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
         pos = gridPosition * NODE_SIZE.X + GlobalPosition;
         spriteBatch.Draw(baseTexture, pos);
         spriteBatch.Draw(cannonTexture, pos + new Vector2(baseTexture.Width / 2, baseTexture.Height / 2), null, null, new Vector2(cannonTexture.Width / 2, cannonTexture.Height / 2), rotation);
+
+        if (hover)
+            spriteBatch.Draw(SPR_RADIUS, pos + new Vector2(baseTexture.Width/2, baseTexture.Height/2), null, null, new Vector2(SPR_RADIUS.Width / 2, SPR_RADIUS.Height / 2),0f, new Vector2(1f,1f) *((float)range/((float)SPR_RADIUS.Width/2)), new Color(0.2f,0.2f,0.2f, 0.1f));
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -48,39 +51,56 @@ public class Tower : GameObject
             rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
 
         mousePosition = inputHelper.MousePosition;
+
+        //check if mouse is hovering over tower
+        if (range != 0 && BoundingBox.Contains(mousePosition)) { hover = true; }
+        else { hover = false; }
     }
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
+        reloadTime -= gameTime.ElapsedGameTime.TotalSeconds;
+        if (target != null && reloadTime <= 0)
+        { 
+            Attack();
+            reloadTime = 1d/Constant.FIRE_RATE[level];
+        }
     }
+
+
     public virtual Vector2 findTarget()
     {
-
+        if (target != null && target.Visible == false)
+            target = null;
         //if there already is a target that is within the tower range
-        if (target != null && CalculateDistance(target.Position, pos) < range)
+        if (target != null && Constant.DISTANCE(target.Position, pos) < range)
         {
             previousPosition = target.Position;
             return target.Position;
         }
+            //necessary so that the tower only follows enemies within range
         else
-            //necessary so that the tower only follows enemies withing range
             target = null;
-
+        
         //set distance to find a new enemy that is under that distance
-        double distance = range;
+            double distance = range;
 
 
         // look through all the enemies
-        foreach (Enemy x in camera.FindByType<Enemy>())
+
+        foreach (Enemy x in GameWorld.FindByType<Enemy>())
         {
-            //Calculate the distance of the target
-            double enemyDistance = CalculateDistance(x.Position, pos);
-            //if the enemy is closer than the last;
-            if (enemyDistance <= distance)
+            if (x.Visible == true)
             {
-                distance = enemyDistance;
-                //set this enemy as the target
-                target = x;    
+                //Calculate the distance of the target
+                double enemyDistance = CalculateDistance(x.Position, pos);
+                //if the enemy is closer than the last;
+                if (enemyDistance <= distance)
+                {
+                    distance = enemyDistance;
+                    //set this enemy as the target
+                    target = x;
+                }
             }
         }
         //if a target is found
@@ -93,20 +113,18 @@ public class Tower : GameObject
 
     public virtual void Attack()
     {
-
     }
 
     public virtual void Upgrade()
     {
 
     }
-
-    //returns the length of the direct line between two points
-    public double CalculateDistance(Vector2 A, Vector2 B)
+    public override Rectangle BoundingBox
     {
-        double K = A.Y - B.Y;
-        double L = A.X - B.X;
-        double distance = Math.Sqrt(K * K + L * L);
-        return distance;
+        get
+        {
+            return new Rectangle((int)pos.X, (int)pos.Y, baseTexture.Width, baseTexture.Height);
+        }
     }
+
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 
 public abstract class GameObject : IGameLoopObject
@@ -8,8 +9,7 @@ public abstract class GameObject : IGameLoopObject
     protected Vector2 position, velocity;
     protected int layer;
     protected string id;
-    protected bool visible;
-    protected bool kill;
+    public bool visible, active, kill;
 
     public GameObject(int layer = 0, string id = "")
     {
@@ -19,6 +19,7 @@ public abstract class GameObject : IGameLoopObject
         velocity = Vector2.Zero; 
         visible = true;
         kill = false;
+        active = true;
     }
 
     public virtual void HandleInput(InputHelper inputHelper)
@@ -123,5 +124,13 @@ public abstract class GameObject : IGameLoopObject
         {
             return new Rectangle((int)GlobalPosition.X, (int)GlobalPosition.Y, 0, 0);
         }
+    }
+    //returns the length of the direct line between two points
+    public double CalculateDistance(Vector2 A, Vector2 B)
+    {
+        double K = A.Y - B.Y;
+        double L = A.X - B.X;
+        double distance = Math.Sqrt(K * K + L * L);
+        return distance;
     }
 }

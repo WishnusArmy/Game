@@ -84,7 +84,10 @@ public class GameObjectList : GameObject
     {
         for (int i = children.Count - 1; i >= 0; i--)
         {
-            children[i].HandleInput(inputHelper);
+            if (children[i].active)
+            {
+                children[i].HandleInput(inputHelper);
+            }
         }
     }
 
@@ -93,16 +96,12 @@ public class GameObjectList : GameObject
         List<GameObject> remove = new List<GameObject>();
         foreach (GameObject obj in children)
         {
-            obj.Update(gameTime);
-            if (obj is Enemy)
-            {
-                Enemy e = obj as Enemy;
-                if (e.Kill)
-                    remove.Add(obj);
-            }
+            if (obj.active == true)
+                obj.Update(gameTime);
+            if (obj.Kill)
+                remove.Add(obj);
         }
-
-        foreach(GameObject obj in remove)
+        foreach (GameObject obj in remove)
             children.Remove(obj);
     }
 
@@ -115,7 +114,10 @@ public class GameObjectList : GameObject
         List<GameObject>.Enumerator e = children.GetEnumerator();
         while (e.MoveNext())
         {
-            e.Current.Draw(gameTime, spriteBatch);
+            if (e.Current.active)
+            {
+                e.Current.Draw(gameTime, spriteBatch);
+            }
         }
     }
 

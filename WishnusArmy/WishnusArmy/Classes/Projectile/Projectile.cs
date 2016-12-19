@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 class Projectile : SpriteGameObject
 {
-    protected int damage;
-    protected Vector2 velocity;
+    public int damage;
 
     public Projectile() : base("")
     {

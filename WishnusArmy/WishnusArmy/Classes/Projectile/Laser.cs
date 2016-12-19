@@ -9,7 +9,7 @@ using static Constant;
 
 class Laser : Projectile
 {
-    private Enemy target;
+    public Enemy target;
     private int timer;
     private int radius;
 
@@ -22,23 +22,12 @@ class Laser : Projectile
     {
         Position = startPosition;
         timer = 0;
-        damage = LASER_DAMAGE[0];
-        radius = LASER_RADIUS[1];
     }
     
     
 
     public void Target()
     {
-        target = null;
-        foreach(Enemy enemy in GameWorld.FindByType<Enemy>())
-        {
-            if (enemy.Visible && DISTANCE(enemy.Position, Position) < radius)
-            {
-                this.target = enemy;
-            }
-                
-        }
         if (target != null)
         {
             target.DealDamage = damage;
@@ -51,8 +40,8 @@ class Laser : Projectile
         if (target == null || !visible)
             return;
         base.Draw(gameTime, spriteBatch);
-        if (target.Visible || timer < LASER_TIME/4)
-        DrawingHelper.DrawLine(spriteBatch, GlobalPosition, target.Position, new Color(255 - timer*2,0, timer*5), 16);
+        if (target.Visible)
+        DrawingHelper.DrawLine(spriteBatch, GlobalPosition, target.GlobalPosition, new Color(255 - timer*2,0, timer*5), 16);
     }
 
     
@@ -61,10 +50,8 @@ class Laser : Projectile
     {
         base.Update(gameTime);
         timer++;
-        if (timer > LASER_TIME)
-        {
             Reset();
-        }
+        position += position - GlobalPosition;
     }
 
     public override void Reset()
