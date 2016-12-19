@@ -41,8 +41,11 @@ class LaserTower : Tower
             laser.Position = gridPosition * NODE_SIZE.X + new Vector2(baseTexture.Width/2, baseTexture.Height/2)+ GlobalPosition;
         }
         //if target is out of range
-        if (target != null && DISTANCE(target.Position + GlobalPosition, pos) > range)
+        if (target != null && DISTANCE(target.Position, pos) > range)
+        {
             target = null;
+            laser = null;
+        }
     }
     public override void Attack()
     {

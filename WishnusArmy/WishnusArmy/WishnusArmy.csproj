@@ -51,7 +51,6 @@
     <Compile Include="Classes\IniFile.cs" />
     <Compile Include="Classes\GameWorld\Level.cs" />
     <Compile Include="Classes\LevelBuilder\LevelBuilder.cs" />
-    <Compile Include="Classes\LevelBuilder\HashContainer.cs" />
     <Compile Include="Classes\LevelBuilder\ToolBarObjects.cs" />
     <Compile Include="Classes\LevelBuilder\ToolBarObjectsItem.cs" />
     <Compile Include="Classes\LevelBuilder\ToolBarSelectorItem.cs" />
