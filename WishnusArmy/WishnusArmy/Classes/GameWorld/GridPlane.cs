@@ -40,6 +40,22 @@ public class GridPlane: GameObjectList
         //ADDING THEM HERE WILL ADD THEM TO EVERY PLANE AL THE SAME
     }
 
+    public GridNode NodeAt(Vector2 pos)
+    {
+        for (int x = 0; x < LEVEL_SIZE; ++x)
+        {
+            for (int y = 0; y < LEVEL_SIZE; ++y)
+            {
+                if (grid[x,y].HoversMe(pos))
+                {
+                    return grid[x, y];
+                }
+            }
+        }
+        Console.WriteLine("No node found at: " + pos.X + ", " + pos.Y);
+        throw new Exception("No node found at: " + pos.X + ", " + pos.Y);
+    }
+
     public override void HandleInput(InputHelper inputHelper)
     {
         base.HandleInput(inputHelper);

@@ -37,27 +37,16 @@ public class Camera : GameObjectList
                     Land = p;
                     planes.Add(Land);
                     //Add items to the land plane (p.Add)
-                    p.Add(new Base());
+                    Base b = new Base();
+                    b.Position = LEVEL_CENTER;
+                    p.Add(b);
                     //(testcode) plaatst torens en voegt een enemy toe
-                    int y = 0;
-                    for (int t = 0; t < 20; t++)
+                    for (int q = 0; q < 1; ++q)
                     {
-                        {
-                            Enemy e = new Enemy();
-                            e.Position = new Vector2(RANDOM.Next(1000), RANDOM.Next(1000));
-                            p.Add(e);
-                            y++;
-                        /*
-                        p.Add(new Laser(new Vector2(200, 200)));
-                        p.Add(new Laser(new Vector2(600, 600)));
-                        p.Add(new Laser(new Vector2(900, 900)));
-                        */
-
-                        }
+                        Enemy e = new Enemy();
+                        e.Position = new Vector2(RANDOM.Next(500)+100, RANDOM.Next(600)+100);
+                        p.Add(e);
                     }
-                    LaserTower x = new LaserTower();
-                    x.gridPosition = new Vector2(6, 6);
-                    p.Add(x);
                     //einde testcode
                     break;
 
@@ -92,7 +81,7 @@ public class Camera : GameObjectList
 
     public override void HandleInput(InputHelper inputHelper)
     {
-        //Manually handle the input of the active plan
+        //Manually handle the input of the active plane
         currentPlane.HandleInput(inputHelper);
 
         //Camera Movement

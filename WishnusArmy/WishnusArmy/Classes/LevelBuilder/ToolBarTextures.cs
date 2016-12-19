@@ -46,7 +46,7 @@ public class ToolBarTextures : GameObject
         base.HandleInput(inputHelper);
 
         //Change the texture of the selected node
-        if (inputHelper.MouseLeftButtonDown())
+        if (inputHelper.MouseLeftButtonDown() && inputHelper.MouseInGameWindow)
         {
             GridPlane currentPlane;
             try

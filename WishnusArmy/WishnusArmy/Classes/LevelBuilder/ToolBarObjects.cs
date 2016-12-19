@@ -24,17 +24,18 @@ public class ToolBarObjects : GameObject
         base.HandleInput(inputHelper);
 
 
-        if (inputHelper.MouseLeftButtonPressed())
+        if (inputHelper.MouseLeftButtonPressed() && inputHelper.MouseInGameWindow)
         {
             GridPlane currentPlane;
             try
             {
                 Camera cam = GameWorld.FindByType<Camera>()[0];
                 currentPlane = cam.currentPlane; //Get the index for the current plane
+                GridNode nodeAt = currentPlane.NodeAt(inputHelper.MousePosition - cam.Position);
                 Type t = Type.GetType(toolList[selected].name);
                 object temp = Activator.CreateInstance(t);
                 GameObject obj = temp as GameObject;
-                obj.Position = inputHelper.MousePosition - cam.Position;
+                obj.Position = nodeAt.Position;
                 currentPlane.Add(obj);
             }
             catch (Exception e)

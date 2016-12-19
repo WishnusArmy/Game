@@ -11,7 +11,7 @@ using static ContentImporter.Sprites;
 class LaserTower : Tower
 {
     Laser laser;
-    public LaserTower()
+    public LaserTower() : base()
     {
         damage = Constant.LASER_DAMAGE[level];
         this.range = LASER_RADIUS[level];
@@ -41,13 +41,13 @@ class LaserTower : Tower
             laser.Position = gridPosition * NODE_SIZE.X + new Vector2(baseTexture.Width/2, baseTexture.Height/2)+ GlobalPosition;
         }
         //if target is out of range
-        if (target != null && DISTANCE(target.Position + GlobalPosition, pos) > range)
+        if (target != null && DISTANCE(target.Position + GlobalPosition, GlobalPosition) > range)
             target = null;
     }
     public override void Attack()
     {
         base.Attack();
-        laser = new Laser(pos);
+        laser = new Laser(GlobalPosition);
         laser.target = target;
         laser.damage = damage;
 
