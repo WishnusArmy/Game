@@ -9,7 +9,7 @@ class ProjectileTower : Tower
         
 {
     List<Bullet> bulletList;
-    public ProjectileTower()
+    public ProjectileTower() : base()
     {
         damage = Constant.BULLET_DAMAGE[level];
         bulletList = new List<Bullet>();
@@ -49,7 +49,7 @@ class ProjectileTower : Tower
     public override void Attack()
     {
         base.Attack();
-        Bullet x = new Bullet(damage, 2, pos + new Vector2(baseTexture.Width / 2, baseTexture.Height / 2));
+        Bullet x = new Bullet(damage, 2, GlobalPosition + new Vector2(baseTexture.Width / 2, baseTexture.Height / 2));
         x.enemy = target;
         x.Visible = true;
         bulletList.Add(x);

@@ -32,7 +32,7 @@ public class GridNode : GameObject
     public Camera.Plane plane;
 
     //AI
-    public int Hval, Gval, Fval;
+    public int Hval, Gval, Fval, Dval; //Heuristic, Movement, Sum, Danger
     public GridNode pathParent;
 
     //temp
@@ -48,6 +48,8 @@ public class GridNode : GameObject
         Hval = 0;
         Gval = 0;
         Fval = 0;
+        Dval = 0;
+        pathParent = this;
         beacon = false;
     }
 
