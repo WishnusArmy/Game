@@ -11,7 +11,7 @@ class ProjectileTower : Tower
     List<Bullet> bulletList;
     int maxBullets;
 
-    public ProjectileTower()
+    public ProjectileTower() : base()
     {
         damage = Constant.BULLET_DAMAGE[level];
         bulletList = new List<Bullet>();

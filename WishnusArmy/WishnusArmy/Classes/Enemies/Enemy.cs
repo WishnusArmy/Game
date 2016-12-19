@@ -47,6 +47,7 @@ public partial class Enemy : GameObject
     }
     public override void Update(GameTime gameTime)
     {
+        base.Update(gameTime);
         if (pathIndex == 0)
         {
             GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane;
@@ -54,7 +55,7 @@ public partial class Enemy : GameObject
             {
                 node.beacon = false;
             }
-            path = getPath(Position, new Vector2(RANDOM.Next(2000)+128, RANDOM.Next(600)+100));
+            path = getPath(Position, new Vector2(RANDOM.Next(1500)+128, RANDOM.Next(600)+100));
             foreach(GridNode node in path)
             {
                 node.beacon = true;
@@ -62,8 +63,6 @@ public partial class Enemy : GameObject
             pathIndex = path.Count - 1;
         }
         target = path[pathIndex].Position;
-        if (!visible)
-            return;
         base.Update(gameTime);
         //Enemy is in de goede richting gedraaid
         double opposite = target.Y - position.Y;
@@ -100,7 +99,7 @@ public partial class Enemy : GameObject
         if (!visible)
             return;
         base.Draw(gameTime, spriteBatch);
-        spriteBatch.Draw(Sprite, GlobalPosition,null, null, new Vector2(Sprite.Width/2,Sprite.Height/2), rotation);
+        spriteBatch.Draw(Sprite, GlobalPosition + new Vector2(NODE_SIZE.X, NODE_SIZE.Y)/2, null, null, new Vector2(Sprite.Width/2,Sprite.Height/2), rotation);
 
         //draw Healthbar, above the enemy. The healthRatio sets the width of the healthbar to the width of the sprite.
         DrawingHelper.DrawRectangleFilled(new Rectangle((int)GlobalPosition.X - (int)(health * healthRatio)/2,(int) GlobalPosition.Y -Sprite.Height -10,(int)((float)health * healthRatio),10), spriteBatch, Color.Black);

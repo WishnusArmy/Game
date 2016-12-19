@@ -37,7 +37,9 @@ public class Camera : GameObjectList
                     Land = p;
                     planes.Add(Land);
                     //Add items to the land plane (p.Add)
-                    p.Add(new Base());
+                    Base b = new Base();
+                    b.Position = LEVEL_CENTER;
+                    p.Add(b);
                     //(testcode) plaatst torens en voegt een enemy toe
                     for (int q = 0; q < 10; ++q)
                     {
@@ -92,11 +94,11 @@ public class Camera : GameObjectList
         Vector2 mp = inputHelper.MousePosition;
         if (mp.X < SLIDE_BORDER)
             position.X += SLIDE_SPEED;
-        if (mp.X > WishnusArmy.WishnusArmy.Screen.X - SLIDE_BORDER)
+        if (mp.X > GAME_WINDOW_SIZE.X - SLIDE_BORDER)
             position.X -= SLIDE_SPEED;
         if (mp.Y < SLIDE_BORDER)
             position.Y += SLIDE_SPEED;
-        if (mp.Y > WishnusArmy.WishnusArmy.Screen.Y - SLIDE_BORDER)
+        if (mp.Y > GAME_WINDOW_SIZE.Y - SLIDE_BORDER)
             position.Y -= SLIDE_SPEED;
 
         //Make sure the camera doesn't move out of bounds

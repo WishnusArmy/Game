@@ -12,10 +12,11 @@ using static ContentImporter.Sprites;
 public class Tower : GameObject
 {
     protected MouseState state = new MouseState();
-    public Vector2 gridPosition, pos, mousePosition, previousPosition = new Vector2(0, 0);
+    public Vector2 gridPosition, mousePosition, previousPosition = new Vector2(0, 0);
     public Texture2D baseTexture;
     public Texture2D cannonTexture;
     protected Enemy target;
+    public GridNode myNode;
     public Boolean hover = false;
     float rotation;
     protected int damage, cost, level = 0, range = 5 * Constant.NODE_SIZE.X;
@@ -35,19 +36,18 @@ public class Tower : GameObject
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
-        pos = gridPosition * NODE_SIZE.X + GlobalPosition;
-        spriteBatch.Draw(baseTexture, pos);
-        spriteBatch.Draw(cannonTexture, pos + new Vector2(baseTexture.Width / 2, baseTexture.Height / 2), null, null, new Vector2(cannonTexture.Width / 2, cannonTexture.Height / 2), rotation);
+        spriteBatch.Draw(baseTexture, GlobalPosition);
+        spriteBatch.Draw(cannonTexture, GlobalPosition + new Vector2(baseTexture.Width / 2, baseTexture.Height / 2), null, null, new Vector2(cannonTexture.Width / 2, cannonTexture.Height / 2), rotation);
 
         if (hover)
-            spriteBatch.Draw(SPR_RADIUS, pos + new Vector2(baseTexture.Width/2, baseTexture.Height/2), null, null, new Vector2(SPR_RADIUS.Width / 2, SPR_RADIUS.Height / 2),0f, new Vector2(1f,1f) *((float)range/((float)SPR_RADIUS.Width/2)), new Color(0.2f,0.2f,0.2f, 0.1f));
+            spriteBatch.Draw(SPR_RADIUS, GlobalPosition + new Vector2(baseTexture.Width/2, baseTexture.Height/2), null, null, new Vector2(SPR_RADIUS.Width / 2, SPR_RADIUS.Height / 2),0f, new Vector2(1f,1f) *((float)range/((float)SPR_RADIUS.Width/2)), new Color(0.2f,0.2f,0.2f, 0.1f));
     }
 
     public override void HandleInput(InputHelper inputHelper)
     {
         //calculate the rotation of the cannonbarrel
-            double opposite = findTarget().Y - cannonTexture.Width / 2 - pos.Y;
-            double adjacent = findTarget().X - cannonTexture.Width / 2 - pos.X;
+            double opposite = findTarget().Y - cannonTexture.Width / 2 - GlobalPosition.Y;
+            double adjacent = findTarget().X - cannonTexture.Width / 2 - GlobalPosition.X;
             rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
 
         mousePosition = inputHelper.MousePosition;
@@ -73,7 +73,7 @@ public class Tower : GameObject
         if (target != null && target.Visible == false)
             target = null;
         //if there already is a target that is within the tower range
-        if (target != null && Constant.DISTANCE(target.Position, pos) < range)
+        if (target != null && Constant.DISTANCE(target.Position, GlobalPosition) < range)
         {
             previousPosition = target.Position;
             return target.Position;
@@ -93,7 +93,7 @@ public class Tower : GameObject
             if (x.Visible == true)
             {
                 //Calculate the distance of the target
-                double enemyDistance = CalculateDistance(x.Position, pos);
+                double enemyDistance = CalculateDistance(x.Position, GlobalPosition);
                 //if the enemy is closer than the last;
                 if (enemyDistance <= distance)
                 {
@@ -123,7 +123,7 @@ public class Tower : GameObject
     {
         get
         {
-            return new Rectangle((int)pos.X, (int)pos.Y, baseTexture.Width, baseTexture.Height);
+            return new Rectangle((int)GlobalPosition.X, (int)GlobalPosition.Y, baseTexture.Width, baseTexture.Height);
         }
     }
 
