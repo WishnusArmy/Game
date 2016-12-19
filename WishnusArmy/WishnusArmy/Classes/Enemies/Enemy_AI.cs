@@ -14,12 +14,17 @@ public partial class Enemy : GameObject
         List<GridNode> openList = new List<GridNode>(); //Nodes to be checked
         List<GridNode> closedList = new List<GridNode>(); //Nodes that have been checked
         GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane; //get the currentplane
-        GridNode startNode = plane.NodeAt(origin); //Get the node from where to start
-        GridNode targetNode = plane.NodeAt(target); //Get the node at the target position
-        if (startNode == null || targetNode == null)
+        GridNode startNode, targetNode;
+        try
         {
-            throw new Exception("Unvalid input parameters. No node at origin or target./norigin: " + origin.X + ", " + origin.Y + "/target: " + target.X + ", " + target.Y);
+            startNode = plane.NodeAt(origin); //Get the node from where to start
+            targetNode = plane.NodeAt(target); //Get the node at the target position
         }
+        catch(Exception e)
+        {
+            throw e;
+        }
+
         foreach (GridNode node in plane.grid)
         {
             node.Hval = (int)(Math.Abs(node.Position.X - targetNode.Position.X) + Math.Abs(node.Position.Y - targetNode.Position.Y))/16;  //Calculate the Heuristic

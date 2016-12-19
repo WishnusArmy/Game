@@ -14,6 +14,7 @@ public class GridNode : GameObject
 {
     int obj; //Indicator for what is placed on the square (0 for emtpy)
     int _texture;
+    public List<GridNode> neighbours;
     public int texture
     {
         get { return _texture;  }
@@ -40,6 +41,7 @@ public class GridNode : GameObject
 
     public GridNode(Camera.Plane plane, Vector2 position, int texture, int obj = 0) : base()
     {
+        neighbours = new List<GridNode>();
         this.texture = texture;
         this.obj = obj;
         this.position = position;
@@ -57,31 +59,7 @@ public class GridNode : GameObject
     {
         get
         {
-            List<GridNode> n = new List<GridNode>(); //Make a container
-            GridPlane plane = Parent as GridPlane; //Get the parent plane
-            List<GridNode> all = plane.FindByType<GridNode>(); //Get all the nodes in the plane
-            /*
-            GridNode temp;
-            temp = plane.NodeAt(new Vector2(100));
-            if (temp != null) { n.Add(temp); }
-            temp = plane.NodeAt(position + new Vector2(-NODE_SIZE.X / 2, NODE_SIZE.Y / 2));
-            if (temp != null) { n.Add(temp); }
-            temp = plane.NodeAt(position + new Vector2(-NODE_SIZE.X / 2, -NODE_SIZE.Y / 2));
-            if (temp != null) { n.Add(temp); }
-            temp = plane.NodeAt(position + new Vector2(NODE_SIZE.X / 2, -NODE_SIZE.Y / 2));
-            if (temp != null) { n.Add(temp); }
-            */
-            for (int i = 0; i < all.Count; ++i)
-            {
-                if (all[i].position == position + new Vector2(NODE_SIZE.X / 2, NODE_SIZE.Y / 2) ||
-                    all[i].position == position + new Vector2(-NODE_SIZE.X / 2, NODE_SIZE.Y / 2) ||
-                    all[i].position == position + new Vector2(-NODE_SIZE.X / 2, -NODE_SIZE.Y / 2) ||
-                    all[i].position == position + new Vector2(NODE_SIZE.X / 2, -NODE_SIZE.Y / 2))
-                {
-                    n.Add(all[i]); //Add if it's a neighbour
-                }
-            }
-            return n;
+            return neighbours;
         }
     }
 
@@ -131,7 +109,6 @@ public class GridNode : GameObject
         {
             spriteBatch.Draw(LIST_LAND_TEXTURES[texture], GlobalPosition, Color.Black * 0.4f);
         }
-        DrawingHelper.DrawText(spriteBatch, FNT_LEVEL_BUILDER, "H: " + Hval.ToString(), GlobalPosition + new Vector2(30, 30), Color.Red);
         if (beacon)
         {
             spriteBatch.Draw(LIST_LAND_TEXTURES[texture], GlobalPosition, Color.Blue * 0.4f);

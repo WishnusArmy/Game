@@ -33,11 +33,6 @@ public class GameObjectList : GameObject
         children.Add(obj);
     }
 
-    public void AddToGameWorld(GameObject obj)
-    {
-        this.add.Add(obj);
-    }
-
     public void Remove(GameObject obj)
     {
         children.Remove(obj);
