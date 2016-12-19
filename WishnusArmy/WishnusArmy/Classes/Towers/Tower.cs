@@ -15,7 +15,6 @@ public class Tower : GameObject
     public Vector2 gridPosition, pos, mousePosition, previousPosition = new Vector2(0, 0);
     public Texture2D baseTexture;
     public Texture2D cannonTexture;
-    public Camera camera;
     protected Enemy target;
     public Boolean hover = false;
     float rotation;
@@ -24,7 +23,7 @@ public class Tower : GameObject
     int[] levels; // {cost, damage, firerate, radius }
 
 
-    public Tower()
+    public Tower() : base()
     {
         baseTexture = SPR_ABSTRACT_TOWER; //Texture of the (unanimated) base of the tower
         cannonTexture = SPR_ABSTRACT_CANNON; // The moving part of a tower
@@ -88,7 +87,8 @@ public class Tower : GameObject
 
 
         // look through all the enemies
-        foreach (Enemy x in camera.FindByType<Enemy>())
+
+        foreach (Enemy x in GameWorld.FindByType<Enemy>())
         {
             if (x.Visible == true)
             {

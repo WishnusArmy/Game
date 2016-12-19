@@ -14,10 +14,16 @@ using static Constant;
 
 public class LevelBuilder : GameObjectList
 {
+    ToolBarTextures tbTextures;
+    ToolBarObjects tbObjects;
     public LevelBuilder() : base()
     {
-        Add(new ToolBar());
-        Add(new ToolbarSelector());
+        tbTextures = new ToolBarTextures();
+        Add(tbTextures);
+        tbObjects = new ToolBarObjects();
+        tbObjects.active = false;
+        Add(tbObjects);
+        Add(new ToolBarSelector(tbTextures, tbObjects));
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -44,14 +50,15 @@ public class LevelBuilder : GameObjectList
         Hashtable file = new Hashtable();
         foreach (GameObject obj in GameWorld.FindByType<GameObject>())
         {
-            file.Add(i.ToString() + ".AAType", obj.GetType());
-            file.Add(i.ToString() + ".X", obj.Position.X.ToString());
-            file.Add(i.ToString() + ".Y", obj.Position.Y.ToString());
+            file.Add(i.ToString() + ".[0]Type", obj.GetType());
+            file.Add(i.ToString() + ".[1]X", obj.Position.X.ToString());
+            file.Add(i.ToString() + ".[2]Y", obj.Position.Y.ToString());
             if (obj is GridNode)
             {
                 GridNode subObj = obj as GridNode;
                 string[] str = subObj.texture.ToString().Split('/');
-                file.Add(i.ToString() + ".Texture", str[str.Length - 1]);
+                file.Add(i.ToString() + ".[3]Texture", str[str.Length - 1]);
+                file.Add(i.ToString() + ".[4]Plane", ((int)subObj.plane).ToString());
             }
             ++i;
         }
@@ -78,19 +85,58 @@ public class LevelBuilder : GameObjectList
             Console.WriteLine("Deserialization failed: " + e.Message);
         }
 
-        int i = 0;
         List<string> list = new List<string>();
         foreach(DictionaryEntry obj in file)
         {
             list.Add(obj.Key.ToString() + "." + obj.Value.ToString());
-            ++i;
         }
+
         list.Sort();
-        for(int z=0; z<list.Count; ++z)
+        int z = 0;
+        List<GridNode> nodes = GameWorld.FindByType<GridNode>(); //Get a list of all the gridnodes
+        while(z < list.Count-1)
         {
-            //Console.WriteLine(list[z]);
+            /*0*/string typeString = getHash(list[z++], 2);
+            //Console.WriteLine(typeString);
+            /*1*/float x = float.Parse(getHash(list[z++], 2));
+            /*2*/float y = float.Parse(getHash(list[z++], 2));
+            //.WriteLine("Position: " + x + ", " + y);
+
+            switch (typeString)
+            {
+                case "GridNode":
+                    /*3*/int tex = int.Parse(getHash(list[z++], 2));
+                    /*4*/Camera.Plane plane = (Camera.Plane)int.Parse(getHash(list[z++], 2));
+                    //Console.WriteLine("plane: " + plane);
+                    for(int i=0; i<nodes.Count; ++i)
+                    {
+                        if (nodes[i].Position == new Vector2(x, y) && nodes[i].plane == plane)
+                        {
+                            nodes[i].texture = tex;
+                        }
+                    }
+                    break;
+            }
         }
+        fs.Close();
     }
 
-    
+    string getHash(string str, int a)
+    {
+        //0 = ID
+        //1 = Variable Name
+        //2 = Value
+        try
+        {
+            if (a == 1)
+                return str.Split('.')[a].Split(']')[1];
+
+            return str.Split('.')[a];
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            return "";
+        }
+    }
 }

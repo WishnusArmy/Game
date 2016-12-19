@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using static Constant;
 
 public class InputHelper
 {
@@ -37,6 +38,11 @@ public class InputHelper
     public Vector2 MousePosition
     {
         get { return (new Vector2(currentMouseState.X, currentMouseState.Y) - offset ) / scale; }
+    }
+
+    public bool MouseInGameWindow
+    {
+        get { return MouseInRectangle(new Rectangle(Point.Zero, GAME_WINDOW_SIZE)); }
     }
 
     public bool MouseInRectangle(Rectangle r)

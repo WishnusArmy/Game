@@ -12,12 +12,12 @@ using static ContentImporter.Fonts;
 
 
 
-public class ToolBar : GameObject
+public class ToolBarTextures : GameObject
 {
     public List<Texture2D> toolList;
     int selected;
 
-    public ToolBar()
+    public ToolBarTextures()
     {
         selected = 0;
         toolList = LIST_LAND_TEXTURES;
