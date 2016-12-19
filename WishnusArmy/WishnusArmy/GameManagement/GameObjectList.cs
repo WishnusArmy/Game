@@ -77,8 +77,6 @@ public class GameObjectList : GameObject
                 }
             }
         }
-        if (list.Count == 0)
-            return null;
         return list;
     }
 
@@ -95,13 +93,16 @@ public class GameObjectList : GameObject
 
     public override void Update(GameTime gameTime)
     {
+        List<GameObject> remove = new List<GameObject>();
         foreach (GameObject obj in children)
         {
             if (obj.active == true)
-            {
                 obj.Update(gameTime);
-            }
+            if (obj.Kill)
+                remove.Add(obj);
         }
+        foreach (GameObject obj in remove)
+            children.Remove(obj);
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
