@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Linq;
 
 public class GameObjectList : GameObject
 {
@@ -118,6 +119,16 @@ public class GameObjectList : GameObject
         if (!visible)
         {
             return;
+        }
+        children = children.OrderBy(o => o.Position.Y).ToList();
+        for(int i=0; i<children.Count; ++i)
+        {
+            if (children[i] is GridNode)
+            {
+                GridNode temp = children[i] as GridNode;
+                children.RemoveAt(i);
+                children.Insert(0, temp);
+            }
         }
         List<GameObject>.Enumerator e = children.GetEnumerator();
         while (e.MoveNext())

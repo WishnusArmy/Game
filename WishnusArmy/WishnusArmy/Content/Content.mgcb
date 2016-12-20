@@ -181,18 +181,6 @@
 /processorParam:TextureFormat=Color
 /build:Content/Sprites/Towers/cannon.png
 
-#begin Content/Sprites/Towers/laserTower.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Sprites/Towers/laserTower.png
-
 #begin Content/Sprites/Towers/pulseTower.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -366,4 +354,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Sprites/credits.png
+
+#begin Content/Sprites/Towers/spr_laser_tower.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Sprites/Towers/spr_laser_tower.png
 

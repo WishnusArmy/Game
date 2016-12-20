@@ -14,7 +14,6 @@ public class Tower : GameObjectList
     protected MouseState state = new MouseState();
     public Vector2 gridPosition, mousePosition, previousPosition = new Vector2(0, 0);
     public Texture2D baseTexture;
-    public Texture2D cannonTexture;
     protected Enemy target;
     protected Vector2 targetPos;
     public GridNode myNode;
@@ -28,7 +27,6 @@ public class Tower : GameObjectList
     public Tower() : base()
     {
         baseTexture = SPR_ABSTRACT_TOWER; //Texture of the (unanimated) base of the tower
-        cannonTexture = SPR_ABSTRACT_CANNON; // The moving part of a tower
         reloadTime = 1d / Constant.FIRE_RATE[level];
         levels = new int[] {
             0,0,0,0
@@ -37,24 +35,19 @@ public class Tower : GameObjectList
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
-        spriteBatch.Draw(baseTexture, GlobalPosition);
-        spriteBatch.Draw(cannonTexture, GlobalPosition + new Vector2(baseTexture.Width / 2, baseTexture.Height / 2), null, null, new Vector2(cannonTexture.Width / 2, cannonTexture.Height / 2), rotation);
+        spriteBatch.Draw(baseTexture, DrawPosition - new Vector2(baseTexture.Width/2, baseTexture.Height - 25));
 
         if (hover)
             spriteBatch.Draw(SPR_RADIUS, GlobalPosition + new Vector2(baseTexture.Width/2, baseTexture.Height/2), null, null, new Vector2(SPR_RADIUS.Width / 2, SPR_RADIUS.Height / 2),0f, new Vector2(1f,1f) *((float)range/((float)SPR_RADIUS.Width/2)), new Color(0.2f,0.2f,0.2f, 0.1f));
     }
 
+    public Vector2 DrawPosition //Correction for being on the grid.
+    {
+        get { return GlobalPosition + new Vector2(NODE_SIZE.X, NODE_SIZE.Y) / 2; }
+    }
+
     public override void HandleInput(InputHelper inputHelper)
     {
-        //calculate the rotation of the cannonbarrel
-        if (target != null)
-        {
-            targetPos = target.Position;
-        }
-        double opposite = targetPos.Y - cannonTexture.Width / 2 - GlobalPosition.Y;
-        double adjacent = targetPos.X - cannonTexture.Width / 2 - GlobalPosition.X;
-        rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
-
         mousePosition = inputHelper.MousePosition;
 
         //check if mouse is hovering over tower
@@ -63,6 +56,13 @@ public class Tower : GameObjectList
     }
     public override void Update(GameTime gameTime)
     {
+        if (myNode == null)
+        {
+            GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane;
+            myNode = plane.NodeAt(position + new Vector2(NODE_SIZE.X, NODE_SIZE.Y)/2);
+            myNode.solid = true;
+            myNode.beacon = true;
+        }
         base.Update(gameTime);
         reloadTime -= gameTime.ElapsedGameTime.TotalSeconds;
         if (target != null && reloadTime <= 0)

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 
 
-class ProjectileTower : Tower  
+class ProjectileTower : CannonTower  
 {
     int maxBullets;
 

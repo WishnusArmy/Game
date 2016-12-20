@@ -11,10 +11,8 @@ class Laser : Projectile
 {
     public Enemy target;
 
-    // Call Laser like 
-    //      Laser(towerPosition)
     // Target new enemy as 
-    //      laser.Target = TargetPosition
+    //      laser.target = Enemy
 
     public Laser() : base()
     {

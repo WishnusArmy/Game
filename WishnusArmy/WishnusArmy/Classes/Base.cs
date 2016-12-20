@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using static ContentImporter.Sprites;
 using static Constant;
 
-public class Base : Tower
+public class Base : CannonTower
 {
     Vector2 GameMiddle = new Vector2(LEVEL_SIZE * NODE_SIZE.X / 2, LEVEL_SIZE * NODE_SIZE.Y / 4);
     Vector2 BaseOrigin = new Vector2(SPR_BASEGUN.Width / 2, SPR_BASEGUN.Height / 2);
