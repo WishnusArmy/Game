@@ -35,17 +35,17 @@ internal static class Constant
 
     //PROJECTILES
     // damage/speed/radius per level
-    internal static int[] BULLET_DAMAGE = new int[] { 0, 100, 120 };       
+    internal static int[] BULLET_DAMAGE = new int[] { 60, 100, 120 };       
     internal static int[] BULLET_SPEED = new int[] { 5, 8, 10 };
     internal static int[] PULSE_DAMAGE = new int[] { 10, 30, 40 };
     internal static int[] PULSE_SPEED = new int[] { 4, 6, 8 };
-    internal static int[] PULSE_RADIUS = new int[] { 200, 400, 600 };
-    internal static int[] LASER_DAMAGE = new int[] { 0, 2, 4 };
+    internal static int[] PULSE_RADIUS = new int[] { 150, 400, 600 };
+    internal static int[] LASER_DAMAGE = new int[] { 1, 2, 4 };
     internal static int[] LASER_RADIUS = new int[] { 150, 400, 800 };
     internal const int LASER_TIME = 4;
 
     //TOWERS
-    internal static int[] FIRE_RATE = new int[] { 1, 2, 3 };
+    internal static int[] FIRE_RATE = new int[] { 10, 2, 3 };
 
     //ENEMIES
     internal static int[] ENEMY_HEALTH = new int[] { 100, 250, 600 };

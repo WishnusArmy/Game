@@ -37,10 +37,11 @@ public class Tower : GameObject
         base.Draw(gameTime, spriteBatch);
         pos = gridPosition * NODE_SIZE.X + GlobalPosition;
         spriteBatch.Draw(baseTexture, pos);
-        spriteBatch.Draw(cannonTexture, pos + new Vector2(baseTexture.Width / 2, baseTexture.Height / 2), null, null, new Vector2(cannonTexture.Width / 2, cannonTexture.Height / 2), rotation);
+        spriteBatch.Draw(cannonTexture, pos + Origin, null, null, new Vector2(cannonTexture.Width / 2, cannonTexture.Height / 2), rotation);
 
+        //draw the radius
         if (hover)
-            spriteBatch.Draw(SPR_RADIUS, pos + new Vector2(baseTexture.Width/2, baseTexture.Height/2), null, null, new Vector2(SPR_RADIUS.Width / 2, SPR_RADIUS.Height / 2),0f, new Vector2(1f,1f) *((float)range/((float)SPR_RADIUS.Width/2)), new Color(0.2f,0.2f,0.2f, 0.1f));
+            spriteBatch.Draw(SPR_RADIUS, pos + Origin, null, null, new Vector2(SPR_RADIUS.Width / 2, SPR_RADIUS.Height / 2),0f, new Vector2(1f,1f) *((float)range/((float)SPR_RADIUS.Width/2)), new Color(0.2f,0.2f,0.2f, 0.1f));
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -54,7 +55,7 @@ public class Tower : GameObject
 
         //check if mouse is hovering over tower
         if (range != 0 && BoundingBox.Contains(mousePosition)) { hover = true; }
-        else { hover = false; }
+        else {hover = false; }
     }
     public override void Update(GameTime gameTime)
     {
@@ -64,7 +65,9 @@ public class Tower : GameObject
         { 
             Attack();
             reloadTime = 1d/Constant.FIRE_RATE[level];
+            
         }
+            
     }
 
 
@@ -73,7 +76,7 @@ public class Tower : GameObject
         if (target != null && target.Visible == false)
             target = null;
         //if there already is a target that is within the tower range
-        if (target != null && Constant.DISTANCE(target.Position, pos) < range)
+        if (target != null && Constant.DISTANCE(target.Position - target.Origin, pos + Origin ) < range)
         {
             previousPosition = target.Position;
             return target.Position;
@@ -87,13 +90,12 @@ public class Tower : GameObject
 
 
         // look through all the enemies
-
         foreach (Enemy x in GameWorld.FindByType<Enemy>())
         {
             if (x.Visible == true)
             {
                 //Calculate the distance of the target
-                double enemyDistance = CalculateDistance(x.Position, pos);
+                double enemyDistance = CalculateDistance(x.Position - x.Origin, pos + Origin);
                 //if the enemy is closer than the last;
                 if (enemyDistance <= distance)
                 {
@@ -125,6 +127,10 @@ public class Tower : GameObject
         {
             return new Rectangle((int)pos.X, (int)pos.Y, baseTexture.Width, baseTexture.Height);
         }
+    }
+    public Vector2 Origin
+    {
+        get { return new Vector2(baseTexture.Width/2, baseTexture.Height/2); }
     }
 
 }

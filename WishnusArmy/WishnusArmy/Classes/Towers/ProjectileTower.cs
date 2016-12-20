@@ -13,6 +13,7 @@ class ProjectileTower : Tower
     {
         damage = Constant.BULLET_DAMAGE[level];
         bulletList = new List<Bullet>();
+        range = 150;
     }
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {

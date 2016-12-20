@@ -13,7 +13,7 @@ public partial class Enemy : GameObject
 {
     public Texture2D Sprite;
     float rotation, healthRatio;
-    Vector2 target = new Vector2(200,200), startPosition = new Vector2(200,200);
+    public Vector2 target = new Vector2(200,200), startPosition = new Vector2(200,200);
     float speed = 5;
     int health = ENEMY_HEALTH[1];
     List<GridNode> path;
@@ -98,7 +98,7 @@ public partial class Enemy : GameObject
         if (!visible)
             return;
         base.Draw(gameTime, spriteBatch);
-        spriteBatch.Draw(Sprite, GlobalPosition,null, null, new Vector2(Sprite.Width/2,Sprite.Height/2), rotation);
+        spriteBatch.Draw(Sprite, GlobalPosition,null, null, Origin, rotation);
 
         //draw Healthbar, above the enemy. The healthRatio sets the width of the healthbar to the width of the sprite.
         DrawingHelper.DrawRectangleFilled(new Rectangle((int)GlobalPosition.X - (int)(health * healthRatio)/2,(int) GlobalPosition.Y -Sprite.Height -10,(int)((float)health * healthRatio),10), spriteBatch, Color.Black);
@@ -115,5 +115,8 @@ public partial class Enemy : GameObject
     {
         get { return health > 0; }
     }
-
+    public Vector2 Origin
+    {
+        get { return new Vector2(Sprite.Width / 2, Sprite.Height / 2); }
+    }
 }

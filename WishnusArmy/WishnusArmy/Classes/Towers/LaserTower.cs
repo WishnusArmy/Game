@@ -16,44 +16,38 @@ class LaserTower : Tower
         damage = Constant.LASER_DAMAGE[level];
         this.range = LASER_RADIUS[level];
         this.baseTexture = SPR_LASER_TOWER;
+        laser = new Laser(pos);
     }
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
-        if (laser != null)
+        if (target != null)
             laser.Draw(gameTime, spriteBatch);
     }
     public override void HandleInput(InputHelper inputHelper)
     {
         base.HandleInput(inputHelper);
-        if (laser != null)
+        if (target != null)
             laser.HandleInput(inputHelper);
     }
     public override void Update(GameTime gameTime)
     {
-        if (target != null)
-        {
-            Attack();
-        }
-        if (laser != null)
-        {
-            laser.Update(gameTime);
-            laser.Position = gridPosition * NODE_SIZE.X + new Vector2(baseTexture.Width/2, baseTexture.Height/2)+ GlobalPosition;
-        }
+
+        if (target == null)
+            return;
         //if target is out of range
-        if (target != null && DISTANCE(target.Position, pos) > range)
-        {
-            target = null;
-            laser = null;
-        }
+        //if (DISTANCE(pos, target.Position + target.Center) > range)
+        //target = null;
+
+        Attack();
+        laser.Update(gameTime);
+        laser.Position = gridPosition * NODE_SIZE.X + new Vector2(baseTexture.Width/2, baseTexture.Height/2)+ GlobalPosition;
     }
     public override void Attack()
     {
         base.Attack();
-        laser = new Laser(pos);
         laser.target = target;
         laser.damage = damage;
-
     }
 }
 

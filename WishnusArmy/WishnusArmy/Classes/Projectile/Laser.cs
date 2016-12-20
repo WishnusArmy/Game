@@ -37,7 +37,6 @@ class Laser : Projectile
     
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        Console.WriteLine(target);
         if (target == null || !visible)
             return;
         base.Draw(gameTime, spriteBatch);
