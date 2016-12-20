@@ -6,10 +6,12 @@ using System;
 public class GameObjectList : GameObject
 {
     protected List<GameObject> children;
+    protected List<GameObject> add;
 
     public GameObjectList(int layer = 0, string id = "") : base(layer, id)
     {
         children = new List<GameObject>();
+        add = new List<GameObject>();
     }
 
     public List<GameObject> Children
@@ -94,6 +96,12 @@ public class GameObjectList : GameObject
     public override void Update(GameTime gameTime)
     {
         List<GameObject> remove = new List<GameObject>();
+        foreach (GameObject obj in add)
+        {
+            Add(obj);
+        }
+        this.add.Clear();
+
         foreach (GameObject obj in children)
         {
             if (obj.active == true)

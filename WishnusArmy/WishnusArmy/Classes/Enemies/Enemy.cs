@@ -15,7 +15,7 @@ public partial class Enemy : GameObject
     float rotation, healthRatio;
     Vector2 target = new Vector2(200,200), startPosition = new Vector2(200,200);
     float speed = 5;
-    int health = ENEMY_HEALTH[1];
+    int health = ENEMY_HEALTH[0];
     List<GridNode> path;
     int pathIndex;
 
@@ -27,38 +27,25 @@ public partial class Enemy : GameObject
         path = new List<GridNode>();
         pathIndex = 0;
     }
-    public override void HandleInput(InputHelper inputHelper)
-    {
-        base.HandleInput(inputHelper);
-        /*
-        if (inputHelper.KeyPressed(Keys.P))
-        {
-            foreach(GridNode node in plane.grid)
-            {
-                node.beacon = false;
-            }
-            path = getPath(GlobalPosition, new Vector2(500, 500));
-            foreach(GridNode node in path)
-            {
-                node.beacon = true;
-            }
-        }
-        */
-    }
+
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
         if (pathIndex == 0)
         {
             GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane;
-            foreach(GridNode node in plane.grid)
+
+            try
             {
-                node.beacon = false;
+                Vector2 p = Position;
+                if (p.X < 0) { p.X = 0; }
+                if (p.Y < 0) { p.Y = 0; }
+                //path = getPath(p, new Vector2(RANDOM.Next(2000) + 128, RANDOM.Next(600) + 100));
+                path = getPath(p, new Vector2(RANDOM.Next(2000) + 128, RANDOM.Next(600) + 100));
             }
-            path = getPath(Position, new Vector2(RANDOM.Next(1500)+128, RANDOM.Next(600)+100));
-            foreach(GridNode node in path)
+            catch(Exception e)
             {
-                node.beacon = true;
+                Console.WriteLine(e.Message);
             }
             pathIndex = path.Count - 1;
         }

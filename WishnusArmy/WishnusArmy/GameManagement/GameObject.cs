@@ -126,11 +126,11 @@ public abstract class GameObject : IGameLoopObject
         }
     }
     //returns the length of the direct line between two points
-    public double CalculateDistance(Vector2 A, Vector2 B)
+    public float CalculateDistance(Vector2 A, Vector2 B)
     {
-        double K = A.Y - B.Y;
-        double L = A.X - B.X;
-        double distance = Math.Sqrt(K * K + L * L);
+        float K = A.Y - B.Y;
+        float L = A.X - B.X;
+        float distance = (float)Math.Sqrt(K * K + L * L);
         return distance;
     }
 }

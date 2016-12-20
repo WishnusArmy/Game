@@ -35,13 +35,42 @@ public class GridPlane: GameObjectList
                 Add(grid[x, y]);
             }
         }
+        //SET THE NEIGHBOURS
+        for(int x=0; x<LEVEL_SIZE; ++x)
+        {
+            for (int y = 0; y < LEVEL_SIZE; ++y)
+            {
+                if (y%2==0) //Even rows (4 cases)
+                {
+                    if (x > 0 && y > 0) { grid[x, y].neighbours.Add(grid[x - 1, y - 1]); } //TopLeft
+                    if (y > 0) { grid[x, y].neighbours.Add(grid[x, y - 1]); } //TopRight
+                    if (y < LEVEL_SIZE-1) { grid[x, y].neighbours.Add(grid[x , y + 1]); } //BottomRight
+                    if (x > 0 && y < LEVEL_SIZE - 1) { grid[x, y].neighbours.Add(grid[x - 1, y + 1]); } //BottomLeft
+                }
+                else //Odd rows (4 cases)
+                {
+                    if (y > 0) { grid[x, y].neighbours.Add(grid[x, y - 1]); } //TopLeft
+                    if (x < LEVEL_SIZE - 1 && y > 0) { grid[x, y].neighbours.Add(grid[x + 1, y - 1]); } //TopRight
+                    if (x < LEVEL_SIZE - 1 && y < LEVEL_SIZE - 1) { grid[x, y].neighbours.Add(grid[x + 1, y + 1]); } //BottomRight
+                    if (y < LEVEL_SIZE - 1) { grid[x, y].neighbours.Add(grid[x, y + 1]); } //BottomLeft
+                }
+            }
+        }
 
         //ADD LEVEL OBJECTS IN THE CAMERA CLASS.
         //ADDING THEM HERE WILL ADD THEM TO EVERY PLANE AL THE SAME
     }
 
-    public GridNode NodeAt(Vector2 pos)
+    public GridNode NodeAt(Vector2 pos, bool throwClosest = true) //throwClosest=true will return the closest node if not found
     {
+        if (pos.X < 0 || pos.Y < 0)
+        {
+            throw new Exception("Can't look for nodes at negative coordinates: " + pos.X + ", " + pos.Y);
+        }
+
+        float shortDis = float.MaxValue; //Use to find the shortest node.
+        GridNode shortNode = null;
+ 
         for (int x = 0; x < LEVEL_SIZE; ++x)
         {
             for (int y = 0; y < LEVEL_SIZE; ++y)
@@ -50,11 +79,20 @@ public class GridPlane: GameObjectList
                 {
                     return grid[x, y];
                 }
+                float dis = CalculateDistance(grid[x, y].Position, pos); //Store the distance
+                if (dis < shortDis)
+                {
+                    shortDis = dis; //Set new shortDis
+                    shortNode = grid[x, y]; //Set new shortNode
+                }
             }
         }
-        Console.WriteLine("No node found at: " + pos.X + ", " + pos.Y);
-        //throw new Exception("No node found at: " + pos.X + ", " + pos.Y);
-        return null;
+
+        if (throwClosest && shortNode != null)
+        {
+            return shortNode;
+        }
+        throw new Exception("No node found at: " + pos.X + ", " + pos.Y);
     }
 
     public override void HandleInput(InputHelper inputHelper)
