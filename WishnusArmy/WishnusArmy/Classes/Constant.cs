@@ -14,7 +14,7 @@ internal static class Constant
      YOU CAN IMPLEMENT "using static Constant" to use them without a prefix.
      Please use all caps and lower bars (_) for new constants to make them easy to spot */
 
-    //APPLLICATION
+    //APPLICATION
     internal static readonly Point WINDOW_SIZE = new Point(1920 / 2, 1080 / 2);
     internal static readonly Point SCREEN_SIZE = new Point(1920, 1080);
     internal static Random RANDOM = new Random();
@@ -76,8 +76,8 @@ internal static class Constant
         new ToolBarObjectsItem("PulseTower", SPR_PULSE_TOWER)
     };
 
-//BUTTON MARGIN
-internal static readonly Point BUTTON_MARGIN = new Point(20, 10);
+    //BUTTON MARGIN
+    internal static readonly Point BUTTON_MARGIN = new Point(20, 10);
 
     //MATH
     internal static double DISTANCE(Vector2 v1, Vector2 v2)

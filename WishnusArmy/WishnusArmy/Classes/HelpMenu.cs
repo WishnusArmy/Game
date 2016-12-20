@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using static ContentImporter.Sprites;
+using static ContentImporter;
+using static Constant;
 
 public class HelpMenu : GameObjectList
 {
@@ -14,8 +15,8 @@ public class HelpMenu : GameObjectList
     public HelpMenu()
     {
         //Add back button
-        backButton = new Button("BACK", Color.Red);
-        backButton.Position = new Vector2((GameEnvironment.Screen.X - backButton.Dimensions.X) / 2, (GameEnvironment.Screen.Y - backButton.Dimensions.Y) / 1.25f);
+        backButton = new Button("BACK", Color.LightGreen, Color.DarkGreen, Fonts.FNT_MENU);
+        backButton.Position = new Vector2((SCREEN_SIZE.X - backButton.Dimensions.X) / 2, SCREEN_SIZE.Y - 150);
         Add(backButton);
     }
     public override void HandleInput(InputHelper inputHelper)
@@ -36,7 +37,8 @@ public class HelpMenu : GameObjectList
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(SPR_HELPBACKGROUND, new Vector2(0, 0), Color.Blue);
+        spriteBatch.Draw(Sprites.SPR_MAINMENUBACKGROUND, new Vector2(0, 0), Color.Blue);
+        MainMenu.AddNoise(spriteBatch, 20);
         base.Draw(gameTime, spriteBatch);
     }
 }

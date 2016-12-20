@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using static ContentImporter.Sprites;
+using static ContentImporter;
+using static Constant;
 
 public class MainMenu : GameObjectList
 {
@@ -14,26 +15,38 @@ public class MainMenu : GameObjectList
     protected Button helpButton;
     protected Button creditsButton;
 
+    protected Vector2 buttonPosition;
+    protected Color buttonColor;
+    protected Color hoverColor;
+    protected SpriteFont buttonFont;
+
     public MainMenu()
     {
+        buttonPosition = new Vector2(1200, SCREEN_SIZE.Y - 150);
+        buttonColor = Color.LightGreen;
+        hoverColor = Color.DarkGreen;
+        buttonFont = Fonts.FNT_MENU;
+
         //Add campaign button
-        campaignButton = new Button("CAMPAIGN", Color.Red);
-        campaignButton.Position = new Vector2((GameEnvironment.Screen.X - campaignButton.Dimensions.X)/2, (GameEnvironment.Screen.Y - campaignButton.Dimensions.Y) / 2);
+        campaignButton = new Button("CAMPAIGN", buttonColor, hoverColor, buttonFont);
+        campaignButton.Position = buttonPosition;
         Add(campaignButton);
 
         //Add survival button
-        survivalButton = new Button("SURVIVAL", Color.Red);
-        survivalButton.Position = new Vector2((GameEnvironment.Screen.X - survivalButton.Dimensions.X) / 2, (GameEnvironment.Screen.Y - survivalButton.Dimensions.Y) / 2 + 2 * survivalButton.Dimensions.Y);
+        survivalButton = new Button("SURVIVAL", buttonColor, hoverColor, buttonFont);
+        survivalButton.Position = new Vector2(buttonPosition.X + campaignButton.Dimensions.X + 50, buttonPosition.Y);
+        buttonPosition = survivalButton.Position;
         Add(survivalButton);
 
         //Add help button
-        helpButton = new Button("HELP", Color.Red);
-        helpButton.Position = new Vector2((GameEnvironment.Screen.X - helpButton.Dimensions.X) / 2, (GameEnvironment.Screen.Y - helpButton.Dimensions.Y) / 2 + 4 * helpButton.Dimensions.Y);
+        helpButton = new Button("HELP", buttonColor, hoverColor, buttonFont);
+        helpButton.Position = new Vector2(buttonPosition.X + survivalButton.Dimensions.X + 50, buttonPosition.Y);
+        buttonPosition = helpButton.Position;
         Add(helpButton);
 
         //Add credits button
-        creditsButton = new Button("CREDITS", Color.Red);
-        creditsButton.Position = new Vector2((GameEnvironment.Screen.X - creditsButton.Dimensions.X) / 2, (GameEnvironment.Screen.Y - creditsButton.Dimensions.Y) / 2 + 6 * creditsButton.Dimensions.Y);
+        creditsButton = new Button("CREDITS", buttonColor, hoverColor, buttonFont);
+        creditsButton.Position = new Vector2(buttonPosition.X + helpButton.Dimensions.X + 50, buttonPosition.Y);
         Add(creditsButton);
     }
     public override void HandleInput(InputHelper inputHelper)
@@ -58,8 +71,21 @@ public class MainMenu : GameObjectList
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(SPR_MAINMENUBACKGROUND, new Vector2(0, 0), Color.Orange);
+        spriteBatch.Draw(Sprites.SPR_MAINTITLEBACKGROUND, new Vector2(0, 0), Color.White);
+        AddNoise(spriteBatch, 25);
         base.Draw(gameTime, spriteBatch);
+    }
+
+    public static void AddNoise(SpriteBatch spriteBatch, int noiseAmount)
+    {
+
+        for (int a = 0; a <= noiseAmount; a++)
+        {
+            for (int i = 0; i <= SCREEN_SIZE.X; i++)
+            {
+                spriteBatch.Draw(Sprites.SPR_WHITEPIXEL, new Vector2(i + RANDOM.Next(-5, 5), RANDOM.Next(SCREEN_SIZE.Y)), null, null, null, (float)RANDOM.NextDouble() * 2f, null, Color.Gray);
+            }
+        }
     }
 }
 
