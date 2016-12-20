@@ -19,41 +19,64 @@ internal static class ContentImporter
     {
         internal static Texture2D
 
-            SPR_BASE,
+
+            SPR_MAINMENUBACKGROUND,
+            SPR_MAINTITLEBACKGROUND,
+            SPR_CREDITSPLANE,
+            SPR_ENEMY,
+
+            SPR_WHITEPIXEL,
+
+            // Projectiles
+
+            SPR_PULSE,
+            SPR_BULLET,
+
+            // Towers
+
             SPR_ABSTRACT_TOWER,
             SPR_ABSTRACT_CANNON,
-            SPR_MAINMENUBACKGROUND,
-            SPR_CREDITSBACKGROUND,
-            SPR_HELPBACKGROUND,
-            SPR_WHITEPIXEL,
-            SPR_PULSE,
-			SPR_BASEGUN;
+            SPR_BASE,
+            SPR_BASEGUN,
+            SPR_RADIUS,
+            SPR_LASER_TOWER,
+            SPR_PULSE_TOWER;
 
         public static void Initialize(ContentManager Content)
         {
-            SPR_BASE = Content.Load<Texture2D>("Content/Sprites/BaseSprite");
-            SPR_MAINMENUBACKGROUND = Content.Load<Texture2D>("Content/Sprites/MainMenuBackground");
-            SPR_CREDITSBACKGROUND = Content.Load<Texture2D>("Content/Sprites/CreditsBackground");
-            SPR_HELPBACKGROUND = Content.Load<Texture2D>("Content/Sprites/HelpBackground");
+            
+            SPR_MAINMENUBACKGROUND = Content.Load<Texture2D>("Content/Sprites/MainBackground");
+            SPR_MAINTITLEBACKGROUND = Content.Load<Texture2D>("Content/Sprites/MainTitleBackground");
+            SPR_CREDITSPLANE = Content.Load<Texture2D>("Content/Sprites/Credits");
+            SPR_ENEMY = Content.Load<Texture2D>("Content/Sprites/enemySprite"); 
             SPR_WHITEPIXEL = Content.Load<Texture2D>("Content/Sprites/WhitePixel");
-            SPR_PULSE = Content.Load<Texture2D>("Content/Sprites/Pulse");
-            SPR_BASEGUN = Content.Load<Texture2D>("Content/Sprites/BaseGun");
-			SPR_ABSTRACT_TOWER = Content.Load<Texture2D>("Content/Sprites/abstractTower");
-            SPR_ABSTRACT_CANNON = Content.Load<Texture2D>("Content/Sprites/cannon");
+
+            //Projectiles
+            SPR_PULSE = Content.Load<Texture2D>("Content/Sprites/Projectiles/SPR_PULSE");
+            SPR_BULLET = Content.Load<Texture2D>("Content/Sprites/Projectiles/SPR_BULLET");
+
+            //Towers
+            SPR_ABSTRACT_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/abstractTower");
+            SPR_ABSTRACT_CANNON = Content.Load<Texture2D>("Content/Sprites/Towers/cannon");
+            SPR_BASE = Content.Load<Texture2D>("Content/Sprites/Towers/BaseSprite");
+            SPR_BASEGUN = Content.Load<Texture2D>("Content/Sprites/Towers/BaseGun");
+            SPR_RADIUS = Content.Load<Texture2D>("Content/Sprites/Towers/radius");
+            SPR_LASER_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/laserTower");
+            SPR_PULSE_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/pulseTower");
         }
     }
 
 
     internal static class Textures
     {
-        internal static List<Texture2D> LIST_LAND_TEXTURES; //This is used for the levelbuilder toolbar.
         internal static Texture2D
             TEX_GRASS,
             TEX_GRASS_DIRT,
             TEX_EMPTY,
             TEX_EMPTY_SMALL,
             TEX_STONE_ROAD,
-            SPR_PARTICLE;
+            TEX_DIRT,
+            TEX_WATER;
 
         public static void Initialize(ContentManager Content)
         {
@@ -62,25 +85,21 @@ internal static class ContentImporter
             TEX_EMPTY = Content.Load<Texture2D>("Content/Textures/emptytexture");
             TEX_EMPTY_SMALL = Content.Load<Texture2D>("Content/Textures/emptytexturesmall");
             TEX_STONE_ROAD = Content.Load<Texture2D>("Content/Textures/tex_stone_road");
-            SPR_PARTICLE = Content.Load<Texture2D>("Content/Textures/particle_test");
-            LIST_LAND_TEXTURES = new List<Texture2D>
-            {
-                //Textures that should show up in the LevelBuilder Toolbar Land
-                TEX_GRASS,
-                TEX_GRASS_DIRT,
-                TEX_STONE_ROAD
-            };
+            TEX_DIRT = Content.Load<Texture2D>("Content/Textures/tex_dirt");
+            TEX_WATER = Content.Load<Texture2D>("Content/Textures/tex_water");
         }
     }
 
     internal static class Fonts
     {
         internal static SpriteFont
-            FNT_LEVEL_BUILDER;
+            FNT_LEVEL_BUILDER,
+            FNT_MENU;
 
         public static void Iniatilize(ContentManager Content)
         {
             FNT_LEVEL_BUILDER = Content.Load<SpriteFont>("Content/Fonts/fnt_level_builder");
+            FNT_MENU = Content.Load<SpriteFont>("Content/Fonts/fnt_menu");
         }
     }
 }

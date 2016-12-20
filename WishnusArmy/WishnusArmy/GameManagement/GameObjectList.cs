@@ -6,10 +6,12 @@ using System;
 public class GameObjectList : GameObject
 {
     protected List<GameObject> children;
+    protected List<GameObject> add;
 
     public GameObjectList(int layer = 0, string id = "") : base(layer, id)
     {
         children = new List<GameObject>();
+        add = new List<GameObject>();
     }
 
     public List<GameObject> Children
@@ -77,8 +79,6 @@ public class GameObjectList : GameObject
                 }
             }
         }
-        if (list.Count == 0)
-            return null;
         return list;
     }
 
@@ -86,16 +86,31 @@ public class GameObjectList : GameObject
     {
         for (int i = children.Count - 1; i >= 0; i--)
         {
-            children[i].HandleInput(inputHelper);
+            if (children[i].active)
+            {
+                children[i].HandleInput(inputHelper);
+            }
         }
     }
 
     public override void Update(GameTime gameTime)
     {
+        List<GameObject> remove = new List<GameObject>();
+        foreach (GameObject obj in add)
+        {
+            Add(obj);
+        }
+        this.add.Clear();
+
         foreach (GameObject obj in children)
         {
-            obj.Update(gameTime);
+            if (obj.active == true)
+                obj.Update(gameTime);
+            if (obj.Kill)
+                remove.Add(obj);
         }
+        foreach (GameObject obj in remove)
+            children.Remove(obj);
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -107,7 +122,10 @@ public class GameObjectList : GameObject
         List<GameObject>.Enumerator e = children.GetEnumerator();
         while (e.MoveNext())
         {
-            e.Current.Draw(gameTime, spriteBatch);
+            if (e.Current.active)
+            {
+                e.Current.Draw(gameTime, spriteBatch);
+            }
         }
     }
 

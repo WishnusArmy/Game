@@ -5,12 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-class Projectile : SpriteGameObject
+class Projectile : GameObject
 {
-    protected int damage;
-    protected Vector2 velocity;
+    public int damage;
+    public int range;
+    public double speed;
 
-    public Projectile() : base("")
+    public Projectile() : base()
     {
         
     }

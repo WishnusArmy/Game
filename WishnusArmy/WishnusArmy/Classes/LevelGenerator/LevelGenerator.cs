@@ -210,23 +210,23 @@ public class LevelGenerator : GameObject
                 switch (groundGrid[x, y])
                 {
                     case 0:
-                        spriteBatch.Draw(TEX_EMPTY, new Vector2(NODE_SIZE * x, NODE_SIZE * y) + camPos, Color.LawnGreen);
+                        spriteBatch.Draw(TEX_EMPTY, new Vector2(NODE_SIZE.X * x, NODE_SIZE.X * y) + camPos, Color.LawnGreen);
                         break;
 
                     case 1:
-                        spriteBatch.Draw(TEX_EMPTY, new Vector2(NODE_SIZE * x, NODE_SIZE * y) + camPos, Color.ForestGreen);
+                        spriteBatch.Draw(TEX_EMPTY, new Vector2(NODE_SIZE.X * x, NODE_SIZE.X * y) + camPos, Color.ForestGreen);
                         break;
 
                     case 2:
-                        spriteBatch.Draw(TEX_EMPTY, new Vector2(NODE_SIZE * x, NODE_SIZE * y) + camPos, Color.Brown);
+                        spriteBatch.Draw(TEX_EMPTY, new Vector2(NODE_SIZE.X * x, NODE_SIZE.X * y) + camPos, Color.Brown);
                         break;
 
                     case 3:
-                        spriteBatch.Draw(TEX_EMPTY, new Vector2(NODE_SIZE * x, NODE_SIZE * y) + camPos, Color.CornflowerBlue);
+                        spriteBatch.Draw(TEX_EMPTY, new Vector2(NODE_SIZE.X * x, NODE_SIZE.X * y) + camPos, Color.CornflowerBlue);
                         break;
 
                     default:
-                        spriteBatch.Draw(TEX_EMPTY, new Vector2(NODE_SIZE * x, NODE_SIZE * y) + camPos, Color.White);
+                        spriteBatch.Draw(TEX_EMPTY, new Vector2(NODE_SIZE.X * x, NODE_SIZE.X * y) + camPos, Color.White);
                         break;
                 }
             }
