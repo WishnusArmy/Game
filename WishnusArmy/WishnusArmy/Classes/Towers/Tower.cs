@@ -16,6 +16,7 @@ public class Tower : GameObjectList
     public Texture2D baseTexture;
     public Texture2D cannonTexture;
     protected Enemy target;
+    protected Vector2 targetPos;
     public GridNode myNode;
     public Boolean hover = false;
     float rotation;
@@ -48,10 +49,11 @@ public class Tower : GameObjectList
         //calculate the rotation of the cannonbarrel
         if (target != null)
         {
-            double opposite = target.Position.Y - cannonTexture.Width / 2 - GlobalPosition.Y;
-            double adjacent = target.Position.X - cannonTexture.Width / 2 - GlobalPosition.X;
-            rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
+            targetPos = target.Position;
         }
+        double opposite = targetPos.Y - cannonTexture.Width / 2 - GlobalPosition.Y;
+        double adjacent = targetPos.X - cannonTexture.Width / 2 - GlobalPosition.X;
+        rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
 
         mousePosition = inputHelper.MousePosition;
 
@@ -68,50 +70,6 @@ public class Tower : GameObjectList
             Attack();
             reloadTime = 1d/Constant.FIRE_RATE[level];
         }
-    }
-
-
-    public virtual Vector2 findTarget()
-    {
-        if (target != null && target.Visible == false)
-            target = null;
-        //if there already is a target that is within the tower range
-        if (target != null && Constant.DISTANCE(target.Position, GlobalPosition) < range)
-        {
-            previousPosition = target.Position;
-            return target.Position;
-        }
-            //necessary so that the tower only follows enemies within range
-        else
-            target = null;
-        
-        //set distance to find a new enemy that is under that distance
-            double distance = range;
-
-
-        // look through all the enemies
-
-        foreach (Enemy x in GameWorld.FindByType<Enemy>())
-        {
-            if (x.Visible == true)
-            {
-                //Calculate the distance of the target
-                double enemyDistance = CalculateDistance(x.Position, GlobalPosition);
-                //if the enemy is closer than the last;
-                if (enemyDistance <= distance)
-                {
-                    distance = enemyDistance;
-                    //set this enemy as the target
-                    target = x;
-                }
-            }
-        }
-        //if a target is found
-        if (target != null)
-            return target.Position;
-        else
-            return previousPosition + GlobalPosition;
-
     }
 
     public virtual Enemy getTarget()

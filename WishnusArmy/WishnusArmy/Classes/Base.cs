@@ -26,14 +26,6 @@ public class Base : Tower
     public override void HandleInput(InputHelper inputHelper)
     {
         base.HandleInput(inputHelper);
-    }
-
-    public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-    {
-        base.Draw(gameTime, spriteBatch);
-    }
-    public override Vector2 findTarget()
-    {
-        return mousePosition;
+        targetPos = inputHelper.MousePosition;
     }
 }
