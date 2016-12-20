@@ -12,7 +12,6 @@ class Pulse : Projectile
 {
     private int radiusMax;
     private int radiusCurrent;
-    private int speed;
 
     public Pulse(int level, Vector2 position, int radius) : base()
     {
@@ -33,10 +32,10 @@ class Pulse : Projectile
         foreach (Enemy enemy in GameWorld.FindByType<Enemy>())
         {
             double distance = DISTANCE(Position, enemy.Position);
-            int offset = speed/2;
+            int offset = (int)speed/2;
             if (distance < radiusCurrent + offset && distance > radiusCurrent - offset)
             {
-                enemy.DealDamage = damage;
+                enemy.health -= damage;
             }
         }
     }
@@ -63,7 +62,7 @@ class Pulse : Projectile
         if (!visible)
             return;
         base.Update(gameTime);
-        radiusCurrent += speed;
+        radiusCurrent += (int)speed;
         CheckCollision();
         if (radiusCurrent > radiusMax)
             Reset();

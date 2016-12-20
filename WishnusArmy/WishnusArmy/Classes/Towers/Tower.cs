@@ -46,9 +46,12 @@ public class Tower : GameObjectList
     public override void HandleInput(InputHelper inputHelper)
     {
         //calculate the rotation of the cannonbarrel
-            double opposite = findTarget().Y - cannonTexture.Width / 2 - GlobalPosition.Y;
-            double adjacent = findTarget().X - cannonTexture.Width / 2 - GlobalPosition.X;
+        if (target != null)
+        {
+            double opposite = target.Position.Y - cannonTexture.Width / 2 - GlobalPosition.Y;
+            double adjacent = target.Position.X - cannonTexture.Width / 2 - GlobalPosition.X;
             rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
+        }
 
         mousePosition = inputHelper.MousePosition;
 
@@ -111,8 +114,22 @@ public class Tower : GameObjectList
 
     }
 
+    public virtual Enemy getTarget()
+    {
+        List<Enemy> enemies = GameWorld.FindByType<Camera>()[0].currentPlane.FindByType<Enemy>();
+        foreach(Enemy x in enemies)
+        {
+            if (x.CalculateDistance(GlobalPosition, x.GlobalPosition) <= range)
+            {
+                return x;
+            }
+        }
+        return null;
+    }
+
     public virtual void Attack()
     {
+
     }
 
     public virtual void Upgrade()

@@ -57,7 +57,7 @@ class Bullet : Projectile
     {
         if (CalculateDistance(enemy.GlobalPosition, GlobalPosition) < 50)
         {
-            enemy.DealDamage = damage;
+            enemy.health -= damage;
             Kill = true;
         }
     }

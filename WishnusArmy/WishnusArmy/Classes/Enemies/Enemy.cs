@@ -11,21 +11,41 @@ using static Constant;
 
 public partial class Enemy : GameObject
 {
-    public Texture2D Sprite;
+    public Texture2D sprite;
     float rotation, healthRatio;
     Vector2 target = new Vector2(200,200), startPosition = new Vector2(200,200);
     float speed = 5;
-    int health = ENEMY_HEALTH[0];
+    int _health = ENEMY_HEALTH[0];
+    public int health
+    {
+        get { return _health;  }
+        set
+        {
+            _health = value;
+            if (_health <= 0)
+            {
+                kill = true;
+            }
+        }
+    }
     List<GridNode> path;
     int pathIndex;
 
     public Enemy()
     {
         //position = startPosition + GlobalPosition;
-        this.Sprite = SPR_ENEMY;
-        healthRatio = (float)this.Sprite.Width / (float) this.health;
+        this.sprite = SPR_ENEMY;
+        healthRatio = (float)this.sprite.Width / (float) this.health;
         path = new List<GridNode>();
         pathIndex = 0;
+    }
+
+    public Vector2 GlobalPositionCenter
+    {
+        get
+        {
+            return GlobalPosition + new Vector2(sprite.Width, sprite.Height) / 2;
+        }
     }
 
     public override void Update(GameTime gameTime)
@@ -86,16 +106,10 @@ public partial class Enemy : GameObject
         if (!visible)
             return;
         base.Draw(gameTime, spriteBatch);
-        spriteBatch.Draw(Sprite, GlobalPosition + new Vector2(NODE_SIZE.X, NODE_SIZE.Y)/2, null, null, new Vector2(Sprite.Width/2,Sprite.Height/2), rotation);
+        spriteBatch.Draw(sprite, GlobalPosition + new Vector2(NODE_SIZE.X, NODE_SIZE.Y)/2, null, null, new Vector2(sprite.Width/2,sprite.Height/2), rotation);
 
         //draw Healthbar, above the enemy. The healthRatio sets the width of the healthbar to the width of the sprite.
-        DrawingHelper.DrawRectangleFilled(new Rectangle((int)GlobalPosition.X - (int)(health * healthRatio)/2,(int) GlobalPosition.Y -Sprite.Height -10,(int)((float)health * healthRatio),10), spriteBatch, Color.Black);
-    }
-
-    // deal damage to enemy
-    public int DealDamage
-    {
-        set { health -= value; }
+        DrawingHelper.DrawRectangleFilled(new Rectangle((int)GlobalPosition.X - (int)(health * healthRatio)/2,(int) GlobalPosition.Y -sprite.Height -10,(int)((float)health * healthRatio),10), spriteBatch, Color.Black);
     }
 
     // hiermee kunnen alle enemies uit de lijst verwijderd worden dmv !enemy.IsAlive
