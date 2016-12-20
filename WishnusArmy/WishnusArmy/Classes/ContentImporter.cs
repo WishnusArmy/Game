@@ -21,9 +21,9 @@ internal static class ContentImporter
 
 
             SPR_MAINMENUBACKGROUND,
-            SPR_CREDITSBACKGROUND,
+            SPR_MAINTITLEBACKGROUND,
+            SPR_CREDITSPLANE,
             SPR_ENEMY,
-            SPR_HELPBACKGROUND,
 
             SPR_WHITEPIXEL,
 
@@ -45,13 +45,11 @@ internal static class ContentImporter
         public static void Initialize(ContentManager Content)
         {
             
-            SPR_MAINMENUBACKGROUND = Content.Load<Texture2D>("Content/Sprites/MainMenuBackground");
-            SPR_CREDITSBACKGROUND = Content.Load<Texture2D>("Content/Sprites/CreditsBackground");
-            SPR_HELPBACKGROUND = Content.Load<Texture2D>("Content/Sprites/HelpBackground");
+            SPR_MAINMENUBACKGROUND = Content.Load<Texture2D>("Content/Sprites/MainBackground");
+            SPR_MAINTITLEBACKGROUND = Content.Load<Texture2D>("Content/Sprites/MainTitleBackground");
+            SPR_CREDITSPLANE = Content.Load<Texture2D>("Content/Sprites/Credits");
             SPR_ENEMY = Content.Load<Texture2D>("Content/Sprites/enemySprite"); 
             SPR_WHITEPIXEL = Content.Load<Texture2D>("Content/Sprites/WhitePixel");
-            
-			
 
             //Projectiles
             SPR_PULSE = Content.Load<Texture2D>("Content/Sprites/Projectiles/SPR_PULSE");
@@ -95,11 +93,13 @@ internal static class ContentImporter
     internal static class Fonts
     {
         internal static SpriteFont
-            FNT_LEVEL_BUILDER;
+            FNT_LEVEL_BUILDER,
+            FNT_MENU;
 
         public static void Iniatilize(ContentManager Content)
         {
             FNT_LEVEL_BUILDER = Content.Load<SpriteFont>("Content/Fonts/fnt_level_builder");
+            FNT_MENU = Content.Load<SpriteFont>("Content/Fonts/fnt_menu");
         }
     }
 }

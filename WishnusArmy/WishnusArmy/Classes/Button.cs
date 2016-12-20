@@ -16,13 +16,17 @@ public class Button : GameObject
     protected string buttonText;
 
     protected Color buttonColor;
+    protected Color hoverColor;
     protected Rectangle buttonBox;
+    protected SpriteFont buttonFont;
 
-    public Button(string buttonText, Color buttonColor, int layer = 0, string id = "")
+    public Button(string buttonText, Color buttonColor, Color hoverColor, SpriteFont buttonFont, int layer = 0, string id = "")
     {
         pressed = false;
         this.buttonText = buttonText;
         this.buttonColor = buttonColor;
+        this.hoverColor = hoverColor;
+        this.buttonFont = buttonFont;
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -34,19 +38,19 @@ public class Button : GameObject
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        buttonBox = new Rectangle((int)position.X - BUTTON_MARGIN.X, (int)position.Y - BUTTON_MARGIN.Y, (int)FNT_LEVEL_BUILDER.MeasureString(buttonText).X + 2 * BUTTON_MARGIN.X, (int)FNT_LEVEL_BUILDER.MeasureString(buttonText).Y + 2 * BUTTON_MARGIN.Y);
+        buttonBox = new Rectangle((int)position.X - BUTTON_MARGIN.X, (int)position.Y - BUTTON_MARGIN.Y, (int)buttonFont.MeasureString(buttonText).X + 2 * BUTTON_MARGIN.X, (int)buttonFont.MeasureString(buttonText).Y + 2 * BUTTON_MARGIN.Y);
 
         base.Draw(gameTime, spriteBatch);
 
         if (hover)
         {
-            spriteBatch.Draw(SPR_WHITEPIXEL, buttonBox, Color.Aqua);
-            spriteBatch.DrawString(FNT_LEVEL_BUILDER, buttonText, this.position, Color.Black);
+            spriteBatch.Draw(SPR_WHITEPIXEL, buttonBox, hoverColor);
+            spriteBatch.DrawString(buttonFont, buttonText, position, Color.Black);
         }
         else
         {
             spriteBatch.Draw(SPR_WHITEPIXEL, buttonBox, buttonColor);
-            spriteBatch.DrawString(FNT_LEVEL_BUILDER, buttonText, this.position, Color.Black);
+            spriteBatch.DrawString(buttonFont, buttonText, position, Color.Black);
         }
     }
 
@@ -63,7 +67,7 @@ public class Button : GameObject
 
     public Vector2 Dimensions
     {
-        get { return new Vector2(FNT_LEVEL_BUILDER.MeasureString(buttonText).X, FNT_LEVEL_BUILDER.MeasureString(buttonText).Y); }
+        get { return new Vector2(buttonFont.MeasureString(buttonText).X, buttonFont.MeasureString(buttonText).Y); }
     }
 
     public override Rectangle BoundingBox
