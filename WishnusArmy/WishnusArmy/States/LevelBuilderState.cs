@@ -10,7 +10,6 @@ using Microsoft.Xna.Framework.Content;
 public class LevelBuilderState : IGameLoopObject
 {
     Level level;
-    Hud Hud = new Hud();
 
     public LevelBuilderState()
     {
@@ -36,6 +35,5 @@ public class LevelBuilderState : IGameLoopObject
     public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         level.Draw(gameTime, spriteBatch);
-        Hud.Draw(gameTime, spriteBatch);
     }
 }

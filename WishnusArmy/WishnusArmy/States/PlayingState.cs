@@ -11,7 +11,6 @@ public class PlayingState : IGameLoopObject
 {
     protected List<Level> levels;
     protected int currentLevel;
-    Hud Hud = new Hud();
 
     public PlayingState()
     {
@@ -38,6 +37,5 @@ public class PlayingState : IGameLoopObject
     public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         levels[currentLevel].Draw(gameTime, spriteBatch);
-        Hud.Draw(gameTime, spriteBatch);
     }
 }
