@@ -41,19 +41,12 @@ public class Camera : GameObjectList
                     b.Position = LEVEL_CENTER;
                     p.Add(b);
                     //(testcode) plaatst torens en voegt een enemy toe
-                    for (int q = 0; q < 1; ++q)
+                    for (int q = 0; q < 50; ++q)
                     {
                         Enemy e = new Enemy();
                         e.Position = new Vector2(RANDOM.Next(500)+100, RANDOM.Next(600)+100);
                         p.Add(e);
                     }
-                    ProjectileTower t = new ProjectileTower();
-                    t.Position = new Vector2(400);
-                    p.Add(t);
-                    LaserTower x = new LaserTower();
-                    x.gridPosition = new Vector2(6, 6);
-                    //p.Add(x);
-                    //einde testcode
                     break;
 
                 case Plane.Air:
