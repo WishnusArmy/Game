@@ -20,7 +20,7 @@ class Bullet : Projectile
         foundTarget = false;
         this.damage = damage;
         this.speed = speed;
-        Position = startPosition + GlobalPosition;
+        Position = Vector2.Zero;
     }
 
     private void findTarget()
