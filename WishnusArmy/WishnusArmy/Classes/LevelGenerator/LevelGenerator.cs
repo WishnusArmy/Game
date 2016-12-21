@@ -23,9 +23,9 @@ public class LevelGenerator : GameObject
     public void GenerateNewLevel()
     {
         ClearGrid();
-        GenerateSpecialTiles(4, 45, 5);     //Populate the ground level with forests
+        GenerateSpecialTiles(5, 45, 5);     //Populate the ground level with forests
         GenerateSpecialTiles(2, 45, 5);     //Populate the ground level with mountains
-        //GenerateSpecialTiles(3, 5, 1);    //Populate the ground level with rivers
+        GenerateSpecialTiles(4, 40, 5);    //Populate the ground level with rivers
     }
 
     //Change all tiles in the level to fields
@@ -84,7 +84,7 @@ public class LevelGenerator : GameObject
                     case 0:
                         break;
 
-                    case 4:
+                    case 5:
                         if (neighbouringTiles > 4)
                         {
                             tempGrid[x, y] = true;
@@ -106,14 +106,14 @@ public class LevelGenerator : GameObject
                         }
                         break;
 
-                    case 3:
-                        if (neighbouringTiles < 2 || neighbouringTiles > 2)
-                        {
-                            tempGrid[x, y] = false;
-                        }
-                        else
+                    case 4:
+                        if (neighbouringTiles > 4)
                         {
                             tempGrid[x, y] = true;
+                        }
+                        else if (neighbouringTiles < 4)
+                        {
+                            tempGrid[x, y] = false;
                         }
                         break;
 
