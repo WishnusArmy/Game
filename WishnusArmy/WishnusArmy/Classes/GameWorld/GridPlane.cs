@@ -22,7 +22,7 @@ public class GridPlane: GameObjectList
         //Fill the grid with GridItems
         for(int x=0; x<LEVEL_SIZE; ++x)
         {
-            for(int y=0; y<LEVEL_SIZE; ++y)
+            for(int y=LEVEL_SIZE-1; y>=0; --y) //Make sure the grid gets build up from the bottom
             {
                 if (y % 2 == 0) //All odd rows will be shifted half a node in order to lock together
                 {

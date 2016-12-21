@@ -27,7 +27,7 @@ public partial class Enemy : GameObject
 
         foreach (GridNode node in plane.grid)
         {
-            node.Hval = (int)(Math.Abs(node.Position.X - targetNode.Position.X) + Math.Abs(node.Position.Y - targetNode.Position.Y))/16;  //Calculate the Heuristic
+            node.Hval = (int)(Math.Abs(node.Position.X - targetNode.Position.X) + Math.Abs(node.Position.Y - targetNode.Position.Y))/64;  //Calculate the Heuristic
             node.pathParent = node; //Reset the parent
         }
 
