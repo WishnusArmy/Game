@@ -25,6 +25,7 @@ public class GridNode : GameObject
             switch(value)
             {
                 case 4: solid = true; break; //water
+                case 5: solid = true; break; //forest
             }
         }
     }
@@ -105,6 +106,7 @@ public class GridNode : GameObject
     {
         base.Draw(gameTime, spriteBatch);
         spriteBatch.Draw(LIST_LAND_TEXTURES[texture], GlobalPosition, Color.White);
+        //DrawingHelper.DrawText(spriteBatch, FNT_LEVEL_BUILDER, "H: " + Hval.ToString(), GlobalPosition + new Vector2(30, 10), Color.Red);
         if (selected)
         {
             spriteBatch.Draw(LIST_LAND_TEXTURES[texture], GlobalPosition, Color.Black * 0.4f);

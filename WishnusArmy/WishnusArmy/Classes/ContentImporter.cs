@@ -18,8 +18,6 @@ internal static class ContentImporter
     internal static class Sprites
     {
         internal static Texture2D
-
-
             SPR_MAINMENUBACKGROUND,
             SPR_MAINTITLEBACKGROUND,
             SPR_CREDITSPLANE,
@@ -61,7 +59,7 @@ internal static class ContentImporter
             SPR_BASE = Content.Load<Texture2D>("Content/Sprites/Towers/BaseSprite");
             SPR_BASEGUN = Content.Load<Texture2D>("Content/Sprites/Towers/BaseGun");
             SPR_RADIUS = Content.Load<Texture2D>("Content/Sprites/Towers/radius");
-            SPR_LASER_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/laserTower");
+            SPR_LASER_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/spr_laser_tower");
             SPR_PULSE_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/pulseTower");
         }
     }
@@ -76,7 +74,8 @@ internal static class ContentImporter
             TEX_EMPTY_SMALL,
             TEX_STONE_ROAD,
             TEX_DIRT,
-            TEX_WATER;
+            TEX_WATER,
+            TEX_FOREST;
 
         public static void Initialize(ContentManager Content)
         {
@@ -87,6 +86,7 @@ internal static class ContentImporter
             TEX_STONE_ROAD = Content.Load<Texture2D>("Content/Textures/tex_stone_road");
             TEX_DIRT = Content.Load<Texture2D>("Content/Textures/tex_dirt");
             TEX_WATER = Content.Load<Texture2D>("Content/Textures/tex_water");
+            TEX_FOREST = Content.Load<Texture2D>("Content/Textures/tex_forest");
         }
     }
 

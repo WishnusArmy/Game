@@ -17,7 +17,7 @@ class LaserTower : Tower
         this.range = LASER_RADIUS[level];
         this.baseTexture = SPR_LASER_TOWER;
         laser = new Laser();
-        laser.Position += new Vector2(32);
+        laser.Position = new Vector2(NODE_SIZE.X / 2, -NODE_SIZE.Y / 3);
         Add(laser);
         target = null;
     }
@@ -34,8 +34,10 @@ class LaserTower : Tower
     {
         base.Update(gameTime);
         target = getTarget();
+        laser.target = target;
+        laser.damage = damage;
 
-           // laser.Position = gridPosition * NODE_SIZE.X + new Vector2(baseTexture.Width/2, baseTexture.Height/2)+ GlobalPosition;
+        // laser.Position = gridPosition * NODE_SIZE.X + new Vector2(baseTexture.Width/2, baseTexture.Height/2)+ GlobalPosition;
         //if target is out of range
         if (target != null && DISTANCE(target.GlobalPosition, GlobalPosition) > range)
             target = null;
@@ -43,8 +45,6 @@ class LaserTower : Tower
     public override void Attack()
     {
         base.Attack();
-        laser.target = target;
-        laser.damage = damage;
     }
 }
 

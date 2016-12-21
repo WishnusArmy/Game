@@ -64,7 +64,8 @@ internal static class Constant
         TEX_GRASS_DIRT,
         TEX_STONE_ROAD,
         TEX_DIRT,
-        TEX_WATER
+        TEX_WATER,
+        TEX_FOREST
     };
 
     internal static readonly List<ToolBarObjectsItem> LIST_OBJECTS = new List<ToolBarObjectsItem>
