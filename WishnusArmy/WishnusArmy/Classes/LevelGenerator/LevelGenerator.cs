@@ -23,7 +23,7 @@ public class LevelGenerator : GameObject
     public void GenerateNewLevel()
     {
         ClearGrid();
-        GenerateSpecialTiles(1, 45, 5);     //Populate the ground level with forests
+        GenerateSpecialTiles(4, 45, 5);     //Populate the ground level with forests
         GenerateSpecialTiles(2, 45, 5);     //Populate the ground level with mountains
         //GenerateSpecialTiles(3, 5, 1);    //Populate the ground level with rivers
     }
@@ -84,7 +84,7 @@ public class LevelGenerator : GameObject
                     case 0:
                         break;
 
-                    case 1:
+                    case 4:
                         if (neighbouringTiles > 4)
                         {
                             tempGrid[x, y] = true;
@@ -202,12 +202,16 @@ public class LevelGenerator : GameObject
     {
         base.Update(gameTime);
         Vector2 camPos = GameWorld.FindByType<Camera>()[0].Position;
+        GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane;
 
         for (int x = 0; x < LEVEL_SIZE; x++)
         {
             for (int y = 0; y < LEVEL_SIZE; y++)
             {
-                switch (groundGrid[x, y])
+                plane.grid[x, y].texture = groundGrid[x, y];
+
+
+                /* switch (groundGrid[x, y])
                 {
                     case 0:
                         spriteBatch.Draw(TEX_EMPTY, new Vector2(NODE_SIZE.X * x, NODE_SIZE.X * y) + camPos, Color.LawnGreen);
@@ -228,7 +232,7 @@ public class LevelGenerator : GameObject
                     default:
                         spriteBatch.Draw(TEX_EMPTY, new Vector2(NODE_SIZE.X * x, NODE_SIZE.X * y) + camPos, Color.White);
                         break;
-                }
+                } */
             }
         }
     }
