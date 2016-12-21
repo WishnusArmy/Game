@@ -12,6 +12,7 @@ using static ContentImporter.Textures;
 public class LevelGeneratorState : IGameLoopObject
 {
     Level level;
+    Hud Hud = new Hud();
 
     public LevelGeneratorState()
     {
@@ -37,5 +38,6 @@ public class LevelGeneratorState : IGameLoopObject
     public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         level.Draw(gameTime, spriteBatch);
+        Hud.Draw(gameTime, spriteBatch);
     }
 }
