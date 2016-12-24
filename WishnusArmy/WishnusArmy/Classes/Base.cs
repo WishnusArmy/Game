@@ -11,7 +11,7 @@ using static Constant;
 
 public class Base : CannonTower
 {
-    Vector2 GameMiddle = new Vector2(LEVEL_SIZE * NODE_SIZE.X / 2, LEVEL_SIZE * NODE_SIZE.Y / 4);
+    Vector2 GameMiddle = new Vector2(LEVEL_SIZE.X * NODE_SIZE.X / 2, LEVEL_SIZE.Y * NODE_SIZE.Y / 4);
     Vector2 BaseOrigin = new Vector2(SPR_BASEGUN.Width / 2, SPR_BASEGUN.Height / 2);
 
     public Base() : base()

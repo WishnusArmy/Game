@@ -45,7 +45,7 @@
     <Compile Include="Classes\Constant.cs" />
     <Compile Include="Classes\ContentImporter.cs" />
     <Compile Include="Classes\Enemies\Enemy.cs" />
-    <Compile Include="Classes\GameWorld\Overlay.cs" />
+    <Compile Include="Classes\UI Overlay\Overlay.cs" />
     <Compile Include="Classes\HelpMenu.cs" />
     <Compile Include="Classes\GameWorld\GridNode.cs" />
     <Compile Include="Classes\GameWorld\GridPlane.cs" />
@@ -63,6 +63,7 @@
     <Compile Include="Classes\Towers\PulseTower.cs" />
     <Compile Include="Classes\Towers\CannonTower.cs" />
     <Compile Include="Classes\Towers\Tower.cs" />
+    <Compile Include="Classes\UI Overlay\OverlayItem.cs" />
     <Compile Include="GameManagement\AnimatedGameObject.cs" />
     <Compile Include="GameManagement\Animation.cs" />
     <Compile Include="GameManagement\AssetManager.cs" />

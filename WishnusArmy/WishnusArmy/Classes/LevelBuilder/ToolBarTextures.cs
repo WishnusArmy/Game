@@ -52,9 +52,9 @@ public class ToolBarTextures : GameObject
             try
             {
                 currentPlane = GameWorld.FindByType<Camera>()[0].currentPlane; //Get the index for the current plane
-                for (int x = 0; x < LEVEL_SIZE; ++x)
+                for (int x = 0; x < LEVEL_SIZE.X; ++x)
                 {
-                    for (int y = 0; y < LEVEL_SIZE; ++y)
+                    for (int y = 0; y < LEVEL_SIZE.Y; ++y)
                     {
                         GridNode node = currentPlane.grid[x, y]; //store in node for easy acces
                         if (node.selected)

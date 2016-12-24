@@ -12,8 +12,8 @@ using static ContentImporter.Textures;
 
 public class LevelGenerator : GameObject
 {
-    int[,] groundGrid = new int[LEVEL_SIZE, LEVEL_SIZE], airGrid = new int[LEVEL_SIZE, LEVEL_SIZE], undergroundGrid = new int[LEVEL_SIZE, LEVEL_SIZE];
-    bool[,] tempGrid = new bool[LEVEL_SIZE, LEVEL_SIZE], tempTempGrid = new bool[LEVEL_SIZE, LEVEL_SIZE];
+    int[,] groundGrid = new int[LEVEL_SIZE.X, LEVEL_SIZE.Y], airGrid = new int[LEVEL_SIZE.X, LEVEL_SIZE.Y], undergroundGrid = new int[LEVEL_SIZE.X, LEVEL_SIZE.Y];
+    bool[,] tempGrid = new bool[LEVEL_SIZE.X, LEVEL_SIZE.Y], tempTempGrid = new bool[LEVEL_SIZE.X, LEVEL_SIZE.Y];
 
     public LevelGenerator() : base()
     {
@@ -31,9 +31,9 @@ public class LevelGenerator : GameObject
     //Change all tiles in the level to fields
     public void ClearGrid()
     {
-        for (int x = 0; x < LEVEL_SIZE; x++)
+        for (int x = 0; x < LEVEL_SIZE.X; x++)
         {
-            for (int y = 0; y < LEVEL_SIZE; y++)
+            for (int y = 0; y < LEVEL_SIZE.Y; y++)
             {
                 groundGrid[x, y] = 0;
             }
@@ -57,9 +57,9 @@ public class LevelGenerator : GameObject
     //Generate initial spread of special tiles in tempGrid. tempGrid is used to hold and edit the distribution of special tiles before they are added to the level
     public void PopulateNewGrid(int initialRatio)
     {
-        for (int x = 0; x < LEVEL_SIZE; x++)
+        for (int x = 0; x < LEVEL_SIZE.X; x++)
         {
-            for (int y = 0; y < LEVEL_SIZE; y++)
+            for (int y = 0; y < LEVEL_SIZE.Y; y++)
             {
                 if (RANDOM.Next(100) < initialRatio)
                 {
@@ -72,9 +72,9 @@ public class LevelGenerator : GameObject
     //Go over the newGrid tile by tile, and adjust each tile's value to match the surroundings
     public void SmoothenGrid(int tileType, int initialRatio)
     {
-        for (int x = 0; x < LEVEL_SIZE; x++)
+        for (int x = 0; x < LEVEL_SIZE.X; x++)
         {
-            for (int y = 0; y < LEVEL_SIZE; y++)
+            for (int y = 0; y < LEVEL_SIZE.Y; y++)
             {
                 int neighbouringTiles = GetSurroundings(x, y, tileType, initialRatio);
 
@@ -134,7 +134,7 @@ public class LevelGenerator : GameObject
         {
             for (int neighbourY = gridY - 1; neighbourY <= gridY + 1; neighbourY++)
             {
-                if (neighbourX >= 0 && neighbourX < LEVEL_SIZE && neighbourY >= 0 && neighbourY < LEVEL_SIZE)
+                if (neighbourX >= 0 && neighbourX < LEVEL_SIZE.X && neighbourY >= 0 && neighbourY < LEVEL_SIZE.Y)
                 {
                     if (neighbourX != gridX || neighbourY != gridY)
                     {
@@ -160,9 +160,9 @@ public class LevelGenerator : GameObject
     //Use the distribution in tempGrid to add special tiles to the level grids
     public void AddTempGrid(int tileType)
     {
-        for (int x = 0; x < LEVEL_SIZE; x++)
+        for (int x = 0; x < LEVEL_SIZE.X; x++)
         {
-            for (int y = 0; y < LEVEL_SIZE; y++)
+            for (int y = 0; y < LEVEL_SIZE.Y; y++)
             {
                 if (tempGrid[x, y] == true)
                 {
@@ -175,9 +175,9 @@ public class LevelGenerator : GameObject
     //Reset the tempGrid for further use
     public void ClearTempGrid()
     {
-        for (int x = 0; x < LEVEL_SIZE; x++)
+        for (int x = 0; x < LEVEL_SIZE.X; x++)
         {
-            for (int y = 0; y < LEVEL_SIZE; y++)
+            for (int y = 0; y < LEVEL_SIZE.Y; y++)
             {
                 tempGrid[x, y] = false;
             }
@@ -204,9 +204,9 @@ public class LevelGenerator : GameObject
         Vector2 camPos = GameWorld.FindByType<Camera>()[0].Position;
         GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane;
 
-        for (int x = 0; x < LEVEL_SIZE; x++)
+        for (int x = 0; x < LEVEL_SIZE.X; x++)
         {
-            for (int y = 0; y < LEVEL_SIZE; y++)
+            for (int y = 0; y < LEVEL_SIZE.Y; y++)
             {
                 plane.grid[x, y].texture = groundGrid[x, y];
 

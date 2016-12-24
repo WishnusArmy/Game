@@ -26,11 +26,11 @@ internal static class Constant
     //LEVEL
     internal const int NODE_TEXTURE_SIZE = 64; //The raw, square size of a node
     internal static readonly Point NODE_SIZE  =  new Point(128, 64); //The size of a node in the grid
-    internal const int LEVEL_SIZE = 50; //The size of the level grid
-    internal static readonly Vector2 LEVEL_CENTER = new Vector2(LEVEL_SIZE * NODE_SIZE.X, LEVEL_SIZE * NODE_SIZE.Y)/2;
+    internal static readonly Point LEVEL_SIZE = new Point(25, 50); //The size of the level grid
+    internal static readonly Vector2 LEVEL_CENTER = new Vector2(LEVEL_SIZE.X * NODE_SIZE.X, LEVEL_SIZE.Y * NODE_SIZE.Y)/2;
 
     //CAMERA
-    internal const int SLIDE_BORDER = 100; //Defines the width of the edge that will respond to the mouse.
+    internal const int SLIDE_BORDER = 10; //Defines the width of the edge that will respond to the mouse.
     internal const int SLIDE_SPEED = 10; //The speed at which the window slides.
 
     //PROJECTILES
@@ -74,7 +74,8 @@ internal static class Constant
         new ToolBarObjectsItem("Enemy", SPR_ENEMY),
         new ToolBarObjectsItem("Base", SPR_BASE),
         new ToolBarObjectsItem("LaserTower", SPR_LASER_TOWER),
-        new ToolBarObjectsItem("PulseTower", SPR_PULSE_TOWER)
+        new ToolBarObjectsItem("PulseTower", SPR_PULSE_TOWER),
+        new ToolBarObjectsItem("ProjectileTower", SPR_ABSTRACT_TOWER)
     };
 
     //BUTTON MARGIN
