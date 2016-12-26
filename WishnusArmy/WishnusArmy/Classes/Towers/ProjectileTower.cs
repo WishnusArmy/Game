@@ -14,7 +14,7 @@ class ProjectileTower : CannonTower
     public ProjectileTower() : base()
     {
         damage = Constant.BULLET_DAMAGE[level];
-        maxBullets = 3;   
+        maxBullets = 2;   
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -29,9 +29,9 @@ class ProjectileTower : CannonTower
     }
     public override void Attack()
     {
-        if (GameWorld.FindByType<Bullet>().Count < maxBullets)
+        if (children.Count < maxBullets)
         {
-            Add(new Bullet(damage, 6, GlobalPosition));
+            Add(new Bullet(damage, 10, range));
         }
     }
 }

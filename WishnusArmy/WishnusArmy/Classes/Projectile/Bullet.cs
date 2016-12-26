@@ -15,22 +15,30 @@ class Bullet : Projectile
     private bool foundTarget;
     public Enemy enemy;
 
-    public Bullet(int damage, int speed, Vector2 startPosition) : base()
+    public Bullet(int damage, int speed, int range) : base()
     {
         foundTarget = false;
         this.damage = damage;
         this.speed = speed;
-        Position = Vector2.Zero;
+        this.range = range;
     }
 
     private void findTarget()
     {
         if (foundTarget)
             return;
-        List<Enemy> enemies = GameWorld.FindByType<Enemy>();
-        if (enemies.Count > 0)
+        List<Enemy> AllEnemies = GameWorld.FindByType<Enemy>();
+        if (AllEnemies.Count == 0)
+            return;
+        List<Enemy> EnemiesInRange = new List<Enemy>();
+        foreach (Enemy x in AllEnemies)
         {
-            enemy = enemies[RANDOM.Next(0,enemies.Count)];
+            if (DISTANCE(x.GlobalPosition, GlobalPosition) < range)
+                EnemiesInRange.Add(x);
+        }
+        if (EnemiesInRange.Count > 0)
+        {
+            enemy = EnemiesInRange[RANDOM.Next(0,EnemiesInRange.Count)];
             foundTarget = true;
         }
     }

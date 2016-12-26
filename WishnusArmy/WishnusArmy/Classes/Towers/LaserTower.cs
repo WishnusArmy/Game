@@ -37,8 +37,6 @@ class LaserTower : Tower
         laser.target = target;
         laser.damage = damage;
 
-        // laser.Position = gridPosition * NODE_SIZE.X + new Vector2(baseTexture.Width/2, baseTexture.Height/2)+ GlobalPosition;
-        //if target is out of range
         if (target != null && DISTANCE(target.GlobalPosition, GlobalPosition) > range)
             target = null;
     }

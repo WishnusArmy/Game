@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using static ContentImporter.Sprites;
+using static Constant;
 
 class PulseTower : Tower
 {
@@ -13,6 +14,9 @@ class PulseTower : Tower
     {
         damage = Constant.PULSE_DAMAGE[level];
         this.baseTexture = SPR_PULSE_TOWER;
+        Pulse p = new Pulse(0, 500);
+        p.Position = new Vector2(NODE_SIZE.X/4, 0);
+        Add(p);
     }
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {

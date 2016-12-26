@@ -23,7 +23,7 @@ class Laser : Projectile
         base.Draw(gameTime, spriteBatch);
 
         if (target != null)
-            DrawingHelper.DrawLine(spriteBatch, GlobalPosition, target.GlobalPositionCenter, Color.Red, 16);
+            DrawingHelper.DrawLine(spriteBatch, GlobalPosition, target.GlobalPositionCenter, Color.Red, 10);
     }
 
     

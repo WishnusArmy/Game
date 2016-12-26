@@ -37,11 +37,11 @@ internal static class Constant
     // damage/speed/radius per level
     internal static int[] BULLET_DAMAGE = new int[] { 60, 100, 120 };       
     internal static int[] BULLET_SPEED = new int[] { 5, 8, 10 };
-    internal static int[] PULSE_DAMAGE = new int[] { 10, 30, 40 };
-    internal static int[] PULSE_SPEED = new int[] { 4, 6, 8 };
+    internal static int[] PULSE_DAMAGE = new int[] { 4, 6, 8 };
+    internal static int[] PULSE_SPEED = new int[] { 1, 2, 3 };
     internal static int[] PULSE_RADIUS = new int[] { 200, 400, 600 };
     internal static int[] LASER_DAMAGE = new int[] { 1, 2, 4 };
-    internal static int[] LASER_RADIUS = new int[] { 150, 400, 800 };
+    internal static int[] LASER_RADIUS = new int[] { 500, 600, 800 };
     internal const int LASER_TIME = 4;
 
     //TOWERS
@@ -74,7 +74,8 @@ internal static class Constant
         new ToolBarObjectsItem("Enemy", SPR_ENEMY),
         new ToolBarObjectsItem("Base", SPR_BASE),
         new ToolBarObjectsItem("LaserTower", SPR_LASER_TOWER),
-        new ToolBarObjectsItem("PulseTower", SPR_PULSE_TOWER)
+        new ToolBarObjectsItem("PulseTower", SPR_PULSE_TOWER),
+        new ToolBarObjectsItem("ProjectileTower", SPR_ABSTRACT_TOWER)
     };
 
     //BUTTON MARGIN
@@ -86,6 +87,7 @@ internal static class Constant
         Vector2 v3 = v1 - v2;
         return Math.Sqrt(v3.X*v3.X + v3.Y*v3.Y);
     }
+    
 
 
 

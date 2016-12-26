@@ -47,7 +47,7 @@ public class Camera : GameObjectList
                         e.Position = new Vector2(RANDOM.Next(500)+100, RANDOM.Next(600)+100);
                         p.Add(e);
                     }
-                    ProjectileTower t = new ProjectileTower();
+                    PulseTower t = new PulseTower();
                     t.Position = new Vector2(400);
                     p.Add(t);
                     LaserTower x = new LaserTower();
