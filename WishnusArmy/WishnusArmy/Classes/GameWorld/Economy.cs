@@ -8,10 +8,12 @@ using static Constant;
 
 public static class Economy
 {
-    public static int Resources;
+    //Let all member variables have the EcPrefix so
+    //the origin of the variable is clear
+    public static int EcResources;
     
     public static void Initialize()
     {
-        
+        EcResources = 42068;
     }
 }

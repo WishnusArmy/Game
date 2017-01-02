@@ -52,8 +52,8 @@ public class Overlay : GameObjectList
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        DrawingHelper.DrawRectangleFilled(new Rectangle(new Point(SCREEN_SIZE.X - OVERLAY_SIZE.X, 0), new Point(OVERLAY_SIZE.X, SCREEN_SIZE.Y)), spriteBatch, Color.SteelBlue, 0.6f);
-        DrawingHelper.DrawRectangleFilled(new Rectangle(new Point(0, SCREEN_SIZE.Y - OVERLAY_SIZE.Y), new Point(SCREEN_SIZE.X - OVERLAY_SIZE.X, OVERLAY_SIZE.Y)), spriteBatch, Color.SteelBlue, 0.6f);
+        DrawingHelper.DrawRectangleFilled(new Rectangle(new Point(SCREEN_SIZE.X - OVERLAY_SIZE.X, 0), new Point(OVERLAY_SIZE.X, SCREEN_SIZE.Y)), spriteBatch, Color.Black);
+        DrawingHelper.DrawRectangleFilled(new Rectangle(new Point(0, SCREEN_SIZE.Y - OVERLAY_SIZE.Y), new Point(SCREEN_SIZE.X - OVERLAY_SIZE.X, OVERLAY_SIZE.Y)), spriteBatch, Color.Black);
         if (selected != null)
         {
             spriteBatch.Draw(selected.icon, mousePos, Color.White);

@@ -27,6 +27,7 @@ namespace WishnusArmy
             Console.WriteLine("Hello World");
             ContentImporter.Initialize(Content);
             DrawingHelper.Initialize(GraphicsDevice);
+            Economy.Initialize();
             base.Initialize();
         }
 
@@ -47,7 +48,7 @@ namespace WishnusArmy
             gameStateManager.AddGameState("PlayingState", new PlayingState());
             gameStateManager.AddGameState("LevelBuilderState", new LevelBuilderState());
             gameStateManager.AddGameState("LevelGeneratorState", new LevelGeneratorState());
-            gameStateManager.SwitchTo("MainMenuState");
+            gameStateManager.SwitchTo("PlayingState");
         }
 
         protected override void UnloadContent()

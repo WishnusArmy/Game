@@ -379,3 +379,9 @@
 /processorParam:TextureFormat=Color
 /build:Content/Textures/tex_forest.png
 
+#begin Content/Fonts/fnt_overlay_info.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:Content/Fonts/fnt_overlay_info.spritefont
+
