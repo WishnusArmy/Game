@@ -51,9 +51,9 @@ public class CreditsMenu : GameObjectList
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(Sprites.SPR_MAINTITLEBACKGROUND, new Vector2(0, 0), Color.White);
+        spriteBatch.Draw(Sprites.SPR_MAINBACKGROUND, new Vector2(0, 0), Color.White);
         spriteBatch.Draw(Sprites.SPR_CREDITSPLANE, planeposition, Color.White);
-        MainMenu.AddNoise(spriteBatch, 20);
+        MainMenu.AddNoise(spriteBatch, 5);
         base.Draw(gameTime, spriteBatch);
     }
 }

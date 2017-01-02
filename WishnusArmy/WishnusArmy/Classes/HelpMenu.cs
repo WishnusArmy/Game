@@ -37,8 +37,8 @@ public class HelpMenu : GameObjectList
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(Sprites.SPR_MAINMENUBACKGROUND, new Vector2(0, 0), Color.Blue);
-        MainMenu.AddNoise(spriteBatch, 20);
+        spriteBatch.Draw(Sprites.SPR_MAINBACKGROUND, new Vector2(0, 0), Color.Blue);
+        MainMenu.AddNoise(spriteBatch, 5);
         base.Draw(gameTime, spriteBatch);
     }
 }
