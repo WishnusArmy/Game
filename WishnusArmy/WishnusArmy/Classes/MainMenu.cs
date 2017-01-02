@@ -71,8 +71,8 @@ public class MainMenu : GameObjectList
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(Sprites.SPR_MAINTITLEBACKGROUND, new Vector2(0, 0), Color.White);
-        AddNoise(spriteBatch, 25);
+        spriteBatch.Draw(Sprites.SPR_MAINBACKGROUND, new Vector2(0, 0), Color.White);
+        AddNoise(spriteBatch, 5);
         base.Draw(gameTime, spriteBatch);
     }
 
