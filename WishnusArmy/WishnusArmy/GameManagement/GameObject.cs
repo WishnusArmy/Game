@@ -2,9 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using WishnusArmy.GameManagement;
 
 public abstract class GameObject : IGameLoopObject
 {
+    SoundManager soundManager = new SoundManager();
     protected GameObject parent;
     protected Vector2 position, velocity;
     protected int layer;

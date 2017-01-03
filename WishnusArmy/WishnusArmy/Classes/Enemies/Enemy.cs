@@ -5,12 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static ContentImporter.Sprites;
+using static ContentImporter.Sounds;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using static Constant;
+using WishnusArmy.GameManagement;
 
 public partial class Enemy : GameObject
 {
+
     public Texture2D sprite;
     float rotation, healthRatio;
     Vector2 target = new Vector2(200,200), startPosition = new Vector2(200,200);
@@ -25,6 +29,8 @@ public partial class Enemy : GameObject
             if (_health <= 0)
             {
                 kill = true;
+                SoundManager soundManager = new SoundManager();
+                soundManager.PlaySound(SND_ENEMY_DYING);
             }
         }
     }

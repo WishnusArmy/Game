@@ -1,16 +1,19 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using WishnusArmy.GameManagement;
 
 public class GameStateManager : IGameLoopObject
 {
     Dictionary<string, IGameLoopObject> gameStates;
     IGameLoopObject currentGameState;
+    SoundManager soundManager;
 
     public GameStateManager()
     {
         gameStates = new Dictionary<string, IGameLoopObject>();
         currentGameState = null;
+        soundManager = new SoundManager();
     }
 
     public void AddGameState(string name, IGameLoopObject state)
@@ -28,6 +31,7 @@ public class GameStateManager : IGameLoopObject
         if (gameStates.ContainsKey(name))
         {
             currentGameState = gameStates[name];
+            soundManager.PlayMusic(name);
         }
         else
         {

@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 
 internal static class ContentImporter
 {
@@ -13,6 +15,8 @@ internal static class ContentImporter
         Textures.Initialize(Content);
         Fonts.Iniatilize(Content);
         Sprites.Initialize(Content);
+        Music.Initialize(Content);
+        Sounds.Initialize(Content);
     }
 
     internal static class Sprites
@@ -102,6 +106,26 @@ internal static class ContentImporter
             FNT_MENU = Content.Load<SpriteFont>("Content/Fonts/fnt_menu");
             FNT_OVERLAY = Content.Load<SpriteFont>("Content/Fonts/fnt_overlay");
             FNT_OVERLAY_INFO = Content.Load<SpriteFont>("Content/Fonts/fnt_overlay_info");
+        }
+    }
+    internal static class Music
+    {
+        internal static Song
+            SNG_MAINMENU;
+
+        public static void Initialize(ContentManager Content)
+        {
+            SNG_MAINMENU = Content.Load<Song>("Content/Music/mainMenu");
+        }
+    }
+    internal static class Sounds
+    {
+        internal static SoundEffect
+            SND_ENEMY_DYING;
+
+        public static void Initialize(ContentManager Content)
+        {
+            SND_ENEMY_DYING = Content.Load<SoundEffect>("Content/SoundEffects/Enemies/wilhemScream");
         }
     }
 }
