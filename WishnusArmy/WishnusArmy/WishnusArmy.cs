@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Runtime.InteropServices;
 using static Constant;
@@ -48,7 +49,8 @@ namespace WishnusArmy
             gameStateManager.AddGameState("PlayingState", new PlayingState());
             gameStateManager.AddGameState("LevelBuilderState", new LevelBuilderState());
             gameStateManager.AddGameState("LevelGeneratorState", new LevelGeneratorState());
-            gameStateManager.SwitchTo("PlayingState");
+            gameStateManager.SwitchTo("MainMenuState");
+            
         }
 
         protected override void UnloadContent()
