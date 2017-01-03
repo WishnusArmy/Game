@@ -63,9 +63,12 @@ public class GridPlane: GameObjectList
 
     public GridNode NodeAt(Vector2 pos, bool throwClosest = true) //throwClosest=true will return the closest node if not found
     {
-        if (pos.X < 0 || pos.Y < 0)
+        if ((pos.X < 0 || pos.Y < 0))
         {
-            throw new Exception("Can't look for nodes at negative coordinates: " + pos.X + ", " + pos.Y);
+            if (throwClosest)
+                throw new Exception("Can't look for nodes at negative coordinates: " + pos.X + ", " + pos.Y);
+            else
+                return null;
         }
 
         float shortDis = float.MaxValue; //Use to find the shortest node.
@@ -75,7 +78,7 @@ public class GridPlane: GameObjectList
         {
             for (int y = 0; y < LEVEL_SIZE.Y; ++y)
             {
-                if (grid[x,y].HoversMe(pos))
+                if (grid[x,y].HoversMeRelative(pos))
                 {
                     return grid[x, y];
                 }

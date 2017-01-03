@@ -8,22 +8,13 @@ using static Constant;
 
 public partial class Enemy : GameObject
 {
-    protected List<GridNode> getPath(Vector2 origin, Vector2 target)
+    protected List<GridNode> getPath(GridNode startNode, GridNode targetNode)
     {
         List<GridNode> path = new List<GridNode>(); //Make a container for the return value
         List<GridNode> openList = new List<GridNode>(); //Nodes to be checked
         List<GridNode> closedList = new List<GridNode>(); //Nodes that have been checked
         GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane; //get the currentplane
-        GridNode startNode, targetNode;
-        try
-        {
-            startNode = plane.NodeAt(origin); //Get the node from where to start
-            targetNode = plane.NodeAt(target); //Get the node at the target position
-        }
-        catch(Exception e)
-        {
-            throw e;
-        }
+
 
         foreach (GridNode node in plane.grid)
         {

@@ -10,7 +10,7 @@ using static Constant;
 using static ContentImporter.Textures;
 using static ContentImporter.Fonts;
 
-public class GridNode : GameObject
+public class GridNode : GameObjectList
 {
     int obj; //Indicator for what is placed on the square (0 for emtpy)
     int _texture;
@@ -104,7 +104,6 @@ public class GridNode : GameObject
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        base.Draw(gameTime, spriteBatch);
         spriteBatch.Draw(LIST_LAND_TEXTURES[texture], GlobalPosition, Color.White);
         //DrawingHelper.DrawText(spriteBatch, FNT_LEVEL_BUILDER, "H: " + Hval.ToString(), GlobalPosition + new Vector2(30, 10), Color.Red);
         if (selected)
@@ -115,6 +114,7 @@ public class GridNode : GameObject
         {
             spriteBatch.Draw(LIST_LAND_TEXTURES[texture], GlobalPosition, Color.Blue * 0.4f);
         }
+        base.Draw(gameTime, spriteBatch); 
     }
 }
 

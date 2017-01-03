@@ -93,12 +93,14 @@ internal static class ContentImporter
         internal static SpriteFont
             FNT_LEVEL_BUILDER,
             FNT_MENU,
+            FNT_OVERLAY,
             FNT_OVERLAY_INFO;
 
         public static void Iniatilize(ContentManager Content)
         {
             FNT_LEVEL_BUILDER = Content.Load<SpriteFont>("Content/Fonts/fnt_level_builder");
             FNT_MENU = Content.Load<SpriteFont>("Content/Fonts/fnt_menu");
+            FNT_OVERLAY = Content.Load<SpriteFont>("Content/Fonts/fnt_overlay");
             FNT_OVERLAY_INFO = Content.Load<SpriteFont>("Content/Fonts/fnt_overlay_info");
         }
     }

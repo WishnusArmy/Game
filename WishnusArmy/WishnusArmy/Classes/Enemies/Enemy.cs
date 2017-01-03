@@ -54,14 +54,10 @@ public partial class Enemy : GameObject
         if (pathIndex == 0)
         {
             GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane;
-
             try
             {
-                Vector2 p = Position;
-                if (p.X < 0) { p.X = 0; }
-                if (p.Y < 0) { p.Y = 0; }
-                //path = getPath(p, new Vector2(RANDOM.Next(2000) + 128, RANDOM.Next(600) + 100));
-                path = getPath(p, new Vector2(RANDOM.Next(2000) + 128, RANDOM.Next(600) + 100));
+                GridNode node = plane.NodeAt(position);
+                path = getPath(node, plane.NodeAt(new Vector2(RANDOM.Next(2000) + 128, RANDOM.Next(600) + 100)));
             }
             catch(Exception e)
             {
@@ -69,7 +65,10 @@ public partial class Enemy : GameObject
             }
             pathIndex = path.Count - 1;
         }
-        target = path[pathIndex].Position;
+        if (pathIndex >= 0)
+            target = path[pathIndex].Position;
+        else
+            target = position;
         base.Update(gameTime);
         //Enemy is in de goede richting gedraaid
         double opposite = target.Y - position.Y;
