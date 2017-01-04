@@ -67,7 +67,7 @@ public partial class Enemy : GameObject
             }
             catch(Exception e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine("Exception in Enemy.cs :: Update // "+e.Message);
             }
             pathIndex = path.Count - 1;
         }
@@ -75,7 +75,7 @@ public partial class Enemy : GameObject
             target = path[pathIndex].Position;
         else
             target = position;
-        base.Update(gameTime);
+
         //Enemy is in de goede richting gedraaid
         double opposite = target.Y - position.Y;
         double adjacent = target.X - position.X;

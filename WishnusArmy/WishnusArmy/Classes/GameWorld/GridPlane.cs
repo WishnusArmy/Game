@@ -95,6 +95,11 @@ public class GridPlane: GameObjectList
         {
             return shortNode;
         }
+        else
+        {
+            if (!throwClosest)
+                return null;
+        }
         throw new Exception("No node found at: " + pos.X + ", " + pos.Y);
     }
 

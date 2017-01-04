@@ -108,6 +108,7 @@ internal static class ContentImporter
             FNT_OVERLAY_INFO = Content.Load<SpriteFont>("Content/Fonts/fnt_overlay_info");
         }
     }
+
     internal static class Music
     {
         internal static Song
@@ -118,6 +119,7 @@ internal static class ContentImporter
             SNG_MAINMENU = Content.Load<Song>("Content/Music/mainMenu");
         }
     }
+
     internal static class Sounds
     {
         internal static SoundEffect

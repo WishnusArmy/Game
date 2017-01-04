@@ -35,17 +35,9 @@ public class Overlay : GameObjectList
 
         GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane;
         GridNode node;
-        try
-        {
-            node = plane.NodeAt(inputHelper.MousePosition, false);
-            if (node == null)
-                return;
-        }
-        catch (Exception e)
-        {
-            Console.Write(e.Message);
+        node = plane.NodeAt(inputHelper.MousePosition, false);
+        if (node == null)
             return;
-        }
 
         selectedPossible = !node.solid;
 
@@ -67,20 +59,13 @@ public class Overlay : GameObjectList
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         //Draw the background
-        DrawRectangleFilled(new Rectangle(new Point(SCREEN_SIZE.X - OVERLAY_SIZE.X, 0), new Point(OVERLAY_SIZE.X, SCREEN_SIZE.Y)), spriteBatch, Color.Black);
-        DrawRectangleFilled(new Rectangle(new Point(0, SCREEN_SIZE.Y - OVERLAY_SIZE.Y), new Point(SCREEN_SIZE.X - OVERLAY_SIZE.X, OVERLAY_SIZE.Y)), spriteBatch, Color.Black);
+        DrawRectangleFilled(new Rectangle(new Point(SCREEN_SIZE.X - OVERLAY_SIZE.X, 0), new Point(OVERLAY_SIZE.X, SCREEN_SIZE.Y)), spriteBatch, Color.Black, 0.4f);
+        DrawRectangleFilled(new Rectangle(new Point(0, SCREEN_SIZE.Y - OVERLAY_SIZE.Y), new Point(SCREEN_SIZE.X - OVERLAY_SIZE.X, OVERLAY_SIZE.Y)), spriteBatch, Color.Black, 0.4f);
         if (selected != null)
         {
             GridNode node = null;
-            try
-            {
-                GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane;
-                node = plane.NodeAt(mousePos, false);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error at Overlay.cs :: Draw // " + e.Message);
-            }
+            GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane;
+            node = plane.NodeAt(mousePos, false);
 
             if (node != null)
             {

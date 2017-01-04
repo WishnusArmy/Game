@@ -54,6 +54,7 @@ public class Tower : GameObjectList
     }
     public override void Update(GameTime gameTime)
     {
+        base.Update(gameTime);
         if (myNode == null)
         {
             GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane;
@@ -62,7 +63,6 @@ public class Tower : GameObjectList
             myNode.beacon = true;
             hover = myNode.selected;
         } else { hover = myNode.selected; }
-        base.Update(gameTime);
         reloadTime -= gameTime.ElapsedGameTime.TotalSeconds;
         if (target != null && reloadTime <= 0)
         { 
