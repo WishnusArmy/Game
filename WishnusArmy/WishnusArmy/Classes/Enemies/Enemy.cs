@@ -17,7 +17,7 @@ public partial class Enemy : GameObject
 
     public Texture2D sprite;
     float rotation, healthRatio;
-    Vector2 target = new Vector2(200,200), startPosition = new Vector2(200,200);
+    GridNode target;
     float speed = 5;
     int _health = ENEMY_HEALTH[0];
     public int health
@@ -39,7 +39,6 @@ public partial class Enemy : GameObject
 
     public Enemy()
     {
-        //position = startPosition + GlobalPosition;
         this.sprite = SPR_ENEMY;
         healthRatio = (float)this.sprite.Width / (float) this.health;
         path = new List<GridNode>();
@@ -72,26 +71,23 @@ public partial class Enemy : GameObject
             pathIndex = path.Count - 1;
         }
         if (pathIndex >= 0)
-            target = path[pathIndex].Position;
-        else
-            target = position;
+            target = path[pathIndex];
 
         //Enemy is in de goede richting gedraaid
-        double opposite = target.Y - position.Y;
-        double adjacent = target.X - position.X;
+        double opposite = target.Position.Y - position.Y;
+        double adjacent = target.Position.X - position.X;
         rotation = (float)Math.Atan2(opposite, adjacent);
 
         
         //The position never truly equals the target position so 5 pixels lower or higher.
-        if (CalculateDistance(target, position) < 5)
+        if (CalculateDistance(target.Position, position) < 5)
         {
-            //target = new Vector2((int)(1000 * Constant.RANDOM.NextDouble()), Constant.RANDOM.Next(1000));
             pathIndex -= 1;
         }
         
 
         //sprite beweegt richting de muis met vaste snelheid (speed)
-        velocity = (target - position);
+        velocity = (target.Position - position);
 
         //als velocity 0,0 is krijg je deling door 0
         if (velocity != new Vector2(0, 0))

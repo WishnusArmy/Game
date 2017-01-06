@@ -22,7 +22,7 @@ public class CannonTower : Tower
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
-        spriteBatch.Draw(cannonTexture, DrawPosition - new Vector2(0, baseTexture.Height/2 - NODE_SIZE.Y/2), null, null, new Vector2(cannonTexture.Width / 2, cannonTexture.Height / 2), rotation);
+        spriteBatch.Draw(cannonTexture, GlobalPosition, null, null, new Vector2(cannonTexture.Width / 2, cannonTexture.Height / 2), rotation);
     }
 
     public override void HandleInput(InputHelper inputHelper)

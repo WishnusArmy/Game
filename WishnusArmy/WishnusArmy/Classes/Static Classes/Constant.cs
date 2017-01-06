@@ -27,7 +27,7 @@ internal static class Constant
     internal const int NODE_TEXTURE_SIZE = 64; //The raw, square size of a node
     internal static readonly Point NODE_SIZE  =  new Point(128, 64); //The size of a node in the grid
     internal static readonly Point LEVEL_SIZE = new Point(25, 50); //The size of the level grid
-    internal static readonly Vector2 LEVEL_CENTER = new Vector2(LEVEL_SIZE.X * NODE_SIZE.X, LEVEL_SIZE.Y * NODE_SIZE.Y)/2;
+    internal static readonly Vector2 LEVEL_CENTER = new Vector2(LEVEL_SIZE.X * NODE_SIZE.X, LEVEL_SIZE.Y/2 * NODE_SIZE.Y)/2;
 
     //CAMERA
     internal const int SLIDE_BORDER = 10; //Defines the width of the edge that will respond to the mouse.

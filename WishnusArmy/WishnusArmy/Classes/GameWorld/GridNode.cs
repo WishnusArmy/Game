@@ -14,7 +14,7 @@ public class GridNode : GameObjectList
 {
     int obj; //Indicator for what is placed on the square (0 for emtpy)
     int _texture;
-    public List<GridNode> neighbours;
+    public List<GridNode> neighbours, extendedNeighbours;
     public int texture
     {
         get { return _texture;  }
@@ -61,6 +61,14 @@ public class GridNode : GameObjectList
         get
         {
             return neighbours;
+        }
+    }
+
+    public List<GridNode> ExtendedNeighbours
+    {
+        get
+        {
+            return extendedNeighbours;
         }
     }
 

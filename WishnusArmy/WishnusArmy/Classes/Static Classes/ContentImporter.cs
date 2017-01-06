@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
+using static Functions;
 
 internal static class ContentImporter
 {
@@ -39,7 +40,7 @@ internal static class ContentImporter
             SPR_ABSTRACT_CANNON,
             SPR_BASE,
             SPR_BASEGUN,
-            SPR_RADIUS,
+            SPR_CIRCLE,
             SPR_LASER_TOWER,
             SPR_PULSE_TOWER;
 
@@ -60,7 +61,7 @@ internal static class ContentImporter
             SPR_ABSTRACT_CANNON = Content.Load<Texture2D>("Content/Sprites/Towers/cannon");
             SPR_BASE = Content.Load<Texture2D>("Content/Sprites/Towers/BaseSprite");
             SPR_BASEGUN = Content.Load<Texture2D>("Content/Sprites/Towers/BaseGun");
-            SPR_RADIUS = Content.Load<Texture2D>("Content/Sprites/Towers/radius");
+            SPR_CIRCLE = Content.Load<Texture2D>("Content/Sprites/Towers/radius");
             SPR_LASER_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/spr_laser_tower");
             SPR_PULSE_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/pulseTower");
         }

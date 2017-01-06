@@ -36,14 +36,14 @@ public class Tower : GameObjectList
     {
         base.Draw(gameTime, spriteBatch);
         if (hover)
-            spriteBatch.Draw(SPR_RADIUS, DrawPosition - new Vector2(baseTexture.Width / 2, baseTexture.Height / 2), null, null, new Vector2(SPR_RADIUS.Width / 2, SPR_RADIUS.Height / 2), 0f, new Vector2(1f, 1f) * ((float)range / ((float)SPR_RADIUS.Width / 2)), new Color(0.2f, 0.2f, 0.2f, 0.05f));
+            spriteBatch.Draw(SPR_CIRCLE, GlobalPosition, null, null, new Vector2(SPR_CIRCLE.Width / 2, SPR_CIRCLE.Height / 2), 0f, new Vector2(1f, 1f) * ((float)range / ((float)SPR_CIRCLE.Width / 2)), new Color(0.2f, 0.2f, 0.2f, 0.05f));
     spriteBatch.Draw(baseTexture, GlobalPosition - new Vector2(baseTexture.Width, baseTexture.Height) / 2, Color.White);
 
     }
 
     public Vector2 DrawPosition //Correction for being on the grid.
     {
-        get { return GlobalPosition + new Vector2(NODE_SIZE.X/4, NODE_SIZE.Y); }
+        get { return GlobalPosition + new Vector2(NODE_SIZE.X/2, NODE_SIZE.Y/2); }
     }
 
     public override void HandleInput(InputHelper inputHelper)
