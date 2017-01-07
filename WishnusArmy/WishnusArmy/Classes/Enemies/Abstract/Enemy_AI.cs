@@ -6,31 +6,28 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using static Constant;
 
-public partial class Enemy : GameObject
+public abstract partial class Enemy : GameObject
 {
-    protected List<GridNode> getPath(GridNode startNode, GridNode targetNode)
+    protected List<GridNode> getPath(GridNode startNode)
     {
         List<GridNode> path = new List<GridNode>(); //Make a container for the return value
         List<GridNode> openList = new List<GridNode>(); //Nodes to be checked
         List<GridNode> closedList = new List<GridNode>(); //Nodes that have been checked
-        GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane; //get the currentplane
-
-
-        foreach (GridNode node in plane.grid)
-        {
-            node.Hval = (int)(Math.Abs(node.Position.X - targetNode.Position.X) + Math.Abs(node.Position.Y - targetNode.Position.Y))/64;  //Calculate the Heuristic
-            node.pathParent = node; //Reset the parent
-        }
+        Camera cam = GameWorld.FindByType<Camera>()[0];
+        GridPlane plane = cam.currentPlane; //get the currentplane
+        GridNode targetNode = plane.NodeAt(LEVEL_CENTER + cam.Position);
 
         calcNode(startNode, targetNode, openList, closedList); //Start the recursive pathfinding.
 
         bool done = false; //Used in the while loop
         GridNode currentNode = targetNode; //Start at the target node
-        while(!done) //While not reached the origin node
+        List<GridNode> inList = new List<GridNode>();
+        while (!done) //While not reached the origin node
         {
             path.Add(currentNode); //Add the node to the path
-            if (currentNode == startNode || currentNode == currentNode.pathParent) //Path found || stuck
+            if (currentNode == startNode || currentNode == currentNode.pathParent || onList(currentNode, inList)) //Path found || stuck
                 done = true;
+            inList.Add(currentNode);
             currentNode = currentNode.pathParent; //Move to the next node in the path
         }
         return path; //Return the path
@@ -60,7 +57,7 @@ public partial class Enemy : GameObject
                     next[i].Gval = node.Gval + 10; //Update the Fval
                 }
             }
-            if (!onList(next[i], openList) && !onList(next[i], closedList) && !next[i].solid) //If neither on the openList or closedList
+            if (!onList(next[i], openList) && !onList(next[i], closedList) && !next[i].solid) //If neither on the openList or closedList and not solid
             {
                 openList.Add(next[i]); //Add Neighbour to the openList
                 next[i].pathParent = node; //Make it a parent

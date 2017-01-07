@@ -8,14 +8,14 @@ using Microsoft.Xna.Framework.Graphics;
 using static ContentImporter.Sprites;
 using static Constant;
 
-class Bullet : Projectile
+class Rocket : Projectile
     
 {
     private float rotation;
     private bool foundTarget;
     public Enemy enemy;
 
-    public Bullet(int damage, int speed, Vector2 startPosition) : base()
+    public Rocket(int damage, int speed, Vector2 startPosition) : base()
     {
         foundTarget = false;
         this.damage = damage;
@@ -39,8 +39,8 @@ class Bullet : Projectile
     {
         if (foundTarget)
         {
-            double opposite = enemy.Position.Y - SPR_BULLET.Width / 2 - GlobalPosition.Y;
-            double adjacent = enemy.Position.X - SPR_BULLET.Width / 2 - GlobalPosition.X;
+            double opposite = enemy.GlobalPosition.Y - SPR_BULLET.Width / 2 - GlobalPosition.Y;
+            double adjacent = enemy.GlobalPosition.X - SPR_BULLET.Width / 2 - GlobalPosition.X;
             rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
         }
         else

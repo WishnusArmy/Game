@@ -12,7 +12,6 @@ using static ContentImporter.Fonts;
 
 public class GridNode : GameObjectList
 {
-    int obj; //Indicator for what is placed on the square (0 for emtpy)
     int _texture;
     public List<GridNode> neighbours, extendedNeighbours;
     public int texture
@@ -40,11 +39,10 @@ public class GridNode : GameObjectList
     //temp
     public bool beacon;
 
-    public GridNode(Camera.Plane plane, Vector2 position, int texture, int obj = 0) : base()
+    public GridNode(Camera.Plane plane, Vector2 position, int texture) : base()
     {
         neighbours = new List<GridNode>();
         this.texture = texture;
-        this.obj = obj;
         this.position = position;
         this.texture = RANDOM.Next(2);
         this.plane = plane;

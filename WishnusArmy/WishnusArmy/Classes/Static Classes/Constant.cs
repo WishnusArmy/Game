@@ -20,7 +20,7 @@ internal static class Constant
     internal static Random RANDOM = new Random();
 
     //OVERLAY
-    internal static readonly Point OVERLAY_SIZE = new Point(300, 200);
+    internal static readonly Point OVERLAY_SIZE = new Point(256, 240);
     internal static readonly Point GAME_WINDOW_SIZE = SCREEN_SIZE - OVERLAY_SIZE;
 
     //LEVEL
@@ -48,11 +48,13 @@ internal static class Constant
     internal static int[] FIRE_RATE = new int[] { 1, 2, 3 };
     public class TowerInfo
     {
-        public int Cost;
+        public int cost;
+        public Texture2D icon;
     }
     public static readonly Dictionary<string, TowerInfo> Towers = new Dictionary<string, TowerInfo>()
     {
-        { "LaserTower", new TowerInfo() { Cost = 100 } }
+        { "LaserTower", new TowerInfo() { cost = 100, icon = SPR_LASER_TOWER } },
+        { "RocketTower", new TowerInfo() { cost = 250, icon = SPR_ABSTRACT_TOWER } }
     };
     
 

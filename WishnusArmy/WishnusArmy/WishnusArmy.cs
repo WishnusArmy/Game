@@ -28,7 +28,7 @@ namespace WishnusArmy
             Console.WriteLine("Hello World");
             Functions.Initialize(GraphicsDevice);
             ContentImporter.Initialize(Content);
-            DrawingHelper.Initialize(GraphicsDevice);
+            DrawingHelper.Initialize(GraphicsDevice, Content);
             base.Initialize();
         }
 

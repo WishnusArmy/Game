@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 using static Constant;
 using static ContentImporter.Sprites;
 
-public class CannonTower : Tower
+public abstract class CannonTower : Tower
 { 
     float rotation;
     public Texture2D cannonTexture;
@@ -33,8 +33,8 @@ public class CannonTower : Tower
         {
             targetPos = target.Position;
         }
-        double opposite = targetPos.Y - cannonTexture.Width / 2 - GlobalPosition.Y;
-        double adjacent = targetPos.X - cannonTexture.Width / 2 - GlobalPosition.X;
+        double opposite = targetPos.Y - GlobalPosition.Y;
+        double adjacent = targetPos.X - GlobalPosition.X;
         rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
     }
 }

@@ -12,12 +12,13 @@ using Microsoft.Xna.Framework.Input;
 using static Constant;
 using WishnusArmy.GameManagement;
 
-public partial class Enemy : GameObject
+public abstract partial class Enemy : GameObject
 {
 
     public Texture2D sprite;
-    float rotation, healthRatio;
-    GridNode target;
+    float rotation;
+    public GridNode startNode;
+    GridNode targetNode;
     float speed = 5;
     int _health = ENEMY_HEALTH[0];
     public int health
@@ -37,11 +38,8 @@ public partial class Enemy : GameObject
     List<GridNode> path;
     int pathIndex;
 
-    public Enemy()
+    public Enemy() : base()
     {
-        this.sprite = SPR_ENEMY;
-        healthRatio = (float)this.sprite.Width / (float) this.health;
-        path = new List<GridNode>();
         pathIndex = 0;
     }
 
@@ -56,52 +54,59 @@ public partial class Enemy : GameObject
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
-        if (pathIndex == 0)
+        if (path == null && startNode != null)
         {
-            GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane;
-            try
-            {
-                GridNode node = plane.NodeAt(position);
-                path = getPath(node, plane.NodeAt(new Vector2(RANDOM.Next(2000) + 128, RANDOM.Next(600) + 100)));
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine("Exception in Enemy.cs :: Update // "+e.Message);
-            }
+            GridPlane plane = Parent as GridPlane;
+            path = getPath(startNode);
             pathIndex = path.Count - 1;
         }
+
+        if (path != null)
+        {
+            moveAlongPath();
+        }
+             
+       
+
+
+        // tijdelijk toegevoegd door maurin
+        // zet visible naar false als health < 0
+        Kill = !IsAlive;
+    }
+
+    public void moveAlongPath()
+    {
         if (pathIndex >= 0)
-            target = path[pathIndex];
+            targetNode = path[pathIndex];
 
         //Enemy is in de goede richting gedraaid
-        double opposite = target.Position.Y - position.Y;
-        double adjacent = target.Position.X - position.X;
+        double opposite = targetNode.Position.Y - position.Y;
+        double adjacent = targetNode.Position.X - position.X;
         rotation = (float)Math.Atan2(opposite, adjacent);
 
-        
+
         //The position never truly equals the target position so 5 pixels lower or higher.
-        if (CalculateDistance(target.Position, position) < 5)
+        if (CalculateDistance(targetNode.Position, position) < 5)
         {
-            pathIndex -= 1;
+            if (pathIndex > 0)
+                pathIndex -= 1;
+            else
+                position = targetNode.Position;
         }
-        
+
 
         //sprite beweegt richting de muis met vaste snelheid (speed)
-        velocity = (target.Position - position);
+        velocity = (targetNode.Position - position);
+
+
 
         //als velocity 0,0 is krijg je deling door 0
         if (velocity != new Vector2(0, 0))
         {
             velocity *= (speed / (Math.Abs(velocity.X) + Math.Abs(velocity.Y)));
         }
-
-        position += velocity;
-
-        // tijdelijk toegevoegd door maurin
-        // zet visible naar false als health < 0
-        Kill = !IsAlive;
-
     }
+
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         if (!visible)
@@ -109,8 +114,8 @@ public partial class Enemy : GameObject
         base.Draw(gameTime, spriteBatch);
         spriteBatch.Draw(sprite, GlobalPosition + new Vector2(NODE_SIZE.X, NODE_SIZE.Y)/2, null, null, new Vector2(sprite.Width/2,sprite.Height/2), rotation);
 
-        //draw Healthbar, above the enemy. The healthRatio sets the width of the healthbar to the width of the sprite.
-        DrawingHelper.DrawRectangleFilled(new Rectangle((int)GlobalPosition.X - (int)(health * healthRatio)/2,(int) GlobalPosition.Y -sprite.Height -10,(int)((float)health * healthRatio),10), spriteBatch, Color.Black);
+        //draw Healthbar, above the enemy.
+        DrawingHelper.DrawRectangleFilled(new Rectangle(GlobalPosition.ToPoint() + new Point(0, -60), new Point(health, 15)), spriteBatch, Color.Black);
     }
 
     // hiermee kunnen alle enemies uit de lijst verwijderd worden dmv !enemy.IsAlive

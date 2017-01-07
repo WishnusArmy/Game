@@ -7,14 +7,13 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 
 
-class ProjectileTower : CannonTower  
+class RocketTower : Tower  
 {
-    int maxBullets;
+    static int maxRockets = 3;
 
-    public ProjectileTower() : base()
+    public RocketTower() : base()
     {
-        damage = Constant.BULLET_DAMAGE[level];
-        maxBullets = 3;   
+        damage = Constant.BULLET_DAMAGE[level];  
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -29,9 +28,15 @@ class ProjectileTower : CannonTower
     }
     public override void Attack()
     {
-        if (GameWorld.FindByType<Bullet>().Count < maxBullets)
+        GridPlane plane = parent as GridPlane;
+        List<Enemy> enemies = plane.FindByType<Enemy>();
+        foreach (Enemy enemy in enemies)
         {
-            Add(new Bullet(damage, 6, GlobalPosition));
+            if (FindByType<Rocket>().Count < maxRockets && CalculateDistance(enemy.Position, position) < range)
+            {
+                Add(new Rocket(damage, 6, GlobalPosition));
+                return;
+            }
         }
     }
 }

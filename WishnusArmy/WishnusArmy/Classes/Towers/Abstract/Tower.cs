@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 using static Constant;
 using static ContentImporter.Sprites;
 
-public class Tower : GameObjectList
+public abstract class Tower : GameObjectList
 {
     protected MouseState state = new MouseState();
     public Vector2 gridPosition, mousePosition, previousPosition = new Vector2(0, 0);
@@ -18,7 +18,6 @@ public class Tower : GameObjectList
     protected Vector2 targetPos;
     public GridNode myNode;
     public bool hover;
-    float rotation;
     protected int damage, cost, level = 0, range = 5 * Constant.NODE_SIZE.X;
     protected double reloadTime;
     int[] levels; // {cost, damage, firerate, radius }
@@ -60,7 +59,6 @@ public class Tower : GameObjectList
             GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane;
             myNode = plane.NodeAt(GlobalPosition);
             myNode.solid = true;
-            myNode.beacon = true;
             hover = myNode.selected;
         } else { hover = myNode.selected; }
         reloadTime -= gameTime.ElapsedGameTime.TotalSeconds;

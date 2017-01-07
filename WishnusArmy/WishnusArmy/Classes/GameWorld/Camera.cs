@@ -41,11 +41,9 @@ public class Camera : GameObjectList
                     b.Position = LEVEL_CENTER;
                     p.Add(b);
                     //(testcode) plaatst torens en voegt een enemy toe
-                    for (int q = 0; q < 50; ++q)
+                    for (int q = 0; q < 1; ++q)
                     {
-                        Enemy e = new Enemy();
-                        e.Position = new Vector2(RANDOM.Next(500)+100, RANDOM.Next(600)+100);
-                        p.Add(e);
+                        p.Add(new Tank { Position = new Vector2(500, -100) });
                     }
                     break;
 
