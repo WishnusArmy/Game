@@ -17,7 +17,7 @@ public class Tower : GameObjectList
     protected Enemy target;
     protected Vector2 targetPos;
     public GridNode myNode;
-    public Boolean hover = false;
+    public bool hover;
     float rotation;
     protected int damage, cost, level = 0, range = 5 * Constant.NODE_SIZE.X;
     protected double reloadTime;
@@ -35,15 +35,15 @@ public class Tower : GameObjectList
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
-        spriteBatch.Draw(baseTexture, DrawPosition - new Vector2(baseTexture.Width/2, baseTexture.Height - 25));
-
         if (hover)
-            spriteBatch.Draw(SPR_RADIUS, GlobalPosition + new Vector2(baseTexture.Width/2, baseTexture.Height/2), null, null, new Vector2(SPR_RADIUS.Width / 2, SPR_RADIUS.Height / 2),0f, new Vector2(1f,1f) *((float)range/((float)SPR_RADIUS.Width/2)), new Color(0.2f,0.2f,0.2f, 0.1f));
+            spriteBatch.Draw(SPR_CIRCLE, GlobalPosition, null, null, new Vector2(SPR_CIRCLE.Width / 2, SPR_CIRCLE.Height / 2), 0f, new Vector2(1f, 1f) * ((float)range / ((float)SPR_CIRCLE.Width / 2)), new Color(0.2f, 0.2f, 0.2f, 0.05f));
+    spriteBatch.Draw(baseTexture, GlobalPosition - new Vector2(baseTexture.Width, baseTexture.Height) / 2, Color.White);
+
     }
 
     public Vector2 DrawPosition //Correction for being on the grid.
     {
-        get { return GlobalPosition + new Vector2(NODE_SIZE.X, NODE_SIZE.Y) / 2; }
+        get { return GlobalPosition + new Vector2(NODE_SIZE.X/2, NODE_SIZE.Y/2); }
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -51,19 +51,18 @@ public class Tower : GameObjectList
         mousePosition = inputHelper.MousePosition;
 
         //check if mouse is hovering over tower
-        if (range != 0 && BoundingBox.Contains(mousePosition)) { hover = true; }
-        else { hover = false; }
     }
     public override void Update(GameTime gameTime)
     {
+        base.Update(gameTime);
         if (myNode == null)
         {
             GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane;
-            myNode = plane.NodeAt(position + new Vector2(NODE_SIZE.X, NODE_SIZE.Y)/2);
+            myNode = plane.NodeAt(GlobalPosition);
             myNode.solid = true;
             myNode.beacon = true;
-        }
-        base.Update(gameTime);
+            hover = myNode.selected;
+        } else { hover = myNode.selected; }
         reloadTime -= gameTime.ElapsedGameTime.TotalSeconds;
         if (target != null && reloadTime <= 0)
         { 
@@ -101,5 +100,4 @@ public class Tower : GameObjectList
             return new Rectangle((int)GlobalPosition.X, (int)GlobalPosition.Y, baseTexture.Width, baseTexture.Height);
         }
     }
-
 }

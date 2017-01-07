@@ -41,11 +41,13 @@
     <Compile Include="Classes\Button.cs" />
     <Compile Include="Classes\Enemies\Enemy_AI.cs" />
     <Compile Include="Classes\GameWorld\Camera.cs" />
-    <Compile Include="Classes\Base.cs" />
-    <Compile Include="Classes\Constant.cs" />
-    <Compile Include="Classes\ContentImporter.cs" />
+    <Compile Include="Classes\Static Classes\Functions.cs" />
+    <Compile Include="Classes\Towers\Base.cs" />
+    <Compile Include="Classes\Static Classes\Constant.cs" />
+    <Compile Include="Classes\Static Classes\ContentImporter.cs" />
     <Compile Include="Classes\Enemies\Enemy.cs" />
-    <Compile Include="Classes\GameWorld\Overlay.cs" />
+    <Compile Include="Classes\GameWorld\Economy.cs" />
+    <Compile Include="Classes\UI Overlay\Overlay.cs" />
     <Compile Include="Classes\HelpMenu.cs" />
     <Compile Include="Classes\GameWorld\GridNode.cs" />
     <Compile Include="Classes\GameWorld\GridPlane.cs" />
@@ -63,6 +65,7 @@
     <Compile Include="Classes\Towers\PulseTower.cs" />
     <Compile Include="Classes\Towers\CannonTower.cs" />
     <Compile Include="Classes\Towers\Tower.cs" />
+    <Compile Include="Classes\UI Overlay\OverlayItem.cs" />
     <Compile Include="GameManagement\AnimatedGameObject.cs" />
     <Compile Include="GameManagement\Animation.cs" />
     <Compile Include="GameManagement\AssetManager.cs" />
@@ -75,6 +78,7 @@
     <Compile Include="GameManagement\GameStateManager.cs" />
     <Compile Include="GameManagement\IGameLoopObject.cs" />
     <Compile Include="GameManagement\InputHelper.cs" />
+    <Compile Include="GameManagement\SoundManager.cs" />
     <Compile Include="GameManagement\SpriteGameObject.cs" />
     <Compile Include="GameManagement\SpriteSheet.cs" />
     <Compile Include="GameManagement\TextGameObject.cs" />

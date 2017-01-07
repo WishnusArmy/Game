@@ -17,7 +17,7 @@ class LaserTower : Tower
         this.range = LASER_RADIUS[level];
         this.baseTexture = SPR_LASER_TOWER;
         laser = new Laser();
-        laser.Position = new Vector2(NODE_SIZE.X / 2, -NODE_SIZE.Y / 3);
+        laser.Position = new Vector2(0);// new Vector2(NODE_SIZE.X / 2, -NODE_SIZE.Y / 3);
         Add(laser);
         target = null;
     }

@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using static ContentImporter;
 using static Constant;
+using Microsoft.Xna.Framework.Media;
 
 public class MainMenu : GameObjectList
 {
@@ -48,6 +49,9 @@ public class MainMenu : GameObjectList
         creditsButton = new Button("CREDITS", buttonColor, hoverColor, buttonFont);
         creditsButton.Position = new Vector2(buttonPosition.X + helpButton.Dimensions.X + 50, buttonPosition.Y);
         Add(creditsButton);
+
+        //play music
+        
     }
     public override void HandleInput(InputHelper inputHelper)
     {
@@ -71,8 +75,8 @@ public class MainMenu : GameObjectList
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(Sprites.SPR_MAINTITLEBACKGROUND, new Vector2(0, 0), Color.White);
-        AddNoise(spriteBatch, 25);
+        spriteBatch.Draw(Sprites.SPR_MAINBACKGROUND, new Vector2(0, 0), Color.White);
+        AddNoise(spriteBatch, 5);
         base.Draw(gameTime, spriteBatch);
     }
 

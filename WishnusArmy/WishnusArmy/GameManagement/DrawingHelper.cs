@@ -5,11 +5,13 @@ using System;
 public class DrawingHelper
 {
     protected static Texture2D pixel;
+    public static GraphicsDevice Graphics;
 
     public static void Initialize(GraphicsDevice graphics)
     {
         pixel = new Texture2D(graphics, 1, 1);
         pixel.SetData(new[] { Color.White });
+        Graphics = graphics;
     }
 
     public static void DrawRectangle(Rectangle r, SpriteBatch spriteBatch, Color col, int size, float alpha = 1f)

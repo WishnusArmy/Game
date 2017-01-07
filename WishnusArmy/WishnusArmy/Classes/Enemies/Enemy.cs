@@ -5,15 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static ContentImporter.Sprites;
+using static ContentImporter.Sounds;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using static Constant;
+using WishnusArmy.GameManagement;
 
 public partial class Enemy : GameObject
 {
+
     public Texture2D sprite;
     float rotation, healthRatio;
-    Vector2 target = new Vector2(200,200), startPosition = new Vector2(200,200);
+    GridNode target;
     float speed = 5;
     int _health = ENEMY_HEALTH[0];
     public int health
@@ -25,6 +29,8 @@ public partial class Enemy : GameObject
             if (_health <= 0)
             {
                 kill = true;
+                SoundManager soundManager = new SoundManager();
+                soundManager.PlaySound(SND_ENEMY_DYING);
             }
         }
     }
@@ -33,7 +39,6 @@ public partial class Enemy : GameObject
 
     public Enemy()
     {
-        //position = startPosition + GlobalPosition;
         this.sprite = SPR_ENEMY;
         healthRatio = (float)this.sprite.Width / (float) this.health;
         path = new List<GridNode>();
@@ -54,39 +59,35 @@ public partial class Enemy : GameObject
         if (pathIndex == 0)
         {
             GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane;
-
             try
             {
-                Vector2 p = Position;
-                if (p.X < 0) { p.X = 0; }
-                if (p.Y < 0) { p.Y = 0; }
-                //path = getPath(p, new Vector2(RANDOM.Next(2000) + 128, RANDOM.Next(600) + 100));
-                path = getPath(p, new Vector2(RANDOM.Next(2000) + 128, RANDOM.Next(600) + 100));
+                GridNode node = plane.NodeAt(position);
+                path = getPath(node, plane.NodeAt(new Vector2(RANDOM.Next(2000) + 128, RANDOM.Next(600) + 100)));
             }
             catch(Exception e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine("Exception in Enemy.cs :: Update // "+e.Message);
             }
             pathIndex = path.Count - 1;
         }
-        target = path[pathIndex].Position;
-        base.Update(gameTime);
+        if (pathIndex >= 0)
+            target = path[pathIndex];
+
         //Enemy is in de goede richting gedraaid
-        double opposite = target.Y - position.Y;
-        double adjacent = target.X - position.X;
+        double opposite = target.Position.Y - position.Y;
+        double adjacent = target.Position.X - position.X;
         rotation = (float)Math.Atan2(opposite, adjacent);
 
         
         //The position never truly equals the target position so 5 pixels lower or higher.
-        if (CalculateDistance(target, position) < 5)
+        if (CalculateDistance(target.Position, position) < 5)
         {
-            //target = new Vector2((int)(1000 * Constant.RANDOM.NextDouble()), Constant.RANDOM.Next(1000));
             pathIndex -= 1;
         }
         
 
         //sprite beweegt richting de muis met vaste snelheid (speed)
-        velocity = (target - position);
+        velocity = (target.Position - position);
 
         //als velocity 0,0 is krijg je deling door 0
         if (velocity != new Vector2(0, 0))

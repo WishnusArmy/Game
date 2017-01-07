@@ -26,14 +26,14 @@ internal static class Constant
     //LEVEL
     internal const int NODE_TEXTURE_SIZE = 64; //The raw, square size of a node
     internal static readonly Point NODE_SIZE  =  new Point(128, 64); //The size of a node in the grid
-    internal const int LEVEL_SIZE = 50; //The size of the level grid
-    internal static readonly Vector2 LEVEL_CENTER = new Vector2(LEVEL_SIZE * NODE_SIZE.X, LEVEL_SIZE * NODE_SIZE.Y)/2;
+    internal static readonly Point LEVEL_SIZE = new Point(25, 50); //The size of the level grid
+    internal static readonly Vector2 LEVEL_CENTER = new Vector2(LEVEL_SIZE.X * NODE_SIZE.X, LEVEL_SIZE.Y/2 * NODE_SIZE.Y)/2;
 
     //CAMERA
-    internal const int SLIDE_BORDER = 100; //Defines the width of the edge that will respond to the mouse.
+    internal const int SLIDE_BORDER = 10; //Defines the width of the edge that will respond to the mouse.
     internal const int SLIDE_SPEED = 10; //The speed at which the window slides.
 
-    //PROJECTILES
+    //PROJECTILES (Perhaps use a function here? Some kind of e-curve or root)
     // damage/speed/radius per level
     internal static int[] BULLET_DAMAGE = new int[] { 60, 100, 120 };       
     internal static int[] BULLET_SPEED = new int[] { 5, 8, 10 };
@@ -46,6 +46,15 @@ internal static class Constant
 
     //TOWERS
     internal static int[] FIRE_RATE = new int[] { 1, 2, 3 };
+    public class TowerInfo
+    {
+        public int Cost;
+    }
+    public static readonly Dictionary<string, TowerInfo> Towers = new Dictionary<string, TowerInfo>()
+    {
+        { "LaserTower", new TowerInfo() { Cost = 100 } }
+    };
+    
 
     //ENEMIES
     internal static int[] ENEMY_HEALTH = new int[] { 100, 250, 600 };
@@ -87,10 +96,4 @@ internal static class Constant
         Vector2 v3 = v1 - v2;
         return Math.Sqrt(v3.X*v3.X + v3.Y*v3.Y);
     }
-    
-
-
-
-
-
 }

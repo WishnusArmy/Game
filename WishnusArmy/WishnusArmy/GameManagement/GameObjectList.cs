@@ -122,17 +122,19 @@ public class GameObjectList : GameObject
             return;
         }
         
-        children = children.OrderBy(o => o.Position.Y).ToList();
+
+        children = children.OrderBy(o => o.Position.Y).ToList(); //Sort all the children
         int lastNode = 0;
-        for (int i=0; i < children.Count; ++i)
+        for (int i=0; i < children.Count; ++i) //Iterate through all the children
         {
-            if (children[i] is GridNode)
+            if (children[i] is GridNode) //If the current child is a GridNode...
             {
-                GameObject temp = children[i];
-                children.RemoveAt(i);
-                children.Insert(lastNode++, temp);
+                GameObject temp = children[i]; //Buffer the child
+                children.RemoveAt(i);  //Remove the child from the sorted list
+                children.Insert(lastNode++, temp); //Squeeze it in at the beginning to make sure the grid is always drawn on the bottom.
             }
         }
+
        
         List<GameObject>.Enumerator e = children.GetEnumerator();
         while (e.MoveNext())

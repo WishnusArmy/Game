@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Runtime.InteropServices;
 using static Constant;
@@ -25,6 +26,7 @@ namespace WishnusArmy
             Mouse.WindowHandle = Window.Handle;
             AllocConsole();
             Console.WriteLine("Hello World");
+            Functions.Initialize(GraphicsDevice);
             ContentImporter.Initialize(Content);
             DrawingHelper.Initialize(GraphicsDevice);
             base.Initialize();
@@ -39,7 +41,7 @@ namespace WishnusArmy
             screen = SCREEN_SIZE;
             windowSize = WINDOW_SIZE;
             ApplyResolutionSettings();
-            FullScreen = true;
+            FullScreen = false;
 
             gameStateManager.AddGameState("MainMenuState", new MainMenuState());
             gameStateManager.AddGameState("CreditsState", new CreditsState());
@@ -47,12 +49,7 @@ namespace WishnusArmy
             gameStateManager.AddGameState("PlayingState", new PlayingState());
             gameStateManager.AddGameState("LevelBuilderState", new LevelBuilderState());
             gameStateManager.AddGameState("LevelGeneratorState", new LevelGeneratorState());
-            gameStateManager.SwitchTo("MainMenuState");
-        }
-
-        protected override void UnloadContent()
-        {
-
+            gameStateManager.SwitchTo("PlayingState");
         }
 
         protected override void Update(GameTime gameTime)
