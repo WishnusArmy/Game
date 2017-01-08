@@ -38,19 +38,22 @@ public class Button : GameObject
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        buttonBox = new Rectangle((int)position.X - BUTTON_MARGIN.X, (int)position.Y - BUTTON_MARGIN.Y, (int)buttonFont.MeasureString(buttonText).X + 2 * BUTTON_MARGIN.X, (int)buttonFont.MeasureString(buttonText).Y + 2 * BUTTON_MARGIN.Y);
+        buttonBox = new Rectangle((int)position.X - BUTTON_MARGIN.X - (int)buttonFont.MeasureString(buttonText).X/2, 
+                                    (int)position.Y - BUTTON_MARGIN.Y - (int)buttonFont.MeasureString(buttonText).Y/2, 
+                                    (int)buttonFont.MeasureString(buttonText).X + 2 * BUTTON_MARGIN.X, 
+                                    (int)buttonFont.MeasureString(buttonText).Y + 2 * BUTTON_MARGIN.Y);
 
         base.Draw(gameTime, spriteBatch);
 
         if (hover)
         {
             spriteBatch.Draw(SPR_WHITEPIXEL, buttonBox, hoverColor);
-            spriteBatch.DrawString(buttonFont, buttonText, position, Color.Black);
+            spriteBatch.DrawString(buttonFont, buttonText, position - buttonFont.MeasureString(buttonText)/2, Color.Black);
         }
         else
         {
             spriteBatch.Draw(SPR_WHITEPIXEL, buttonBox, buttonColor);
-            spriteBatch.DrawString(buttonFont, buttonText, position, Color.Black);
+            spriteBatch.DrawString(buttonFont, buttonText, position - buttonFont.MeasureString(buttonText)/2, Color.Black);
         }
     }
 

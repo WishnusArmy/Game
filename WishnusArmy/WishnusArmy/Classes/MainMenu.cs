@@ -47,11 +47,8 @@ public class MainMenu : GameObjectList
 
         //Add credits button
         creditsButton = new Button("CREDITS", buttonColor, hoverColor, buttonFont);
-        creditsButton.Position = new Vector2(buttonPosition.X + helpButton.Dimensions.X + 50, buttonPosition.Y);
-        Add(creditsButton);
-
-        //play music
-        
+        creditsButton.Position = new Vector2(buttonPosition.X + helpButton.Dimensions.X + 90, buttonPosition.Y);
+        Add(creditsButton);        
     }
     public override void HandleInput(InputHelper inputHelper)
     {
