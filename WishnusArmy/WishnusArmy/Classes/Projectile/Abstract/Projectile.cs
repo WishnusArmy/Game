@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework.Graphics;
 
 public abstract class Projectile : GameObject
 {
@@ -24,6 +25,10 @@ public abstract class Projectile : GameObject
         {
             target = null;
         }
+    }
+    public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+    {
+        base.Draw(gameTime, spriteBatch);
     }
 
     public bool HasTarget

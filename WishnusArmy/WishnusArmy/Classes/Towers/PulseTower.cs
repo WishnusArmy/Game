@@ -30,7 +30,6 @@ class PulseTower : Tower
     public override void HandleInput(InputHelper inputHelper)
     {
         base.Attack();
-        Add(new Pulse(level, Vector2.Zero, range));
     }
 }
 

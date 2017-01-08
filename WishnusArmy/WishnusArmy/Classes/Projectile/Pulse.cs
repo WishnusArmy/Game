@@ -34,7 +34,7 @@ class Pulse : Projectile
         foreach (Enemy enemy in GameWorld.FindByType<Enemy>())
         {
             double distance = DISTANCE(GlobalPosition, enemy.GlobalPositionCenter);
-            int offset = (int)speed/2;
+            int offset = (int)rate/2;
             if (distance < radiusCurrent + offset && distance > radiusCurrent - offset);
             {
                 enemy.health -= (int)damage;
@@ -48,8 +48,6 @@ class Pulse : Projectile
     {
         if (!visible)
             return;
-        base.Draw(gameTime, spriteBatch);
-
         spriteBatch.Draw(
                SPR_PULSE,
                new Rectangle(
@@ -67,29 +65,8 @@ class Pulse : Projectile
         base.Update(gameTime);
         radiusCurrent += (int)rate;
         CheckCollision();
-        ChangeColor();
         if (radiusCurrent > range)
             Reset();
     }
-
-    private void ChangeColor()
-    {
-        if (colorUP)
-        {
-            color.R +=3;
-            color.G += 12;
-            colorUP = color.G < 244;
-            /*
-            r 0 > 3
-            g 0 > 12
-            b 210
-            */
-        }
-        else
-        {
-            color.R -= 3;
-            color.G -= 12;
-            colorUP = color.G < 5;
-        }
-    }
+    
 }

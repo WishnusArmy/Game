@@ -67,7 +67,7 @@
     <Compile Include="Classes\Towers\RocketTower.cs" />
     <Compile Include="Classes\LevelGenerator\LevelGenerator.cs" />
     <Compile Include="Classes\Towers\PulseTower.cs" />
-    <Compile Include="Classes\Towers\Tower.cs" />
+    <Compile Include="Classes\Towers\Abstract\Tower.cs" />
     <Compile Include="Classes\UI Overlay\OverlayItem.cs" />
     <Compile Include="GameManagement\AnimatedGameObject.cs" />
     <Compile Include="GameManagement\Animation.cs" />
@@ -87,7 +87,6 @@
     <Compile Include="GameManagement\TextGameObject.cs" />
     <Compile Include="States\LevelGeneratorState.cs" />
     <Compile Include="Classes\MainMenu.cs" />
-    <Compile Include="Classes\Projectile\Rocket.cs" />
     <Compile Include="Classes\Projectile\Laser.cs" />
     <Compile Include="Classes\Projectile\Abstract\Projectile.cs" />
     <Compile Include="Classes\Projectile\Pulse.cs" />

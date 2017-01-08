@@ -1,8 +1,11 @@
 ﻿using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ContentImporter.Sprites;
 
 public class Bullet : Projectile
 {
@@ -17,7 +20,7 @@ public class Bullet : Projectile
     {
         if (HasTarget)
         {
-            double opposite = target.Position.Y - SPR_BULLET.Width / 2 - GlobalPosition.Y;
+            double opposite = target.Position.Y - SPR_BULLET.Width / 2 - base.GlobalPosition.Y;
             double adjacent = target.Position.X - SPR_BULLET.Width / 2 - GlobalPosition.X;
             rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
         }
