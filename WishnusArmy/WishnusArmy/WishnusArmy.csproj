@@ -38,6 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Classes\ButtonWithDelegate.cs" />
     <Compile Include="Classes\Button.cs" />
     <Compile Include="Classes\Enemies\Abstract\Enemy_AI.cs" />
     <Compile Include="Classes\Enemies\Tank.cs" />
@@ -46,6 +47,7 @@
     <Compile Include="Classes\ParticleEffects\ParticleSystem.cs" />
     <Compile Include="Classes\Projectile\Bullet.cs" />
     <Compile Include="Classes\Static Classes\Functions.cs" />
+    <Compile Include="Classes\Static Classes\PopupScreen.cs" />
     <Compile Include="Classes\Towers\Base.cs" />
     <Compile Include="Classes\Static Classes\Constant.cs" />
     <Compile Include="Classes\Static Classes\ContentImporter.cs" />

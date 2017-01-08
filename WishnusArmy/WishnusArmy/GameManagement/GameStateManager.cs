@@ -31,6 +31,23 @@ public class GameStateManager : IGameLoopObject
         if (gameStates.ContainsKey(name))
         {
             currentGameState = gameStates[name];
+            switch(currentGameState.ToString())
+            {
+                case "MainMenuState":
+                case "HelpState":
+                case "CreditsState":
+                    PopupScreen.ClearButtons();
+                    PopupScreen.AddButton("Exit to Dekstop", delegate { WishnusArmy.WishnusArmy.self.Exit(); });
+                    break;
+
+                case "PlayingState":
+                case "LevelBuilderState":
+                case "LevelGeneratorState":
+                    PopupScreen.ClearButtons();
+                    PopupScreen.AddButton("Exit to Menu", delegate { WishnusArmy.WishnusArmy.GameStateManager.SwitchTo("MainMenuState"); });
+                    PopupScreen.AddButton("Exit to Desktop", delegate { WishnusArmy.WishnusArmy.self.Exit(); });
+                    break;
+            }
             soundManager.PlayMusic(name);
         }
         else
@@ -51,7 +68,10 @@ public class GameStateManager : IGameLoopObject
     {
         if (currentGameState != null)
         {
-            currentGameState.HandleInput(inputHelper);
+            if (PopupScreen.show)
+                PopupScreen.HandleInput(inputHelper);
+            else
+                currentGameState.HandleInput(inputHelper);
         }
     }
 
@@ -59,7 +79,10 @@ public class GameStateManager : IGameLoopObject
     {
         if (currentGameState != null)
         {
-            currentGameState.Update(gameTime);
+            if (PopupScreen.show)
+                PopupScreen.Update(gameTime);
+            else
+                currentGameState.Update(gameTime);
         }
     }
 
@@ -68,6 +91,8 @@ public class GameStateManager : IGameLoopObject
         if (currentGameState != null)
         {
             currentGameState.Draw(gameTime, spriteBatch);
+            if (PopupScreen.show)
+                PopupScreen.Draw(gameTime, spriteBatch);
         }
     }
 
