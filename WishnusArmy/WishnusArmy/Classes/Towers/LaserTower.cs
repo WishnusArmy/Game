@@ -42,9 +42,5 @@ class LaserTower : Tower
         if (target != null && DISTANCE(target.GlobalPosition, GlobalPosition) > range)
             target = null;
     }
-    public override void Attack()
-    {
-        base.Attack();
-    }
 }
 

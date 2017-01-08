@@ -116,11 +116,13 @@ public class GridPlane: GameObjectList
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
-        if (RANDOM.Next(75) == 0)
+        
+        if (RANDOM.Next(50) == 0)
         {
             GridNode node = grid[0, RANDOM.Next(LEVEL_SIZE.Y)];
             Add(new Tank { startNode = node, Position = node.Position });
         }
+        
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

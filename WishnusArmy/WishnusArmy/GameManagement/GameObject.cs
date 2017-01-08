@@ -114,6 +114,21 @@ public abstract class GameObject : IGameLoopObject
         get { return visible; }
         set { visible = value; }
     }
+
+    public GridPlane MyPlane
+    {
+        get
+        {
+            if (this is GridPlane)
+                return this as GridPlane;
+
+            if (parent != null)
+                return parent.MyPlane;
+            else
+                return null;
+        }
+    }
+
     public bool Kill
     {
         get { return kill; }

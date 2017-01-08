@@ -97,22 +97,15 @@ public class GameObjectList : GameObject
 
     public override void Update(GameTime gameTime)
     {
-        List<GameObject> remove = new List<GameObject>();
-        foreach (GameObject obj in add)
+        for (int i = children.Count-1; i >= 0; --i)
         {
-            Add(obj);
+            if (children[i].active == true)
+                children[i].Update(gameTime);
+            if (children[i].Kill)
+            {
+                children.RemoveAt(i);
+            }
         }
-        this.add.Clear();
-
-        foreach (GameObject obj in children)
-        {
-            if (obj.active == true)
-                obj.Update(gameTime);
-            if (obj.Kill)
-                remove.Add(obj);
-        }
-        foreach (GameObject obj in remove)
-            children.Remove(obj);
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

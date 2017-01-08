@@ -32,8 +32,11 @@ public class Overlay : GameObjectList
         gridWidth = OVERLAY_SIZE.X / gridSize;
         gridHeight = 4;
         gridPos = new Vector2(SCREEN_SIZE.X - OVERLAY_SIZE.X + 2, 40);
-        Add(new OverlayItem("LaserTower", gridPos));
-        Add(new OverlayItem("RocketTower", gridPos + new Vector2(gridSize, 0)));
+        List<string> TowerNames = new List<string>(Towers.Keys);
+        for(int i=0; i<TowerNames.Count; ++i)
+        {
+            Add(new OverlayItem(TowerNames[i], gridPos + new Vector2(gridSize * (i%gridWidth), gridSize * (i/gridWidth))));
+        }
     }
 
     public override void HandleInput(InputHelper inputHelper)

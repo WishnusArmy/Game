@@ -56,12 +56,15 @@ public abstract class Tower : GameObjectList
         base.Update(gameTime);
         if (myNode == null)
         {
-            GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane;
-            myNode = plane.NodeAt(GlobalPosition);
+            myNode = MyPlane.NodeAt(GlobalPosition);
             myNode.solid = true;
-            hover = myNode.selected;
-        } else { hover = myNode.selected; }
+        }
+        hover = myNode.selected;
         reloadTime -= gameTime.ElapsedGameTime.TotalSeconds;
+        if (target == null)
+        {
+            target = getTarget();
+        }
         if (target != null && reloadTime <= 0)
         { 
             Attack();

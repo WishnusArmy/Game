@@ -10,7 +10,6 @@ using static ContentImporter.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using static Constant;
-using WishnusArmy.GameManagement;
 
 public abstract partial class Enemy : GameObject
 {
@@ -30,8 +29,7 @@ public abstract partial class Enemy : GameObject
             if (_health <= 0)
             {
                 kill = true;
-                SoundManager soundManager = new SoundManager();
-                soundManager.PlaySound(SND_ENEMY_DYING);
+                PlaySound(SND_ENEMY_DYING);
             }
         }
     }
@@ -67,11 +65,6 @@ public abstract partial class Enemy : GameObject
         }
              
        
-
-
-        // tijdelijk toegevoegd door maurin
-        // zet visible naar false als health < 0
-        Kill = !IsAlive;
     }
 
     public void moveAlongPath()
@@ -91,14 +84,15 @@ public abstract partial class Enemy : GameObject
             if (pathIndex > 0)
                 pathIndex -= 1;
             else
+            {
+                kill = true;
                 position = targetNode.Position;
+            }
         }
 
 
         //sprite beweegt richting de muis met vaste snelheid (speed)
         velocity = (targetNode.Position - position);
-
-
 
         //als velocity 0,0 is krijg je deling door 0
         if (velocity != new Vector2(0, 0))

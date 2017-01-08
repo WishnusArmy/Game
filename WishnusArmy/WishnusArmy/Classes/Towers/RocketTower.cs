@@ -34,7 +34,7 @@ class RocketTower : Tower
         {
             if (FindByType<Rocket>().Count < maxRockets && CalculateDistance(enemy.Position, position) < range)
             {
-                Add(new Rocket(damage, 6, GlobalPosition));
+                Add(new Rocket(damage, 8, GlobalPosition));
                 return;
             }
         }

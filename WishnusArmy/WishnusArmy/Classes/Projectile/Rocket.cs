@@ -8,12 +8,12 @@ using Microsoft.Xna.Framework.Graphics;
 using static ContentImporter.Sprites;
 using static Constant;
 
-class Rocket : Projectile
-    
+public class Rocket : Projectile  
 {
-    private float rotation;
-    private bool foundTarget;
+    float rotation;
+    bool foundTarget;
     public Enemy enemy;
+    float speed;
 
     public Rocket(int damage, int speed, Vector2 startPosition) : base()
     {
@@ -27,10 +27,10 @@ class Rocket : Projectile
     {
         if (foundTarget)
             return;
-        List<Enemy> enemies = GameWorld.FindByType<Enemy>();
+        List<Enemy> enemies = MyPlane.FindByType<Enemy>();
         if (enemies.Count > 0)
         {
-            enemy = enemies[RANDOM.Next(0,enemies.Count)];
+            enemy = enemies[RANDOM.Next(enemies.Count)];
             foundTarget = true;
         }
     }
@@ -39,23 +39,23 @@ class Rocket : Projectile
     {
         if (foundTarget)
         {
-            double opposite = enemy.GlobalPosition.Y - SPR_BULLET.Width / 2 - GlobalPosition.Y;
-            double adjacent = enemy.GlobalPosition.X - SPR_BULLET.Width / 2 - GlobalPosition.X;
-            rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
+            double opposite = (enemy.GlobalPosition.Y + enemy.sprite.Height/2) - (GlobalPosition.Y + SPR_BULLET.Height/2);
+            double adjacent = (enemy.GlobalPosition.X + enemy.sprite.Width/2)  - (GlobalPosition.X + SPR_BULLET.Width/2);
+            rotation = (float)Math.Atan2(opposite, adjacent);// + 0.5f * (float)Math.PI;
         }
         else
         {
             rotation += (float) 0.05;
         }
-        int x = (int)(Math.Cos(rotation - 0.5 * Math.PI) * speed);
-        int y = (int)(Math.Sin(rotation - 0.5 * Math.PI) * speed);
+        float x = (float)Math.Cos(rotation) * speed;
+        float y = (float)Math.Sin(rotation) * speed;
         velocity = new Vector2(x, y);
     }
     
     
     public void CheckCollision()
     {
-        if (CalculateDistance(enemy.GlobalPosition, GlobalPosition) < 50)
+        if (CalculateDistance(enemy.GlobalPosition + new Vector2(enemy.sprite.Width, enemy.sprite.Height)/2, GlobalPosition + new Vector2(SPR_BULLET.Width, SPR_BULLET.Height)/2) < 50)
         {
             enemy.health -= damage;
             Kill = true;
@@ -73,7 +73,7 @@ class Rocket : Projectile
             new Rectangle((int)GlobalPosition.X, (int)GlobalPosition.Y, SPR_BULLET.Width, SPR_BULLET.Height),
             null,
             Color.White,
-            rotation,
+            rotation + 0.5f * (float)Math.PI,
             origin,
             SpriteEffects.None,
             0f);
@@ -81,8 +81,6 @@ class Rocket : Projectile
 
     public override void Update(GameTime gameTime)
     {
-        if (!visible)
-            return;
         base.Update(gameTime);
         findTarget();
         if (enemy == null)
@@ -95,7 +93,6 @@ class Rocket : Projectile
             CheckCollision();
         }
         calculateCourse();
-        Position += this.velocity;
     }
 
     

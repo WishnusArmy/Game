@@ -10,20 +10,16 @@ using static Constant;
 
 class Pulse : Projectile
 {
-    private int radiusMax;
-    private int radiusCurrent;
+    int radiusMax;
+    int radiusCurrent;
+    float speed;
 
     public Pulse(int level, Vector2 position, int radius) : base()
     {
         Position = position;
-        this.radiusMax = PULSE_RADIUS[level];
+        this.radiusMax = radius;
         this.damage = PULSE_DAMAGE[level];
         this.speed = PULSE_SPEED[level];
-        Reset();
-    }
-
-    public override void Reset()
-    {
         radiusCurrent = 0;
     }
 
@@ -31,7 +27,7 @@ class Pulse : Projectile
     {
         foreach (Enemy enemy in GameWorld.FindByType<Enemy>())
         {
-            double distance = DISTANCE(Position, enemy.Position);
+            double distance = DISTANCE(GlobalPosition, enemy.GlobalPositionCenter);
             int offset = (int)speed/2;
             if (distance < radiusCurrent + offset && distance > radiusCurrent - offset)
             {
@@ -65,6 +61,6 @@ class Pulse : Projectile
         radiusCurrent += (int)speed;
         CheckCollision();
         if (radiusCurrent > radiusMax)
-            Reset();
+            Kill = true;
     }
 }

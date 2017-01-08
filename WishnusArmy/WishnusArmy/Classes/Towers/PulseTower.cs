@@ -14,17 +14,17 @@ class PulseTower : Tower
         damage = Constant.PULSE_DAMAGE[level];
         this.baseTexture = SPR_PULSE_TOWER;
     }
-    public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+
+    public override void Attack()
     {
-        base.Draw(gameTime, spriteBatch);
+        base.Attack();
+        Add(new Pulse(level, Vector2.Zero, range));
     }
-    public override void HandleInput(InputHelper inputHelper)
+
+    public override void Update(GameTime gameTime)
     {
-        base.HandleInput(inputHelper);
-    }
-    public override void Upgrade()
-    {
-        base.Upgrade();
+        base.Update(gameTime);
     }
 }
-    
+
+
