@@ -26,12 +26,13 @@ public class OverlayItem : GameObject
         }
     }
 
-
-    public OverlayItem(string itemType) : base()
+    
+    public OverlayItem(string itemType, Vector2 pos = new Vector2()) : base()
     {
         this.itemType = itemType;
-        icon = SPR_LASER_TOWER;
-        //cost = Towers[itemType].Cost;
+        icon = Towers[itemType].icon;
+        cost = Towers[itemType].cost;
+        Position = pos;
     }
 
     public override void HandleInput(InputHelper inputHelper)

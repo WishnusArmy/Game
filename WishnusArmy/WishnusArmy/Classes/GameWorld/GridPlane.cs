@@ -57,17 +57,22 @@ public class GridPlane: GameObjectList
             }
         }
 
+        //Calculate the Heuristic for the pathfinding algorithm
+        foreach (GridNode node in grid)
+        {
+            node.Hval = (int)(Math.Abs(node.Position.X - LEVEL_CENTER.X) + Math.Abs(node.Position.Y - LEVEL_CENTER.Y)) / 64;  //Calculate the Heuristic
+            node.pathParent = node; //Reset the parent
+        }
+
         //ADD LEVEL OBJECTS IN THE CAMERA CLASS.
         //ADDING THEM HERE WILL ADD THEM TO EVERY PLANE AL THE SAME
     }
 
     public GridNode NodeAt(Vector2 pos, bool throwClosest = true) //throwClosest=true will return the closest node if not found
     {
-        if ((pos.X < 0 || pos.Y < 0))
+        if ((pos.X < 0 || pos.Y < 0) )
         {
-            if (throwClosest)
-                throw new Exception("Can't look for nodes at negative coordinates: " + pos.X + ", " + pos.Y);
-            else
+            if (!throwClosest)
                 return null;
         }
 
@@ -82,7 +87,7 @@ public class GridPlane: GameObjectList
                 {
                     return grid[x, y];
                 }
-                float dis = CalculateDistance(grid[x, y].Position, pos); //Store the distance
+                float dis = CalculateDistance(grid[x, y].GlobalPosition, pos); //Store the distance
                 if (dis < shortDis)
                 {
                     shortDis = dis; //Set new shortDis
@@ -111,6 +116,13 @@ public class GridPlane: GameObjectList
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
+        
+        if (RANDOM.Next(50) == 0)
+        {
+            GridNode node = grid[0, RANDOM.Next(LEVEL_SIZE.Y)];
+            Add(new Tank { startNode = node, Position = node.Position });
+        }
+        
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

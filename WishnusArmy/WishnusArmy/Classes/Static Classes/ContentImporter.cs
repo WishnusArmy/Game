@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
-using static Functions;
+using WishnusArmy.GameManagement;
 
 internal static class ContentImporter
 {
@@ -112,23 +112,39 @@ internal static class ContentImporter
 
     internal static class Music
     {
+        private static SoundManager soundManagerMSC;
+
         internal static Song
             SNG_MAINMENU;
 
         public static void Initialize(ContentManager Content)
         {
+            soundManagerMSC = new SoundManager();
             SNG_MAINMENU = Content.Load<Song>("Content/Music/mainMenu");
+        }
+
+        public static void PlayMusic(Song music, bool isRepeating = true)
+        {
+            MediaPlayer.IsRepeating = isRepeating;
+            MediaPlayer.Play(music);
         }
     }
 
     internal static class Sounds
     {
+        private static SoundManager soundManagerSFX;
         internal static SoundEffect
             SND_ENEMY_DYING;
 
         public static void Initialize(ContentManager Content)
         {
+            soundManagerSFX = new SoundManager();
             SND_ENEMY_DYING = Content.Load<SoundEffect>("Content/SoundEffects/Enemies/wilhemScream");
+        }
+
+        public static void PlaySound(SoundEffect snd)
+        {
+            soundManagerSFX.PlaySound(snd);
         }
     }
 }

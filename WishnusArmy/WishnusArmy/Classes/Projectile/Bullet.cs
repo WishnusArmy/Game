@@ -1,15 +1,10 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Xna.Framework.Graphics;
-using static ContentImporter.Sprites;
-using static Constant;
 
-class Bullet : Projectile
-    
+public class Bullet : Projectile
 {
     private float rotation;
 
@@ -71,6 +66,5 @@ class Bullet : Projectile
         calculateCourse();
         Position += this.velocity;
     }
-
     
 }

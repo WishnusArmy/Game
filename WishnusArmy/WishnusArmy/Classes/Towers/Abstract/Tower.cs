@@ -50,8 +50,7 @@ public abstract class Tower : GameObjectList
         base.Update(gameTime);
         if (myNode == null)
         {
-            GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane;
-            myNode = plane.NodeAt(GlobalPosition);
+            myNode = MyPlane.NodeAt(GlobalPosition);
             myNode.solid = true;
             myNode.beacon = true;
             hover = myNode.selected;

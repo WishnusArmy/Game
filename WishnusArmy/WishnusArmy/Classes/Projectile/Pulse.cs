@@ -33,11 +33,9 @@ class Pulse : Projectile
     {
         foreach (Enemy enemy in GameWorld.FindByType<Enemy>())
         {
-            double distance = DISTANCE(GlobalPosition, enemy.GlobalPosition);
-            int offset = (int)rate/2 + 8;
-            if (DISTANCE(enemy.GlobalPosition, GlobalPosition) < radiusCurrent + offset 
-                && DISTANCE(enemy.GlobalPosition, GlobalPosition) > radiusCurrent -offset
-                && !TargetsHit.Contains(enemy))
+            double distance = DISTANCE(GlobalPosition, enemy.GlobalPositionCenter);
+            int offset = (int)speed/2;
+            if (distance < radiusCurrent + offset && distance > radiusCurrent - offset);
             {
                 enemy.health -= (int)damage;
                 TargetsHit.Add(enemy);

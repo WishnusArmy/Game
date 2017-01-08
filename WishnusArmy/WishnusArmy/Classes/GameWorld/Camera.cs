@@ -37,15 +37,12 @@ public class Camera : GameObjectList
                     Land = p;
                     planes.Add(Land);
                     //Add items to the land plane (p.Add)
-                    //Base b = new Base();
-                    //b.Position = LEVEL_CENTER;
-                    //p.Add(b);
+                    p.Add(new Base { Position = LEVEL_CENTER });
                     //(testcode) plaatst torens en voegt een enemy toe
-                    for (int q = 0; q < 50; ++q)
+                    for (int q = 0; q < 1; ++q)
                     {
-                        Enemy e = new Enemy();
-                        e.Position = new Vector2(RANDOM.Next(500)+100, RANDOM.Next(600)+100);
-                        p.Add(e);
+                        GridNode node = Land.grid[0, LEVEL_SIZE.Y / 2];
+                        p.Add(new Tank { startNode = node, Position = node.Position });
                     }
                     break;
 

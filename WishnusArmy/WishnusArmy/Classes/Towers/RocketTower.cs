@@ -8,9 +8,9 @@ using Microsoft.Xna.Framework.Graphics;
 using static Constant;
 
 
-class ProjectileTower : Tower
+class RocketTower : Tower
 {
-    public ProjectileTower() : base()
+    public RocketTower() : base()
     {
         type = 0;
         sprite = ContentImporter.Sprites.SPR_ABSTRACT_TOWER;
@@ -33,6 +33,18 @@ class ProjectileTower : Tower
             Bullet b = new Bullet((int)TowerDamage(type, stats), TowerRange(type, stats), BULLET_SPEED);
             b.Target = target;
             Add(b);
+        /*
+        GridPlane plane = parent as GridPlane;
+        List<Enemy> enemies = plane.FindByType<Enemy>();
+        foreach (Enemy enemy in enemies)
+        {
+            if (FindByType<Rocket>().Count < maxRockets && CalculateDistance(enemy.Position, position) < range)
+            {
+                Add(new Rocket(damage, 8, GlobalPosition));
+                return;
+            }
+        }
+        */
         }
         base.Attack();
     }

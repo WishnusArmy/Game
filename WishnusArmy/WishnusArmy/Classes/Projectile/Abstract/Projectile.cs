@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-class Projectile : GameObject
+public abstract class Projectile : GameObject
 {
     public double range, damage, rate;
     protected Enemy target;

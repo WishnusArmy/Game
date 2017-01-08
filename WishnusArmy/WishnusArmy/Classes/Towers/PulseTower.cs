@@ -17,7 +17,6 @@ class PulseTower : Tower
         Pulse p = new Pulse(TowerDamage(type, stats), TowerRange(type, stats), TowerRate(type, stats));
         Add(p);
     }
-
    
     public override void Update(GameTime gameTime)
     {
@@ -30,8 +29,9 @@ class PulseTower : Tower
     }
     public override void HandleInput(InputHelper inputHelper)
     {
-        base.HandleInput(inputHelper);
+        base.Attack();
+        Add(new Pulse(level, Vector2.Zero, range));
     }
-   
 }
-    
+
+

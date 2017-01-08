@@ -16,16 +16,27 @@ public class Overlay : GameObjectList
     public OverlayItem selected;
     bool selectedPossible;
     Vector2 mousePos;
- 
+
+    int gridSize;
+    int gridWidth;
+    int gridHeight;
+    Vector2 gridPos;
+
 
     public Overlay() : base()
     {
         selected = null;
         selectedPossible = false;
         mousePos = Vector2.Zero;
-        OverlayItem item = new OverlayItem("LaserTower");
-        item.Position = new Vector2(SCREEN_SIZE.X - 100, 100);
-        Add(item);
+        gridSize = 64;
+        gridWidth = OVERLAY_SIZE.X / gridSize;
+        gridHeight = 4;
+        gridPos = new Vector2(SCREEN_SIZE.X - OVERLAY_SIZE.X + 2, 40);
+        List<string> TowerNames = new List<string>(Towers.Keys);
+        for(int i=0; i<TowerNames.Count; ++i)
+        {
+            Add(new OverlayItem(TowerNames[i], gridPos + new Vector2(gridSize * (i%gridWidth), gridSize * (i/gridWidth))));
+        }
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -39,7 +50,7 @@ public class Overlay : GameObjectList
         if (node == null)
             return;
 
-        selectedPossible = !node.solid;
+        selectedPossible = !node.solid && inputHelper.MouseInGameWindow;
 
         if (inputHelper.MouseLeftButtonPressed() &&
             inputHelper.MouseInGameWindow &&
@@ -73,6 +84,22 @@ public class Overlay : GameObjectList
             }
         }
         DrawText(spriteBatch, FNT_OVERLAY, "Resources: " + EcResources.ToString(), new Vector2(50, SCREEN_SIZE.Y - OVERLAY_SIZE.Y + 20), Color.White);
+        DrawGrid(spriteBatch);
+
         base.Draw(gameTime, spriteBatch);
+    }
+
+    void DrawGrid(SpriteBatch spriteBatch)
+    {
+        //Draw the grid at the top right
+        for (int x = 0; x < gridWidth; ++x)
+        {
+            DrawLine(spriteBatch, gridPos + new Vector2(gridSize * x, 0), gridPos + new Vector2(gridSize * x, gridSize * gridHeight), Color.Black, 2, 0.4f);
+        }
+
+        for (int y = 0; y < gridHeight; ++y)
+        {
+            DrawLine(spriteBatch, gridPos + new Vector2(0, gridSize * y), gridPos + new Vector2(gridSize * gridWidth, gridSize * y), Color.Black, 2, 0.4f);
+        }
     }
 }
