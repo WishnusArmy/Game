@@ -35,26 +35,62 @@ internal static class Constant
 
     //PROJECTILES (Perhaps use a function here? Some kind of e-curve or root)
     // damage/speed/radius per level
-    internal static int[] BULLET_DAMAGE = new int[] { 60, 100, 120 };       
-    internal static int[] BULLET_SPEED = new int[] { 5, 8, 10 };
-    internal static int[] PULSE_DAMAGE = new int[] { 4, 6, 8 };
-    internal static int[] PULSE_SPEED = new int[] { 1, 2, 3 };
-    internal static int[] PULSE_RADIUS = new int[] { 200, 400, 600 };
-    internal static int[] LASER_DAMAGE = new int[] { 1, 2, 4 };
-    internal static int[] LASER_RADIUS = new int[] { 500, 600, 800 };
     internal const int LASER_TIME = 4;
+    internal const int BULLET_SPEED = 10;
 
     //TOWERS
-    internal static int[] FIRE_RATE = new int[] { 1, 2, 3 };
-    public class TowerInfo
+    private static double Efunction(double max, double slope)
     {
-        public int Cost;
+        return max / (1 + Math.Pow(Math.E, slope));
     }
-    public static readonly Dictionary<string, TowerInfo> Towers = new Dictionary<string, TowerInfo>()
+
+    // 0=Projectile Tower, 1=LaserTower, 2=PulseTower
+    internal static double TowerDamage(int type, int[] stats)
     {
-        { "LaserTower", new TowerInfo() { Cost = 100 } }
-    };
-    
+        int s = stats[0];
+        switch (type)
+        {
+            case 0:
+                return Efunction(110, -0.6 * s);
+            case 1:
+                return Efunction(2, -0.7 * s);
+            case 2:
+                return Efunction(50, -0.5 * s);
+            default:
+                return 0;
+        }
+    }
+    internal static int TowerRange(int type, int[] stats)
+    {
+        int s = stats[1];
+        switch (type)
+        {
+            case 0:
+                return (int)Efunction(1200, -0.7 * s);
+            case 1:
+                return (int)Efunction(500, -0.6 * s);
+            case 2:
+                return (int)Efunction(700, -0.8 * s);
+            default:
+                return 0;
+        }
+    }
+    internal static double TowerRate(int type, int[] stats)
+    {
+        int s = stats[2];
+        switch (type)
+        {
+            case 0:
+                return (s * s / -30) + (17 * s / 30) + 1;
+            case 1:
+                return 2 * Math.Sqrt(s) + 1;
+            case 2:
+                return Efunction(10, -0.6 * s);
+            default:
+                return 0;
+        }
+    }
+
 
     //ENEMIES
     internal static int[] ENEMY_HEALTH = new int[] { 100, 250, 600 };

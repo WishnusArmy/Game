@@ -31,7 +31,7 @@ public class OverlayItem : GameObject
     {
         this.itemType = itemType;
         icon = SPR_LASER_TOWER;
-        cost = Towers[itemType].Cost;
+        //cost = Towers[itemType].Cost;
     }
 
     public override void HandleInput(InputHelper inputHelper)

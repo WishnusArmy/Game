@@ -9,36 +9,28 @@ using Microsoft.Xna.Framework.Input;
 using static Constant;
 using static ContentImporter.Sprites;
 
-public class Tower : GameObjectList
+public abstract class Tower : GameObjectList
 {
-    protected MouseState state = new MouseState();
+    protected Texture2D sprite;
     public Vector2 gridPosition, mousePosition, previousPosition = new Vector2(0, 0);
-    public Texture2D baseTexture;
     protected Enemy target;
-    protected Vector2 targetPos;
     public GridNode myNode;
     public bool hover;
-    float rotation;
-    protected int damage, cost, level = 0, range = 5 * Constant.NODE_SIZE.X;
-    protected double reloadTime;
-    int[] levels; // {cost, damage, firerate, radius }
-
+    protected float rotation;
+    protected int type;
+    protected int[] stats;
 
     public Tower() : base()
     {
-        baseTexture = SPR_ABSTRACT_TOWER; //Texture of the (unanimated) base of the tower
-        reloadTime = 1d / Constant.FIRE_RATE[level];
-        levels = new int[] {
-            0,0,0,0
-        };
+        stats = new int[] {0, 0, 0}; // damage, range, rate
     }
+
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
         if (hover)
-            spriteBatch.Draw(SPR_CIRCLE, GlobalPosition, null, null, new Vector2(SPR_CIRCLE.Width / 2, SPR_CIRCLE.Height / 2), 0f, new Vector2(1f, 1f) * ((float)range / ((float)SPR_CIRCLE.Width / 2)), new Color(0.2f, 0.2f, 0.2f, 0.05f));
-    spriteBatch.Draw(baseTexture, GlobalPosition - new Vector2(baseTexture.Width, baseTexture.Height) / 2, Color.White);
-
+            spriteBatch.Draw(SPR_CIRCLE, GlobalPosition, null, null, new Vector2(SPR_CIRCLE.Width / 2, SPR_CIRCLE.Height / 2), 0f, new Vector2(1f, 1f) * ((float)TowerRange(type, stats) / ((float)SPR_CIRCLE.Width / 2)), new Color(0.2f, 0.2f, 0.2f, 0.05f));
+        spriteBatch.Draw(sprite, GlobalPosition, null, null, new Vector2(sprite.Width / 2, sprite.Height / 2));
     }
 
     public Vector2 DrawPosition //Correction for being on the grid.
@@ -52,6 +44,7 @@ public class Tower : GameObjectList
 
         //check if mouse is hovering over tower
     }
+
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
@@ -63,41 +56,80 @@ public class Tower : GameObjectList
             myNode.beacon = true;
             hover = myNode.selected;
         } else { hover = myNode.selected; }
-        reloadTime -= gameTime.ElapsedGameTime.TotalSeconds;
-        if (target != null && reloadTime <= 0)
-        { 
-            Attack();
-            reloadTime = 1d/Constant.FIRE_RATE[level];
+
+       
+
+        if (target == null || target.Kill)
+        {
+            target = findTarget();
         }
     }
 
-    public virtual Enemy getTarget()
+    public virtual Enemy findTarget()
     {
-        List<Enemy> enemies = GameWorld.FindByType<Camera>()[0].currentPlane.FindByType<Enemy>();
+        List<Enemy> enemies = GameWorld.FindByType<Enemy>();
+        if (enemies.Count == 0)
+            return null;
+        List<Enemy> inrange = new List<Enemy>();
         foreach(Enemy x in enemies)
         {
-            if (x.CalculateDistance(GlobalPosition, x.GlobalPosition) <= range)
+            if (CalculateDistance(GlobalPosition, x.GlobalPosition) <= TowerRange(type, stats))
             {
-                return x;
+                inrange.Add(x);
             }
         }
+        if (inrange.Count > 0)
+            return inrange[RANDOM.Next(0, inrange.Count)];
+
         return null;
     }
 
     public virtual void Attack()
     {
-
-    }
-
-    public virtual void Upgrade()
-    {
-
-    }
-    public override Rectangle BoundingBox
-    {
-        get
+        foreach (Projectile p in children)
         {
-            return new Rectangle((int)GlobalPosition.X, (int)GlobalPosition.Y, baseTexture.Width, baseTexture.Height);
+            if (!p.HasTarget)
+            {
+                p.Target = findTarget();
+            }
         }
     }
+    
+    protected void UpgradeStat(int stat)
+    {
+        if (stats[stat] >= 5)
+            return;
+        stats [stat] = stats[stat] + 1;
+        
+        foreach (Projectile p in children)
+        {
+            p.Damage = TowerDamage(type, stats);
+            p.Range = TowerRange(type, stats);
+            p.Rate = TowerRate(type, stats);
+        }
+    }
+
+    protected void DowngradeStat(int stat)
+    {
+        if (stats[stat] <= 0)
+            return;
+        stats[stat] = stats[stat] - 1;
+    }
+
+    public void UpgradeDamage()
+    {
+        UpgradeStat(0);
+    }
+    public void UpgradeRange()
+    {
+        UpgradeStat(1);
+    }
+    public void UpgradeRate()
+    {
+        UpgradeStat(2);
+    }
+    
+
+
+    
 }

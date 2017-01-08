@@ -9,20 +9,17 @@ using static Constant;
 
 class Laser : Projectile
 {
-    public Enemy target;
+    double timer;
 
-    // Target new enemy as 
-    //      laser.target = Enemy
-
-    public Laser() : base()
+    public Laser(double damage, double range, double rate) : base(damage, range, rate)
     {
+        timer = 0;
     }
     
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
-
-        if (target != null)
+        if (HasTarget)
             DrawingHelper.DrawLine(spriteBatch, GlobalPosition, target.GlobalPositionCenter, Color.Red, 10);
     }
 
@@ -31,7 +28,11 @@ class Laser : Projectile
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
-        if (target != null)
-          target.health -= damage;
+        timer++;
+        if (HasTarget && timer > rate)
+        {
+            target.health -= (int)damage;
+            timer = 0;
+        }
     }
 }

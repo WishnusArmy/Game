@@ -10,17 +10,13 @@ using static Constant;
 
 class Pulse : Projectile
 {
-    private int radiusMax;
     private int radiusCurrent;
     private List<Enemy> TargetsHit;
     private bool colorUP;
     private Color color;
 
-    public Pulse(int level, int radius) : base()
+    public Pulse(double damage, double range, double rate) : base(damage, range, rate)
     {
-        this.radiusMax = PULSE_RADIUS[level];
-        this.damage = PULSE_DAMAGE[level];
-        this.speed = PULSE_SPEED[level];
         TargetsHit = new List<Enemy>();
         Reset();
     }
@@ -38,12 +34,12 @@ class Pulse : Projectile
         foreach (Enemy enemy in GameWorld.FindByType<Enemy>())
         {
             double distance = DISTANCE(GlobalPosition, enemy.GlobalPosition);
-            int offset = (int)speed/2 + 8;
+            int offset = (int)rate/2 + 8;
             if (DISTANCE(enemy.GlobalPosition, GlobalPosition) < radiusCurrent + offset 
                 && DISTANCE(enemy.GlobalPosition, GlobalPosition) > radiusCurrent -offset
                 && !TargetsHit.Contains(enemy))
             {
-                enemy.health -= damage;
+                enemy.health -= (int)damage;
                 TargetsHit.Add(enemy);
             }
         }
@@ -71,10 +67,10 @@ class Pulse : Projectile
         if (!visible)
             return;
         base.Update(gameTime);
-        radiusCurrent += (int)speed;
+        radiusCurrent += (int)rate;
         CheckCollision();
         ChangeColor();
-        if (radiusCurrent > radiusMax)
+        if (radiusCurrent > range)
             Reset();
     }
 

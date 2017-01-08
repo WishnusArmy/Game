@@ -12,60 +12,35 @@ class Bullet : Projectile
     
 {
     private float rotation;
-    private bool foundTarget;
-    public Enemy enemy;
 
-    public Bullet(int damage, int speed, int range) : base()
+    public Bullet(double damage, double range, double rate) : base(damage, range, rate)
     {
-        foundTarget = false;
-        this.damage = damage;
-        this.speed = speed;
-        this.range = range;
+        rotation = 0;
     }
 
-    private void findTarget()
-    {
-        if (foundTarget)
-            return;
-        List<Enemy> AllEnemies = GameWorld.FindByType<Enemy>();
-        if (AllEnemies.Count == 0)
-            return;
-        List<Enemy> EnemiesInRange = new List<Enemy>();
-        foreach (Enemy x in AllEnemies)
-        {
-            if (DISTANCE(x.GlobalPosition, GlobalPosition) < range)
-                EnemiesInRange.Add(x);
-        }
-        if (EnemiesInRange.Count > 0)
-        {
-            enemy = EnemiesInRange[RANDOM.Next(0,EnemiesInRange.Count)];
-            foundTarget = true;
-        }
-    }
-    
     private void calculateCourse()
     {
-        if (foundTarget)
+        if (HasTarget)
         {
-            double opposite = enemy.Position.Y - SPR_BULLET.Width / 2 - GlobalPosition.Y;
-            double adjacent = enemy.Position.X - SPR_BULLET.Width / 2 - GlobalPosition.X;
+            double opposite = target.Position.Y - SPR_BULLET.Width / 2 - GlobalPosition.Y;
+            double adjacent = target.Position.X - SPR_BULLET.Width / 2 - GlobalPosition.X;
             rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
         }
         else
         {
             rotation += (float) 0.05;
         }
-        int x = (int)(Math.Cos(rotation - 0.5 * Math.PI) * speed);
-        int y = (int)(Math.Sin(rotation - 0.5 * Math.PI) * speed);
+        int x = (int)(Math.Cos(rotation - 0.5 * Math.PI) * rate);
+        int y = (int)(Math.Sin(rotation - 0.5 * Math.PI) * rate);
         velocity = new Vector2(x, y);
     }
     
     
     public void CheckCollision()
     {
-        if (CalculateDistance(enemy.GlobalPosition, GlobalPosition) < 50)
+        if (CalculateDistance(target.GlobalPosition, GlobalPosition) < 50)
         {
-            enemy.health -= damage;
+            target.health -= (int)damage;
             Kill = true;
         }
     }
@@ -91,17 +66,8 @@ class Bullet : Projectile
     {
         if (!visible)
             return;
-        base.Update(gameTime);
-        findTarget();
-        if (enemy == null)
-        {
-            foundTarget = false;
-        }
-        else
-        {
-            foundTarget = !enemy.Kill;
+        if (HasTarget)
             CheckCollision();
-        }
         calculateCourse();
         Position += this.velocity;
     }

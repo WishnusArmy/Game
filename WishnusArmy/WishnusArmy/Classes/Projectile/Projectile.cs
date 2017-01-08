@@ -7,13 +7,63 @@ using System.Threading.Tasks;
 
 class Projectile : GameObject
 {
-    public int damage;
-    public int range;
-    public double speed;
+    public double range, damage, rate;
+    protected Enemy target;
 
-    public Projectile() : base()
+    public Projectile(double damage, double range, double rate) : base()
     {
-        
+        target = null;
+        this.damage = damage;
+        this.range = range;
+        this.rate = rate;
+    }
+    public override void Update(GameTime gameTime)
+    {
+        base.Update(gameTime);
+        if (HasTarget && CalculateDistance(target.GlobalPosition, GlobalPosition) > range)
+        {
+            target = null;
+        }
     }
 
+    public bool HasTarget
+    {
+        get
+        {
+            return (target != null && !target.Kill);
+        }
+    }
+
+    public Enemy Target
+    {
+        get
+        {
+            return target;
+        }
+        set
+        {
+            target = value;
+        }
+    }
+    public double Damage
+    {
+        set
+        {
+            damage = value;
+        }
+    }
+    public double Range
+    {
+        set
+        {
+            range = value;
+        }
+    }
+    public double Rate
+    {
+        set
+        {
+            rate = value;
+        }
+    }
 }

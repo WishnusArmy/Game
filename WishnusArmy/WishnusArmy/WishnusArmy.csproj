@@ -63,7 +63,6 @@
     <Compile Include="Classes\Towers\ProjectileTower.cs" />
     <Compile Include="Classes\LevelGenerator\LevelGenerator.cs" />
     <Compile Include="Classes\Towers\PulseTower.cs" />
-    <Compile Include="Classes\Towers\CannonTower.cs" />
     <Compile Include="Classes\Towers\Tower.cs" />
     <Compile Include="Classes\UI Overlay\OverlayItem.cs" />
     <Compile Include="GameManagement\AnimatedGameObject.cs" />

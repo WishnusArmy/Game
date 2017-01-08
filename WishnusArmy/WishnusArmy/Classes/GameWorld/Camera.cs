@@ -37,9 +37,9 @@ public class Camera : GameObjectList
                     Land = p;
                     planes.Add(Land);
                     //Add items to the land plane (p.Add)
-                    Base b = new Base();
-                    b.Position = LEVEL_CENTER;
-                    p.Add(b);
+                    //Base b = new Base();
+                    //b.Position = LEVEL_CENTER;
+                    //p.Add(b);
                     //(testcode) plaatst torens en voegt een enemy toe
                     for (int q = 0; q < 50; ++q)
                     {

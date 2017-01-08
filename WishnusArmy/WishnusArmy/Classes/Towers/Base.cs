@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using static ContentImporter.Sprites;
 using static Constant;
 
-public class Base : CannonTower
+public class Base : Tower
 {
     Vector2 GameMiddle = new Vector2(LEVEL_SIZE.X * NODE_SIZE.X / 2, LEVEL_SIZE.Y * NODE_SIZE.Y / 4);
     Vector2 BaseOrigin = new Vector2(SPR_BASEGUN.Width / 2, SPR_BASEGUN.Height / 2);
@@ -18,14 +18,19 @@ public class Base : CannonTower
     {
         //this.gridPosition = new Vector2(LEVEL_SIZE / 2, LEVEL_SIZE / 4) - BaseOrigin/NODE_SIZE.X;
         //this.gridPosition = new Vector2(5,5);
-        this.cannonTexture = SPR_BASEGUN;
-        this.baseTexture = SPR_BASE;
-        this.range = 0; //(aimed manually)
+        //this.cannonTexture = SPR_BASEGUN;
+        sprite = SPR_BASE;
+        //this.range = 0; //(aimed manually)
     }
 
     public override void HandleInput(InputHelper inputHelper)
     {
-        base.HandleInput(inputHelper);
-        targetPos = inputHelper.MousePosition;
+        //base.HandleInput(inputHelper);
+        //targetPos = inputHelper.MousePosition;
+    }
+
+    public override void Attack()
+    {
+        //throw new NotImplementedException();
     }
 }
