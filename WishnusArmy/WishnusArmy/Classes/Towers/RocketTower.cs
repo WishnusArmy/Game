@@ -10,6 +10,7 @@ using static Constant;
 
 class RocketTower : Tower
 {
+    static int maxRockets = 3;
     public RocketTower() : base()
     {
         type = 0;
@@ -28,23 +29,23 @@ class RocketTower : Tower
     }
     public override void Attack()
     {
+        /*
         if (children.Count < (int)TowerRate(type, stats))
         {
             Bullet b = new Bullet((int)TowerDamage(type, stats), TowerRange(type, stats), BULLET_SPEED);
             b.Target = target;
             Add(b);
-        /*
+            */
+        
         GridPlane plane = parent as GridPlane;
         List<Enemy> enemies = plane.FindByType<Enemy>();
         foreach (Enemy enemy in enemies)
         {
-            if (FindByType<Rocket>().Count < maxRockets && CalculateDistance(enemy.Position, position) < range)
+            if (FindByType<Rocket>().Count < maxRockets && CalculateDistance(enemy.Position, position) < stats[1])
             {
-                Add(new Rocket(damage, 8, GlobalPosition));
+                Add(new Rocket((int)TowerDamage(type, stats), 8, GlobalPosition));
                 return;
             }
-        }
-        */
         }
         base.Attack();
     }

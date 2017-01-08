@@ -19,8 +19,8 @@ public abstract partial class Enemy : GameObject
     public GridNode startNode;
     GridNode targetNode;
     float speed = 5;
-    int _health = ENEMY_HEALTH[0];
-    public int health
+    double _health = ENEMY_HEALTH[0];
+    public double health
     {
         get { return _health;  }
         set
@@ -109,7 +109,7 @@ public abstract partial class Enemy : GameObject
         spriteBatch.Draw(sprite, GlobalPosition + new Vector2(NODE_SIZE.X, NODE_SIZE.Y)/2, null, null, new Vector2(sprite.Width/2,sprite.Height/2), rotation);
 
         //draw Healthbar, above the enemy.
-        DrawingHelper.DrawRectangleFilled(new Rectangle(GlobalPosition.ToPoint() + new Point(0, -60), new Point(health, 15)), spriteBatch, Color.Black);
+        DrawingHelper.DrawRectangleFilled(new Rectangle(GlobalPosition.ToPoint() + new Point(0, -60), new Point((int)health, 15)), spriteBatch, Color.Black);
     }
 
     // hiermee kunnen alle enemies uit de lijst verwijderd worden dmv !enemy.IsAlive

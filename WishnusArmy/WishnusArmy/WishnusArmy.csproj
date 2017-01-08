@@ -46,6 +46,7 @@
     <Compile Include="Classes\ParticleEffects\Explosion.cs" />
     <Compile Include="Classes\ParticleEffects\ParticleSystem.cs" />
     <Compile Include="Classes\Projectile\Bullet.cs" />
+    <Compile Include="Classes\Projectile\Rocket.cs" />
     <Compile Include="Classes\Static Classes\Functions.cs" />
     <Compile Include="Classes\Static Classes\PopupScreen.cs" />
     <Compile Include="Classes\Towers\Abstract\CannonTower.cs" />
