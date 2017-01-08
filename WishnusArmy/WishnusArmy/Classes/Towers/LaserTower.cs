@@ -13,7 +13,7 @@ class LaserTower : Tower
     public LaserTower() : base()
     {
         type = 1;
-        sprite = SPR_LASER_TOWER;
+        baseTexture = SPR_LASER_TOWER;
         target = findTarget();
         Laser laser = new Laser(TowerDamage(type, stats), TowerRange(type, stats), TowerRate(type, stats));
         laser.Target = target;

@@ -12,7 +12,7 @@ using static Functions;
 
 public static class PopupScreen
 {
-    public static bool show = true;
+    public static bool show = false;
     public static Point position;
     public static bool center;
     public static Color backgroundColor;

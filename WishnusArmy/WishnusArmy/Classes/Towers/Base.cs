@@ -19,7 +19,7 @@ public class Base : CannonTower
         //this.gridPosition = new Vector2(LEVEL_SIZE / 2, LEVEL_SIZE / 4) - BaseOrigin/NODE_SIZE.X;
         //this.gridPosition = new Vector2(5,5);
         this.cannonTexture = SPR_BASEGUN;
-        sprite = SPR_BASE;
+        this.baseTexture = SPR_BASE;
         //this.range = 0; //(aimed manually)
     }
 

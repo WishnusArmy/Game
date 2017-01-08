@@ -17,6 +17,7 @@ public class Rocket : Projectile
 
     public Rocket(int damage, int speed,  Vector2 startPosition) : base(damage, 0, 0)
     {
+        Console.WriteLine("Rocket Existing boii");
         foundTarget = false;
         this.damage = damage;
         this.speed = speed;

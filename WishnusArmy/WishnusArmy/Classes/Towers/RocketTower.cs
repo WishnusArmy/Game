@@ -14,7 +14,7 @@ class RocketTower : Tower
     public RocketTower() : base()
     {
         type = 0;
-        sprite = ContentImporter.Sprites.SPR_ABSTRACT_TOWER;
+        baseTexture = ContentImporter.Sprites.SPR_ABSTRACT_TOWER;
         target = findTarget();
     }
 
@@ -37,11 +37,11 @@ class RocketTower : Tower
             Add(b);
             */
         
-        GridPlane plane = parent as GridPlane;
-        List<Enemy> enemies = plane.FindByType<Enemy>();
+
+        List<Enemy> enemies = MyPlane.FindByType<Enemy>();
         foreach (Enemy enemy in enemies)
         {
-            if (FindByType<Rocket>().Count < maxRockets && CalculateDistance(enemy.Position, position) < stats[1])
+            if (FindByType<Rocket>().Count < maxRockets && CalculateDistance(enemy.Position, position) < TowerRange(type, stats))
             {
                 Add(new Rocket((int)TowerDamage(type, stats), 8, GlobalPosition));
                 return;

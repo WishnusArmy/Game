@@ -11,7 +11,7 @@ using static ContentImporter.Sprites;
 
 public abstract class Tower : GameObjectList
 {
-    protected Texture2D sprite;
+    protected Texture2D baseTexture;
     public Vector2 gridPosition, mousePosition, previousPosition = new Vector2(0, 0);
     protected Enemy target;
     public GridNode myNode;
@@ -30,7 +30,7 @@ public abstract class Tower : GameObjectList
         base.Draw(gameTime, spriteBatch);
         if (hover)
             spriteBatch.Draw(SPR_CIRCLE, GlobalPosition, null, null, new Vector2(SPR_CIRCLE.Width / 2, SPR_CIRCLE.Height / 2), 0f, new Vector2(1f, 1f) * ((float)TowerRange(type, stats) / ((float)SPR_CIRCLE.Width / 2)), new Color(0.2f, 0.2f, 0.2f, 0.05f));
-        spriteBatch.Draw(sprite, GlobalPosition, null, null, new Vector2(sprite.Width / 2, sprite.Height / 2));
+        spriteBatch.Draw(baseTexture, GlobalPosition, null, null, new Vector2(baseTexture.Width / 2, baseTexture.Height / 2));
     }
 
     public Vector2 DrawPosition //Correction for being on the grid.
