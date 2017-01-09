@@ -38,7 +38,7 @@ class Pulse : Projectile
         {
             double distance = DISTANCE(GlobalPosition, enemy.GlobalPositionCenter);
             int offset = (int)rate/2;
-            if (distance < radiusCurrent + offset && distance > radiusCurrent - offset);
+            if (distance < radiusCurrent + offset && distance > radiusCurrent - offset)
             {
                 enemy.health -= (int)damage;
                 TargetsHit.Add(enemy);

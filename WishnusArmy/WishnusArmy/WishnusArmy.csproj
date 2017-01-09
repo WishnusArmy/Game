@@ -72,7 +72,8 @@
     <Compile Include="Classes\LevelGenerator\LevelGenerator.cs" />
     <Compile Include="Classes\Towers\PulseTower.cs" />
     <Compile Include="Classes\Towers\Abstract\Tower.cs" />
-    <Compile Include="Classes\UI Overlay\OverlayItem.cs" />
+    <Compile Include="Classes\UI Overlay\OverlayTowerInfo.cs" />
+    <Compile Include="Classes\UI Overlay\OverlayTowerItem.cs" />
     <Compile Include="GameManagement\AnimatedGameObject.cs" />
     <Compile Include="GameManagement\Animation.cs" />
     <Compile Include="GameManagement\AssetManager.cs" />

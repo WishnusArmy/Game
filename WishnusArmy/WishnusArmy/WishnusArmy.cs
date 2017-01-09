@@ -53,7 +53,7 @@ namespace WishnusArmy
             gameStateManager.AddGameState("PlayingState", new PlayingState());
             gameStateManager.AddGameState("LevelBuilderState", new LevelBuilderState());
             gameStateManager.AddGameState("LevelGeneratorState", new LevelGeneratorState());
-            gameStateManager.SwitchTo("LevelBuilderState");
+            gameStateManager.SwitchTo("PlayingState");
         }
 
         public static void ExitGame()

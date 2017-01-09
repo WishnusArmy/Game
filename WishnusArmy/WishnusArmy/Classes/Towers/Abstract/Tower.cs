@@ -11,13 +11,13 @@ using static ContentImporter.Sprites;
 
 public abstract class Tower : GameObjectList
 {
-    protected Texture2D baseTexture;
+    public Texture2D baseTexture;
     public Vector2 gridPosition, mousePosition, previousPosition = new Vector2(0, 0);
     protected Enemy target;
     public GridNode myNode;
     public bool hover;
-    protected int type;
-    protected int[] stats;
+    public int type;
+    public int[] stats;
 
     public Tower() : base()
     {
@@ -39,9 +39,10 @@ public abstract class Tower : GameObjectList
 
     public override void HandleInput(InputHelper inputHelper)
     {
-        mousePosition = inputHelper.MousePosition;
-
-        //check if mouse is hovering over tower
+        if (inputHelper.MouseLeftButtonPressed() && hover)
+        {
+            GameWorld.FindByType<Overlay>()[0].TowerInfo.tower = this;
+        }
     }
 
     public override void Update(GameTime gameTime)
@@ -51,9 +52,8 @@ public abstract class Tower : GameObjectList
         {
             myNode = MyPlane.NodeAt(GlobalPosition);
             myNode.solid = true;
-            myNode.beacon = true;
-            hover = myNode.selected;
-        } else { hover = myNode.selected; }
+        }
+        hover = myNode.selected; //check if the  mouse is hovering the tower
 
        
 

@@ -93,15 +93,16 @@ internal static class Constant
 
     public class TowerInfo
     {
+        public string name;
         public int cost;
         public Texture2D icon;
     }
-    
-    public static readonly Dictionary<string, TowerInfo> Towers = new Dictionary<string, TowerInfo>()
+
+    public static readonly Dictionary<string, TowerInfo> TOWER_INFO = new Dictionary<string, TowerInfo>()
     {
-        { "LaserTower", new TowerInfo() { cost = 100, icon = SPR_LASER_TOWER } },
-        { "RocketTower", new TowerInfo() { cost = 250, icon = SPR_ABSTRACT_TOWER } },
-        { "PulseTower", new TowerInfo() { cost = 300, icon = SPR_ABSTRACT_TOWER } }
+        { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 100, icon = SPR_LASER_TOWER } },
+        { "RocketTower", new TowerInfo() { name = "Rocket Tower", cost = 250, icon = SPR_ABSTRACT_TOWER } },
+        { "PulseTower", new TowerInfo() { name = "PulseTower", cost = 300, icon = SPR_ABSTRACT_TOWER } }
     };
     
 

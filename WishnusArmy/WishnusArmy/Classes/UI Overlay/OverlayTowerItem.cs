@@ -11,11 +11,12 @@ using static DrawingHelper;
 using static Constant;
 using static Economy;
 
-public class OverlayItem : GameObject
+public class OverlayTowerItem : GameObject
 {
     public Texture2D icon;
     public string itemType;
     public int cost;
+    public string name;
     bool hover;
 
     public bool possible
@@ -27,11 +28,12 @@ public class OverlayItem : GameObject
     }
 
     
-    public OverlayItem(string itemType, Vector2 pos = new Vector2()) : base()
+    public OverlayTowerItem(string itemType, Vector2 pos = new Vector2()) : base()
     {
         this.itemType = itemType;
-        icon = Towers[itemType].icon;
-        cost = Towers[itemType].cost;
+        icon = TOWER_INFO[itemType].icon;
+        cost = TOWER_INFO[itemType].cost;
+        name = TOWER_INFO[itemType].name;
         Position = pos;
     }
 
@@ -84,7 +86,7 @@ public class OverlayItem : GameObject
         DrawRectangleFilled(new Rectangle((int)offset.X, (int)offset.Y, (int)size.X, (int)size.Y), spriteBatch, Color.Black, 0.3f); //Draw the rectangle
         SpriteFont font = FNT_OVERLAY_INFO; //Reference a uniform font
         int lineHeight = (int)font.MeasureString("#").Y + 4; //Measure it to define line height
-        DrawText(spriteBatch, font, itemType, offset + new Vector2(20, 20), Color.White); //Draw the name of the object
+        DrawText(spriteBatch, font, name, offset + new Vector2(20, 20), Color.White); //Draw the name of the object
         DrawText(spriteBatch, font, "Cost: " + cost, offset + new Vector2(20, 20 + lineHeight), Color.White); //Draw the cost of the object
     }
 }
