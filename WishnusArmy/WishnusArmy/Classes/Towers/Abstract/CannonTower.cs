@@ -11,7 +11,7 @@ using static ContentImporter.Sprites;
 
 public abstract class CannonTower : Tower
 {
-    float rotation;
+    protected float rotation;
     protected Vector2 targetPos;
     protected Texture2D cannonTexture;
 
