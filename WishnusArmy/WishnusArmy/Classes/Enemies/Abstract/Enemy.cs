@@ -82,7 +82,19 @@ public abstract partial class Enemy : GameObject
         if (CalculateDistance(targetNode.Position, position) < 5)
         {
             if (pathIndex > 0)
-                pathIndex -= 1;
+            {
+                if (path[pathIndex-1].solid) //Path has changed on the way.
+                {
+                    path = getPath(path[pathIndex]);
+                    if (path.Count == 0)
+                        kill = true;
+                    pathIndex = path.Count - 1;
+                }
+                else
+                {
+                    pathIndex -= 1;
+                }
+            }
             else
             {
                 kill = true;

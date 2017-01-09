@@ -16,7 +16,6 @@ public abstract class Tower : GameObjectList
     protected Enemy target;
     public GridNode myNode;
     public bool hover;
-    protected float rotation;
     protected int type;
     protected int[] stats;
 

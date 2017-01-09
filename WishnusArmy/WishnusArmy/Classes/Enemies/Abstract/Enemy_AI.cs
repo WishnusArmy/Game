@@ -13,15 +13,13 @@ public abstract partial class Enemy : GameObject
         List<GridNode> path = new List<GridNode>(); //Make a container for the return value
         List<GridNode> openList = new List<GridNode>(); //Nodes to be checked
         List<GridNode> closedList = new List<GridNode>(); //Nodes that have been checked
-        Camera cam = GameWorld.FindByType<Camera>()[0];
-        GridPlane plane = cam.currentPlane; //get the currentplane
-        GridNode targetNode = plane.NodeAt(LEVEL_CENTER + cam.Position);
+        GridNode targetNode = MyPlane.CenterNode;
 
         calcNode(startNode, targetNode, openList, closedList); //Start the recursive pathfinding.
 
         bool done = false; //Used in the while loop
         GridNode currentNode = targetNode; //Start at the target node
-        List<GridNode> inList = new List<GridNode>();
+        List<GridNode> inList = new List<GridNode>(); //Track the nodes that have already been in the route
         while (!done) //While not reached the origin node
         {
             path.Add(currentNode); //Add the node to the path

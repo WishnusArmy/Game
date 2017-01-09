@@ -137,4 +137,12 @@ public class GridPlane: GameObjectList
            DrawingHelper.DrawLine(spriteBatch, GlobalPosition + new Vector2(NODE_SIZE.X * i, 0), GlobalPosition + new Vector2(0, NODE_SIZE.Y * i), Color.Black, 2, 0.0f);
         }
     }
+
+    public GridNode CenterNode
+    {
+        get
+        {
+            return grid[LEVEL_SIZE.X / 2, LEVEL_SIZE.X / 2];
+        }
+    }
 }
