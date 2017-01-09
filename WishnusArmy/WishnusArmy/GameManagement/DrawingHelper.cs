@@ -1,17 +1,20 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
 using System;
 
 public class DrawingHelper
 {
     protected static Texture2D pixel;
     public static GraphicsDevice Graphics;
+    public static ContentManager Content;
 
-    public static void Initialize(GraphicsDevice graphics)
+    public static void Initialize(GraphicsDevice graphics, ContentManager content)
     {
-        pixel = new Texture2D(graphics, 1, 1);
-        pixel.SetData(new[] { Color.White });
         Graphics = graphics;
+        Content = content;
+        pixel = new Texture2D(Graphics, 1, 1);
+        pixel.SetData(new[] { Color.White });
     }
 
     public static void DrawRectangle(Rectangle r, SpriteBatch spriteBatch, Color col, int size, float alpha = 1f)

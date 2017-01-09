@@ -26,12 +26,13 @@ public class OverlayItem : GameObject
         }
     }
 
-
-    public OverlayItem(string itemType) : base()
+    
+    public OverlayItem(string itemType, Vector2 pos = new Vector2()) : base()
     {
         this.itemType = itemType;
-        icon = SPR_LASER_TOWER;
-        cost = Towers[itemType].Cost;
+        icon = Towers[itemType].icon;
+        cost = Towers[itemType].cost;
+        Position = pos;
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -78,11 +79,12 @@ public class OverlayItem : GameObject
 
     public void DrawInfo(SpriteBatch spriteBatch, GameTime gameTime)
     {
-        Vector2 offset = new Vector2(SCREEN_SIZE.X - OVERLAY_SIZE.X, SCREEN_SIZE.Y - 400);
-        SpriteFont font = FNT_OVERLAY_INFO;
-        int lineHeight = (int)font.MeasureString("#").Y + 4;
-        //DrawRectangleFilled(new Rectangle(offset, new Point(SCREEN_SIZE.X - offset.X, SCREEN_SIZE.Y - offset.Y)), spriteBatch, Color.White, 0.4f);
-        DrawText(spriteBatch, font, itemType, offset + new Vector2(20, 20), Color.White);
-        DrawText(spriteBatch, font, "cost: " + cost, offset + new Vector2(20, 20 + lineHeight), Color.White);
+        Vector2 size = new Vector2(250, 400); //The size of the overlay rectangle
+        Vector2 offset = new Vector2(SCREEN_SIZE.X - OVERLAY_SIZE.X - size.X, 0); //The position of the overlay rectangle
+        DrawRectangleFilled(new Rectangle((int)offset.X, (int)offset.Y, (int)size.X, (int)size.Y), spriteBatch, Color.Black, 0.3f); //Draw the rectangle
+        SpriteFont font = FNT_OVERLAY_INFO; //Reference a uniform font
+        int lineHeight = (int)font.MeasureString("#").Y + 4; //Measure it to define line height
+        DrawText(spriteBatch, font, itemType, offset + new Vector2(20, 20), Color.White); //Draw the name of the object
+        DrawText(spriteBatch, font, "Cost: " + cost, offset + new Vector2(20, 20 + lineHeight), Color.White); //Draw the cost of the object
     }
 }

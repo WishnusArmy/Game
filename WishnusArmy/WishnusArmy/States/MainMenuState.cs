@@ -13,6 +13,8 @@ public class MainMenuState : IGameLoopObject
 
     public MainMenuState()
     {
+        PopupScreen.ClearButtons();
+        PopupScreen.AddButton("Exit to Desktop", delegate { WishnusArmy.WishnusArmy.self.Exit(); });
         menu = new MainMenu();
     }
 

@@ -14,8 +14,11 @@ namespace WishnusArmy
         [DllImport("kernel32")]
         static extern bool AllocConsole();
 
+        public static Game self;
+
         public WishnusArmy()
         {
+            self = this;
             //graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
@@ -26,9 +29,10 @@ namespace WishnusArmy
             Mouse.WindowHandle = Window.Handle;
             AllocConsole();
             Console.WriteLine("Hello World");
+            Functions.Initialize(GraphicsDevice);
             ContentImporter.Initialize(Content);
-            DrawingHelper.Initialize(GraphicsDevice);
-            Economy.Initialize();
+            DrawingHelper.Initialize(GraphicsDevice, Content);
+            PopupScreen.Initialize();
             base.Initialize();
         }
 
@@ -49,20 +53,12 @@ namespace WishnusArmy
             gameStateManager.AddGameState("PlayingState", new PlayingState());
             gameStateManager.AddGameState("LevelBuilderState", new LevelBuilderState());
             gameStateManager.AddGameState("LevelGeneratorState", new LevelGeneratorState());
-            gameStateManager.SwitchTo("MainMenuState");
-            
+            gameStateManager.SwitchTo("LevelBuilderState");
         }
 
-        protected override void UnloadContent()
+        public static void ExitGame()
         {
-
-        }
-
-        protected override void Update(GameTime gameTime)
-        {
-            if (inputHelper.IsKeyDown(Keys.Escape))
-                Exit();
-            base.Update(gameTime);
+            self.Exit();
         }
 
         protected override void Draw(GameTime gameTime)

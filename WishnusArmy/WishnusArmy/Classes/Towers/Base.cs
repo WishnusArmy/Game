@@ -20,12 +20,20 @@ public class Base : CannonTower
         //this.gridPosition = new Vector2(5,5);
         this.cannonTexture = SPR_BASEGUN;
         this.baseTexture = SPR_BASE;
-        this.range = 0; //(aimed manually)
+        //this.range = 0; //(aimed manually)
     }
 
     public override void HandleInput(InputHelper inputHelper)
     {
         base.HandleInput(inputHelper);
         targetPos = inputHelper.MousePosition;
+        double opposite = targetPos.Y - GlobalPosition.Y;
+        double adjacent = targetPos.X - GlobalPosition.X;
+        rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
+    }
+
+    public override void Attack()
+    {
+        //throw new NotImplementedException();
     }
 }

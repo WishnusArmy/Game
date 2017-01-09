@@ -13,11 +13,10 @@ class LaserTower : Tower
     Laser laser;
     public LaserTower() : base()
     {
-        damage = Constant.LASER_DAMAGE[level];
-        this.range = LASER_RADIUS[level];
+        type = 1;
         this.baseTexture = SPR_LASER_TOWER;
         laser = new Laser();
-        laser.Position = new Vector2(NODE_SIZE.X / 2, -NODE_SIZE.Y / 3);
+        laser.Position = new Vector2(0);// new Vector2(NODE_SIZE.X / 2, -NODE_SIZE.Y / 3);
         Add(laser);
         target = null;
     }
@@ -33,18 +32,15 @@ class LaserTower : Tower
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
-        target = getTarget();
+        if (target == null)
+            target = findTarget();
         laser.target = target;
-        laser.damage = damage;
+        laser.damage = TowerDamage(type, stats);
 
         // laser.Position = gridPosition * NODE_SIZE.X + new Vector2(baseTexture.Width/2, baseTexture.Height/2)+ GlobalPosition;
         //if target is out of range
-        if (target != null && DISTANCE(target.GlobalPosition, GlobalPosition) > range)
+        if (target != null && DISTANCE(target.GlobalPosition, GlobalPosition) > TowerRange(type, stats))
             target = null;
-    }
-    public override void Attack()
-    {
-        base.Attack();
     }
 }
 

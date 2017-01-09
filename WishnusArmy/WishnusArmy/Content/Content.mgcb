@@ -397,6 +397,11 @@
 /processorParam:TextureFormat=Compressed
 /build:Content/Fonts/fnt_overlay_info.spritefont
 
+#begin Content/Fonts/fnt_overlay.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:Content/Fonts/fnt_overlay.spritefont
 #begin Content/SoundEffects/Enemies/wilhemScream.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor

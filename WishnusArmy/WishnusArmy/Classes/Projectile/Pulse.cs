@@ -10,61 +10,66 @@ using static Constant;
 
 class Pulse : Projectile
 {
-    private int radiusMax;
     private int radiusCurrent;
+    private List<Enemy> TargetsHit;
+    private bool colorUP;
+    private Color color;
 
-    public Pulse(int level, Vector2 position, int radius) : base()
+    public Pulse(double damage, double range, double rate) : base()
     {
-        Position = position;
-        this.radiusMax = PULSE_RADIUS[level];
-        this.damage = PULSE_DAMAGE[level];
-        this.speed = PULSE_SPEED[level];
+        TargetsHit = new List<Enemy>();
+        this.damage = damage;
+        this.range = range;
+        this.rate = rate;
         Reset();
     }
 
     public override void Reset()
     {
         radiusCurrent = 0;
+        TargetsHit.Clear();
+        colorUP = true;
+        color = new Color(0,0,210);
     }
 
     public void CheckCollision()
     {
         foreach (Enemy enemy in GameWorld.FindByType<Enemy>())
         {
-            double distance = DISTANCE(Position, enemy.Position);
-            int offset = (int)speed/2;
-            if (distance < radiusCurrent + offset && distance > radiusCurrent - offset)
+            double distance = DISTANCE(GlobalPosition, enemy.GlobalPositionCenter);
+            int offset = (int)rate/2;
+            if (distance < radiusCurrent + offset && distance > radiusCurrent - offset);
             {
-                enemy.health -= damage;
+                enemy.health -= (int)damage;
+                TargetsHit.Add(enemy);
             }
         }
     }
-    
 
+    
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         if (!visible)
             return;
-        base.Draw(gameTime, spriteBatch);
-
         spriteBatch.Draw(
                SPR_PULSE,
                new Rectangle(
-                   (int)GlobalPosition.X - radiusCurrent, 
-                   (int)GlobalPosition.Y - radiusCurrent, 
+                   (int)GlobalPosition.X - radiusCurrent + SPR_PULSE_TOWER.Width/2, 
+                   (int)GlobalPosition.Y - radiusCurrent + SPR_PULSE_TOWER.Height/2, 
                    radiusCurrent*2, 
                    radiusCurrent*2),
                new Rectangle(0, 0, SPR_PULSE.Width, SPR_PULSE.Height),
-               Color.Yellow);
+               color);
     }
 
     public override void Update(GameTime gameTime) {
         if (!visible)
             return;
         base.Update(gameTime);
-        radiusCurrent += (int)speed;
+        radiusCurrent += (int)rate;
         CheckCollision();
-        if (radiusCurrent > radiusMax)
+        if (radiusCurrent > range)
             Reset();
     }
+    
 }

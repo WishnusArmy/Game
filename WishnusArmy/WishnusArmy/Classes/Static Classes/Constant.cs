@@ -20,14 +20,14 @@ internal static class Constant
     internal static Random RANDOM = new Random();
 
     //OVERLAY
-    internal static readonly Point OVERLAY_SIZE = new Point(300, 200);
+    internal static readonly Point OVERLAY_SIZE = new Point(256, 240);
     internal static readonly Point GAME_WINDOW_SIZE = SCREEN_SIZE - OVERLAY_SIZE;
 
     //LEVEL
     internal const int NODE_TEXTURE_SIZE = 64; //The raw, square size of a node
     internal static readonly Point NODE_SIZE  =  new Point(128, 64); //The size of a node in the grid
     internal static readonly Point LEVEL_SIZE = new Point(25, 50); //The size of the level grid
-    internal static readonly Vector2 LEVEL_CENTER = new Vector2(LEVEL_SIZE.X * NODE_SIZE.X, LEVEL_SIZE.Y * NODE_SIZE.Y)/2;
+    internal static readonly Vector2 LEVEL_CENTER = new Vector2(LEVEL_SIZE.X * NODE_SIZE.X, LEVEL_SIZE.Y/2 * NODE_SIZE.Y)/2;
 
     //CAMERA
     internal const int SLIDE_BORDER = 10; //Defines the width of the edge that will respond to the mouse.
@@ -35,24 +35,73 @@ internal static class Constant
 
     //PROJECTILES (Perhaps use a function here? Some kind of e-curve or root)
     // damage/speed/radius per level
-    internal static int[] BULLET_DAMAGE = new int[] { 60, 100, 120 };       
-    internal static int[] BULLET_SPEED = new int[] { 5, 8, 10 };
-    internal static int[] PULSE_DAMAGE = new int[] { 10, 30, 40 };
-    internal static int[] PULSE_SPEED = new int[] { 4, 6, 8 };
-    internal static int[] PULSE_RADIUS = new int[] { 200, 400, 600 };
-    internal static int[] LASER_DAMAGE = new int[] { 1, 2, 4 };
-    internal static int[] LASER_RADIUS = new int[] { 150, 400, 800 };
     internal const int LASER_TIME = 4;
+    internal const int BULLET_SPEED = 10;
 
     //TOWERS
-    internal static int[] FIRE_RATE = new int[] { 1, 2, 3 };
+    private static double Efunction(double max, double slope)
+    {
+        return max / (1 + Math.Pow(Math.E, slope));
+    }
+    
+    // 0=Projectile Tower, 1=LaserTower, 2=PulseTower
+    internal static double TowerDamage(int type, int[] stats)
+    {
+        int s = stats[0];
+        switch (type)
+        {
+            case 0:
+                return Efunction(110, -0.6 * s);
+            case 1:
+                return Efunction(2, -0.7 * s);
+            case 2:
+                return Efunction(50, -0.5 * s);
+            default:
+                return 0;
+        }
+    }
+    internal static int TowerRange(int type, int[] stats)
+    {
+        int s = stats[1];
+        switch (type)
+        {
+            case 0:
+                return (int)Efunction(1200, -0.7 * s);
+            case 1:
+                return (int)Efunction(500, -0.6 * s);
+            case 2:
+                return (int)Efunction(700, -0.8 * s);
+            default:
+                return 0;
+        }
+    }
+    internal static double TowerRate(int type, int[] stats)
+    {
+        int s = stats[2];
+        switch (type)
+        {
+            case 0:
+                return (s * s / -30) + (17 * s / 30) + 1;
+            case 1:
+                return 2 * Math.Sqrt(s) + 1;
+            case 2:
+                return Efunction(10, -0.6 * s);
+            default:
+                return 0;
+        }
+    }
+
     public class TowerInfo
     {
-        public int Cost;
+        public int cost;
+        public Texture2D icon;
     }
+    
     public static readonly Dictionary<string, TowerInfo> Towers = new Dictionary<string, TowerInfo>()
     {
-        { "LaserTower", new TowerInfo() { Cost = 100 } }
+        { "LaserTower", new TowerInfo() { cost = 100, icon = SPR_LASER_TOWER } },
+        { "RocketTower", new TowerInfo() { cost = 250, icon = SPR_ABSTRACT_TOWER } },
+        { "PulseTower", new TowerInfo() { cost = 300, icon = SPR_ABSTRACT_TOWER } }
     };
     
 
