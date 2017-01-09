@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using static ContentImporter.Sprites;
+using static Constant;
 
 class PulseTower : Tower
 {
@@ -17,7 +18,7 @@ class PulseTower : Tower
     public override void Attack()
     {
         base.Attack();
-        Add(new Pulse(stats[0], stats[1], stats[2]));
+        Add(new Pulse(TowerDamage(type, stats), TowerRange(type, stats), TowerRate(type, stats)));
     }
 
     public override void Update(GameTime gameTime)

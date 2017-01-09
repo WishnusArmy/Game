@@ -15,7 +15,6 @@ class RocketTower : Tower
     {
         type = 0;
         baseTexture = ContentImporter.Sprites.SPR_ABSTRACT_TOWER;
-        target = findTarget();
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -29,15 +28,6 @@ class RocketTower : Tower
     }
     public override void Attack()
     {
-        /*
-        if (children.Count < (int)TowerRate(type, stats))
-        {
-            Bullet b = new Bullet((int)TowerDamage(type, stats), TowerRange(type, stats), BULLET_SPEED);
-            b.Target = target;
-            Add(b);
-            */
-        
-
         List<Enemy> enemies = MyPlane.FindByType<Enemy>();
         foreach (Enemy enemy in enemies)
         {
@@ -47,6 +37,5 @@ class RocketTower : Tower
                 return;
             }
         }
-        base.Attack();
     }
 }

@@ -66,7 +66,7 @@ public abstract class Tower : GameObjectList
 
     public virtual Enemy findTarget()
     {
-        List<Enemy> enemies = GameWorld.FindByType<Enemy>();
+        List<Enemy> enemies = MyPlane.FindByType<Enemy>();
         if (enemies.Count == 0)
             return null;
         List<Enemy> inrange = new List<Enemy>();

@@ -15,9 +15,12 @@ class Pulse : Projectile
     private bool colorUP;
     private Color color;
 
-    public Pulse(double damage, double range, double rate) : base(damage, range, rate)
+    public Pulse(double damage, double range, double rate) : base()
     {
         TargetsHit = new List<Enemy>();
+        this.damage = damage;
+        this.range = range;
+        this.rate = rate;
         Reset();
     }
 

@@ -5,18 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
+using static Constant;
 
 public abstract class Projectile : GameObject
 {
     public double range, damage, rate;
-    protected Enemy target;
+    public Enemy target;
 
-    public Projectile(double damage, double range, double rate) : base()
+    public Projectile() : base()
     {
         target = null;
-        this.damage = damage;
-        this.range = range;
-        this.rate = rate;
+        range = 1000;
     }
     public override void Update(GameTime gameTime)
     {

@@ -103,12 +103,10 @@ public abstract partial class Enemy : GameObject
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        if (!visible)
-            return;
         base.Draw(gameTime, spriteBatch);
         spriteBatch.Draw(sprite, GlobalPosition + new Vector2(NODE_SIZE.X, NODE_SIZE.Y)/2, null, null, new Vector2(sprite.Width/2,sprite.Height/2), rotation);
 
-        //draw Healthbar, above the enemy.
+        //draw Healthbar, above the enemy
         DrawingHelper.DrawRectangleFilled(new Rectangle(GlobalPosition.ToPoint() + new Point(0, -60), new Point((int)health, 15)), spriteBatch, Color.Black);
     }
 

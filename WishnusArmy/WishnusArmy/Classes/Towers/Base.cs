@@ -27,6 +27,9 @@ public class Base : CannonTower
     {
         base.HandleInput(inputHelper);
         targetPos = inputHelper.MousePosition;
+        double opposite = targetPos.Y - GlobalPosition.Y;
+        double adjacent = targetPos.X - GlobalPosition.X;
+        rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
     }
 
     public override void Attack()

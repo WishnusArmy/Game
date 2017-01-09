@@ -9,11 +9,9 @@ using static Constant;
 
 class Laser : Projectile
 {
-    double timer;
-
-    public Laser(double damage, double range, double rate) : base(damage, range, rate)
+    public Laser() : base()
     {
-        timer = 0;
+        
     }
     
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -28,11 +26,9 @@ class Laser : Projectile
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
-        timer++;
-        if (HasTarget && timer > rate)
+        if (HasTarget)
         {
             target.health -= (int)damage;
-            timer = 0;
         }
     }
 }

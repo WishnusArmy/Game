@@ -9,7 +9,7 @@ using static ContentImporter.Sprites;
 
 public class Bullet : Projectile
 {
-    public Bullet(double damage, int speed) : base(damage, 0, 0)
+    public Bullet(double damage, int speed) : base()
     {
 
     }    
