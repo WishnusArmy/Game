@@ -11,6 +11,8 @@ namespace WishnusArmy.GameManagement
 {
     class SoundManager
     {
+        float sfxVolume = 0.5f;
+        float musicVolume = 1f;
         public SoundManager()
         {
 
@@ -26,6 +28,7 @@ namespace WishnusArmy.GameManagement
             }
             if (song != null)
             {
+                MediaPlayer.Volume = musicVolume;
                 MediaPlayer.Play(song);
                 MediaPlayer.IsRepeating = repeating;
             }
@@ -34,7 +37,7 @@ namespace WishnusArmy.GameManagement
         }
         public void PlaySound(SoundEffect effect)
         {
-            effect.Play();
+            effect.Play(sfxVolume, 0, 0);
         }
     }
 }
