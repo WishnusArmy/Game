@@ -14,6 +14,7 @@ public class Button : GameObject
     protected bool pressed;
     protected bool hover;
     protected string buttonText;
+    public Point padding;
 
     protected Color buttonColor;
     protected Color hoverColor;
@@ -27,6 +28,7 @@ public class Button : GameObject
         this.buttonColor = buttonColor;
         this.hoverColor = hoverColor;
         this.buttonFont = buttonFont;
+        padding = BUTTON_MARGIN;
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -38,22 +40,22 @@ public class Button : GameObject
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        buttonBox = new Rectangle((int)position.X - BUTTON_MARGIN.X - (int)buttonFont.MeasureString(buttonText).X/2, 
-                                    (int)position.Y - BUTTON_MARGIN.Y - (int)buttonFont.MeasureString(buttonText).Y/2, 
-                                    (int)buttonFont.MeasureString(buttonText).X + 2 * BUTTON_MARGIN.X, 
-                                    (int)buttonFont.MeasureString(buttonText).Y + 2 * BUTTON_MARGIN.Y);
+        buttonBox = new Rectangle((int)GlobalPosition.X - padding.X - (int)buttonFont.MeasureString(buttonText).X/2, 
+                                    (int)GlobalPosition.Y - padding.Y - (int)buttonFont.MeasureString(buttonText).Y/2, 
+                                    (int)buttonFont.MeasureString(buttonText).X + 2 * padding.X, 
+                                    (int)buttonFont.MeasureString(buttonText).Y + 2 * padding.Y);
 
         base.Draw(gameTime, spriteBatch);
 
         if (hover)
         {
             spriteBatch.Draw(SPR_WHITEPIXEL, buttonBox, hoverColor);
-            spriteBatch.DrawString(buttonFont, buttonText, position - buttonFont.MeasureString(buttonText)/2, Color.Black);
+            spriteBatch.DrawString(buttonFont, buttonText, GlobalPosition - buttonFont.MeasureString(buttonText)/2, Color.Black);
         }
         else
         {
             spriteBatch.Draw(SPR_WHITEPIXEL, buttonBox, buttonColor);
-            spriteBatch.DrawString(buttonFont, buttonText, position - buttonFont.MeasureString(buttonText)/2, Color.Black);
+            spriteBatch.DrawString(buttonFont, buttonText, GlobalPosition - buttonFont.MeasureString(buttonText)/2, Color.Black);
         }
     }
 

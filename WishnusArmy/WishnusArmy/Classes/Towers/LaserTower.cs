@@ -11,13 +11,10 @@ using static ContentImporter.Sprites;
 class LaserTower : Tower
 {
     Laser laser;
-    public LaserTower() : base()
+    public LaserTower() : base(Type.LaserTower)
     {
-        type = 1;
         this.baseTexture = SPR_LASER_TOWER;
-        laser = new Laser();
-        laser.Position = new Vector2(0);// new Vector2(NODE_SIZE.X / 2, -NODE_SIZE.Y / 3);
-        Add(laser);
+        Add(laser = new Laser(0,0,0));
         target = null;
     }
 
@@ -36,6 +33,9 @@ class LaserTower : Tower
             target = findTarget();
         laser.target = target;
         laser.damage = TowerDamage(type, stats);
+        laser.range = TowerRange(type, stats);
+        laser.rate = TowerRate(type, stats);
+
 
         // laser.Position = gridPosition * NODE_SIZE.X + new Vector2(baseTexture.Width/2, baseTexture.Height/2)+ GlobalPosition;
         //if target is out of range

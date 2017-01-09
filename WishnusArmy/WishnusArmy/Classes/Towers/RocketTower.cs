@@ -11,9 +11,9 @@ using static Constant;
 class RocketTower : Tower
 {
     static int maxRockets = 3;
-    public RocketTower() : base()
+
+    public RocketTower() : base(Type.RocketTower)
     {
-        type = 0;
         baseTexture = ContentImporter.Sprites.SPR_ABSTRACT_TOWER;
     }
 
@@ -31,7 +31,9 @@ class RocketTower : Tower
         List<Enemy> enemies = MyPlane.FindByType<Enemy>();
         foreach (Enemy enemy in enemies)
         {
-            if (FindByType<Rocket>().Count < maxRockets && CalculateDistance(enemy.Position, position) < TowerRange(type, stats))
+            if (FindByType<Rocket>().Count < maxRockets && 
+                canShoot && 
+                CalculateDistance(enemy.Position, position) < TowerRange(type, stats))
             {
                 Add(new Rocket((int)TowerDamage(type, stats), BULLET_SPEED, GlobalPosition));
                 return;

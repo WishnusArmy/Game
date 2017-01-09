@@ -16,7 +16,7 @@ public abstract class CannonTower : Tower
     protected Texture2D cannonTexture;
 
 
-    public CannonTower() : base()
+    public CannonTower(Type type) : base(type)
     {
         cannonTexture = SPR_ABSTRACT_CANNON; // The moving part of a tower
     }

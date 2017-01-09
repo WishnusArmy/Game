@@ -58,4 +58,9 @@ public static class Functions
         texture.SetData(data);
         return texture;
     }
+
+    public static Vector2 getOrigin(this Texture2D tex)
+    {
+        return new Vector2(tex.Width, tex.Height) / 2;
+    }
 }

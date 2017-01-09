@@ -10,7 +10,7 @@ using static Constant;
 
 class PulseTower : Tower
 {
-    public PulseTower() : base()
+    public PulseTower() : base(Type.PulseTower)
     {
         this.baseTexture = SPR_PULSE_TOWER;
     }

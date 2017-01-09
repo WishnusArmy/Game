@@ -16,12 +16,18 @@ public abstract class Tower : GameObjectList
     protected Enemy target;
     public GridNode myNode;
     public bool hover;
-    public int type;
+    public Type type;
     public int[] stats;
+    int timer;
 
-    public Tower() : base()
+    public enum Type { RocketTower, LaserTower, PulseTower, Base}
+
+    public Tower(Type type) : base()
     {
+        this.type = type;
         stats = new int[] {0, 0, 0}; // damage, range, rate
+        timer = 0;
+        Console.WriteLine("Tower Range: " + TowerRange(type, stats));
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -45,9 +51,21 @@ public abstract class Tower : GameObjectList
         }
     }
 
+    public bool canShoot
+    {
+        get { return timer <= 0; }
+    }
+
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
+
+        if (timer <= 0)
+            timer = TowerRate(type, stats);
+        else if (timer > 0)
+            timer--;
+
+
         if (myNode == null)
         {
             myNode = MyPlane.NodeAt(GlobalPosition);
@@ -88,7 +106,7 @@ public abstract class Tower : GameObjectList
         {
             if (!p.HasTarget)
             {
-                p.Target = findTarget();
+                p.target = findTarget();
             }
         }
     }
@@ -101,9 +119,13 @@ public abstract class Tower : GameObjectList
         
         foreach (Projectile p in children)
         {
-            p.Damage = TowerDamage(type, stats);
-            p.Range = TowerRange(type, stats);
-            p.Rate = TowerRate(type, stats);
+            p.damage = TowerDamage(type, stats);
+            if (p is ProjectileAtTower)
+            {
+                ProjectileAtTower px = p as ProjectileAtTower;
+                px.range = TowerRange(type, stats);
+                px.rate = TowerRate(type, stats);
+            }
         }
     }
 

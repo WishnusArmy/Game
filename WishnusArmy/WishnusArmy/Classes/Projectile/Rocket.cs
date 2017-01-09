@@ -15,7 +15,7 @@ public class Rocket : Projectile
     public Enemy enemy;
     float speed;
 
-    public Rocket(int damage, int speed,  Vector2 startPosition) : base()
+    public Rocket(double damage, float speed,  Vector2 startPosition) : base(damage)
     {
         foundTarget = false;
         this.damage = damage;
@@ -39,9 +39,9 @@ public class Rocket : Projectile
     {
         if (foundTarget)
         {
-            double opposite = (enemy.GlobalPosition.Y + enemy.sprite.Height / 2) - (GlobalPosition.Y + SPR_BULLET.Height / 2);
-            double adjacent = (enemy.GlobalPosition.X + enemy.sprite.Width / 2) - (GlobalPosition.X + SPR_BULLET.Width / 2);
-            rotation = (float)Math.Atan2(opposite, adjacent);// + 0.5f * (float)Math.PI;
+            double opposite = (enemy.GlobalPositionCenter.Y) - (GlobalPosition.Y + SPR_ROCKET.Height / 2);
+            double adjacent = (enemy.GlobalPositionCenter.X) - (GlobalPosition.X + SPR_ROCKET.Width / 2);
+            rotation = (float)Math.Atan2(opposite, adjacent);
         }
         else
         {
@@ -55,7 +55,7 @@ public class Rocket : Projectile
 
     public void CheckCollision()
     {
-        if (CalculateDistance(enemy.GlobalPosition + new Vector2(enemy.sprite.Width, enemy.sprite.Height) / 2, GlobalPosition + new Vector2(SPR_BULLET.Width, SPR_BULLET.Height) / 2) < 50)
+        if (CalculateDistance(enemy.GlobalPositionCenter, GlobalPosition + SPR_ROCKET.getOrigin()) < 50)
         {
             enemy.health -= damage;
             Kill = true;
@@ -67,14 +67,15 @@ public class Rocket : Projectile
         if (!visible)
             return;
         base.Draw(gameTime, spriteBatch);
-        Vector2 origin = new Vector2(SPR_BULLET.Width / 2, SPR_BULLET.Height / 2);
         spriteBatch.Draw(
-            SPR_BULLET,
-            new Rectangle((int)GlobalPosition.X, (int)GlobalPosition.Y, SPR_BULLET.Width, SPR_BULLET.Height),
+            SPR_ROCKET,
+            GlobalPosition - SPR_ROCKET.getOrigin(),
+            null,
+            null,
+            SPR_ROCKET.getOrigin(),
+            rotation + 0.5f * (float)Math.PI,
             null,
             Color.White,
-            rotation + 0.5f * (float)Math.PI,
-            origin,
             SpriteEffects.None,
             0f);
     }

@@ -7,17 +7,17 @@ using System.Text;
 using System.Threading.Tasks;
 using static Constant;
 
-class Laser : Projectile
+class Laser : ProjectileAtTower
 {
-    public Laser() : base()
+    public Laser(double damage, double range, int rate) : base(damage, range, rate)
     {
-        
+
     }
     
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
-        if (HasTarget)
+        if (HasTarget && canShoot)
             DrawingHelper.DrawLine(spriteBatch, GlobalPosition, target.GlobalPositionCenter, Color.Red, 10);
     }
 
@@ -26,9 +26,9 @@ class Laser : Projectile
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
-        if (HasTarget)
+        if (HasTarget && canShoot)
         {
-            target.health -= (int)damage;
+            target.health -= damage;
         }
     }
 }
