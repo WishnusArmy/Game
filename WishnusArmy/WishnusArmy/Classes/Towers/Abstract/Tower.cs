@@ -27,7 +27,6 @@ public abstract class Tower : GameObjectList
         this.type = type;
         stats = new int[] {0, 0, 0}; // damage, range, rate
         timer = 0;
-        Console.WriteLine("Tower Range: " + TowerRange(type, stats));
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -110,46 +109,4 @@ public abstract class Tower : GameObjectList
             }
         }
     }
-    
-    protected void UpgradeStat(int stat)
-    {
-        if (stats[stat] >= 5)
-            return;
-        stats [stat] = stats[stat] + 1;
-        
-        foreach (Projectile p in children)
-        {
-            p.damage = TowerDamage(type, stats);
-            if (p is ProjectileAtTower)
-            {
-                ProjectileAtTower px = p as ProjectileAtTower;
-                px.range = TowerRange(type, stats);
-                px.rate = TowerRate(type, stats);
-            }
-        }
-    }
-
-    protected void DowngradeStat(int stat)
-    {
-        if (stats[stat] <= 0)
-            return;
-        stats[stat] = stats[stat] - 1;
-    }
-
-    public void UpgradeDamage()
-    {
-        UpgradeStat(0);
-    }
-    public void UpgradeRange()
-    {
-        UpgradeStat(1);
-    }
-    public void UpgradeRate()
-    {
-        UpgradeStat(2);
-    }
-    
-
-
-    
 }

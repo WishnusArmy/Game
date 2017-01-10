@@ -70,7 +70,9 @@ public abstract partial class Enemy : GameObject
     public void moveAlongPath()
     {
         if (pathIndex >= 0)
+        {
             targetNode = path[pathIndex];
+        }
 
         //Enemy is in de goede richting gedraaid
         double opposite = targetNode.Position.Y - position.Y;
@@ -92,7 +94,8 @@ public abstract partial class Enemy : GameObject
                 }
                 else
                 {
-                    pathIndex -= 1;
+                    if (path[pathIndex-1].congestion <= 1)
+                        pathIndex -= 1;
                 }
             }
             else

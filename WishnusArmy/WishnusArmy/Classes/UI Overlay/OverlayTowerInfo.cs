@@ -45,7 +45,8 @@ public class OverlayTowerInfo : GameObjectList
                 //active = tower != null,
                 obj = delegate 
                     {
-                        tower.stats[z]++;
+                        if (tower.stats[z] < 4)
+                            tower.stats[z]++;
                     },
                 Position = new Vector2(350, 84 + (blockSize.Y + blockSeperation + 15) * i),
                 padding = new Point(1)

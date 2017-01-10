@@ -35,6 +35,7 @@ public class GridNode : GameObjectList
     //AI
     public int Hval, Gval, Fval, Dval; //Heuristic, Movement, Sum, Danger
     public GridNode pathParent;
+    public int congestion;
 
     //temp
     public bool beacon;
@@ -52,6 +53,7 @@ public class GridNode : GameObjectList
         Dval = 0;
         pathParent = this;
         beacon = false;
+        congestion = 0;
     }
 
     public List<GridNode> Neighbours
@@ -106,6 +108,7 @@ public class GridNode : GameObjectList
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
+        beacon = congestion != 0;
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
