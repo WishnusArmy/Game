@@ -10,21 +10,42 @@ using static ContentImporter.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using static Constant;
+using static DrawingHelper;
 
 public abstract partial class Enemy : GameObject
 {
 
-    public Texture2D sprite;
+    protected Texture2D sprite;
     float rotation;
     public GridNode startNode;
     GridNode targetNode;
-    float speed = 5;
-    double _health = ENEMY_HEALTH[0];
+    protected float speed;
+    double _health;
+    int maxHealth;
+    public HealthText healthText;
+
+    public Enemy(): base()
+    {
+        pathIndex = 0;
+        _health = ENEMY_HEALTH[0];
+        maxHealth = (int)_health;
+    }
     public double health
     {
         get { return _health;  }
         set
         {
+            if (healthText == null || healthText.p > 0.7f)
+            {
+                float deltaHealth = (float)(value - _health);
+                healthText = new HealthText(((int)(deltaHealth)), deltaHealth/maxHealth) { Position = GlobalPositionCenter - new Vector2(0, 40) };
+                MyPlane.Add(healthText);
+            }
+            else
+            {
+                healthText.text += (int)(value - _health);
+                healthText.timer /= 2;
+            }
             _health = value;
             if (_health <= 0)
             {
@@ -35,11 +56,6 @@ public abstract partial class Enemy : GameObject
     }
     List<GridNode> path;
     int pathIndex;
-
-    public Enemy() : base()
-    {
-        pathIndex = 0;
-    }
 
     public Vector2 GlobalPositionCenter
     {
@@ -57,6 +73,11 @@ public abstract partial class Enemy : GameObject
             GridPlane plane = Parent as GridPlane;
             path = getPath(startNode);
             pathIndex = path.Count - 1;
+        }
+
+        if (healthText != null)
+        {
+            healthText.Position = GlobalPositionCenter - new Vector2(0, 40) - GameWorld.FindByType<Camera>()[0].Position;
         }
 
         if (path != null)
@@ -122,7 +143,9 @@ public abstract partial class Enemy : GameObject
         spriteBatch.Draw(sprite, GlobalPosition + new Vector2(NODE_SIZE.X, NODE_SIZE.Y)/2, null, null, new Vector2(sprite.Width/2,sprite.Height/2), rotation);
 
         //draw Healthbar, above the enemy
-        DrawingHelper.DrawRectangleFilled(new Rectangle(GlobalPosition.ToPoint() + new Point(0, -60), new Point((int)health, 15)), spriteBatch, Color.Black);
+        DrawRectangle(new Rectangle(GlobalPosition.ToPoint() + new Point(0, -60), new Point(100, 10)), spriteBatch, Color.Black, 2, 1f);
+        Color healthColor = new Color((int)(255 * (1 - (health / maxHealth))), (int)(255 * (health / maxHealth)), 0, 255);
+        DrawRectangleFilled(new Rectangle(GlobalPosition.ToPoint() + new Point(0, -60), new Point((int)((health/maxHealth)*100), 10)), spriteBatch, healthColor, 0.8f);
     }
 
     // hiermee kunnen alle enemies uit de lijst verwijderd worden dmv !enemy.IsAlive

@@ -11,5 +11,6 @@ public class Tank : Enemy
     public Tank() : base()
     {
         this.sprite = SPR_ENEMY;
+        this.speed = 5;
     }
 }

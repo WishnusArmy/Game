@@ -42,7 +42,9 @@
     <Compile Include="Classes\Button.cs" />
     <Compile Include="Classes\Enemies\Abstract\Enemy_AI.cs" />
     <Compile Include="Classes\Enemies\Tank.cs" />
+    <Compile Include="Classes\Functional\DrawOnTop.cs" />
     <Compile Include="Classes\GameWorld\Camera.cs" />
+    <Compile Include="Classes\GameWorld\HealthText.cs" />
     <Compile Include="Classes\ParticleEffects\Explosion.cs" />
     <Compile Include="Classes\ParticleEffects\ParticleSystem.cs" />
     <Compile Include="Classes\Projectile\Abstract\Projectile.cs" />

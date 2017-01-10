@@ -29,9 +29,11 @@ class LaserTower : Tower
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
-        if (target == null)
+        if (target == null || laser.target == null)
+        {
             target = findTarget();
-        laser.target = target;
+            laser.target = target;
+        }
         laser.damage = TowerDamage(type, stats);
         laser.range = TowerRange(type, stats);
         laser.rate = TowerRate(type, stats);

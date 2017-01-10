@@ -53,7 +53,7 @@ internal static class Constant
             case Tower.Type.RocketTower:
                 return Efunction(110, 0.6 * s);
             case Tower.Type.LaserTower:
-                return Efunction(2, 0.7 * s);
+                return Efunction(8, 0.7 * s);
             case Tower.Type.PulseTower:
                 return Efunction(50, 0.5 * s);
             default:
@@ -83,7 +83,7 @@ internal static class Constant
             case Tower.Type.RocketTower:
                 return 40;// (s * s / -30) + (17 * s / 30) + 1;
             case Tower.Type.LaserTower:
-                return (int)(5-s);
+                return (int)(10-1.5*s);
             case Tower.Type.PulseTower:
                 return (int)Efunction(10, -0.6 * s);
             default:

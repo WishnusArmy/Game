@@ -29,20 +29,22 @@ public class OverlayTowerInfo : GameObjectList
             _tower = value; //set the new tower
             if (_tower !=  null) //If the new tower isn't null...
                 _tower.myNode.beacon = true; //Select the new tower.
+
+            foreach (Button but in buttons)
+                but.active = (tower != null);
         }
     }
 
     public OverlayTowerInfo() : base()
     {
-        tower = null;
         buttons = new List<ButtonWithDelegate>();
+        tower = null;
         for (int i = 0; i < 3; ++i)
         {
             int z = i; //strangely i is seen as a pointer
             buttons.Add(new ButtonWithDelegate("+", Color.White, Color.Blue, FNT_LEVEL_BUILDER)
             {
                 active = false,
-                //active = tower != null,
                 obj = delegate 
                     {
                         if (tower.stats[z] < 4)
@@ -52,15 +54,6 @@ public class OverlayTowerInfo : GameObjectList
                 padding = new Point(1)
             });
             Add(buttons[i]);
-        }
-    }
-
-    public override void Update(GameTime gameTime)
-    {
-        base.Update(gameTime);
-        foreach(Button but in buttons)
-        {
-            but.active = (tower != null);
         }
     }
 

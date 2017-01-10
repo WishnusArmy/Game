@@ -94,7 +94,7 @@ public abstract class Tower : GameObjectList
             }
         }
         if (inrange.Count > 0)
-            return inrange[RANDOM.Next(0, inrange.Count)];
+            return inrange[RANDOM.Next(inrange.Count)];
 
         return null;
     }
