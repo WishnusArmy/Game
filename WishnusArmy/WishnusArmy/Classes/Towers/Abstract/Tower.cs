@@ -11,17 +11,22 @@ using static ContentImporter.Sprites;
 
 public abstract class Tower : GameObjectList
 {
-    protected Texture2D baseTexture;
+    public Texture2D baseTexture;
     public Vector2 gridPosition, mousePosition, previousPosition = new Vector2(0, 0);
     protected Enemy target;
     public GridNode myNode;
     public bool hover;
-    protected int type;
-    protected int[] stats;
+    public Type type;
+    public int[] stats;
+    int timer;
 
-    public Tower() : base()
+    public enum Type { RocketTower, LaserTower, PulseTower, Base}
+
+    public Tower(Type type) : base()
     {
+        this.type = type;
         stats = new int[] {0, 0, 0}; // damage, range, rate
+        timer = 0;
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -39,21 +44,33 @@ public abstract class Tower : GameObjectList
 
     public override void HandleInput(InputHelper inputHelper)
     {
-        mousePosition = inputHelper.MousePosition;
+        if (inputHelper.MouseLeftButtonPressed() && hover)
+        {
+            GameWorld.FindByType<Overlay>()[0].TowerInfo.tower = this;
+        }
+    }
 
-        //check if mouse is hovering over tower
+    public bool canShoot
+    {
+        get { return timer <= 0; }
     }
 
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
+
+        if (timer <= 0)
+            timer = TowerRate(type, stats);
+        else if (timer > 0)
+            timer--;
+
+
         if (myNode == null)
         {
             myNode = MyPlane.NodeAt(GlobalPosition);
             myNode.solid = true;
-            myNode.beacon = true;
-            hover = myNode.selected;
-        } else { hover = myNode.selected; }
+        }
+        hover = myNode.selected; //check if the  mouse is hovering the tower
 
        
 
@@ -77,7 +94,7 @@ public abstract class Tower : GameObjectList
             }
         }
         if (inrange.Count > 0)
-            return inrange[RANDOM.Next(0, inrange.Count)];
+            return inrange[RANDOM.Next(inrange.Count)];
 
         return null;
     }
@@ -88,46 +105,8 @@ public abstract class Tower : GameObjectList
         {
             if (!p.HasTarget)
             {
-                p.Target = findTarget();
+                p.target = findTarget();
             }
         }
     }
-    
-    protected void UpgradeStat(int stat)
-    {
-        if (stats[stat] >= 5)
-            return;
-        stats [stat] = stats[stat] + 1;
-        
-        foreach (Projectile p in children)
-        {
-            p.Damage = TowerDamage(type, stats);
-            p.Range = TowerRange(type, stats);
-            p.Rate = TowerRate(type, stats);
-        }
-    }
-
-    protected void DowngradeStat(int stat)
-    {
-        if (stats[stat] <= 0)
-            return;
-        stats[stat] = stats[stat] - 1;
-    }
-
-    public void UpgradeDamage()
-    {
-        UpgradeStat(0);
-    }
-    public void UpgradeRange()
-    {
-        UpgradeStat(1);
-    }
-    public void UpgradeRate()
-    {
-        UpgradeStat(2);
-    }
-    
-
-
-    
 }

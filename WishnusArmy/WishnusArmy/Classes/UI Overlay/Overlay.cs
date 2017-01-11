@@ -13,7 +13,8 @@ using static Functions;
 
 public class Overlay : GameObjectList
 {
-    public OverlayItem selected;
+    public OverlayTowerItem selected;
+    public OverlayTowerInfo TowerInfo;
     bool selectedPossible;
     Vector2 mousePos;
 
@@ -32,11 +33,12 @@ public class Overlay : GameObjectList
         gridWidth = OVERLAY_SIZE.X / gridSize;
         gridHeight = 4;
         gridPos = new Vector2(SCREEN_SIZE.X - OVERLAY_SIZE.X + 2, 40);
-        List<string> TowerNames = new List<string>(Towers.Keys);
+        List<string> TowerNames = new List<string>(TOWER_INFO.Keys);
         for(int i=0; i<TowerNames.Count; ++i)
         {
-            Add(new OverlayItem(TowerNames[i], gridPos + new Vector2(gridSize * (i%gridWidth), gridSize * (i/gridWidth))));
+            Add(new OverlayTowerItem(TowerNames[i], gridPos + new Vector2(gridSize * (i%gridWidth), gridSize * (i/gridWidth))));
         }
+        Add(TowerInfo = new OverlayTowerInfo { Position = new Vector2(5, SCREEN_SIZE.Y - OVERLAY_SIZE.Y) });
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -83,7 +85,7 @@ public class Overlay : GameObjectList
                 spriteBatch.Draw(selected.icon, node.GlobalPosition + new Vector2(NODE_SIZE.X / 2, 0) - new Vector2(selected.icon.Width, selected.icon.Height) / 2, Color.White * (selectedPossible.ToInt()+0.5f)); //Draw the selected object at the mouse
             }
         }
-        DrawText(spriteBatch, FNT_OVERLAY, "Resources: " + EcResources.ToString(), new Vector2(50, SCREEN_SIZE.Y - OVERLAY_SIZE.Y + 20), Color.White);
+        DrawText(spriteBatch, FNT_OVERLAY, "Resources: " + EcResources.ToString(), new Vector2(400, SCREEN_SIZE.Y - OVERLAY_SIZE.Y + 20), Color.White);
         DrawGrid(spriteBatch);
 
         base.Draw(gameTime, spriteBatch);

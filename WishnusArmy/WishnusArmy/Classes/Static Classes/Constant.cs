@@ -41,51 +41,51 @@ internal static class Constant
     //TOWERS
     private static double Efunction(double max, double slope)
     {
-        return max / (1 + Math.Pow(Math.E, slope));
+        return max / (1 + Math.Pow(Math.E, -slope));
     }
     
     // 0=Projectile Tower, 1=LaserTower, 2=PulseTower
-    internal static double TowerDamage(int type, int[] stats)
+    internal static double TowerDamage(Tower.Type type, int[] stats)
     {
         int s = stats[0];
         switch (type)
         {
-            case 0:
-                return Efunction(110, -0.6 * s);
-            case 1:
-                return Efunction(2, -0.7 * s);
-            case 2:
-                return Efunction(50, -0.5 * s);
+            case Tower.Type.RocketTower:
+                return Efunction(110, 0.6 * s);
+            case Tower.Type.LaserTower:
+                return Efunction(8, 0.7 * s);
+            case Tower.Type.PulseTower:
+                return Efunction(50, 0.5 * s);
             default:
                 return 0;
         }
     }
-    internal static int TowerRange(int type, int[] stats)
+    internal static int TowerRange(Tower.Type type, int[] stats)
     {
         int s = stats[1];
         switch (type)
         {
-            case 0:
-                return (int)Efunction(1200, -0.7 * s);
-            case 1:
-                return (int)Efunction(500, -0.6 * s);
-            case 2:
-                return (int)Efunction(700, -0.8 * s);
+            case Tower.Type.RocketTower:
+                return (int)Efunction(1200, 0.7 * s);
+            case Tower.Type.LaserTower:
+                return (int)Efunction(800, 0.6 * s);
+            case Tower.Type.PulseTower:
+                return (int)Efunction(700, 0.8 * s);
             default:
                 return 0;
         }
     }
-    internal static double TowerRate(int type, int[] stats)
+    internal static int TowerRate(Tower.Type type, int[] stats)
     {
         int s = stats[2];
         switch (type)
         {
-            case 0:
-                return (s * s / -30) + (17 * s / 30) + 1;
-            case 1:
-                return 2 * Math.Sqrt(s) + 1;
-            case 2:
-                return Efunction(10, -0.6 * s);
+            case Tower.Type.RocketTower:
+                return 40;// (s * s / -30) + (17 * s / 30) + 1;
+            case Tower.Type.LaserTower:
+                return (int)(10-1.5*s);
+            case Tower.Type.PulseTower:
+                return (int)Efunction(10, -0.6 * s);
             default:
                 return 0;
         }
@@ -93,15 +93,16 @@ internal static class Constant
 
     public class TowerInfo
     {
+        public string name;
         public int cost;
         public Texture2D icon;
     }
-    
-    public static readonly Dictionary<string, TowerInfo> Towers = new Dictionary<string, TowerInfo>()
+
+    public static readonly Dictionary<string, TowerInfo> TOWER_INFO = new Dictionary<string, TowerInfo>()
     {
-        { "LaserTower", new TowerInfo() { cost = 100, icon = SPR_LASER_TOWER } },
-        { "RocketTower", new TowerInfo() { cost = 250, icon = SPR_ABSTRACT_TOWER } },
-        { "PulseTower", new TowerInfo() { cost = 300, icon = SPR_ABSTRACT_TOWER } }
+        { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 100, icon = SPR_LASER_TOWER } },
+        { "RocketTower", new TowerInfo() { name = "Rocket Tower", cost = 250, icon = SPR_ABSTRACT_TOWER } },
+        { "PulseTower", new TowerInfo() { name = "PulseTower", cost = 300, icon = SPR_ABSTRACT_TOWER } }
     };
     
 

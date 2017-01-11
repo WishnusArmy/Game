@@ -57,6 +57,6 @@ public class DrawingHelper
         if (center)
             pos -= new Vector2(font.MeasureString(str).X, font.MeasureString(str).Y) / 2;
 
-        spriteBatch.DrawString(font, str, pos, col * alpha);
+        spriteBatch.DrawString(font, str, pos.toPoint().toVector(), col * alpha);
     }
 }

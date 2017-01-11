@@ -128,6 +128,16 @@ public class GameObjectList : GameObject
             }
         }
 
+        for(int i=children.Count - 1; i>=0; --i)
+        {
+            if (children[i] is DrawOnTop) //If the current child should be drawn on top
+            {
+                GameObject temp = children[i];
+                children.RemoveAt(i);
+                children.Insert(children.Count - 1, temp);
+            }
+        }
+
        
         List<GameObject>.Enumerator e = children.GetEnumerator();
         while (e.MoveNext())

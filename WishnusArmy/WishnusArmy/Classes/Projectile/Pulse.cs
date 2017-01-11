@@ -8,28 +8,20 @@ using Microsoft.Xna.Framework.Graphics;
 using static ContentImporter.Sprites;
 using static Constant;
 
-class Pulse : Projectile
+class Pulse : ProjectileAtTower
 {
     private int radiusCurrent;
     private List<Enemy> TargetsHit;
     private bool colorUP;
     private Color color;
 
-    public Pulse(double damage, double range, double rate) : base()
+    public Pulse(double damage, double range, int rate) : base(damage, range, rate)
     {
         TargetsHit = new List<Enemy>();
-        this.damage = damage;
-        this.range = range;
-        this.rate = rate;
-        Reset();
-    }
-
-    public override void Reset()
-    {
         radiusCurrent = 0;
         TargetsHit.Clear();
         colorUP = true;
-        color = new Color(0,0,210);
+        color = new Color(0, 0, 210);
     }
 
     public void CheckCollision()
@@ -38,7 +30,7 @@ class Pulse : Projectile
         {
             double distance = DISTANCE(GlobalPosition, enemy.GlobalPositionCenter);
             int offset = (int)rate/2;
-            if (distance < radiusCurrent + offset && distance > radiusCurrent - offset);
+            if (distance < radiusCurrent + offset && distance > radiusCurrent - offset)
             {
                 enemy.health -= (int)damage;
                 TargetsHit.Add(enemy);
@@ -49,8 +41,7 @@ class Pulse : Projectile
     
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        if (!visible)
-            return;
+        base.Draw(gameTime, spriteBatch);
         spriteBatch.Draw(
                SPR_PULSE,
                new Rectangle(
@@ -62,7 +53,9 @@ class Pulse : Projectile
                color);
     }
 
-    public override void Update(GameTime gameTime) {
+    public override void Update(GameTime gameTime)
+    {
+        base.Update(gameTime);
         if (!visible)
             return;
         base.Update(gameTime);

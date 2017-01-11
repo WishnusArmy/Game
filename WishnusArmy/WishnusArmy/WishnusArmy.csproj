@@ -42,9 +42,12 @@
     <Compile Include="Classes\Button.cs" />
     <Compile Include="Classes\Enemies\Abstract\Enemy_AI.cs" />
     <Compile Include="Classes\Enemies\Tank.cs" />
+    <Compile Include="Classes\Functional\DrawOnTop.cs" />
     <Compile Include="Classes\GameWorld\Camera.cs" />
+    <Compile Include="Classes\GameWorld\HealthText.cs" />
     <Compile Include="Classes\ParticleEffects\Explosion.cs" />
     <Compile Include="Classes\ParticleEffects\ParticleSystem.cs" />
+    <Compile Include="Classes\Projectile\Abstract\Projectile.cs" />
     <Compile Include="Classes\Projectile\Bullet.cs" />
     <Compile Include="Classes\Projectile\Rocket.cs" />
     <Compile Include="Classes\Static Classes\Functions.cs" />
@@ -72,7 +75,8 @@
     <Compile Include="Classes\LevelGenerator\LevelGenerator.cs" />
     <Compile Include="Classes\Towers\PulseTower.cs" />
     <Compile Include="Classes\Towers\Abstract\Tower.cs" />
-    <Compile Include="Classes\UI Overlay\OverlayItem.cs" />
+    <Compile Include="Classes\UI Overlay\OverlayTowerInfo.cs" />
+    <Compile Include="Classes\UI Overlay\OverlayTowerItem.cs" />
     <Compile Include="GameManagement\AnimatedGameObject.cs" />
     <Compile Include="GameManagement\Animation.cs" />
     <Compile Include="GameManagement\AssetManager.cs" />
@@ -92,7 +96,7 @@
     <Compile Include="States\LevelGeneratorState.cs" />
     <Compile Include="Classes\MainMenu.cs" />
     <Compile Include="Classes\Projectile\Laser.cs" />
-    <Compile Include="Classes\Projectile\Abstract\Projectile.cs" />
+    <Compile Include="Classes\Projectile\Abstract\ProjectileAtTower.cs" />
     <Compile Include="Classes\Projectile\Pulse.cs" />
     <Compile Include="States\HelpState.cs" />
     <Compile Include="States\LevelBuilderState.cs" />

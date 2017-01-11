@@ -10,14 +10,9 @@ using static ContentImporter.Sprites;
 
 class LaserTower : Tower
 {
-    Laser laser;
-    public LaserTower() : base()
+    public LaserTower() : base(Type.LaserTower)
     {
-        type = 1;
         this.baseTexture = SPR_LASER_TOWER;
-        laser = new Laser();
-        laser.Position = new Vector2(0);// new Vector2(NODE_SIZE.X / 2, -NODE_SIZE.Y / 3);
-        Add(laser);
         target = null;
     }
 
@@ -32,10 +27,12 @@ class LaserTower : Tower
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
-        if (target == null)
+        if (canShoot)
+        {
             target = findTarget();
-        laser.target = target;
-        laser.damage = TowerDamage(type, stats);
+            Add(new Laser(TowerDamage(type, stats), TowerRange(type, stats), TowerRate(type, stats)) { target = target });
+        }
+
 
         // laser.Position = gridPosition * NODE_SIZE.X + new Vector2(baseTexture.Width/2, baseTexture.Height/2)+ GlobalPosition;
         //if target is out of range
