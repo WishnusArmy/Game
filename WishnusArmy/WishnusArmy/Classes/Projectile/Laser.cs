@@ -9,20 +9,27 @@ using static Constant;
 
 class Laser : ProjectileAtTower
 {
+    static int visibleTimerMax = 30;
     int visibleTimer;
-    int timer;
+    Vector2 pos;
 
     public Laser(double damage, double range, int rate) : base(damage, range, rate)
     {
-        visibleTimer = 12;
-        timer = 0;
+        visibleTimer = visibleTimerMax;
     }
     
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
+        float p = (float)visibleTimer / visibleTimerMax;
         if (HasTarget && timer > 0)
-            DrawingHelper.DrawLine(spriteBatch, GlobalPosition, target.GlobalPositionCenter, Color.Red * ((float)timer/visibleTimer), 10);
+        {
+            if (pos == Vector2.Zero)
+            {
+                pos = target.GlobalPositionCenter;
+            }
+            DrawingHelper.DrawLine(spriteBatch, GlobalPosition, pos, Color.Red * (p * p * p), 10);
+        }
     }
 
     
@@ -30,15 +37,13 @@ class Laser : ProjectileAtTower
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
-        if (timer > 0)
-            timer--;
-        if (canShoot)
-        {
-            timer = visibleTimer;
-        }
-        if (HasTarget && canShoot)
+        if (HasTarget && (visibleTimer == visibleTimerMax))
         {
             target.health -= damage;
         }
+        if (visibleTimer > 0)
+            visibleTimer--;
+        else
+            kill = true;
     }
 }

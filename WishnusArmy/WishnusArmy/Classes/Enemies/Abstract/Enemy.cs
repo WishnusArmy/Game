@@ -38,6 +38,8 @@ public abstract partial class Enemy : GameObject
             if (healthText == null || healthText.p > 0.7f)
             {
                 float deltaHealth = (float)(value - _health);
+                if (deltaHealth > _health)
+                    deltaHealth = (float)_health;
                 healthText = new HealthText(((int)(deltaHealth)), deltaHealth/maxHealth) { Position = GlobalPositionCenter - new Vector2(0, 40) };
                 MyPlane.Add(healthText);
             }
