@@ -43,6 +43,7 @@ public class Camera : GameObjectList
                     {
                         GridNode node = Land.grid[0, LEVEL_SIZE.Y / 2];
                         p.Add(new Tank { startNode = node, Position = node.Position });
+                        
                     }
                     break;
 

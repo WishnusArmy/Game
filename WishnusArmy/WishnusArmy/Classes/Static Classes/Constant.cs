@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using static ContentImporter.Textures;
 using static ContentImporter.Sprites;
+using static GameStats;
 
 internal static class Constant
 {
@@ -108,7 +109,28 @@ internal static class Constant
     
 
     //ENEMIES
-    internal static int[] ENEMY_HEALTH = new int[] { 100, 250, 600 };
+    internal static int EnemyHealthFunction(double mod)
+    {
+        return (int)mod * (18 * Wave + 100);
+    }
+    internal static int EnemyHealth(int type)
+    {
+        //0=Tank, 1=soldier, 2=airballoon, 3=airplane
+        switch (type)
+        {
+            case 0:
+                return EnemyHealthFunction(1.2);
+            case 1:
+                return EnemyHealthFunction(0.6);
+            case 2:
+                return EnemyHealthFunction(1.5);
+            case 3:
+                return EnemyHealthFunction(1.8);
+            default:
+                return EnemyHealthFunction(1);
+        }
+        
+    }
 
     //LEVEL BUILDER
     internal static readonly Point TOOLBAR_SIZE = new Point(SCREEN_SIZE.X, 150);
