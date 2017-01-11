@@ -13,17 +13,20 @@ class PulseTower : Tower
     public PulseTower() : base(Type.PulseTower)
     {
         this.baseTexture = SPR_PULSE_TOWER;
+        Add(new Pulse(TowerDamage(type, stats), TowerRange(type, stats), TowerRate(type, stats)));
     }
 
     public override void Attack()
     {
-        base.Attack();
-        Add(new Pulse(TowerDamage(type, stats), TowerRange(type, stats), TowerRate(type, stats)));
     }
 
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
+        if(children.Count < 1)
+        {
+            Add(new Pulse(TowerDamage(type, stats), TowerRange(type, stats), TowerRate(type, stats)));
+        }
     }
 }
 

@@ -12,15 +12,14 @@ class Pulse : ProjectileAtTower
 {
     private int radiusCurrent;
     private List<Enemy> TargetsHit;
-    private bool colorUP;
     private Color color;
 
     public Pulse(double damage, double range, int rate) : base(damage, range, rate)
     {
+        sprite = SPR_PULSE;
         TargetsHit = new List<Enemy>();
         radiusCurrent = 0;
         TargetsHit.Clear();
-        colorUP = true;
         color = new Color(0, 0, 210);
     }
 
@@ -28,7 +27,7 @@ class Pulse : ProjectileAtTower
     {
         foreach (Enemy enemy in GameWorld.FindByType<Enemy>())
         {
-            double distance = DISTANCE(GlobalPosition, enemy.GlobalPositionCenter);
+            double distance = DISTANCE(GlobalPositionCenter, enemy.GlobalPositionCenter);
             int offset = (int)rate/2;
             if (distance < radiusCurrent + offset && distance > radiusCurrent - offset)
             {
@@ -43,13 +42,13 @@ class Pulse : ProjectileAtTower
     {
         base.Draw(gameTime, spriteBatch);
         spriteBatch.Draw(
-               SPR_PULSE,
+               sprite,
                new Rectangle(
-                   (int)GlobalPosition.X - radiusCurrent + SPR_PULSE_TOWER.Width/2, 
-                   (int)GlobalPosition.Y - radiusCurrent + SPR_PULSE_TOWER.Height/2, 
+                   (int) GlobalPosition.X - radiusCurrent, 
+                   (int) GlobalPosition.Y - radiusCurrent, 
                    radiusCurrent*2, 
                    radiusCurrent*2),
-               new Rectangle(0, 0, SPR_PULSE.Width, SPR_PULSE.Height),
+               new Rectangle(0, 0, sprite.Width, sprite.Height),
                color);
     }
 
@@ -61,8 +60,7 @@ class Pulse : ProjectileAtTower
         base.Update(gameTime);
         radiusCurrent += (int)rate;
         CheckCollision();
-        if (radiusCurrent > range)
-            Reset();
+        Kill = radiusCurrent > range;
     }
     
 }
