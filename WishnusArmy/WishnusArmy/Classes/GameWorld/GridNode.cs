@@ -12,7 +12,7 @@ using static ContentImporter.Fonts;
 
 public class GridNode : GameObjectList
 {
-    static Vector2 origin = IMAGE_NODE_SIZE.toVector() / 2;
+    public static Vector2 origin = IMAGE_NODE_SIZE.toVector() / 2;
     int _texture;
     public List<GridNode> neighbours, extendedNeighbours;
     public int texture
@@ -69,6 +69,7 @@ public class GridNode : GameObjectList
     {
         get
         {
+            List<GridNode> list = new List<GridNode>();
             return extendedNeighbours;
         }
     }
@@ -109,7 +110,6 @@ public class GridNode : GameObjectList
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
-        beacon = congestion != 0;
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

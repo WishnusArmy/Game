@@ -92,8 +92,8 @@ public class Camera : GameObjectList
             position.Y -= SLIDE_SPEED;
 
         //Make sure the camera doesn't move out of bounds
-        if (position.X > -NODE_SIZE.X/2) { position.X = -NODE_SIZE.X/2; }
-        if (position.Y > -NODE_SIZE.Y/2) { position.Y = -NODE_SIZE.Y/2; }
+        if (position.X > -NODE_SIZE.X/2 - GridNode.origin.X/2) { position.X = -NODE_SIZE.X/2 - GridNode.origin.X/2; }
+        if (position.Y > -NODE_SIZE.Y/2 - GridNode.origin.Y) { position.Y = -NODE_SIZE.Y/2 - GridNode.origin.Y; }
 
         if (position.X < -NODE_SIZE.X * LEVEL_SIZE.X + GAME_WINDOW_SIZE.X) { position.X = -NODE_SIZE.X * LEVEL_SIZE.X + GAME_WINDOW_SIZE.X;  }
         if (position.Y < -NODE_SIZE.Y/2 * LEVEL_SIZE.Y + GAME_WINDOW_SIZE.Y) { position.Y = -NODE_SIZE.Y/2 * LEVEL_SIZE.Y + GAME_WINDOW_SIZE.Y; }
