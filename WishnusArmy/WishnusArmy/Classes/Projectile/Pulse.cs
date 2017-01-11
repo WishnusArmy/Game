@@ -19,17 +19,15 @@ class Pulse : ProjectileAtTower
         sprite = SPR_PULSE;
         TargetsHit = new List<Enemy>();
         radiusCurrent = 0;
-        TargetsHit.Clear();
         color = new Color(0, 0, 210);
     }
 
     public void CheckCollision()
     {
-        foreach (Enemy enemy in GameWorld.FindByType<Enemy>())
+        foreach (Enemy enemy in MyPlane.FindByType<Enemy>())
         {
-            double distance = DISTANCE(GlobalPositionCenter, enemy.GlobalPositionCenter);
-            int offset = (int)rate/2;
-            if (distance < radiusCurrent + offset && distance > radiusCurrent - offset)
+            double distance = DISTANCE(GlobalPosition, enemy.GlobalPositionCenter);
+            if (distance < radiusCurrent + rate*2 && distance > radiusCurrent - rate*2 && !TargetsHit.Contains(enemy))
             {
                 enemy.health -= (int)damage;
                 TargetsHit.Add(enemy);
