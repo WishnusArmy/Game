@@ -14,22 +14,25 @@ using static DrawingHelper;
 
 public abstract partial class Enemy : GameObject
 {
-
+    public enum Type {Tank, Soldier, AirBaloon, Airplane }
+    public Type type;
     protected Texture2D sprite;
     float rotation;
     public GridNode startNode;
     GridNode targetNode;
     protected float speed;
-    double _health;
-    int maxHealth;
+    protected double _health;
+    protected int maxHealth;
     public HealthText healthText;
 
-    public Enemy(): base()
+    public Enemy(Type type): base()
     {
+        this.type = type;
         pathIndex = 0;
-        _health = ENEMY_HEALTH[0];
-        maxHealth = (int)_health;
+        maxHealth = EnemyHealth((int)type);
+        _health = (int)maxHealth;
     }
+
     public double health
     {
         get { return _health;  }
@@ -52,6 +55,7 @@ public abstract partial class Enemy : GameObject
             if (_health <= 0)
             {
                 kill = true;
+                GameStats.TotalEnemiesKilled++;
                 PlaySound(SND_ENEMY_DYING);
             }
         }
