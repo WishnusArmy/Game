@@ -29,8 +29,8 @@ class Pulse : ProjectileAtTower
             double distance = DISTANCE(GlobalPosition, enemy.GlobalPositionCenter);
             if (distance < radiusCurrent + rate*2 && distance > radiusCurrent - rate*2 && !TargetsHit.Contains(enemy))
             {
-                enemy.health -= (int)damage;
                 TargetsHit.Add(enemy);
+                enemy.health -= (int)damage;
             }
         }
     }
