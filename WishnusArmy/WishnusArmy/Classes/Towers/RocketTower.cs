@@ -35,7 +35,7 @@ class RocketTower : Tower
                 canShoot && 
                 CalculateDistance(enemy.Position, position) < TowerRange(type, stats))
             {
-                Add(new Rocket((int)TowerDamage(type, stats), BULLET_SPEED, GlobalPosition));
+                Add(new Rocket((int)TowerDamage(type, stats), BULLET_SPEED));
                 return;
             }
         }
