@@ -505,12 +505,6 @@
 /processorParam:Quality=Best
 /build:Content/SoundEffects/Buttons/click_basic.wav
 
-#begin Content/SoundEffects/Projectiles/laser01.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Content/SoundEffects/Projectiles/laser01.wav
-
 #begin Content/Sprites/Music/mainMenu.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
@@ -636,12 +630,6 @@
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Content/Music/Fall.wav
-
-#begin Content/SoundEffects/Projectiles/laser.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Content/SoundEffects/Projectiles/laser.wav
 
 #begin Content/SoundEffects/Projectiles/laser02.mp3
 /importer:Mp3Importer
