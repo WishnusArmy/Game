@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using WishnusArmy.GameManagement;
 
 public class GameEnvironment : Game
 {
@@ -10,6 +11,7 @@ public class GameEnvironment : Game
     protected InputHelper inputHelper;
     protected Matrix spriteScale;
     protected Point windowSize;
+    SoundManager soundManager;
 
     protected static Point screen;
     protected static GameStateManager gameStateManager;
@@ -27,6 +29,7 @@ public class GameEnvironment : Game
         random = new Random();
         assetManager = new AssetManager(Content);
         gameSettingsManager = new GameSettingsManager();
+        soundManager = new SoundManager();
     }
 
     public static Point Screen
@@ -127,6 +130,11 @@ public class GameEnvironment : Game
     {
         HandleInput();
         gameStateManager.Update(gameTime);
+        if (soundManager.Finished())
+        {
+            soundManager.PlayMusic("default");
+        }
+        
     }
 
     protected override void Draw(GameTime gameTime)
