@@ -10,6 +10,7 @@ using static DrawingHelper;
 using static ContentImporter.Fonts;
 using static Economy;
 using static Functions;
+using static GameStats;
 
 public class Overlay : GameObjectList
 {
@@ -86,6 +87,7 @@ public class Overlay : GameObjectList
             }
         }
         DrawText(spriteBatch, FNT_OVERLAY, "Resources: " + EcResources.ToString(), new Vector2(400, SCREEN_SIZE.Y - OVERLAY_SIZE.Y + 20), Color.White);
+        DrawText(spriteBatch, FNT_OVERLAY, "Total Kills: " + TotalEnemiesKilled.ToString(), new Vector2(400, SCREEN_SIZE.Y - OVERLAY_SIZE.Y + 60), Color.White);
         DrawGrid(spriteBatch);
 
         base.Draw(gameTime, spriteBatch);

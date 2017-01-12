@@ -28,6 +28,7 @@ internal static class ContentImporter
             SPR_CREDITSPLANE,
             SPR_ENEMY,
             SPR_SHADOW,
+            SPR_AIRPLANE,
             SPR_WHITEPIXEL,
 
             // Projectiles
@@ -43,7 +44,8 @@ internal static class ContentImporter
             SPR_BASEGUN,
             SPR_CIRCLE,
             SPR_LASER_TOWER,
-            SPR_PULSE_TOWER;
+            SPR_PULSE_TOWER,
+            SPR_ROCKET_TOWER;
 
         public static void Initialize(ContentManager Content)
         {
@@ -51,6 +53,7 @@ internal static class ContentImporter
             SPR_MAINBACKGROUND = Content.Load<Texture2D>("Content/Sprites/MainBackground");
             SPR_CREDITSPLANE = Content.Load<Texture2D>("Content/Sprites/Credits");
             SPR_ENEMY = Content.Load<Texture2D>("Content/Sprites/enemySprite"); 
+            //SPR_AIRPLANE = Content.Load<Texture2D>("Content/Sprites/plane");
             SPR_WHITEPIXEL = Content.Load<Texture2D>("Content/Sprites/WhitePixel");
             SPR_SHADOW = Content.Load<Texture2D>("Content/Sprites/shadow");
 
@@ -61,11 +64,12 @@ internal static class ContentImporter
             //Towers
             SPR_ABSTRACT_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/abstractTower");
             SPR_ABSTRACT_CANNON = Content.Load<Texture2D>("Content/Sprites/Towers/cannon");
+            SPR_ROCKET_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/SPR_ROCKET_TOWER");
             SPR_BASE = Content.Load<Texture2D>("Content/Sprites/Towers/BaseSprite");
             SPR_BASEGUN = Content.Load<Texture2D>("Content/Sprites/Towers/BaseGun");
             SPR_CIRCLE = Content.Load<Texture2D>("Content/Sprites/Towers/radius");
             SPR_LASER_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/spr_laser_tower");
-            SPR_PULSE_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/pulseTower");
+            SPR_PULSE_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/SPR_PULSE_TOWER");
         }
     }
 
@@ -98,11 +102,13 @@ internal static class ContentImporter
     internal static class Sheets
     {
         internal static Texture2D
-            SHEET_TANK;
+            SHEET_TANK,
+            SHEET_AIRPLANE;
 
         public static void Initialize(ContentManager Content)
         {
             SHEET_TANK = Content.Load<Texture2D>("Content/Sheets/sheet_tank_upgraded@4x1");
+            SHEET_AIRPLANE = Content.Load<Texture2D>("Content/Sheets/sheet_plane@4x1");
         }
     }
 
@@ -149,17 +155,19 @@ internal static class ContentImporter
     {
         private static SoundManager soundManagerSFX;
         internal static SoundEffect
+            SND_HELICOPTER_LOOPING,
             SND_ENEMY_DYING;
 
         public static void Initialize(ContentManager Content)
         {
             soundManagerSFX = new SoundManager();
+            SND_HELICOPTER_LOOPING = Content.Load<SoundEffect>("Content/SoundEffects/Enemies/helicopterLoop");
             SND_ENEMY_DYING = Content.Load<SoundEffect>("Content/SoundEffects/Enemies/wilhemScream");
         }
 
-        public static void PlaySound(SoundEffect snd)
-        {
-            soundManagerSFX.PlaySound(snd);
-        }
+       // public static void PlaySound(SoundEffect snd)
+        //{
+            //soundManagerSFX.PlaySound(snd);
+       // }
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using static ContentImporter.Textures;
 using static ContentImporter.Sprites;
+using static GameStats;
 
 internal static class Constant
 {
@@ -25,8 +26,9 @@ internal static class Constant
 
     //LEVEL
     internal const int NODE_TEXTURE_SIZE = 64; //The raw, square size of a node
-    internal static readonly Point NODE_SIZE  =  new Point(128, 64); //The size of a node in the grid
-    internal static readonly Point LEVEL_SIZE = new Point(25, 50); //The size of the level grid
+    internal static readonly Point IMAGE_NODE_SIZE = new Point(128, 64); //size of the original texture image
+    internal static readonly Point NODE_SIZE  =  new Point(96, 48); //The size of a node in the grid
+    internal static readonly Point LEVEL_SIZE = new Point(27, 70); //The size of the level grid
     internal static readonly Vector2 LEVEL_CENTER = new Vector2(LEVEL_SIZE.X * NODE_SIZE.X, LEVEL_SIZE.Y/2 * NODE_SIZE.Y)/2;
 
     //CAMERA
@@ -85,7 +87,7 @@ internal static class Constant
             case Tower.Type.LaserTower:
                 return (int)(10-1.5*s);
             case Tower.Type.PulseTower:
-                return (int)Efunction(10, -0.6 * s);
+                return (int)Efunction(120, -0.6 * s);
             default:
                 return 0;
         }
@@ -101,13 +103,34 @@ internal static class Constant
     public static readonly Dictionary<string, TowerInfo> TOWER_INFO = new Dictionary<string, TowerInfo>()
     {
         { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 100, icon = SPR_LASER_TOWER } },
-        { "RocketTower", new TowerInfo() { name = "Rocket Tower", cost = 250, icon = SPR_ABSTRACT_TOWER } },
-        { "PulseTower", new TowerInfo() { name = "PulseTower", cost = 300, icon = SPR_ABSTRACT_TOWER } }
+        { "RocketTower", new TowerInfo() { name = "Rocket Tower", cost = 250, icon = SPR_ROCKET_TOWER } },
+        { "PulseTower", new TowerInfo() { name = "PulseTower", cost = 300, icon = SPR_PULSE_TOWER } }
     };
     
 
     //ENEMIES
-    internal static int[] ENEMY_HEALTH = new int[] { 100, 250, 600 };
+    internal static int EnemyHealthFunction(double mod)
+    {
+        return (int)mod * (18 * Wave + 100);
+    }
+    internal static int EnemyHealth(int type)
+    {
+        //0=Tank, 1=soldier, 2=airballoon, 3=airplane
+        switch (type)
+        {
+            case 0:
+                return EnemyHealthFunction(1.2);
+            case 1:
+                return EnemyHealthFunction(0.6);
+            case 2:
+                return EnemyHealthFunction(1.5);
+            case 3:
+                return EnemyHealthFunction(1.8);
+            default:
+                return EnemyHealthFunction(1);
+        }
+        
+    }
 
     //LEVEL BUILDER
     internal static readonly Point TOOLBAR_SIZE = new Point(SCREEN_SIZE.X, 150);
@@ -134,7 +157,7 @@ internal static class Constant
         new ToolBarObjectsItem("Base", SPR_BASE),
         new ToolBarObjectsItem("LaserTower", SPR_LASER_TOWER),
         new ToolBarObjectsItem("PulseTower", SPR_PULSE_TOWER),
-        new ToolBarObjectsItem("ProjectileTower", SPR_ABSTRACT_TOWER)
+        new ToolBarObjectsItem("ProjectileTower", SPR_ROCKET_TOWER)
     };
 
     //BUTTON MARGIN

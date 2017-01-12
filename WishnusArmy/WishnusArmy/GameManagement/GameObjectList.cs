@@ -102,9 +102,7 @@ public class GameObjectList : GameObject
             if (children[i].active == true)
                 children[i].Update(gameTime);
             if (children[i].Kill)
-            {
                 children.RemoveAt(i);
-            }
         }
     }
 

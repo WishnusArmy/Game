@@ -31,10 +31,10 @@ public abstract class Tower : GameObjectList
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        base.Draw(gameTime, spriteBatch);
         if (hover)
             spriteBatch.Draw(SPR_CIRCLE, GlobalPosition, null, null, new Vector2(SPR_CIRCLE.Width / 2, SPR_CIRCLE.Height / 2), 0f, new Vector2(1f, 1f) * ((float)TowerRange(type, stats) / ((float)SPR_CIRCLE.Width / 2)), new Color(0.2f, 0.2f, 0.2f, 0.05f));
         spriteBatch.Draw(baseTexture, GlobalPosition, null, null, new Vector2(baseTexture.Width / 2, baseTexture.Height / 2));
+        base.Draw(gameTime, spriteBatch);
     }
 
     public Vector2 DrawPosition //Correction for being on the grid.

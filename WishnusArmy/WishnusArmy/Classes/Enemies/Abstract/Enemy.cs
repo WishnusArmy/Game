@@ -21,14 +21,19 @@ public abstract partial class Enemy : IsometricMovingGameObject
     double _health;
     int maxHealth;
     public HealthText healthText;
+    public enum Type {Tank, Soldier, AirBaloon, Airplane }
+    public Type type;
 
-    public Enemy(Texture2D sprite, int SheetIndex = 0)
-        :base(sprite, SheetIndex)
+    public Enemy(Type type, Texture2D sprite, int SheetIndex = 0) 
+        : base(sprite, SheetIndex)
+
     {
+        this.type = type;
         pathIndex = 0;
-        _health = ENEMY_HEALTH[0];
-        maxHealth = (int)_health;
+        maxHealth = EnemyHealth((int)type);
+        _health = (int)maxHealth;
     }
+
     public double health
     {
         get { return _health;  }
@@ -51,6 +56,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
             if (_health <= 0)
             {
                 kill = true;
+                GameStats.TotalEnemiesKilled++;
                 PlaySound(SND_ENEMY_DYING);
             }
         }

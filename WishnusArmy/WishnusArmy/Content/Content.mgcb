@@ -181,18 +181,6 @@
 /processorParam:TextureFormat=Color
 /build:Content/Sprites/Towers/cannon.png
 
-#begin Content/Sprites/Towers/pulseTower.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Sprites/Towers/pulseTower.png
-
 #begin Content/Sprites/Towers/radius.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -415,7 +403,7 @@
 /processorParam:TextureFormat=Compressed
 /build:Content/Fonts/fnt_health_info.spritefont
 
-#begin Content\Sheets\sheet_tank_upgraded@4x1.png
+#begin Content/Sheets/sheet_plane@4x1.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -425,7 +413,25 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Content\Sheets\sheet_tank_upgraded@4x1.png
+/build:Content/Sheets/sheet_plane@4x1.png
+
+#begin Content/Sheets/sheet_tank_upgraded@4x1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Sheets/sheet_tank_upgraded@4x1.png
+
+#begin Content/SoundEffects/Enemies/helicopterLoop.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Content/SoundEffects/Enemies/helicopterLoop.mp3
 
 #begin Content/Sprites/shadow.png
 /importer:TextureImporter
@@ -438,4 +444,52 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Sprites/shadow.png
+
+#begin Content/Sprites/Towers/SPR_ROCKET_TOWER.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Sprites/Towers/SPR_ROCKET_TOWER.png
+
+#begin Content/Sprites/Towers/spr_tower.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Sprites/Towers/spr_tower.png
+
+#begin Content/Sprites/Towers/laserTower.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Sprites/Towers/laserTower.png
+
+#begin Content/Sprites/Towers/SPR_PULSE_TOWER.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Sprites/Towers/SPR_PULSE_TOWER.png
 

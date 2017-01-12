@@ -45,7 +45,7 @@ public class GridPlane: GameObjectList
                     if (x > 0 && y > 0) { grid[x, y].neighbours.Add(grid[x - 1, y - 1]); } //TopLeft
                     if (y > 0) { grid[x, y].neighbours.Add(grid[x, y - 1]); } //TopRight
                     if (y < LEVEL_SIZE.Y-1) { grid[x, y].neighbours.Add(grid[x , y + 1]); } //BottomRight
-                    if (x > 0 && y < LEVEL_SIZE.X - 1) { grid[x, y].neighbours.Add(grid[x - 1, y + 1]); } //BottomLeft
+                    if (x > 0 && y < LEVEL_SIZE.Y - 1) { grid[x, y].neighbours.Add(grid[x - 1, y + 1]); } //BottomLeft
                 }
                 else //Odd rows (4 cases)
                 {
@@ -117,10 +117,11 @@ public class GridPlane: GameObjectList
     {
         base.Update(gameTime);
         
-        if (RANDOM.Next(50) == 0)
+        if (RANDOM.Next(40) == 0)
         {
             GridNode node = grid[0, RANDOM.Next(LEVEL_SIZE.Y)];
             Add(new Tank { startNode = node, Position = node.Position });
+            Add(new Airplane { startNode = node, Position = node.Position });
         }
         
     }

@@ -41,7 +41,8 @@
     <Compile Include="Classes\ButtonWithDelegate.cs" />
     <Compile Include="Classes\Button.cs" />
     <Compile Include="Classes\Enemies\Abstract\Enemy_AI.cs" />
-    <Compile Include="Classes\Enemies\Tank.cs" />
+    <Compile Include="Classes\Enemies\Air\Airplane.cs" />
+    <Compile Include="Classes\Enemies\Land\Tank.cs" />
     <Compile Include="Classes\Functional\DrawOnTop.cs" />
     <Compile Include="Classes\GameWorld\Camera.cs" />
     <Compile Include="Classes\GameWorld\HealthText.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="Classes\Projectile\Bullet.cs" />
     <Compile Include="Classes\Projectile\Rocket.cs" />
     <Compile Include="Classes\Static Classes\Functions.cs" />
+    <Compile Include="Classes\Static Classes\GameStats.cs" />
     <Compile Include="Classes\Static Classes\PopupScreen.cs" />
     <Compile Include="Classes\Towers\Abstract\CannonTower.cs" />
     <Compile Include="Classes\Towers\Base.cs" />

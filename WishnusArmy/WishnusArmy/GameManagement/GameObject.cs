@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using WishnusArmy.GameManagement;
@@ -149,5 +151,13 @@ public abstract class GameObject : IGameLoopObject
         float L = A.X - B.X;
         float distance = (float)Math.Sqrt(K * K + L * L);
         return distance;
+    }
+    public void PlaySound(SoundEffect soundEffect, Boolean looping = false)
+    {
+        this.soundManager.PlaySound(soundEffect, looping);
+    }
+    public void StopSoundLoops()
+    {
+        soundManager.instance.Dispose();
     }
 }
