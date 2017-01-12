@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using static ContentImporter.Sprites;
+using static ContentImporter.Sounds;
 using static Constant;
 
 public class Rocket : Projectile
@@ -60,6 +61,7 @@ public class Rocket : Projectile
         {
             enemy.health -= damage;
             Kill = true;
+            PlaySound(SND_ROCKET_IMPACT);
         }
     }
 

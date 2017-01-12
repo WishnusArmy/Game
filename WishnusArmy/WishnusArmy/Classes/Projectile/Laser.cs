@@ -28,6 +28,7 @@ class Laser : ProjectileAtTower
                 pos = target.GlobalPositionCenter;
             }
             DrawingHelper.DrawLine(spriteBatch, GlobalPosition, pos, Color.Red * (p * p * p), 10);
+            //PlaySound(ContentImporter.Sounds.SND_LASER);
         }
         base.Draw(gameTime, spriteBatch);
     }

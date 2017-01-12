@@ -15,6 +15,7 @@ public class GridNode : GameObjectList
     public static Vector2 origin = IMAGE_NODE_SIZE.toVector() / 2;
     int _texture;
     public List<GridNode> neighbours, extendedNeighbours;
+    public bool solid;
     public int texture
     {
         get { return _texture;  }
@@ -29,7 +30,7 @@ public class GridNode : GameObjectList
             }
         }
     }
-    public bool solid;
+
     public bool selected;
     public Camera.Plane plane;
 

@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
-using static ContentImporter.Sprites;
+using static ContentImporter.Sheets;
 using static Constant;
-
+using Microsoft.Xna.Framework.Graphics;
 
 public class Tank : Enemy
 {
-    public Tank() : base(Type.Tank)
+    public Tank()
+        : base(Type.Tank, SHEET_TANK)
     {
-        this.sprite = SPR_ENEMY;
+        this.sprite = SHEET_TANK;
         this.speed = 3;
     }
 }

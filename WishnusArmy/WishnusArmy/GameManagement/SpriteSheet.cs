@@ -10,11 +10,11 @@ public class SpriteSheet
     protected int sheetColumns;
     protected int sheetRows;
     protected bool mirror;
+    protected Rectangle spritePart;
 
-    public SpriteSheet(string assetname, int sheetIndex = 0)
+    public SpriteSheet(Texture2D sprite, int sheetIndex = 0)
     {
-        // retrieve the sprite
-        sprite = GameEnvironment.AssetManager.GetSprite(assetname);
+        this.sprite = sprite;
         
         // construct the collision mask
         Color[] colorData = new Color[sprite.Width * sprite.Height];
@@ -30,7 +30,7 @@ public class SpriteSheet
         sheetRows = 1;
 
         // see if we can extract the number of sheet elements from the assetname
-        string[] assetSplit = assetname.Split('@');
+        string[] assetSplit = sprite.Name.Split('@');
         if (assetSplit.Length <= 1)
         {
             return;
@@ -45,18 +45,17 @@ public class SpriteSheet
         }
     }
 
-    public void Draw(SpriteBatch spriteBatch, Vector2 position, Vector2 origin)
+    public Rectangle Update(GameTime gameTime)
     {
         int columnIndex = sheetIndex % sheetColumns;
         int rowIndex = sheetIndex / sheetColumns % sheetRows;
-        Rectangle spritePart = new Rectangle(columnIndex * Width, rowIndex * Height, Width, Height);
+        spritePart = new Rectangle(columnIndex * Width, rowIndex * Height, Width, Height);
         SpriteEffects spriteEffects = SpriteEffects.None;
         if (mirror)
         {
             spriteEffects = SpriteEffects.FlipHorizontally;
         }
-        spriteBatch.Draw(sprite, position, spritePart, Color.White,
-            0.0f, origin, 1.0f, spriteEffects, 0.0f);
+        return spritePart;
     }
 
     public bool IsTranslucent(int x, int y)

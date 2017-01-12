@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿/*
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
 
@@ -49,3 +50,4 @@ public class AnimatedGameObject : SpriteGameObject
         get { return sprite as Animation; }
     }
 }
+*/

@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using static Constant;
 using static Functions;
 
-public abstract partial class Enemy : GameObject
+public abstract partial class Enemy
 {
     protected List<GridNode> getPath(GridNode startNode)
     {
