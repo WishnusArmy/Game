@@ -75,7 +75,7 @@ public class LevelGenerator : GameObject
                 if (RANDOM.Next(100) < initialRatio)
                 {
                     //Keep a square in the center of the grid clear of special tiles
-                    if ((x < LEVEL_SIZE.X / 2 - 5) || (x > LEVEL_SIZE.X / 2 + 5) || (y < LEVEL_SIZE.Y / 2 - 5) || (y > LEVEL_SIZE.Y / 2 + 5))
+                    if ((x < LEVEL_SIZE.X / 2 - 4) || (x > LEVEL_SIZE.X / 2 + 4) || (y < LEVEL_SIZE.Y / 2 - 10) || (y > LEVEL_SIZE.Y / 2 + 10))
                     {
                         distributionGrid[x, y] = true;
                     }
