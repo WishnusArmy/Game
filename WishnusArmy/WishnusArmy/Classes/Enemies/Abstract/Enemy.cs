@@ -93,9 +93,9 @@ public abstract partial class Enemy : IsometricMovingGameObject
         base.Draw(gameTime, spriteBatch);
         
         //draw Healthbar, above the enemy
-        DrawRectangle(new Rectangle(GlobalPosition.ToPoint() + new Point(-(sprite.Width + sheet.Update(gameTime).Width) / 4, -60), new Point(100, 10)), spriteBatch, Color.Black, 2, 1f);
+        DrawRectangle(new Rectangle(GlobalPosition.ToPoint() + new Point(-(sheetRec.Width) / 4, -60), new Point(100, 10)), spriteBatch, Color.Black, 2, 1f);
         Color healthColor = new Color((int)(255 * (1 - (health / maxHealth))), (int)(255 * (health / maxHealth)), 0, 255);
-        DrawRectangleFilled(new Rectangle(GlobalPosition.ToPoint() + new Point(-(sprite.Width + sheet.Update(gameTime).Width) / 4, -60), new Point((int)((health/maxHealth)*100), 10)), spriteBatch, healthColor, 0.8f);
+        DrawRectangleFilled(new Rectangle(GlobalPosition.ToPoint() + new Point(-(sheetRec.Width) / 4, -60), new Point((int)((health/maxHealth)*100), 10)), spriteBatch, healthColor, 0.8f);
     }
 
     public void moveAlongPath()
@@ -151,7 +151,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
     {
         get
         {
-            return GlobalPosition + new Vector2(sprite.Width, sprite.Height) / 2;
+            return GlobalPosition + new Vector2(sheetRec.Width, sheetRec.Height) / 2;
         }
     }
 
