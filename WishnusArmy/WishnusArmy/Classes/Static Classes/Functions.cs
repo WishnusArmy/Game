@@ -63,4 +63,15 @@ public static class Functions
     {
         return new Vector2(tex.Width, tex.Height) / 2;
     }
+
+    public static bool onList(this List<GridNode> list, GridNode node)
+    {
+        bool flag = false;
+        for (int i = 0; i < list.Count; ++i)
+        {
+            if (node == list[i])
+                flag = true;
+        }
+        return flag;
+}
 }

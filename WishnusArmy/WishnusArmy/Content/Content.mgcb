@@ -403,11 +403,11 @@
 /processorParam:TextureFormat=Compressed
 /build:Content/Fonts/fnt_health_info.spritefont
 
-#begin Content/SoundEffects/Enemies/helicopterLoop.mp3
+#begin Content/Fonts/helicopterLoop.mp3
 /importer:Mp3Importer
-/processor:SoundEffectProcessor
+/processor:SongProcessor
 /processorParam:Quality=Best
-/build:Content/SoundEffects/Enemies/helicopterLoop.mp3
+/build:Content/Fonts/helicopterLoop.mp3
 
 #begin Content/Sprites/plane.png
 /importer:TextureImporter
@@ -469,7 +469,7 @@
 /processorParam:Quality=Best
 /build:Content/Sprites/Music/mainMenu.mp3
 
-#begin Content/Sprites/Towers/laserTower.png
+#begin Content/Sprites/flame tower.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -479,9 +479,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Content/Sprites/Towers/laserTower.png
+/build:Content/Sprites/flame tower.png
 
-#begin Content/Sprites/Towers/spr_tower.png
+#begin Content/Sprites/gattling tower.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -491,9 +491,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Content/Sprites/Towers/spr_tower.png
+/build:Content/Sprites/gattling tower.png
 
-#begin Content/Textures/abstractTower.png
+#begin Content/Sprites/laser tower.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -503,9 +503,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Content/Textures/abstractTower.png
+/build:Content/Sprites/laser tower.png
 
-#begin Content/Textures/cannon.png
+#begin Content/Sprites/pulse tower 2.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -515,7 +515,56 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Content/Textures/cannon.png
+/build:Content/Sprites/pulse tower 2.png
+
+#begin Content/Sprites/rocket tower.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Sprites/rocket tower.png
+
+#begin Content/Sprites/sniper tower.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Sprites/sniper tower.png
+
+#begin Content/Sprites/soldier tower.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Sprites/soldier tower.png
+
+#begin Content/Sprites/tesla tower.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Sprites/tesla tower.png
+
 
 #begin Content/Music/Last_Dawn.mp3
 /importer:Mp3Importer
@@ -540,4 +589,5 @@
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Content/Music/Fall.wav
+
 
