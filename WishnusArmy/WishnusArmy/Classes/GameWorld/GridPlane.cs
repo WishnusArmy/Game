@@ -57,6 +57,16 @@ public class GridPlane: GameObjectList
             }
         }
 
+        for(int x = 0; x < LEVEL_SIZE.X; ++x)
+        {
+            for(int y=0; y<LEVEL_SIZE.Y; ++y)
+            {
+                if (x > 0) { grid[x, y].extendedNeighbours.Add(grid[x - 1, y]); }
+                if (x < LEVEL_SIZE.X-1) { grid[x, y].extendedNeighbours.Add(grid[x + 1, y]); }
+                if (y > 1) { grid[x, y].extendedNeighbours.Add(grid[x, y - 2]); }
+                if (y < LEVEL_SIZE.Y - 2) { grid[x, y].extendedNeighbours.Add(grid[x, y + 2]); }
+            }
+        }
         //Calculate the Heuristic for the pathfinding algorithm
         foreach (GridNode node in grid)
         {
@@ -143,7 +153,7 @@ public class GridPlane: GameObjectList
     {
         get
         {
-            return grid[LEVEL_SIZE.X / 2, LEVEL_SIZE.X / 2];
+            return grid[LEVEL_SIZE.X / 2, LEVEL_SIZE.Y / 2];
         }
     }
 }

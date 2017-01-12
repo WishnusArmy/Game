@@ -16,6 +16,7 @@ public class Camera : GameObjectList
     public GridPlane currentPlane;
     public GridPlane Underground, Land, Air;
     List<GridPlane> planes;
+    LevelGenerator levelGenerator;
 
     public Camera() : base()
     {
@@ -56,6 +57,17 @@ public class Camera : GameObjectList
         }
         currentPlane = planes[(int)Plane.Land]; //Reference the current plane to one of the three
         Console.WriteLine("Current Plane: " + currentPlane.planeType.ToString());
+        levelGenerator = new LevelGenerator();
+        List<int[,]> list = new List<int[,]>();
+        list = levelGenerator.GenerateNewLevel();
+        //GridNode[,] tempGrid = new GridNode[LEVEL_SIZE.X, LEVEL_SIZE.Y];
+        for(int x=0; x<LEVEL_SIZE.X; ++x)
+        {
+            for(int y=0; y<LEVEL_SIZE.Y; ++y)
+            {
+                Land.grid[x, y].texture = list[0][x,y];
+            }
+        }
     }
 
     public override void Update(GameTime gameTime)

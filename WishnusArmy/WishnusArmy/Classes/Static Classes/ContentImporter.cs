@@ -161,7 +161,7 @@ internal static class ContentImporter
         public static void Initialize(ContentManager Content)
         {
             soundManagerSFX = new SoundManager();
-            SND_HELICOPTER_LOOPING = Content.Load<SoundEffect>("Content/SoundEffects/Enemies/helicopterLoop");
+            //SND_HELICOPTER_LOOPING = Content.Load<SoundEffect>("Content/SoundEffects/Enemies/helicopterLoop");
             SND_ENEMY_DYING = Content.Load<SoundEffect>("Content/SoundEffects/Enemies/wilhemScream");
         }
 
