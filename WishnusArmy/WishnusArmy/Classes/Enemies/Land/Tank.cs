@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using static ContentImporter.Sprites;
 using static Constant;
 
+
 public class Tank : Enemy
 {
     public Tank() : base(Type.Tank)
