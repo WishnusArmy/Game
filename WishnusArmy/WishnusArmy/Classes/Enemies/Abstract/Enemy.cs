@@ -57,7 +57,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
             {
                 kill = true;
                 GameStats.TotalEnemiesKilled++;
-                PlaySound(SND_WILHELM_SCREAM);
+                //PlaySound(SND_WILHELM_SCREAM);
             }
         }
     }

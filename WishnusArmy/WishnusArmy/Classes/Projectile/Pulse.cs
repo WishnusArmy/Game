@@ -27,7 +27,8 @@ class Pulse : Projectile
 
     public void CheckCollision()
     {
-        foreach (Enemy enemy in MyPlane.FindByType<Enemy>())
+        List<Enemy> enemies = MyPlane.FindByType<Enemy>();
+        foreach (Enemy enemy in enemies)
         {
             double distance = DISTANCE(GlobalPosition, enemy.GlobalPositionCenter);
             if (distance < radiusCurrent + speed*2 && distance > radiusCurrent - speed*2 && !TargetsHit.Contains(enemy))

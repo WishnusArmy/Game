@@ -32,7 +32,7 @@ public abstract class Tower : GameObjectList
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         if (hover)
-            spriteBatch.Draw(SPR_CIRCLE, GlobalPosition, null, null, new Vector2(SPR_CIRCLE.Width / 2, SPR_CIRCLE.Height / 2), 0f, new Vector2(1f, 1f) * ((float)TowerRange(type, stats) / ((float)SPR_CIRCLE.Width / 2)), new Color(0.2f, 0.2f, 0.2f, 0.05f));
+            spriteBatch.Draw(SPR_CIRCLE, GlobalPosition, null, null, new Vector2(SPR_CIRCLE.Width / 2, SPR_CIRCLE.Height / 2), 0f, new Vector2(1f, 0.5f) * ((float)TowerRange(type, stats) / ((float)SPR_CIRCLE.Width / 2)), new Color(0.2f, 0.2f, 0.2f, 0.05f));
         spriteBatch.Draw(baseTexture, GlobalPosition, null, null, new Vector2(baseTexture.Width / 2, baseTexture.Height / 2));
         base.Draw(gameTime, spriteBatch);
     }
@@ -73,7 +73,9 @@ public abstract class Tower : GameObjectList
         }
         hover = myNode.selected; //check if the  mouse is hovering the tower
 
-       
+        //if target is out of range
+        if (target != null && DISTANCE(target.GlobalPositionCenter, GlobalPosition) > TowerRange(type, stats))
+            target = null;
 
         if (target == null || target.Kill)
         {
@@ -84,30 +86,20 @@ public abstract class Tower : GameObjectList
     public virtual Enemy findTarget()
     {
         List<Enemy> enemies = MyPlane.FindByType<Enemy>();
-        if (enemies.Count == 0)
-            return null;
-        List<Enemy> inrange = new List<Enemy>();
-        foreach(Enemy x in enemies)
+        for(int i=enemies.Count-1; i>=0; --i)
         {
-            if (CalculateDistance(GlobalPosition, x.GlobalPosition) <= TowerRange(type, stats))
+            if (CalculateDistance(GlobalPosition, enemies[i].GlobalPositionCenter) > TowerRange(type, stats))
             {
-                inrange.Add(x);
+                enemies.RemoveAt(i);
             }
         }
-        if (inrange.Count > 0)
-            return inrange[RANDOM.Next(inrange.Count)];
+        if (enemies.Count > 0)
+            return enemies[RANDOM.Next(enemies.Count)];
 
         return null;
     }
 
     public virtual void Attack()
     {
-        foreach (Projectile p in children)
-        {
-            if (!p.HasTarget)
-            {
-                p.target = findTarget();
-            }
-        }
     }
 }

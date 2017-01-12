@@ -12,28 +12,22 @@ public class Camera : GameObjectList
 {
     //Every object in this class will move with the camera. 
     //HUD items should therefore be put in the playingState children list.
-    public enum Plane { Underground, Land, Air };
+    public enum Plane { Land, Air };
     public GridPlane currentPlane;
-    public GridPlane Underground, Land, Air;
+    public GridPlane Land, Air;
     List<GridPlane> planes;
     LevelGenerator levelGenerator;
 
     public Camera() : base()
     {
         planes = new List<GridPlane>();
-        for (int i=0; i<3; ++i)
+        for (int i=0; i<2; ++i)
         { 
             GridPlane p = new GridPlane((Plane)i);
             p.active = false;
             Add(p);
             switch((Plane)i)
             {
-                case Plane.Underground:
-                    Underground = p;
-                    planes.Add(Underground);
-                    //Add items to the underground plane (p.Add)
-                    break;
-
                 case Plane.Land:
                     Land = p;
                     planes.Add(Land);
@@ -74,9 +68,16 @@ public class Camera : GameObjectList
     {
         base.Update(gameTime);
         //Manually handle the updates because the planes are inactive.
-        for(int i=0; i<3; ++i)
+        for(int i=0; i<2; ++i)
         {
             planes[i].Update(gameTime);
+        }
+
+        if (RANDOM.Next(40) == 0)
+        {
+            GridNode node = Land.grid[0, RANDOM.Next(LEVEL_SIZE.Y)];
+            Land.Add(new Tank { startNode = node, Position = node.Position });
+            Land.Add(new Airplane { startNode = node, Position = node.Position });
         }
     }
 
