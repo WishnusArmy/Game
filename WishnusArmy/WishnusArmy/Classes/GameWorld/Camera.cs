@@ -37,12 +37,13 @@ public class Camera : GameObjectList
                     Land = p;
                     planes.Add(Land);
                     //Add items to the land plane (p.Add)
-                    //p.Add(new Base { Position = LEVEL_CENTER });
+                    p.Add(new Base { Position = LEVEL_CENTER });
                     //(testcode) plaatst torens en voegt een enemy toe
                     for (int q = 0; q < 1; ++q)
                     {
                         GridNode node = Land.grid[0, LEVEL_SIZE.Y / 2];
                         p.Add(new Tank { startNode = node, Position = node.Position });
+                        
                     }
                     break;
 
@@ -92,8 +93,8 @@ public class Camera : GameObjectList
             position.Y -= SLIDE_SPEED;
 
         //Make sure the camera doesn't move out of bounds
-        if (position.X > -NODE_SIZE.X/2) { position.X = -NODE_SIZE.X/2; }
-        if (position.Y > -NODE_SIZE.Y/2) { position.Y = -NODE_SIZE.Y/2; }
+        if (position.X > -NODE_SIZE.X/2 - GridNode.origin.X/2) { position.X = -NODE_SIZE.X/2 - GridNode.origin.X/2; }
+        if (position.Y > -NODE_SIZE.Y/2 - GridNode.origin.Y) { position.Y = -NODE_SIZE.Y/2 - GridNode.origin.Y; }
 
         if (position.X < -NODE_SIZE.X * LEVEL_SIZE.X + GAME_WINDOW_SIZE.X) { position.X = -NODE_SIZE.X * LEVEL_SIZE.X + GAME_WINDOW_SIZE.X;  }
         if (position.Y < -NODE_SIZE.Y/2 * LEVEL_SIZE.Y + GAME_WINDOW_SIZE.Y) { position.Y = -NODE_SIZE.Y/2 * LEVEL_SIZE.Y + GAME_WINDOW_SIZE.Y; }

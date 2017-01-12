@@ -8,32 +8,32 @@ using Microsoft.Xna.Framework.Graphics;
 using static ContentImporter.Sprites;
 using static Constant;
 
-class Pulse : ProjectileAtTower
+class Pulse : Projectile
 {
+    static int speed = 20;
     private int radiusCurrent;
     private List<Enemy> TargetsHit;
-    private bool colorUP;
     private Color color;
+    double range;
 
-    public Pulse(double damage, double range, int rate) : base(damage, range, rate)
+    public Pulse(double damage, double range) : base(damage)
     {
+        sprite = SPR_PULSE;
         TargetsHit = new List<Enemy>();
         radiusCurrent = 0;
-        TargetsHit.Clear();
-        colorUP = true;
         color = new Color(0, 0, 210);
+        this.range = range;
     }
 
     public void CheckCollision()
     {
-        foreach (Enemy enemy in GameWorld.FindByType<Enemy>())
+        foreach (Enemy enemy in MyPlane.FindByType<Enemy>())
         {
             double distance = DISTANCE(GlobalPosition, enemy.GlobalPositionCenter);
-            int offset = (int)rate/2;
-            if (distance < radiusCurrent + offset && distance > radiusCurrent - offset)
+            if (distance < radiusCurrent + speed*2 && distance > radiusCurrent - speed*2 && !TargetsHit.Contains(enemy))
             {
-                enemy.health -= (int)damage;
                 TargetsHit.Add(enemy);
+                enemy.health -= (int)damage;
             }
         }
     }
@@ -43,13 +43,13 @@ class Pulse : ProjectileAtTower
     {
         base.Draw(gameTime, spriteBatch);
         spriteBatch.Draw(
-               SPR_PULSE,
+               sprite,
                new Rectangle(
-                   (int)GlobalPosition.X - radiusCurrent + SPR_PULSE_TOWER.Width/2, 
-                   (int)GlobalPosition.Y - radiusCurrent + SPR_PULSE_TOWER.Height/2, 
+                   (int) GlobalPosition.X - radiusCurrent, 
+                   (int) GlobalPosition.Y - radiusCurrent, 
                    radiusCurrent*2, 
                    radiusCurrent*2),
-               new Rectangle(0, 0, SPR_PULSE.Width, SPR_PULSE.Height),
+               new Rectangle(0, 0, sprite.Width, sprite.Height),
                color);
     }
 
@@ -59,10 +59,9 @@ class Pulse : ProjectileAtTower
         if (!visible)
             return;
         base.Update(gameTime);
-        radiusCurrent += (int)rate;
+        radiusCurrent += speed;
         CheckCollision();
-        if (radiusCurrent > range)
-            Reset();
+        Kill = radiusCurrent > range;
     }
     
 }

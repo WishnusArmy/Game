@@ -17,6 +17,7 @@ public class Rocket : Projectile
 
     public Rocket(double damage, float speed,  Vector2 startPosition) : base(damage)
     {
+        sprite = SPR_ROCKET;
         foundTarget = false;
         this.damage = damage;
         this.speed = speed;
@@ -39,8 +40,8 @@ public class Rocket : Projectile
     {
         if (foundTarget)
         {
-            double opposite = (enemy.GlobalPositionCenter.Y) - (GlobalPosition.Y + SPR_ROCKET.Height / 2);
-            double adjacent = (enemy.GlobalPositionCenter.X) - (GlobalPosition.X + SPR_ROCKET.Width / 2);
+            double opposite = (enemy.GlobalPositionCenter.Y) - (GlobalPosition.Y + sprite.Height / 2);
+            double adjacent = (enemy.GlobalPositionCenter.X) - (GlobalPosition.X + sprite.Width / 2);
             rotation = (float)Math.Atan2(opposite, adjacent);
         }
         else
@@ -55,7 +56,7 @@ public class Rocket : Projectile
 
     public void CheckCollision()
     {
-        if (CalculateDistance(enemy.GlobalPositionCenter, GlobalPosition + SPR_ROCKET.getOrigin()) < 50)
+        if (CalculateDistance(enemy.GlobalPositionCenter, GlobalPosition + sprite.getOrigin()) < 50)
         {
             enemy.health -= damage;
             Kill = true;
@@ -68,11 +69,11 @@ public class Rocket : Projectile
             return;
         base.Draw(gameTime, spriteBatch);
         spriteBatch.Draw(
-            SPR_ROCKET,
-            GlobalPosition - SPR_ROCKET.getOrigin(),
+            sprite,
+            GlobalPosition - sprite.getOrigin(),
             null,
             null,
-            SPR_ROCKET.getOrigin(),
+            sprite.getOrigin(),
             rotation + 0.5f * (float)Math.PI,
             null,
             Color.White,

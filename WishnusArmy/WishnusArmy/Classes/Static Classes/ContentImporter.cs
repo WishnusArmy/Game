@@ -26,7 +26,7 @@ internal static class ContentImporter
             SPR_MAINBACKGROUND,
             SPR_CREDITSPLANE,
             SPR_ENEMY,
-
+            SPR_AIRPLANE,
             SPR_WHITEPIXEL,
 
             // Projectiles
@@ -42,7 +42,8 @@ internal static class ContentImporter
             SPR_BASEGUN,
             SPR_CIRCLE,
             SPR_LASER_TOWER,
-            SPR_PULSE_TOWER;
+            SPR_PULSE_TOWER,
+            SPR_ROCKET_TOWER;
 
         public static void Initialize(ContentManager Content)
         {
@@ -50,6 +51,7 @@ internal static class ContentImporter
             SPR_MAINBACKGROUND = Content.Load<Texture2D>("Content/Sprites/MainBackground");
             SPR_CREDITSPLANE = Content.Load<Texture2D>("Content/Sprites/Credits");
             SPR_ENEMY = Content.Load<Texture2D>("Content/Sprites/enemySprite"); 
+            SPR_AIRPLANE = Content.Load<Texture2D>("Content/Sprites/plane");
             SPR_WHITEPIXEL = Content.Load<Texture2D>("Content/Sprites/WhitePixel");
 
             //Projectiles
@@ -59,11 +61,12 @@ internal static class ContentImporter
             //Towers
             SPR_ABSTRACT_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/abstractTower");
             SPR_ABSTRACT_CANNON = Content.Load<Texture2D>("Content/Sprites/Towers/cannon");
+            SPR_ROCKET_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/SPR_ROCKET_TOWER");
             SPR_BASE = Content.Load<Texture2D>("Content/Sprites/Towers/BaseSprite");
             SPR_BASEGUN = Content.Load<Texture2D>("Content/Sprites/Towers/BaseGun");
             SPR_CIRCLE = Content.Load<Texture2D>("Content/Sprites/Towers/radius");
             SPR_LASER_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/spr_laser_tower");
-            SPR_PULSE_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/pulseTower");
+            SPR_PULSE_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/SPR_PULSE_TOWER");
         }
     }
 
