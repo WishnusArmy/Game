@@ -180,7 +180,7 @@ internal static class ContentImporter
             //Buttons
             SND_BUTTON_BASIC = Content.Load<SoundEffect>("Content/SoundEffects/Buttons/click_basic");
             //Projectiles
-            SND_LASER = Content.Load<SoundEffect>("Content/SoundEffects/Projectiles/laser01");
+            SND_LASER = Content.Load<SoundEffect>("Content/SoundEffects/Projectiles/laser02");
             SND_ROCKET_IMPACT = Content.Load<SoundEffect>("Content/SoundEffects/Projectiles/rocketImpact");
 
             //Enemies
