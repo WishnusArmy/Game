@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
+using WishnusArmy.GameManagement;
 
 internal static class ContentImporter
 {
@@ -13,22 +16,23 @@ internal static class ContentImporter
         Textures.Initialize(Content);
         Fonts.Iniatilize(Content);
         Sprites.Initialize(Content);
+        Music.Initialize(Content);
+        Sounds.Initialize(Content);
     }
 
     internal static class Sprites
     {
         internal static Texture2D
-            SPR_MAINMENUBACKGROUND,
-            SPR_MAINTITLEBACKGROUND,
+            SPR_MAINBACKGROUND,
             SPR_CREDITSPLANE,
             SPR_ENEMY,
-
+            SPR_AIRPLANE,
             SPR_WHITEPIXEL,
 
             // Projectiles
 
             SPR_PULSE,
-            SPR_BULLET,
+            SPR_ROCKET,
 
             // Towers
 
@@ -36,31 +40,33 @@ internal static class ContentImporter
             SPR_ABSTRACT_CANNON,
             SPR_BASE,
             SPR_BASEGUN,
-            SPR_RADIUS,
+            SPR_CIRCLE,
             SPR_LASER_TOWER,
-            SPR_PULSE_TOWER;
+            SPR_PULSE_TOWER,
+            SPR_ROCKET_TOWER;
 
         public static void Initialize(ContentManager Content)
         {
             
-            SPR_MAINMENUBACKGROUND = Content.Load<Texture2D>("Content/Sprites/MainBackground");
-            SPR_MAINTITLEBACKGROUND = Content.Load<Texture2D>("Content/Sprites/MainTitleBackground");
+            SPR_MAINBACKGROUND = Content.Load<Texture2D>("Content/Sprites/MainBackground");
             SPR_CREDITSPLANE = Content.Load<Texture2D>("Content/Sprites/Credits");
             SPR_ENEMY = Content.Load<Texture2D>("Content/Sprites/enemySprite"); 
+            SPR_AIRPLANE = Content.Load<Texture2D>("Content/Sprites/plane");
             SPR_WHITEPIXEL = Content.Load<Texture2D>("Content/Sprites/WhitePixel");
 
             //Projectiles
             SPR_PULSE = Content.Load<Texture2D>("Content/Sprites/Projectiles/SPR_PULSE");
-            SPR_BULLET = Content.Load<Texture2D>("Content/Sprites/Projectiles/SPR_BULLET");
+            SPR_ROCKET = Content.Load<Texture2D>("Content/Sprites/Projectiles/SPR_BULLET");
 
             //Towers
             SPR_ABSTRACT_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/abstractTower");
             SPR_ABSTRACT_CANNON = Content.Load<Texture2D>("Content/Sprites/Towers/cannon");
+            SPR_ROCKET_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/SPR_ROCKET_TOWER");
             SPR_BASE = Content.Load<Texture2D>("Content/Sprites/Towers/BaseSprite");
             SPR_BASEGUN = Content.Load<Texture2D>("Content/Sprites/Towers/BaseGun");
-            SPR_RADIUS = Content.Load<Texture2D>("Content/Sprites/Towers/radius");
+            SPR_CIRCLE = Content.Load<Texture2D>("Content/Sprites/Towers/radius");
             SPR_LASER_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/spr_laser_tower");
-            SPR_PULSE_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/pulseTower");
+            SPR_PULSE_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/SPR_PULSE_TOWER");
         }
     }
 
@@ -94,12 +100,56 @@ internal static class ContentImporter
     {
         internal static SpriteFont
             FNT_LEVEL_BUILDER,
-            FNT_MENU;
+            FNT_MENU,
+            FNT_OVERLAY,
+            FNT_OVERLAY_INFO,
+            FNT_HEALTH_INFO;
 
         public static void Iniatilize(ContentManager Content)
         {
             FNT_LEVEL_BUILDER = Content.Load<SpriteFont>("Content/Fonts/fnt_level_builder");
             FNT_MENU = Content.Load<SpriteFont>("Content/Fonts/fnt_menu");
+            FNT_OVERLAY = Content.Load<SpriteFont>("Content/Fonts/fnt_overlay");
+            FNT_OVERLAY_INFO = Content.Load<SpriteFont>("Content/Fonts/fnt_overlay_info");
+            FNT_HEALTH_INFO = Content.Load<SpriteFont>("Content/Fonts/fnt_health_info");
+        }
+    }
+
+    internal static class Music
+    {
+        private static SoundManager soundManagerMSC;
+
+        internal static Song
+            SNG_MAINMENU;
+
+        public static void Initialize(ContentManager Content)
+        {
+            soundManagerMSC = new SoundManager();
+            SNG_MAINMENU = Content.Load<Song>("Content/Music/mainMenu");
+        }
+
+        public static void PlayMusic(Song music, bool isRepeating = true)
+        {
+            MediaPlayer.IsRepeating = isRepeating;
+            MediaPlayer.Play(music);
+        }
+    }
+
+    internal static class Sounds
+    {
+        private static SoundManager soundManagerSFX;
+        internal static SoundEffect
+            SND_ENEMY_DYING;
+
+        public static void Initialize(ContentManager Content)
+        {
+            soundManagerSFX = new SoundManager();
+            SND_ENEMY_DYING = Content.Load<SoundEffect>("Content/SoundEffects/Enemies/wilhemScream");
+        }
+
+        public static void PlaySound(SoundEffect snd)
+        {
+            soundManagerSFX.PlaySound(snd);
         }
     }
 }

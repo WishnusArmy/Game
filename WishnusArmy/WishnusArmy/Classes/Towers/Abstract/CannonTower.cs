@@ -9,20 +9,21 @@ using Microsoft.Xna.Framework.Input;
 using static Constant;
 using static ContentImporter.Sprites;
 
-public class CannonTower : Tower
-{ 
-    float rotation;
-    public Texture2D cannonTexture;
+public abstract class CannonTower : Tower
+{
+    protected float rotation;
+    protected Vector2 targetPos;
+    protected Texture2D cannonTexture;
 
 
-    public CannonTower() : base()
+    public CannonTower(Type type) : base(type)
     {
         cannonTexture = SPR_ABSTRACT_CANNON; // The moving part of a tower
     }
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
-        spriteBatch.Draw(cannonTexture, DrawPosition, null, null, new Vector2(cannonTexture.Width / 2, cannonTexture.Height / 2), rotation);
+        spriteBatch.Draw(cannonTexture, GlobalPosition, null, null, new Vector2(cannonTexture.Width / 2, cannonTexture.Height / 2), rotation);
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -33,8 +34,8 @@ public class CannonTower : Tower
         {
             targetPos = target.Position;
         }
-        double opposite = targetPos.Y - cannonTexture.Width / 2 - GlobalPosition.Y;
-        double adjacent = targetPos.X - cannonTexture.Width / 2 - GlobalPosition.X;
+        double opposite = targetPos.Y - GlobalPosition.Y;
+        double adjacent = targetPos.X - GlobalPosition.X;
         rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
     }
 }

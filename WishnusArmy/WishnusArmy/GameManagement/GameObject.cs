@@ -2,9 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using WishnusArmy.GameManagement;
 
 public abstract class GameObject : IGameLoopObject
 {
+    SoundManager soundManager = new SoundManager();
     protected GameObject parent;
     protected Vector2 position, velocity;
     protected int layer;
@@ -28,7 +30,7 @@ public abstract class GameObject : IGameLoopObject
 
     public virtual void Update(GameTime gameTime)
     {
-        position += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+        position += (velocity*60) * (float)gameTime.ElapsedGameTime.TotalSeconds;
     }
 
     public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -112,6 +114,21 @@ public abstract class GameObject : IGameLoopObject
         get { return visible; }
         set { visible = value; }
     }
+
+    public GridPlane MyPlane
+    {
+        get
+        {
+            if (this is GridPlane)
+                return this as GridPlane;
+
+            if (parent != null)
+                return parent.MyPlane;
+            else
+                return null;
+        }
+    }
+
     public bool Kill
     {
         get { return kill; }

@@ -12,8 +12,8 @@ using static ContentImporter.Textures;
 
 public class LevelGenerator : GameObject
 {
-    int[,] groundGrid = new int[LEVEL_SIZE, LEVEL_SIZE], airGrid = new int[LEVEL_SIZE, LEVEL_SIZE], undergroundGrid = new int[LEVEL_SIZE, LEVEL_SIZE];
-    bool[,] distributionGrid = new bool[LEVEL_SIZE, LEVEL_SIZE], tempGrid = new bool[LEVEL_SIZE, LEVEL_SIZE];
+    int[,] groundGrid = new int[LEVEL_SIZE.X, LEVEL_SIZE.Y], airGrid = new int[LEVEL_SIZE.X, LEVEL_SIZE.Y], undergroundGrid = new int[LEVEL_SIZE.X, LEVEL_SIZE.Y];
+    bool[,] distributionGrid = new bool[LEVEL_SIZE.X, LEVEL_SIZE.Y], tempGrid = new bool[LEVEL_SIZE.X, LEVEL_SIZE.Y];
 
     public LevelGenerator() : base()
     {
@@ -35,9 +35,9 @@ public class LevelGenerator : GameObject
     //Change all tiles in the level to the base tile
     public void ClearGrid()
     {
-        for (int x = 0; x < LEVEL_SIZE; x++)
+        for (int x = 0; x < LEVEL_SIZE.X; x++)
         {
-            for (int y = 0; y < LEVEL_SIZE; y++)
+            for (int y = 0; y < LEVEL_SIZE.Y; y++)
             {
                 groundGrid[x, y] = 0;
                 airGrid[x, y] = 0;
@@ -62,14 +62,14 @@ public class LevelGenerator : GameObject
     //Generate initial spread of special tiles in distributionGrid. distributionGrid is used to hold and edit the distribution of special tiles before they are added to the level
     public void PopulateDistributionGrid(int initialRatio)
     {
-        for (int x = 0; x < LEVEL_SIZE; x++)
+        for (int x = 0; x < LEVEL_SIZE.X; x++)
         {
-            for (int y = 0; y < LEVEL_SIZE; y++)
+            for (int y = 0; y < LEVEL_SIZE.Y; y++)
             {
                 if (RANDOM.Next(100) < initialRatio)
                 {
-                    //Keep the center of the grid clear of special tiles
-                    if ((x < LEVEL_SIZE / 2 - 5) || (x > LEVEL_SIZE / 2 + 5) || (y < LEVEL_SIZE / 2 - 2) || (y > LEVEL_SIZE / 2 + 2))
+                    //Keep a rectangle in the center of the grid clear of special tiles
+                    if ((x < LEVEL_SIZE.X / 2 - 5) || (x > LEVEL_SIZE.X / 2 + 5) || (y < LEVEL_SIZE.Y / 2 - 2) || (y > LEVEL_SIZE.Y / 2 + 2))
                     {
                         distributionGrid[x, y] = true;
                     }
@@ -81,9 +81,9 @@ public class LevelGenerator : GameObject
     //Go over the distributionGrid tile by tile, and adjust each tile's value to match the surroundings
     public void SmoothenGrid(int tileType, int initialRatio)
     {
-        for (int x = 0; x < LEVEL_SIZE; x++)
+        for (int x = 0; x < LEVEL_SIZE.X; x++)
         {
-            for (int y = 0; y < LEVEL_SIZE; y++)
+            for (int y = 0; y < LEVEL_SIZE.Y; y++)
             {
                 int neighbouringTiles = GetSurroundings(x, y, tileType, initialRatio);
 
@@ -154,7 +154,7 @@ public class LevelGenerator : GameObject
             for (int neighbourY = gridY - 1; neighbourY <= gridY + 1; neighbourY++)
             {
                 //Check if the tile does not border the edge of the level
-                if (neighbourX >= 0 && neighbourX < LEVEL_SIZE && neighbourY >= 0 && neighbourY < LEVEL_SIZE)
+                if (neighbourX >= 0 && neighbourX < LEVEL_SIZE.X && neighbourY >= 0 && neighbourY < LEVEL_SIZE.Y)
                 {
                     if (distributionGrid[neighbourX, neighbourY] == true)
                     {
@@ -177,9 +177,9 @@ public class LevelGenerator : GameObject
     //Use the distribution in distributionGrid to add special tiles to the level grid
     public void AddDistributionGrid(int level, int tileType)
     {
-        for (int x = 0; x < LEVEL_SIZE; x++)
+        for (int x = 0; x < LEVEL_SIZE.X; x++)
         {
-            for (int y = 0; y < LEVEL_SIZE; y++)
+            for (int y = 0; y < LEVEL_SIZE.Y; y++)
             {
                 if (distributionGrid[x, y] == true)
                 {
@@ -207,9 +207,9 @@ public class LevelGenerator : GameObject
     //Reset the distributionGrid for further use
     public void ClearDistributionGrid()
     {
-        for (int x = 0; x < LEVEL_SIZE; x++)
+        for (int x = 0; x < LEVEL_SIZE.X; x++)
         {
-            for (int y = 0; y < LEVEL_SIZE; y++)
+            for (int y = 0; y < LEVEL_SIZE.Y; y++)
             {
                 distributionGrid[x, y] = false;
             }
@@ -238,9 +238,9 @@ public class LevelGenerator : GameObject
         Vector2 camPos = GameWorld.FindByType<Camera>()[0].Position;
         GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane;
 
-        for (int x = 0; x < LEVEL_SIZE; x++)
+        for (int x = 0; x < LEVEL_SIZE.X; x++)
         {
-            for (int y = 0; y < LEVEL_SIZE; y++)
+            for (int y = 0; y < LEVEL_SIZE.Y; y++)
             {
                 //plane.grid[x, y].texture = groundGrid[x, y];  //Draw as isometric grids
 

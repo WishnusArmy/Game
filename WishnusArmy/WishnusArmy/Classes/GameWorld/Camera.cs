@@ -37,23 +37,14 @@ public class Camera : GameObjectList
                     Land = p;
                     planes.Add(Land);
                     //Add items to the land plane (p.Add)
-                    Base b = new Base();
-                    b.Position = LEVEL_CENTER;
-                    p.Add(b);
+                    p.Add(new Base { Position = LEVEL_CENTER });
                     //(testcode) plaatst torens en voegt een enemy toe
                     for (int q = 0; q < 1; ++q)
                     {
-                        Enemy e = new Enemy();
-                        e.Position = new Vector2(RANDOM.Next(500)+100, RANDOM.Next(600)+100);
-                        p.Add(e);
+                        GridNode node = Land.grid[0, LEVEL_SIZE.Y / 2];
+                        p.Add(new Tank { startNode = node, Position = node.Position });
+                        
                     }
-                    ProjectileTower t = new ProjectileTower();
-                    t.Position = new Vector2(400);
-                    p.Add(t);
-                    LaserTower x = new LaserTower();
-                    x.gridPosition = new Vector2(6, 6);
-                    //p.Add(x);
-                    //einde testcode
                     break;
 
                 case Plane.Air:
@@ -94,19 +85,19 @@ public class Camera : GameObjectList
         Vector2 mp = inputHelper.MousePosition;
         if (mp.X < SLIDE_BORDER)
             position.X += SLIDE_SPEED;
-        if (mp.X > GAME_WINDOW_SIZE.X - SLIDE_BORDER)
+        if (mp.X > SCREEN_SIZE.X - SLIDE_BORDER)
             position.X -= SLIDE_SPEED;
         if (mp.Y < SLIDE_BORDER)
             position.Y += SLIDE_SPEED;
-        if (mp.Y > GAME_WINDOW_SIZE.Y - SLIDE_BORDER)
+        if (mp.Y > SCREEN_SIZE.Y - SLIDE_BORDER)
             position.Y -= SLIDE_SPEED;
 
         //Make sure the camera doesn't move out of bounds
         if (position.X > -NODE_SIZE.X/2) { position.X = -NODE_SIZE.X/2; }
         if (position.Y > -NODE_SIZE.Y/2) { position.Y = -NODE_SIZE.Y/2; }
 
-        if (position.X < -NODE_SIZE.X * LEVEL_SIZE + WishnusArmy.WishnusArmy.Screen.X ) { position.X = -NODE_SIZE.X * LEVEL_SIZE + WishnusArmy.WishnusArmy.Screen.X;  }
-        if (position.Y < -NODE_SIZE.Y/2 * LEVEL_SIZE + WishnusArmy.WishnusArmy.Screen.Y) { position.Y = -NODE_SIZE.Y/2 * LEVEL_SIZE + WishnusArmy.WishnusArmy.Screen.Y; }
+        if (position.X < -NODE_SIZE.X * LEVEL_SIZE.X + GAME_WINDOW_SIZE.X) { position.X = -NODE_SIZE.X * LEVEL_SIZE.X + GAME_WINDOW_SIZE.X;  }
+        if (position.Y < -NODE_SIZE.Y/2 * LEVEL_SIZE.Y + GAME_WINDOW_SIZE.Y) { position.Y = -NODE_SIZE.Y/2 * LEVEL_SIZE.Y + GAME_WINDOW_SIZE.Y; }
 
         base.HandleInput(inputHelper);
     }

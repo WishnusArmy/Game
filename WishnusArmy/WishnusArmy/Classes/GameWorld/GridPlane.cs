@@ -18,11 +18,11 @@ public class GridPlane: GameObjectList
     {
         this.planeType = planeType;
         //Initialize the grid with the size of the level
-        grid = new GridNode[LEVEL_SIZE, LEVEL_SIZE]; 
+        grid = new GridNode[LEVEL_SIZE.X, LEVEL_SIZE.Y]; 
         //Fill the grid with GridItems
-        for(int x=0; x<LEVEL_SIZE; ++x)
+        for(int x=0; x<LEVEL_SIZE.X; ++x)
         {
-            for(int y=LEVEL_SIZE-1; y>=0; --y) //Make sure the grid gets build up from the bottom
+            for(int y=LEVEL_SIZE.Y-1; y>=0; --y) //Make sure the grid gets build up from the bottom
             {
                 if (y % 2 == 0) //All odd rows will be shifted half a node in order to lock together
                 {
@@ -36,25 +36,32 @@ public class GridPlane: GameObjectList
             }
         }
         //SET THE NEIGHBOURS
-        for(int x=0; x<LEVEL_SIZE; ++x)
+        for(int x=0; x<LEVEL_SIZE.X; ++x)
         {
-            for (int y = 0; y < LEVEL_SIZE; ++y)
+            for (int y = 0; y < LEVEL_SIZE.Y; ++y)
             {
                 if (y%2==0) //Even rows (4 cases)
                 {
                     if (x > 0 && y > 0) { grid[x, y].neighbours.Add(grid[x - 1, y - 1]); } //TopLeft
                     if (y > 0) { grid[x, y].neighbours.Add(grid[x, y - 1]); } //TopRight
-                    if (y < LEVEL_SIZE-1) { grid[x, y].neighbours.Add(grid[x , y + 1]); } //BottomRight
-                    if (x > 0 && y < LEVEL_SIZE - 1) { grid[x, y].neighbours.Add(grid[x - 1, y + 1]); } //BottomLeft
+                    if (y < LEVEL_SIZE.Y-1) { grid[x, y].neighbours.Add(grid[x , y + 1]); } //BottomRight
+                    if (x > 0 && y < LEVEL_SIZE.X - 1) { grid[x, y].neighbours.Add(grid[x - 1, y + 1]); } //BottomLeft
                 }
                 else //Odd rows (4 cases)
                 {
                     if (y > 0) { grid[x, y].neighbours.Add(grid[x, y - 1]); } //TopLeft
-                    if (x < LEVEL_SIZE - 1 && y > 0) { grid[x, y].neighbours.Add(grid[x + 1, y - 1]); } //TopRight
-                    if (x < LEVEL_SIZE - 1 && y < LEVEL_SIZE - 1) { grid[x, y].neighbours.Add(grid[x + 1, y + 1]); } //BottomRight
-                    if (y < LEVEL_SIZE - 1) { grid[x, y].neighbours.Add(grid[x, y + 1]); } //BottomLeft
+                    if (x < LEVEL_SIZE.X - 1 && y > 0) { grid[x, y].neighbours.Add(grid[x + 1, y - 1]); } //TopRight
+                    if (x < LEVEL_SIZE.X - 1 && y < LEVEL_SIZE.Y - 1) { grid[x, y].neighbours.Add(grid[x + 1, y + 1]); } //BottomRight
+                    if (y < LEVEL_SIZE.Y - 1) { grid[x, y].neighbours.Add(grid[x, y + 1]); } //BottomLeft
                 }
             }
+        }
+
+        //Calculate the Heuristic for the pathfinding algorithm
+        foreach (GridNode node in grid)
+        {
+            node.Hval = (int)(Math.Abs(node.Position.X - LEVEL_CENTER.X) + Math.Abs(node.Position.Y - LEVEL_CENTER.Y)) / 64;  //Calculate the Heuristic
+            node.pathParent = node; //Reset the parent
         }
 
         //ADD LEVEL OBJECTS IN THE CAMERA CLASS.
@@ -63,23 +70,24 @@ public class GridPlane: GameObjectList
 
     public GridNode NodeAt(Vector2 pos, bool throwClosest = true) //throwClosest=true will return the closest node if not found
     {
-        if (pos.X < 0 || pos.Y < 0)
+        if ((pos.X < 0 || pos.Y < 0) )
         {
-            throw new Exception("Can't look for nodes at negative coordinates: " + pos.X + ", " + pos.Y);
+            if (!throwClosest)
+                return null;
         }
 
         float shortDis = float.MaxValue; //Use to find the shortest node.
         GridNode shortNode = null;
  
-        for (int x = 0; x < LEVEL_SIZE; ++x)
+        for (int x = 0; x < LEVEL_SIZE.X; ++x)
         {
-            for (int y = 0; y < LEVEL_SIZE; ++y)
+            for (int y = 0; y < LEVEL_SIZE.Y; ++y)
             {
-                if (grid[x,y].HoversMe(pos))
+                if (grid[x,y].HoversMeRelative(pos))
                 {
                     return grid[x, y];
                 }
-                float dis = CalculateDistance(grid[x, y].Position, pos); //Store the distance
+                float dis = CalculateDistance(grid[x, y].GlobalPosition, pos); //Store the distance
                 if (dis < shortDis)
                 {
                     shortDis = dis; //Set new shortDis
@@ -92,6 +100,11 @@ public class GridPlane: GameObjectList
         {
             return shortNode;
         }
+        else
+        {
+            if (!throwClosest)
+                return null;
+        }
         throw new Exception("No node found at: " + pos.X + ", " + pos.Y);
     }
 
@@ -103,18 +116,34 @@ public class GridPlane: GameObjectList
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
+        
+        if (RANDOM.Next(40) == 0)
+        {
+            GridNode node = grid[0, RANDOM.Next(LEVEL_SIZE.Y)];
+            Add(new Tank { startNode = node, Position = node.Position });
+            Add(new Airplane { startNode = node, Position = node.Position });
+        }
+        
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
         //Draw the grid outlines
-        for (int i = 0; i < LEVEL_SIZE * 2; ++i)
+        for (int i = 0; i < (LEVEL_SIZE.X + LEVEL_SIZE.Y); ++i)
         {
             //Right to left
-           DrawingHelper.DrawLine(spriteBatch, GlobalPosition + new Vector2(LEVEL_SIZE * NODE_SIZE.X - NODE_SIZE.X * i, 0), GlobalPosition + new Vector2(LEVEL_SIZE * NODE_SIZE.X, NODE_SIZE.Y * i), Color.Black, 2, 0.0f);
+           DrawingHelper.DrawLine(spriteBatch, GlobalPosition + new Vector2(LEVEL_SIZE.X * NODE_SIZE.X - NODE_SIZE.X * i, 0), GlobalPosition + new Vector2(LEVEL_SIZE.X * NODE_SIZE.X, NODE_SIZE.Y * i), Color.Black, 2, 0.0f);
             //Left to right
            DrawingHelper.DrawLine(spriteBatch, GlobalPosition + new Vector2(NODE_SIZE.X * i, 0), GlobalPosition + new Vector2(0, NODE_SIZE.Y * i), Color.Black, 2, 0.0f);
+        }
+    }
+
+    public GridNode CenterNode
+    {
+        get
+        {
+            return grid[LEVEL_SIZE.X / 2, LEVEL_SIZE.X / 2];
         }
     }
 }

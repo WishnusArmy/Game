@@ -7,23 +7,29 @@ using System.Text;
 using System.Threading.Tasks;
 using static Constant;
 
-class Laser : Projectile
+class Laser : ProjectileAtTower
 {
-    public Enemy target;
+    static int visibleTimerMax = 30;
+    int visibleTimer;
+    Vector2 pos;
 
-    // Target new enemy as 
-    //      laser.target = Enemy
-
-    public Laser() : base()
+    public Laser(double damage, double range, int rate) : base(damage, range, rate)
     {
+        visibleTimer = visibleTimerMax;
     }
     
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
-
-        if (target != null)
-            DrawingHelper.DrawLine(spriteBatch, GlobalPosition, target.GlobalPositionCenter, Color.Red, 16);
+        float p = (float)visibleTimer / visibleTimerMax;
+        if (HasTarget && timer > 0)
+        {
+            if (pos == Vector2.Zero)
+            {
+                pos = target.GlobalPositionCenter;
+            }
+            DrawingHelper.DrawLine(spriteBatch, GlobalPosition, pos, Color.Red * (p * p * p), 10);
+        }
     }
 
     
@@ -31,7 +37,13 @@ class Laser : Projectile
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
-        if (target != null)
-          target.health -= damage;
+        if (HasTarget && (visibleTimer == visibleTimerMax))
+        {
+            target.health -= damage;
+        }
+        if (visibleTimer > 0)
+            visibleTimer--;
+        else
+            kill = true;
     }
 }

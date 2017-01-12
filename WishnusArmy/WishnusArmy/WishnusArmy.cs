@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Runtime.InteropServices;
 using static Constant;
@@ -13,8 +14,11 @@ namespace WishnusArmy
         [DllImport("kernel32")]
         static extern bool AllocConsole();
 
+        public static Game self;
+
         public WishnusArmy()
         {
+            self = this;
             //graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
@@ -25,8 +29,10 @@ namespace WishnusArmy
             Mouse.WindowHandle = Window.Handle;
             AllocConsole();
             Console.WriteLine("Hello World");
+            Functions.Initialize(GraphicsDevice);
             ContentImporter.Initialize(Content);
-            DrawingHelper.Initialize(GraphicsDevice);
+            DrawingHelper.Initialize(GraphicsDevice, Content);
+            PopupScreen.Initialize();
             base.Initialize();
         }
 
@@ -39,7 +45,7 @@ namespace WishnusArmy
             screen = SCREEN_SIZE;
             windowSize = WINDOW_SIZE;
             ApplyResolutionSettings();
-            FullScreen = true;
+            FullScreen = false;
 
             gameStateManager.AddGameState("MainMenuState", new MainMenuState());
             gameStateManager.AddGameState("CreditsState", new CreditsState());
@@ -47,19 +53,12 @@ namespace WishnusArmy
             gameStateManager.AddGameState("PlayingState", new PlayingState());
             gameStateManager.AddGameState("LevelBuilderState", new LevelBuilderState());
             gameStateManager.AddGameState("LevelGeneratorState", new LevelGeneratorState());
-            gameStateManager.SwitchTo("MainMenuState");
+            gameStateManager.SwitchTo("PlayingState");
         }
 
-        protected override void UnloadContent()
+        public static void ExitGame()
         {
-
-        }
-
-        protected override void Update(GameTime gameTime)
-        {
-            if (inputHelper.IsKeyDown(Keys.Escape))
-                Exit();
-            base.Update(gameTime);
+            self.Exit();
         }
 
         protected override void Draw(GameTime gameTime)

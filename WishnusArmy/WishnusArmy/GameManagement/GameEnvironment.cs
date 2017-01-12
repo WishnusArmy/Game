@@ -105,7 +105,7 @@ public class GameEnvironment : Game
 
     protected override void LoadContent()
     {
-        DrawingHelper.Initialize(this.GraphicsDevice);
+        DrawingHelper.Initialize(this.GraphicsDevice, Content);
         spriteBatch = new SpriteBatch(GraphicsDevice);
     }
 
@@ -114,7 +114,7 @@ public class GameEnvironment : Game
         inputHelper.Update();
         if (inputHelper.KeyPressed(Keys.Escape))
         {
-            Exit();
+            PopupScreen.show = !PopupScreen.show;
         }
         if (inputHelper.KeyPressed(Keys.F5))
         {
