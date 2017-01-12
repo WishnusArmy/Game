@@ -12,25 +12,28 @@ using static ContentImporter.Textures;
 
 public class LevelGenerator : GameObject
 {
-    int[,] groundGrid = new int[LEVEL_SIZE.X, LEVEL_SIZE.Y], airGrid = new int[LEVEL_SIZE.X, LEVEL_SIZE.Y], undergroundGrid = new int[LEVEL_SIZE.X, LEVEL_SIZE.Y];
+    int[,] landGrid = new int[LEVEL_SIZE.X, LEVEL_SIZE.Y], airGrid = new int[LEVEL_SIZE.X, LEVEL_SIZE.Y], underlandGrid = new int[LEVEL_SIZE.X, LEVEL_SIZE.Y];
     bool[,] distributionGrid = new bool[LEVEL_SIZE.X, LEVEL_SIZE.Y], tempGrid = new bool[LEVEL_SIZE.X, LEVEL_SIZE.Y];
 
     public LevelGenerator() : base()
     {
-        //GenerateNewLevel();
+        GenerateNewLevel();
     }
 
+    //Generate the grids that make up the playing fields
     public List<int[,]> GenerateNewLevel()
     {
         ClearGrid();
-        GenerateSpecialTiles(0, 5, 45, 5);     //Populate the ground level with forests
-        GenerateSpecialTiles(0, 2, 45, 5);     //Populate the ground level with mountains
-        GenerateSpecialTiles(0, 4, 40, 5);     //Populate the ground level with rivers
+        GenerateSpecialTiles(0, 5, 45, 5);     //Populate the land level with forests
+        GenerateSpecialTiles(0, 2, 45, 5);     //Populate the land level with mountains
+        GenerateSpecialTiles(0, 4, 40, 5);     //Populate the land level with rivers
         //GenerateSpecialTiles(2, 1, 60, 5);     //Populate the underground level with earth
         //GenerateSpecialTiles(2, 2, 40, 5);     //Populate the underground level with granite
         //GenerateSpecialTiles(2, 3, 35, 5);     //Populate the underground level with gold
+        GenerateAirGrid();
+
         List<int[,]> planes = new List<int[,]>();
-        planes.Add(groundGrid);
+        planes.Add(landGrid);
         planes.Add(airGrid);
         return planes;
     }
@@ -42,9 +45,9 @@ public class LevelGenerator : GameObject
         {
             for (int y = 0; y < LEVEL_SIZE.Y; y++)
             {
-                groundGrid[x, y] = 0;
+                landGrid[x, y] = 0;
                 airGrid[x, y] = 0;
-                undergroundGrid[x, y] = 0;
+                underlandGrid[x, y] = 0;
             }
         }
     }
@@ -71,8 +74,8 @@ public class LevelGenerator : GameObject
             {
                 if (RANDOM.Next(100) < initialRatio)
                 {
-                    //Keep a rectangle in the center of the grid clear of special tiles
-                    if ((x < LEVEL_SIZE.X / 2 - 5) || (x > LEVEL_SIZE.X / 2 + 5) || (y < LEVEL_SIZE.Y / 2 - 2) || (y > LEVEL_SIZE.Y / 2 + 2))
+                    //Keep a square in the center of the grid clear of special tiles
+                    if ((x < LEVEL_SIZE.X / 2 - 5) || (x > LEVEL_SIZE.X / 2 + 5) || (y < LEVEL_SIZE.Y / 2 - 5) || (y > LEVEL_SIZE.Y / 2 + 5))
                     {
                         distributionGrid[x, y] = true;
                     }
@@ -90,8 +93,17 @@ public class LevelGenerator : GameObject
             {
                 int neighbouringTiles = GetSurroundings(x, y, tileType, initialRatio);
 
+                if (neighbouringTiles >= 5)
+                {
+                    tempGrid[x, y] = true;
+                }
+                else if (neighbouringTiles < 5)
+                {
+                    tempGrid[x, y] = false;
+                }
+
                 //Determine smoothing behavior for the current tiletype
-                switch (tileType)
+                /* switch (tileType)
                 {
                     case 0:
                         break;
@@ -139,7 +151,8 @@ public class LevelGenerator : GameObject
                             distributionGrid[x, y] = false;
                         }
                         break;
-                }
+                    }
+                }*/
             }
         }
 
@@ -186,22 +199,7 @@ public class LevelGenerator : GameObject
             {
                 if (distributionGrid[x, y] == true)
                 {
-                    if (level == 0)
-                    {
-                        groundGrid[x, y] = tileType;
-                        if (tileType == 2)
-                        {
-                            airGrid[x, y] = 1;
-                        }
-                    }
-                    else if (level == 1)
-                    {
-                        airGrid[x, y] = tileType;
-                    }
-                    else if (level == 2)
-                    {
-                        undergroundGrid[x, y] = tileType;
-                    }
+                    landGrid[x, y] = tileType;
                 }
             }
         }
@@ -215,6 +213,20 @@ public class LevelGenerator : GameObject
             for (int y = 0; y < LEVEL_SIZE.Y; y++)
             {
                 distributionGrid[x, y] = false;
+            }
+        }
+    }
+
+    public void GenerateAirGrid()
+    {
+        for (int x = 0; x < LEVEL_SIZE.X; x++)
+        {
+            for (int y = 0; y < LEVEL_SIZE.Y; y++)
+            {
+                if (landGrid[x, y] == 2)
+                {
+                    airGrid[x, y] = 1;
+                }
             }
         }
     }
@@ -245,9 +257,9 @@ public class LevelGenerator : GameObject
         {
             for (int y = 0; y < LEVEL_SIZE.Y; y++)
             {
-                plane.grid[x, y].texture = groundGrid[x, y];  //Draw as isometric grids
+                //plane.grid[x, y].texture = landGrid[x, y];  //Draw as isometric grids
 
-                /* switch (groundGrid[x, y])   //Draw as seperate topdown grids (for testing)
+                switch (landGrid[x, y])   //Draw as seperate topdown grids (for testing)
                 {
                     case 0:
                         spriteBatch.Draw(TEX_EMPTY_SMALL, new Vector2(12 * x + 725, 12 * y + 250) + camPos, Color.LawnGreen);
@@ -285,7 +297,7 @@ public class LevelGenerator : GameObject
                         break;
                 }
 
-                switch (undergroundGrid[x, y])   //Draw as seperate topdown grids (for testing)
+                switch (underlandGrid[x, y])   //Draw as seperate topdown grids (for testing)
                 {
                     case 0:
                         spriteBatch.Draw(TEX_EMPTY_SMALL, new Vector2(12 * x + 1350, 12 * y + 250) + camPos, Color.RosyBrown);
@@ -306,7 +318,7 @@ public class LevelGenerator : GameObject
                     default:
                         spriteBatch.Draw(TEX_EMPTY_SMALL, new Vector2(12 * x + 1350, 12 * y + 250) + camPos, Color.White);
                         break;
-                } */
+                }
             }
         }
     }
