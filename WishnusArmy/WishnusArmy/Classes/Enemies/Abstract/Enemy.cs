@@ -143,7 +143,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
         //als velocity 0,0 is krijg je deling door 0
         if (velocity != new Vector2(0, 0))
         {
-            velocity *= (speed / (Math.Abs(velocity.X) + Math.Abs(velocity.Y)));
+            velocity *= (speed / ((Math.Abs(velocity.X) + Math.Abs(velocity.Y))));
         }
     }
 

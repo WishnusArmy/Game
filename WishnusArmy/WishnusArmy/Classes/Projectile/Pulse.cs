@@ -12,7 +12,7 @@ class Pulse : Projectile
 {
     static int speed = 15;
     private int radiusCurrent;
-    private List<Enemy> TargetsHit;
+    private List<Enemy> enemies, TargetsHit;
     private Color color;
     double range;
     float p;
@@ -29,14 +29,18 @@ class Pulse : Projectile
 
     public void CheckCollision()
     {
-        List<Enemy> enemies = MyPlane.FindByType<Enemy>();
+        if (enemies == null)
+            enemies = MyPlane.FindByType<Enemy>(); //Too much to do this everytime
         foreach (Enemy enemy in enemies)
         {
-            double distance = DISTANCE(GlobalPosition, enemy.GlobalPositionCenter);
-            if (distance < radiusCurrent + speed*2 && distance > radiusCurrent - speed*2 && !TargetsHit.Contains(enemy))
+            if (!TargetsHit.Contains(enemy))
             {
-                TargetsHit.Add(enemy);
-                enemy.health -= (int)damage * (1-0.5*p);
+                double distance = DISTANCE(GlobalPosition, enemy.GlobalPositionCenter);
+                if (distance < radiusCurrent + speed * 2 && distance > radiusCurrent - speed * 2)
+                {
+                    TargetsHit.Add(enemy);
+                    enemy.health -= (int)damage * (1 - 0.5 * p);
+                }
             }
         }
     }
