@@ -53,9 +53,9 @@ public partial class IsometricMovingGameObject : GameObject
     {
         base.Draw(gameTime, spriteBatch);
         //List<Enemy> airnemies = new List<Enemy>();
-        //GameWorld.FindByType<Camera>()[0].Air.FindByType<Enemy>();
-        //spriteBatch.Draw(sprite, GlobalPosition + new Vector2(NODE_SIZE.X, NODE_SIZE.Y) / 2, sheet.Update(gameTime), Color.Black, rotation, new Vector2(sprite.Width / 2, sprite.Height / 2), 1.1f, SpriteEffects.None, 0);
-        spriteBatch.Draw(sprite, GlobalPosition, null, sheet.Update(gameTime), Vector2.Zero, 0f);
+        //airnemies = GameWorld.FindByType<Camera>()[0].Air.FindByType<Enemy>();
+        spriteBatch.Draw(sprite, GlobalPosition + new Vector2(sheetRec.Width - 10, sheet.Height - 10)/2, sheetRec, Color.Black * 0.3f, 0f, new Vector2(sheetRec.Width / 2, sheetRec.Height / 2), 1.2f, SpriteEffects.None, 0);
+        spriteBatch.Draw(sprite, GlobalPosition, null, sheetRec, Vector2.Zero, 0f);
     }
 
     public int GetIsometricDirection()
