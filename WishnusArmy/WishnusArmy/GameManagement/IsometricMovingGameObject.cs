@@ -16,6 +16,7 @@ public partial class IsometricMovingGameObject : GameObject
     protected float rotation;
     protected Texture2D sprite;
     protected SpriteSheet sheet;
+    protected Rectangle sheetRec;
     protected int sheetIndex;
     protected Vector2 origin;
     public bool PerPixelCollisionDetection = true;
@@ -38,6 +39,7 @@ public partial class IsometricMovingGameObject : GameObject
     public override void Update(GameTime gameTime)
     {
         sheet.SheetIndex = GetIsometricDirection();
+        sheetRec = sheet.Update(gameTime);
 
         if (sprite == null)
         {
@@ -53,7 +55,7 @@ public partial class IsometricMovingGameObject : GameObject
         //List<Enemy> airnemies = new List<Enemy>();
         //GameWorld.FindByType<Camera>()[0].Air.FindByType<Enemy>();
         //spriteBatch.Draw(sprite, GlobalPosition + new Vector2(NODE_SIZE.X, NODE_SIZE.Y) / 2, sheet.Update(gameTime), Color.Black, rotation, new Vector2(sprite.Width / 2, sprite.Height / 2), 1.1f, SpriteEffects.None, 0);
-        spriteBatch.Draw(sprite, GlobalPosition, null, sheet.Update(gameTime), new Vector2(sprite.Width / 2, sprite.Height / 2), 0f);
+        spriteBatch.Draw(sprite, GlobalPosition, null, sheet.Update(gameTime), Vector2.Zero, 0f);
     }
 
     public int GetIsometricDirection()
