@@ -13,7 +13,7 @@ namespace WishnusArmy.GameManagement
     {
         public List<SoundEffectInstance> instanceList;
         public SoundEffectInstance instance;
-        float sfxVolume = 0.5f;
+        float sfxVolume = 0.2f;
         float musicVolume = 1f;
         Song prevSong;
         public SoundManager()
@@ -32,14 +32,31 @@ namespace WishnusArmy.GameManagement
                 case "HelpState":
                 case "CreditsState":
                     song = SNG_MAINMENU; repeating = true;  break;
-                
+                default:
+                    //het is blijkbaar onmogelijk om een list van songs te maken dus dan maar zo.
+                    switch (Constant.RANDOM.Next(4))
+                    {
+                        case 0:
+                            song = SNG_THE_GAME_IS_ON;
+                            break;
+                        case 1:
+                            song = SNG_LAST_DAWN;
+                            break;
+                        case 2:
+                            song = SNG_RUN;
+                            break;
+                        case 3:
+                            song = SNG_FALL;
+                            break;
+                    }
+                    repeating = false;
+                    break;
             }
 
             //if the same song is playing, keep playing that song
             if (prevSong == song)
                 return;
             prevSong = song;
-
             //if there is a song
             if (song != null)
             {
@@ -70,6 +87,10 @@ namespace WishnusArmy.GameManagement
             //deze shit werkt alleen als je hem meteen roept nadat je de sounds speelt, help.
             foreach (SoundEffectInstance x in instanceList)
                 x.Dispose();
+        }
+        public Boolean Finished()
+        {
+            return (MediaPlayer.State == MediaState.Stopped);
         }
     }
 }

@@ -403,12 +403,6 @@
 /processorParam:TextureFormat=Compressed
 /build:Content/Fonts/fnt_health_info.spritefont
 
-#begin Content/Fonts/helicopterLoop.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Content/Fonts/helicopterLoop.mp3
-
 #begin Content/SoundEffects/Enemies/helicopterLoop.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
@@ -450,4 +444,100 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Sprites/Towers/SPR_ROCKET_TOWER.png
+
+#begin Content/SoundEffects/Projectiles/rocketImpact.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Content/SoundEffects/Projectiles/rocketImpact.wav
+
+#begin Content/SoundEffects/Buttons/click_basic.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Content/SoundEffects/Buttons/click_basic.wav
+
+#begin Content/SoundEffects/Projectiles/laser01.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Content/SoundEffects/Projectiles/laser01.wav
+
+#begin Content/Sprites/Music/mainMenu.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Content/Sprites/Music/mainMenu.mp3
+
+#begin Content/Sprites/Towers/laserTower.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Sprites/Towers/laserTower.png
+
+#begin Content/Sprites/Towers/spr_tower.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Sprites/Towers/spr_tower.png
+
+#begin Content/Textures/abstractTower.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Textures/abstractTower.png
+
+#begin Content/Textures/cannon.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Textures/cannon.png
+
+#begin Content/Music/Last_Dawn.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Content/Music/Last_Dawn.mp3
+
+#begin Content/Music/Run.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Content/Music/Run.wav
+
+#begin Content/Music/the_game_is_on.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Content/Music/the_game_is_on.mp3
+
+#begin Content/Music/Fall.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Content/Music/Fall.wav
 

@@ -35,6 +35,11 @@ public class Button : GameObject
     {
         pressed = inputHelper.MouseLeftButtonPressed() &&
             BoundingBox.Contains((int)inputHelper.MousePosition.X, (int)inputHelper.MousePosition.Y);
+
+        //geluid voor alle buttons
+        if (pressed)
+        { PlaySound(ContentImporter.Sounds.SND_BUTTON_BASIC); }
+
         hover = BoundingBox.Contains((int)inputHelper.MousePosition.X, (int)inputHelper.MousePosition.Y);
     }
 

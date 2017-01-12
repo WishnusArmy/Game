@@ -56,7 +56,7 @@ public abstract partial class Enemy : GameObject
             {
                 kill = true;
                 GameStats.TotalEnemiesKilled++;
-                PlaySound(SND_ENEMY_DYING);
+                PlaySound(SND_WILHELM_SCREAM);
             }
         }
     }

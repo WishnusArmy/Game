@@ -120,12 +120,20 @@ internal static class ContentImporter
         private static SoundManager soundManagerMSC;
 
         internal static Song
-            SNG_MAINMENU;
+            SNG_MAINMENU,
+            SNG_LAST_DAWN,
+            SNG_RUN,
+            SNG_THE_GAME_IS_ON,
+            SNG_FALL;
 
         public static void Initialize(ContentManager Content)
         {
             soundManagerMSC = new SoundManager();
             SNG_MAINMENU = Content.Load<Song>("Content/Music/mainMenu");
+            SNG_LAST_DAWN = Content.Load<Song>("Content/Music/Last_Dawn");
+            SNG_RUN = Content.Load<Song>("Content/Music/Run");
+            SNG_THE_GAME_IS_ON = Content.Load<Song>("Content/Music/the_game_is_on");
+            SNG_FALL = Content.Load<Song>("Content/Music/Fall");
         }
 
         public static void PlayMusic(Song music, bool isRepeating = true)
@@ -139,14 +147,29 @@ internal static class ContentImporter
     {
         private static SoundManager soundManagerSFX;
         internal static SoundEffect
+            //Buttons
+            SND_BUTTON_BASIC,
+
+            //Projectiles
+            SND_ROCKET_IMPACT,
+            SND_LASER,
+
+            //Enemies
             SND_HELICOPTER_LOOPING,
-            SND_ENEMY_DYING;
+            SND_WILHELM_SCREAM;
 
         public static void Initialize(ContentManager Content)
         {
             soundManagerSFX = new SoundManager();
+            //Buttons
+            SND_BUTTON_BASIC = Content.Load<SoundEffect>("Content/SoundEffects/Buttons/click_basic");
+            //Projectiles
+            SND_LASER = Content.Load<SoundEffect>("Content/SoundEffects/Projectiles/laser01");
+            SND_ROCKET_IMPACT = Content.Load<SoundEffect>("Content/SoundEffects/Projectiles/rocketImpact");
+
+            //Enemies
             SND_HELICOPTER_LOOPING = Content.Load<SoundEffect>("Content/SoundEffects/Enemies/helicopterLoop");
-            SND_ENEMY_DYING = Content.Load<SoundEffect>("Content/SoundEffects/Enemies/wilhemScream");
+            SND_WILHELM_SCREAM = Content.Load<SoundEffect>("Content/SoundEffects/Enemies/wilhemScream");
         }
 
        // public static void PlaySound(SoundEffect snd)
