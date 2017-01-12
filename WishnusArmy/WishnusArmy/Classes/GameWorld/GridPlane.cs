@@ -143,7 +143,7 @@ public class GridPlane: GameObjectList
     {
         get
         {
-            return grid[LEVEL_SIZE.X / 2, LEVEL_SIZE.X / 2];
+            return grid[LEVEL_SIZE.X / 2, LEVEL_SIZE.Y / 2];
         }
     }
 }

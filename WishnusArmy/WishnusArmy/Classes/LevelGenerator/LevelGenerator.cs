@@ -17,19 +17,22 @@ public class LevelGenerator : GameObject
 
     public LevelGenerator() : base()
     {
-        GenerateNewLevel();
+        //GenerateNewLevel();
     }
 
-    public void GenerateNewLevel()
+    public List<int[,]> GenerateNewLevel()
     {
         ClearGrid();
         GenerateSpecialTiles(0, 5, 45, 5);     //Populate the ground level with forests
         GenerateSpecialTiles(0, 2, 45, 5);     //Populate the ground level with mountains
         GenerateSpecialTiles(0, 4, 40, 5);     //Populate the ground level with rivers
-        GenerateSpecialTiles(2, 1, 60, 5);     //Populate the underground level with earth
-        GenerateSpecialTiles(2, 2, 40, 5);     //Populate the underground level with granite
-        GenerateSpecialTiles(2, 3, 35, 5);     //Populate the underground level with gold
-
+        //GenerateSpecialTiles(2, 1, 60, 5);     //Populate the underground level with earth
+        //GenerateSpecialTiles(2, 2, 40, 5);     //Populate the underground level with granite
+        //GenerateSpecialTiles(2, 3, 35, 5);     //Populate the underground level with gold
+        List<int[,]> planes = new List<int[,]>();
+        planes.Add(groundGrid);
+        planes.Add(airGrid);
+        return planes;
     }
 
     //Change all tiles in the level to the base tile
@@ -236,15 +239,15 @@ public class LevelGenerator : GameObject
     {
         base.Update(gameTime);
         Vector2 camPos = GameWorld.FindByType<Camera>()[0].Position;
-        GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane;
+        GridPlane plane = GameWorld.FindByType<Camera>()[0].Land; 
 
         for (int x = 0; x < LEVEL_SIZE.X; x++)
         {
             for (int y = 0; y < LEVEL_SIZE.Y; y++)
             {
-                //plane.grid[x, y].texture = groundGrid[x, y];  //Draw as isometric grids
+                plane.grid[x, y].texture = groundGrid[x, y];  //Draw as isometric grids
 
-                switch (groundGrid[x, y])   //Draw as seperate topdown grids (for testing)
+                /* switch (groundGrid[x, y])   //Draw as seperate topdown grids (for testing)
                 {
                     case 0:
                         spriteBatch.Draw(TEX_EMPTY_SMALL, new Vector2(12 * x + 725, 12 * y + 250) + camPos, Color.LawnGreen);
@@ -303,7 +306,7 @@ public class LevelGenerator : GameObject
                     default:
                         spriteBatch.Draw(TEX_EMPTY_SMALL, new Vector2(12 * x + 1350, 12 * y + 250) + camPos, Color.White);
                         break;
-                }
+                } */
             }
         }
     }

@@ -20,12 +20,12 @@ public class GridNode : GameObjectList
         get { return _texture;  }
         set
         {
-            solid = false;
             _texture = value;
             switch(value)
             {
                 case 4: solid = true; break; //water
                 case 5: solid = true; break; //forest
+                default: solid = false; break;
             }
         }
     }
