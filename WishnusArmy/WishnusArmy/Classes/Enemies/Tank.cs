@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using static ContentImporter.Sprites;
+using WishnusArmy.GameManagement;
 
 public class Tank : Enemy
 {
@@ -12,5 +13,10 @@ public class Tank : Enemy
     {
         this.sprite = SPR_ENEMY;
         this.speed = 5;
+        PlaySound(ContentImporter.Sounds.SND_HELICOPTER_LOOPING, true);
+    }
+    public override void Update(GameTime gameTime)
+    {
+        base.Update(gameTime);
     }
 }

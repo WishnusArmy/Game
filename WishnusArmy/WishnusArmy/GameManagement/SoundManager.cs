@@ -9,14 +9,16 @@ using static ContentImporter.Music;
 
 namespace WishnusArmy.GameManagement
 {
-    class SoundManager
+    public class SoundManager
     {
+        public List<SoundEffectInstance> instanceList;
+        public SoundEffectInstance instance;
         float sfxVolume = 0.5f;
         float musicVolume = 1f;
         Song prevSong;
         public SoundManager()
         {
-
+            instanceList = new List<SoundEffectInstance>();
         }
         public void PlayMusic(string state)
         {
@@ -48,9 +50,26 @@ namespace WishnusArmy.GameManagement
             else
                 MediaPlayer.Stop();
         }
-        public void PlaySound(SoundEffect effect)
+        public void PlaySound(SoundEffect effect, Boolean looping = false)
         {
-            effect.Play(sfxVolume, 0, 0);
+            if (!looping)
+            {
+                effect.Play(sfxVolume, 0, 0);
+                return;
+            }
+            if (looping)
+            {
+                instance = effect.CreateInstance();
+                instance.IsLooped = true;
+                instanceList.Add(instance);
+                instance.Play();
+            }
+        }
+        public void StopSoundloops()
+        {
+            //deze shit werkt alleen als je hem meteen roept nadat je de sounds speelt, help.
+            foreach (SoundEffectInstance x in instanceList)
+                x.Dispose();
         }
     }
 }

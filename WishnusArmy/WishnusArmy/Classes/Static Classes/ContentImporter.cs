@@ -136,17 +136,19 @@ internal static class ContentImporter
     {
         private static SoundManager soundManagerSFX;
         internal static SoundEffect
+            SND_HELICOPTER_LOOPING,
             SND_ENEMY_DYING;
 
         public static void Initialize(ContentManager Content)
         {
             soundManagerSFX = new SoundManager();
+            SND_HELICOPTER_LOOPING = Content.Load<SoundEffect>("Content/SoundEffects/Enemies/helicopterLoop");
             SND_ENEMY_DYING = Content.Load<SoundEffect>("Content/SoundEffects/Enemies/wilhemScream");
         }
 
-        public static void PlaySound(SoundEffect snd)
-        {
-            soundManagerSFX.PlaySound(snd);
-        }
+       // public static void PlaySound(SoundEffect snd)
+        //{
+            //soundManagerSFX.PlaySound(snd);
+       // }
     }
 }

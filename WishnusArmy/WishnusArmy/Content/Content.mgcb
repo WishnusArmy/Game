@@ -415,3 +415,15 @@
 /processorParam:TextureFormat=Compressed
 /build:Content/Fonts/fnt_health_info.spritefont
 
+#begin Content/Fonts/helicopterLoop.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Content/Fonts/helicopterLoop.mp3
+
+#begin Content/SoundEffects/Enemies/helicopterLoop.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Content/SoundEffects/Enemies/helicopterLoop.mp3
+
