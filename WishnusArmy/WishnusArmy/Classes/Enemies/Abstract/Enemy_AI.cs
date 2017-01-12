@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using static Constant;
 
-public abstract partial class Enemy : GameObject
+public abstract partial class Enemy
 {
     protected List<GridNode> getPath(GridNode startNode)
     {

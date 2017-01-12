@@ -14,10 +14,11 @@ internal static class ContentImporter
     public static void Initialize(ContentManager Content)
     {
         Textures.Initialize(Content);
-        Fonts.Iniatilize(Content);
+        Fonts.Initialize(Content);
         Sprites.Initialize(Content);
         Music.Initialize(Content);
         Sounds.Initialize(Content);
+        Sheets.Initialize(Content);
     }
 
     internal static class Sprites
@@ -26,7 +27,7 @@ internal static class ContentImporter
             SPR_MAINBACKGROUND,
             SPR_CREDITSPLANE,
             SPR_ENEMY,
-
+            SPR_SHADOW,
             SPR_WHITEPIXEL,
 
             // Projectiles
@@ -51,6 +52,7 @@ internal static class ContentImporter
             SPR_CREDITSPLANE = Content.Load<Texture2D>("Content/Sprites/Credits");
             SPR_ENEMY = Content.Load<Texture2D>("Content/Sprites/enemySprite"); 
             SPR_WHITEPIXEL = Content.Load<Texture2D>("Content/Sprites/WhitePixel");
+            SPR_SHADOW = Content.Load<Texture2D>("Content/Sprites/shadow");
 
             //Projectiles
             SPR_PULSE = Content.Load<Texture2D>("Content/Sprites/Projectiles/SPR_PULSE");
@@ -93,6 +95,17 @@ internal static class ContentImporter
         }
     }
 
+    internal static class Sheets
+    {
+        internal static Texture2D
+            SHEET_TANK;
+
+        public static void Initialize(ContentManager Content)
+        {
+            SHEET_TANK = Content.Load<Texture2D>("Content/Sheets/sheet_tank_upgraded@4x1");
+        }
+    }
+
     internal static class Fonts
     {
         internal static SpriteFont
@@ -102,7 +115,7 @@ internal static class ContentImporter
             FNT_OVERLAY_INFO,
             FNT_HEALTH_INFO;
 
-        public static void Iniatilize(ContentManager Content)
+        public static void Initialize(ContentManager Content)
         {
             FNT_LEVEL_BUILDER = Content.Load<SpriteFont>("Content/Fonts/fnt_level_builder");
             FNT_MENU = Content.Load<SpriteFont>("Content/Fonts/fnt_menu");
