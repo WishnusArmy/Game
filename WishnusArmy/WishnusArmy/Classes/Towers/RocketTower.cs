@@ -14,7 +14,7 @@ class RocketTower : Tower
 
     public RocketTower() : base(Type.RocketTower)
     {
-        baseTexture = ContentImporter.Sprites.SPR_ABSTRACT_TOWER;
+        baseTexture = ContentImporter.Sprites.SPR_ROCKET_TOWER;
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

@@ -103,8 +103,8 @@ internal static class Constant
     public static readonly Dictionary<string, TowerInfo> TOWER_INFO = new Dictionary<string, TowerInfo>()
     {
         { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 100, icon = SPR_LASER_TOWER } },
-        { "RocketTower", new TowerInfo() { name = "Rocket Tower", cost = 250, icon = SPR_ABSTRACT_TOWER } },
-        { "PulseTower", new TowerInfo() { name = "PulseTower", cost = 300, icon = SPR_ABSTRACT_TOWER } }
+        { "RocketTower", new TowerInfo() { name = "Rocket Tower", cost = 250, icon = SPR_ROCKET_TOWER } },
+        { "PulseTower", new TowerInfo() { name = "PulseTower", cost = 300, icon = SPR_PULSE_TOWER } }
     };
     
 
@@ -157,7 +157,7 @@ internal static class Constant
         new ToolBarObjectsItem("Base", SPR_BASE),
         new ToolBarObjectsItem("LaserTower", SPR_LASER_TOWER),
         new ToolBarObjectsItem("PulseTower", SPR_PULSE_TOWER),
-        new ToolBarObjectsItem("ProjectileTower", SPR_ABSTRACT_TOWER)
+        new ToolBarObjectsItem("ProjectileTower", SPR_ROCKET_TOWER)
     };
 
     //BUTTON MARGIN
