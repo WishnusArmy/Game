@@ -26,10 +26,11 @@ class LaserTower : Tower
     }
     public override void Update(GameTime gameTime)
     {
+        if (target == null)
+            target = findTarget();
         base.Update(gameTime);
         if (canShoot)
         {
-            target = findTarget();
             Add(new Laser(TowerDamage(type, stats), TowerRange(type, stats), TowerRate(type, stats)) { target = target });
         }
 

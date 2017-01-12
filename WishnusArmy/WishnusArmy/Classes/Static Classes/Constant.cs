@@ -87,7 +87,7 @@ internal static class Constant
             case Tower.Type.LaserTower:
                 return (int)(10-1.5*s);
             case Tower.Type.PulseTower:
-                return (int)Efunction(10, -0.6 * s);
+                return (int)Efunction(120, -0.6 * s);
             default:
                 return 0;
         }
