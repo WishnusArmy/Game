@@ -1,4 +1,5 @@
-﻿using System;
+﻿/*
+using System;
 using Microsoft.Xna.Framework;
 
 public class Animation : SpriteSheet
@@ -57,3 +58,4 @@ public class Animation : SpriteSheet
     }
 }
 
+*/

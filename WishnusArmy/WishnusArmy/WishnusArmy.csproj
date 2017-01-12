@@ -92,7 +92,7 @@
     <Compile Include="GameManagement\IGameLoopObject.cs" />
     <Compile Include="GameManagement\InputHelper.cs" />
     <Compile Include="GameManagement\SoundManager.cs" />
-    <Compile Include="GameManagement\SpriteGameObject.cs" />
+    <Compile Include="GameManagement\IsometricMovingGameObject.cs" />
     <Compile Include="GameManagement\SpriteSheet.cs" />
     <Compile Include="GameManagement\TextGameObject.cs" />
     <Compile Include="States\LevelGeneratorState.cs" />
