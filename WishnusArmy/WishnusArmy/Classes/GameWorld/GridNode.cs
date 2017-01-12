@@ -12,7 +12,7 @@ using static ContentImporter.Fonts;
 
 public class GridNode : GameObjectList
 {
-    static Vector2 origin = IMAGE_NODE_SIZE.toVector() / 2;
+    public static Vector2 origin = IMAGE_NODE_SIZE.toVector() / 2;
     int _texture;
     public List<GridNode> neighbours, extendedNeighbours;
     public int texture
@@ -44,6 +44,7 @@ public class GridNode : GameObjectList
     public GridNode(Camera.Plane plane, Vector2 position, int texture) : base()
     {
         neighbours = new List<GridNode>();
+        extendedNeighbours = new List<GridNode>();
         this.texture = texture;
         this.position = position;
         this.texture = RANDOM.Next(2);
@@ -69,7 +70,10 @@ public class GridNode : GameObjectList
     {
         get
         {
-            return extendedNeighbours;
+            List<GridNode> list = new List<GridNode>();
+            list.AddRange(neighbours);
+            list.AddRange(extendedNeighbours);
+            return list;
         }
     }
 
@@ -81,6 +85,24 @@ public class GridNode : GameObjectList
         if (inputHelper.MouseInGameWindow && HoversMeRelative(mousePos))
         {
            selected = true;
+        }
+    }
+
+    public void setDval(GridNode origin, int range, List<GridNode> done, int D)
+    {
+        //Console.WriteLine("I got the D! ("+D+" dicks)");
+        int dis = (int)CalculateDistance(position, origin.position)+1;
+        if (dis < range)
+        {
+            foreach(GridNode node in ExtendedNeighbours)
+            { 
+                if (!done.onList(node))
+                {
+                    done.Add(node);
+                    node.Dval += (int)(D * (1-((float)dis/range)*0.9));
+                    node.setDval(origin, range, done, D);
+                }
+            }
         }
     }
 
@@ -109,13 +131,12 @@ public class GridNode : GameObjectList
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
-        beacon = congestion != 0;
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         spriteBatch.Draw(LIST_LAND_TEXTURES[texture], GlobalPosition + origin, null, Color.White, 0f, origin, NODE_SIZE.toVector() / IMAGE_NODE_SIZE.toVector(), SpriteEffects.None, 0);
-        //DrawingHelper.DrawText(spriteBatch, FNT_LEVEL_BUILDER, "H: " + Hval.ToString(), GlobalPosition + new Vector2(30, 10), Color.Red);
+        //DrawingHelper.DrawText(spriteBatch, FNT_LEVEL_BUILDER, "D: " + Dval.ToString(), GlobalPosition + new Vector2(30, 10), Color.Red);
         if (selected)
         {
             spriteBatch.Draw(LIST_LAND_TEXTURES[texture], GlobalPosition + origin, null, Color.Black * 0.4f, 0f,  origin, NODE_SIZE.toVector()/IMAGE_NODE_SIZE.toVector(), SpriteEffects.None, 0);

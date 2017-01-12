@@ -45,7 +45,7 @@ public class GridPlane: GameObjectList
                     if (x > 0 && y > 0) { grid[x, y].neighbours.Add(grid[x - 1, y - 1]); } //TopLeft
                     if (y > 0) { grid[x, y].neighbours.Add(grid[x, y - 1]); } //TopRight
                     if (y < LEVEL_SIZE.Y-1) { grid[x, y].neighbours.Add(grid[x , y + 1]); } //BottomRight
-                    if (x > 0 && y < LEVEL_SIZE.X - 1) { grid[x, y].neighbours.Add(grid[x - 1, y + 1]); } //BottomLeft
+                    if (x > 0 && y < LEVEL_SIZE.Y - 1) { grid[x, y].neighbours.Add(grid[x - 1, y + 1]); } //BottomLeft
                 }
                 else //Odd rows (4 cases)
                 {
@@ -57,6 +57,16 @@ public class GridPlane: GameObjectList
             }
         }
 
+        for(int x = 0; x < LEVEL_SIZE.X; ++x)
+        {
+            for(int y=0; y<LEVEL_SIZE.Y; ++y)
+            {
+                if (x > 0) { grid[x, y].extendedNeighbours.Add(grid[x - 1, y]); }
+                if (x < LEVEL_SIZE.X-1) { grid[x, y].extendedNeighbours.Add(grid[x + 1, y]); }
+                if (y > 1) { grid[x, y].extendedNeighbours.Add(grid[x, y - 2]); }
+                if (y < LEVEL_SIZE.Y - 2) { grid[x, y].extendedNeighbours.Add(grid[x, y + 2]); }
+            }
+        }
         //Calculate the Heuristic for the pathfinding algorithm
         foreach (GridNode node in grid)
         {

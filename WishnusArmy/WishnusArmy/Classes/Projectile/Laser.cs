@@ -20,7 +20,6 @@ class Laser : ProjectileAtTower
     
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        base.Draw(gameTime, spriteBatch);
         float p = (float)visibleTimer / visibleTimerMax;
         if (HasTarget && timer > 0)
         {
@@ -30,6 +29,7 @@ class Laser : ProjectileAtTower
             }
             DrawingHelper.DrawLine(spriteBatch, GlobalPosition, pos, Color.Red * (p * p * p), 10);
         }
+        base.Draw(gameTime, spriteBatch);
     }
 
     

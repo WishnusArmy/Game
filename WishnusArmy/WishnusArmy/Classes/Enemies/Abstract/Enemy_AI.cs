@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using static Constant;
+using static Functions;
 
 public abstract partial class Enemy : GameObject
 {
@@ -23,7 +24,7 @@ public abstract partial class Enemy : GameObject
         while (!done) //While not reached the origin node
         {
             path.Add(currentNode); //Add the node to the path
-            if (currentNode == startNode || currentNode == currentNode.pathParent || onList(currentNode, inList)) //Path found || stuck
+            if (currentNode == startNode || currentNode == currentNode.pathParent || inList.onList(currentNode)) //Path found || stuck
                 done = true;
             inList.Add(currentNode);
             currentNode = currentNode.pathParent; //Move to the next node in the path
@@ -33,7 +34,7 @@ public abstract partial class Enemy : GameObject
 
     private void calcNode(GridNode node, GridNode targetNode, List<GridNode> openList, List<GridNode> closedList)
     {
-        if (onList(node, openList))
+        if (openList.onList(node))
         {
             openList.RemoveAt(0); //Remove self from the openList
         }
@@ -47,19 +48,19 @@ public abstract partial class Enemy : GameObject
                 openList.Clear(); //Clear the openList (ending the recursive call)
                 break;
             }
-            if (onList(next[i], openList)) //If neighbour is on the openList
+            if (openList.onList(next[i])) //If neighbour is on the openList
             {
                 if (node.Gval + 10 < next[i].Gval) //If the path from here to there is faster than the previous path
                 {
                     next[i].pathParent = node; //Reparent to me
-                    next[i].Gval = node.Gval + 10; //Update the Fval
+                    next[i].Gval = node.Gval + 10; //Update the Gval
                 }
             }
-            if (!onList(next[i], openList) && !onList(next[i], closedList) && !next[i].solid) //If neither on the openList or closedList and not solid
+            if (!openList.onList(next[i]) && !closedList.onList(next[i]) && !next[i].solid) //If neither on the openList or closedList and not solid
             {
                 openList.Add(next[i]); //Add Neighbour to the openList
                 next[i].pathParent = node; //Make it a parent
-                next[i].Gval = node.Gval + 10; //Add movement cost
+                next[i].Gval = node.Gval + 10 + node.Dval; //Add movement and danger cost
                 next[i].Fval = next[i].Gval + next[i].Hval; //Update the Fvalue
             }
         }
@@ -69,16 +70,5 @@ public abstract partial class Enemy : GameObject
         {
             calcNode(openList[0], targetNode, openList, closedList); //Recursive call
         }
-    }
-
-    private bool onList(GridNode node, List<GridNode> list)
-    {
-        bool flag = false;
-        for(int i=0; i<list.Count; ++i)
-        {
-            if (node == list[i])
-                flag = true;
-        }
-        return flag;
     }
 }

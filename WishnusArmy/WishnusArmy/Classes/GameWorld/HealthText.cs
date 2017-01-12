@@ -25,7 +25,7 @@ public class HealthText : DrawOnTop
     public HealthText(int text, float impact) : base()
     {
         this.text = text;
-        maxTimer =50;
+        maxTimer = 50;
         timer = 0;
         startColor = Color.Black;
         endColor = Color.Black;

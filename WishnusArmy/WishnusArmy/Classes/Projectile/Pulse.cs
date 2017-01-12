@@ -8,18 +8,21 @@ using Microsoft.Xna.Framework.Graphics;
 using static ContentImporter.Sprites;
 using static Constant;
 
-class Pulse : ProjectileAtTower
+class Pulse : Projectile
 {
+    static int speed = 20;
     private int radiusCurrent;
     private List<Enemy> TargetsHit;
     private Color color;
+    double range;
 
-    public Pulse(double damage, double range, int rate) : base(damage, range, rate)
+    public Pulse(double damage, double range) : base(damage)
     {
         sprite = SPR_PULSE;
         TargetsHit = new List<Enemy>();
         radiusCurrent = 0;
         color = new Color(0, 0, 210);
+        this.range = range;
     }
 
     public void CheckCollision()
@@ -27,7 +30,7 @@ class Pulse : ProjectileAtTower
         foreach (Enemy enemy in MyPlane.FindByType<Enemy>())
         {
             double distance = DISTANCE(GlobalPosition, enemy.GlobalPositionCenter);
-            if (distance < radiusCurrent + rate*2 && distance > radiusCurrent - rate*2 && !TargetsHit.Contains(enemy))
+            if (distance < radiusCurrent + speed*2 && distance > radiusCurrent - speed*2 && !TargetsHit.Contains(enemy))
             {
                 TargetsHit.Add(enemy);
                 enemy.health -= (int)damage;
@@ -56,7 +59,7 @@ class Pulse : ProjectileAtTower
         if (!visible)
             return;
         base.Update(gameTime);
-        radiusCurrent += (int)rate;
+        radiusCurrent += speed;
         CheckCollision();
         Kill = radiusCurrent > range;
     }

@@ -28,7 +28,7 @@ internal static class Constant
     internal const int NODE_TEXTURE_SIZE = 64; //The raw, square size of a node
     internal static readonly Point IMAGE_NODE_SIZE = new Point(128, 64); //size of the original texture image
     internal static readonly Point NODE_SIZE  =  new Point(96, 48); //The size of a node in the grid
-    internal static readonly Point LEVEL_SIZE = new Point(25, 50); //The size of the level grid
+    internal static readonly Point LEVEL_SIZE = new Point(27, 70); //The size of the level grid
     internal static readonly Vector2 LEVEL_CENTER = new Vector2(LEVEL_SIZE.X * NODE_SIZE.X, LEVEL_SIZE.Y/2 * NODE_SIZE.Y)/2;
 
     //CAMERA
@@ -87,7 +87,7 @@ internal static class Constant
             case Tower.Type.LaserTower:
                 return (int)(10-1.5*s);
             case Tower.Type.PulseTower:
-                return (int)Efunction(10, -0.6 * s);
+                return (int)Efunction(120, -0.6 * s);
             default:
                 return 0;
         }
