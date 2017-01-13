@@ -8,17 +8,20 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using static ContentImporter.Sprites;
 using static Constant;
+using static DrawingHelper;
+using static GameStats;
 
 public class Base : GameObject
 {
+    Color healthColor;
     float rotation;
     Texture2D cannonTexture, baseTexture;
     List<GridNode> myNodes;
     bool hover;
 
-
     public Base() : base()
     {
+        healthColor = new Color(0, 255, 0);
         this.cannonTexture = SPR_BASEGUN;
         this.baseTexture = SPR_BASE;
     }
@@ -38,12 +41,19 @@ public class Base : GameObject
             if (node.selected)
                 hover = true;
         }
+
+        BaseHealth -= 3; // test
+
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
-        spriteBatch.Draw(baseTexture, GlobalPosition, null, null, new Vector2(baseTexture.Width / 2, baseTexture.Height / 2), 0f, new Vector2(1f), Color.White * (1f - 0.4f * hover.ToInt()), SpriteEffects.None, 0);
+        double p = ((double)BaseHealth / (double)MaxBaseHealth);
+        //healthColor = new Color((int)((1-p)*74),74+(int)(28*p),74+(int)(130*p));
+        healthColor = new Color((int)(255 * (1 - p)), (int)(255 * p), 0);
+        //spriteBatch.Draw(baseTexture, GlobalPosition, null, null, new Vector2(baseTexture.Width / 2, baseTexture.Height / 2), 0, null, healthColor);
+        spriteBatch.Draw(baseTexture, GlobalPosition, null, null, new Vector2(baseTexture.Width / 2, baseTexture.Height / 2), 0f, new Vector2(1f), healthColor * (1f - 0.4f * hover.ToInt()), SpriteEffects.None, 0);
         spriteBatch.Draw(cannonTexture, GlobalPosition, null, null, new Vector2(cannonTexture.Width / 2, cannonTexture.Height / 2), rotation);
     }
 

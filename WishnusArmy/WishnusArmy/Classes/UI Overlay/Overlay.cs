@@ -87,7 +87,8 @@ public class Overlay : GameObjectList
             }
         }
         DrawText(spriteBatch, FNT_OVERLAY, "Resources: " + EcResources.ToString(), new Vector2(400, SCREEN_SIZE.Y - OVERLAY_SIZE.Y + 20), Color.White);
-        DrawText(spriteBatch, FNT_OVERLAY, "Total Kills: " + TotalEnemiesKilled.ToString(), new Vector2(400, SCREEN_SIZE.Y - OVERLAY_SIZE.Y + 60), Color.White);
+        DrawText(spriteBatch, FNT_OVERLAY, "Base Health: " + BaseHealth.ToString() +"/"+ MaxBaseHealth.ToString(), new Vector2(400, SCREEN_SIZE.Y - OVERLAY_SIZE.Y + 60), Color.White);
+        DrawText(spriteBatch, FNT_OVERLAY, "Total Kills: " + TotalEnemiesKilled.ToString(), new Vector2(400, SCREEN_SIZE.Y - OVERLAY_SIZE.Y + 100), Color.White);
         DrawGrid(spriteBatch);
 
         base.Draw(gameTime, spriteBatch);

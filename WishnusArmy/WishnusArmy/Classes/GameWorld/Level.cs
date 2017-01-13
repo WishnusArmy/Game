@@ -12,6 +12,7 @@ public class Level : GameObjectList
     public Level() : base()
     {
         Economy.Initialize();
+        GameStats.Initialize();
         Add(new Camera());
         Add(new Overlay());
     }

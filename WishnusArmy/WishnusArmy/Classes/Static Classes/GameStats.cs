@@ -13,9 +13,13 @@ internal static class GameStats
 {
     static int wave;
     static int totalEnemiesKilled;
+    static int maxBaseHealth;
+    static int baseHealth;
 
     public static void Initialize()
     {
+        maxBaseHealth = 10000;
+        baseHealth = 10000;
         wave = 0;
         totalEnemiesKilled = 0;
     }
@@ -41,6 +45,26 @@ internal static class GameStats
         set
         {
             wave = value;
+        }
+    }
+
+    internal static int MaxBaseHealth
+    {
+        get
+        {
+            return maxBaseHealth;
+        }
+    }
+
+    internal static int BaseHealth
+    {
+        get
+        {
+            return baseHealth;
+        }
+        set
+        {
+            baseHealth = value;
         }
     }
 }

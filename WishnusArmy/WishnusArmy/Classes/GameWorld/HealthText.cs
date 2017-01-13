@@ -17,10 +17,10 @@ public class HealthText : DrawOnTop
     public int maxTimer;
     public float p;
     public float impact;
-    Color startColor;
-    Color endColor;
-    int height;
-    SpriteFont font;
+    protected Color startColor;
+    protected Color endColor;
+    protected int height;
+    protected SpriteFont font;
 
     public HealthText(int text, float impact) : base()
     {
