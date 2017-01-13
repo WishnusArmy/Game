@@ -42,6 +42,7 @@ class Laser : ProjectileAtTower
         {
             target.health -= damage;
         }
+
         if (visibleTimer > 0)
             visibleTimer--;
         else

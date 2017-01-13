@@ -26,19 +26,14 @@ class LaserTower : Tower
     }
     public override void Update(GameTime gameTime)
     {
-        if (target == null)
-            target = findTarget();
         base.Update(gameTime);
-        if (canShoot)
+        if (canShoot && target != null)
         {
             Add(new Laser(TowerDamage(type, stats), TowerRange(type, stats), TowerRate(type, stats)) { target = target });
         }
 
 
         // laser.Position = gridPosition * NODE_SIZE.X + new Vector2(baseTexture.Width/2, baseTexture.Height/2)+ GlobalPosition;
-        //if target is out of range
-        if (target != null && DISTANCE(target.GlobalPosition, GlobalPosition) > TowerRange(type, stats))
-            target = null;
     }
 }
 

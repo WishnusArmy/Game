@@ -10,11 +10,12 @@ using static Constant;
 
 class Pulse : Projectile
 {
-    static int speed = 20;
+    static int speed = 15;
     private int radiusCurrent;
     private List<Enemy> TargetsHit;
     private Color color;
     double range;
+    float p;
 
     public Pulse(double damage, double range) : base(damage)
     {
@@ -23,17 +24,19 @@ class Pulse : Projectile
         radiusCurrent = 0;
         color = new Color(0, 0, 210);
         this.range = range;
+        p = 0;
     }
 
     public void CheckCollision()
     {
-        foreach (Enemy enemy in MyPlane.FindByType<Enemy>())
+        List<Enemy> enemies = MyPlane.FindByType<Enemy>();
+        foreach (Enemy enemy in enemies)
         {
             double distance = DISTANCE(GlobalPosition, enemy.GlobalPositionCenter);
             if (distance < radiusCurrent + speed*2 && distance > radiusCurrent - speed*2 && !TargetsHit.Contains(enemy))
             {
                 TargetsHit.Add(enemy);
-                enemy.health -= (int)damage;
+                enemy.health -= (int)damage * (1-0.5*p);
             }
         }
     }
@@ -44,21 +47,25 @@ class Pulse : Projectile
         base.Draw(gameTime, spriteBatch);
         spriteBatch.Draw(
                sprite,
+               null,
                new Rectangle(
                    (int) GlobalPosition.X - radiusCurrent, 
-                   (int) GlobalPosition.Y - radiusCurrent, 
+                   (int) GlobalPosition.Y - radiusCurrent/2, 
                    radiusCurrent*2, 
-                   radiusCurrent*2),
+                   radiusCurrent),
                new Rectangle(0, 0, sprite.Width, sprite.Height),
-               color);
+               Vector2.Zero,
+               0f,
+               new Vector2(1f, 1f),
+               color * (1-p * p ),
+               SpriteEffects.None,
+               0);
     }
 
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
-        if (!visible)
-            return;
-        base.Update(gameTime);
+        p = (float)(radiusCurrent / range);
         radiusCurrent += speed;
         CheckCollision();
         Kill = radiusCurrent > range;

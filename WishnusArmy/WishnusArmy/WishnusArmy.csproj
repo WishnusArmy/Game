@@ -43,7 +43,7 @@
     <Compile Include="Classes\Enemies\Abstract\Enemy_AI.cs" />
     <Compile Include="Classes\Enemies\Air\Airplane.cs" />
     <Compile Include="Classes\Enemies\Land\Tank.cs" />
-    <Compile Include="Classes\Enemies\Air\Functional\DrawOnTop.cs" />
+    <Compile Include="Classes\Functional\DrawOnTop.cs" />
     <Compile Include="Classes\GameWorld\Camera.cs" />
     <Compile Include="Classes\GameWorld\HealthText.cs" />
     <Compile Include="Classes\ParticleEffects\Explosion.cs" />

@@ -125,15 +125,7 @@ public class GridPlane: GameObjectList
 
     public override void Update(GameTime gameTime)
     {
-        base.Update(gameTime);
-        
-        if (RANDOM.Next(100) == 0)
-        {
-            GridNode node = grid[0, RANDOM.Next(LEVEL_SIZE.Y)];
-            Add(new Tank { startNode = node, Position = node.Position });
-            Add(new Airplane { startNode = node, Position = node.Position });
-        }
-        
+        base.Update(gameTime);       
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
