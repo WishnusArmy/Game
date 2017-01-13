@@ -23,6 +23,8 @@ public class Overlay : GameObjectList
     int gridWidth;
     int gridHeight;
     Vector2 gridPos;
+    GridPlane plane;
+    GridNode previousNode;
 
 
     public Overlay() : base()
@@ -42,16 +44,30 @@ public class Overlay : GameObjectList
         Add(TowerInfo = new OverlayTowerInfo { Position = new Vector2(5, SCREEN_SIZE.Y - OVERLAY_SIZE.Y) });
     }
 
+    public override void Update(GameTime gameTime)
+    {
+        base.Update(gameTime);
+    }
+
     public override void HandleInput(InputHelper inputHelper)
     {
         base.HandleInput(inputHelper);
         mousePos = inputHelper.MousePosition;
 
-        GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane;
+        plane = GameWorld.FindByType<Camera>()[0].currentPlane;
         GridNode node;
         node = plane.NodeAt(inputHelper.MousePosition, false);
+        if (previousNode != node)
+        {
+            if (previousNode != null)
+                previousNode.selected = false;
+            previousNode = node;
+        }
+
         if (node == null)
             return;
+        else
+            node.selected = true;
 
         selectedPossible = !node.solid && inputHelper.MouseInGameWindow;
 
@@ -78,7 +94,6 @@ public class Overlay : GameObjectList
         if (selected != null)
         {
             GridNode node = null;
-            GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane;
             node = plane.NodeAt(mousePos, false);
 
             if (node != null)

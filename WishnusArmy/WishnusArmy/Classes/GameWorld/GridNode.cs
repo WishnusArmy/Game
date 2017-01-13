@@ -81,12 +81,6 @@ public class GridNode : GameObjectList
     public override void HandleInput(InputHelper inputHelper)
     {
         base.HandleInput(inputHelper);
-        selected = false;
-        Vector2 mousePos = inputHelper.MousePosition;
-        if (inputHelper.MouseInGameWindow && HoversMeRelative(mousePos))
-        {
-           selected = true;
-        }
     }
 
     public void setDval(GridNode origin, int range, List<GridNode> done, int D)

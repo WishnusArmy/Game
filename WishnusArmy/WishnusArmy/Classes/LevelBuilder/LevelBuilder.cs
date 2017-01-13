@@ -48,7 +48,8 @@ public class LevelBuilder : GameObjectList
     {
         int i = 0; //Iterator for the object id
         Hashtable file = new Hashtable(); //Make a hashtable
-        foreach (GameObject obj in GameWorld.FindByType<GameObject>())
+        List<GameObject> allGameObjects = GameWorld.FindByType<GameObject>();
+        foreach (GameObject obj in allGameObjects)
         {
             file.Add(i.ToString() + ".[0]Type", obj.GetType());  //Add the type to the hashtable
             file.Add(i.ToString() + ".[1]X", obj.Position.X.ToString()); //Add the x
