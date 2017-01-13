@@ -71,11 +71,16 @@ public class Camera : GameObjectList
             planes[i].Update(gameTime);
         }
 
-        if (RANDOM.Next(80) == 0)
+        int r = RANDOM.Next(40);
+        if (r == 0)
         {
             GridNode node = Land.grid[0, RANDOM.Next(LEVEL_SIZE.Y)];
-            Land.Add(new Tank { startNode = node, Position = node.Position });
-            Land.Add(new Airplane { startNode = node, Position = node.Position });
+            Land.Add(new Tank { startNode = node, Position = node.Position - new Vector2(100,0) });
+        }
+        if (r==1)
+        {
+            GridNode node = Land.grid[0, RANDOM.Next(LEVEL_SIZE.Y)];
+            Land.Add(new Airplane { startNode = node, Position = node.Position - new Vector2(100,0) });
         }
     }
 

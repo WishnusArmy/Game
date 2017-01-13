@@ -24,6 +24,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
     public HealthText healthText;
     public enum Type {Tank, Soldier, AirBaloon, Airplane }
     public Type type;
+    public bool requestGranted;
 
     public Enemy(Type type, Texture2D sprite, int SheetIndex = 0) 
         : base(sprite, SheetIndex)
@@ -33,6 +34,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
         pathIndex = 0;
         maxHealth = EnemyHealth((int)type);
         _health = (int)maxHealth;
+        requestGranted = false;
     }
 
     public double health
@@ -63,14 +65,6 @@ public abstract partial class Enemy : IsometricMovingGameObject
         }
     }
 
-    public int Damage
-    {
-        get
-        {
-            return EnemyHealth((int)type)/50;
-        }
-    }
-
     List<GridNode> path;
     int pathIndex;
 
@@ -78,11 +72,16 @@ public abstract partial class Enemy : IsometricMovingGameObject
     {
         base.Update(gameTime);
 
-        if (path == null && startNode != null)
+        if (requestGranted)
         {
-            GridPlane plane = Parent as GridPlane;
             path = getPath(startNode);
             pathIndex = path.Count - 1;
+            requestGranted = false;
+        }
+
+        if (path == null && startNode != null)
+        {
+            requestPath();
         }
 
         if (path != null)
@@ -92,7 +91,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
 
         if (healthText != null)
         {
-            healthText.Position = GlobalPositionCenter - new Vector2(0, 40) - GameWorld.FindByType<Camera>()[0].Position;
+            healthText.Position = GlobalPositionCenter - GlobalPosition + Position - new Vector2(0, 40);
         }
     }
 
@@ -124,25 +123,23 @@ public abstract partial class Enemy : IsometricMovingGameObject
         {
             if (pathIndex > 0)
             {
-                if (path[pathIndex - 1].solid) //Path has changed on the way.
+                if (path[pathIndex - 1].solid && !requestGranted) //Path has changed on the way.
                 {
-                    path = getPath(path[pathIndex]);
+                    startNode = path[pathIndex]; //set the startNode for the request
+                    requestPath();
                     if (path.Count == 0)
                     {
                         Kill = true;
                     }
-                    pathIndex = path.Count - 1;
                 }
                 else
                 {
-                    if (path[pathIndex - 1].congestion <= 1)
-                        pathIndex -= 1;
+                    pathIndex -= 1;
                 }
             }
             else
             {
                 Kill = true;
-                position = targetNode.Position;
             }
         }
 

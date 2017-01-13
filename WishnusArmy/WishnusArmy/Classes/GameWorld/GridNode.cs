@@ -24,6 +24,7 @@ public class GridNode : GameObject
             _texture = value;
             switch(value)
             {
+                case 2: solid = true; break; //mountains;
                 case 4: solid = true; break; //water
                 case 5: solid = true; break; //forest
                 default: solid = false; break;
@@ -48,7 +49,6 @@ public class GridNode : GameObject
         extendedNeighbours = new List<GridNode>();
         this.texture = texture;
         this.position = position;
-        this.texture = RANDOM.Next(2);
         this.plane = plane;
         Hval = 0;
         Gval = 0;

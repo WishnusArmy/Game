@@ -41,6 +41,7 @@
     <Compile Include="Classes\ButtonWithDelegate.cs" />
     <Compile Include="Classes\Button.cs" />
     <Compile Include="Classes\Enemies\Abstract\Enemy_AI.cs" />
+    <Compile Include="Classes\Enemies\Abstract\PathfindingControl.cs" />
     <Compile Include="Classes\Enemies\Air\Airplane.cs" />
     <Compile Include="Classes\Enemies\Land\Tank.cs" />
     <Compile Include="Classes\Functional\DrawOnTopList.cs" />

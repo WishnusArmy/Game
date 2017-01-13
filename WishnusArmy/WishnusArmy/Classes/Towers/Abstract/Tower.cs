@@ -85,7 +85,7 @@ public abstract class Tower : GameObjectList
         {
             myNode = MyPlane.NodeAt(GlobalPosition);
             myNode.solid = true;
-            myNode.setDval(myNode, TowerRange(type, stats), new List<GridNode>(), (int)TowerDamage(type, stats)*150);
+            myNode.setDval(myNode, TowerRange(type, stats), new List<GridNode>(), (int)TowerDamage(type, stats)*15);
         }
         hover = myNode.selected; //check if the  mouse is hovering the tower
 

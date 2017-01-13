@@ -11,11 +11,13 @@ using static ContentImporter.Textures;
 
 public class GridPlane: GameObjectList
 {
-    public GridNode[,] grid;
+    public GridNode[,] grid; //A set of all the nodes
+    public List<GridNode> spawnGrid; //A set of all center nodes not solid (to be spawned on)
     public Camera.Plane planeType;
         
     public GridPlane(Camera.Plane planeType) : base()
     {
+        spawnGrid = new List<GridNode>();
         this.planeType = planeType;
         //Initialize the grid with the size of the level
         grid = new GridNode[LEVEL_SIZE.X, LEVEL_SIZE.Y]; 

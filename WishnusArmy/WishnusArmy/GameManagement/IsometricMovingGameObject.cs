@@ -40,21 +40,13 @@ public partial class IsometricMovingGameObject : GameObject
     {
         sheet.SheetIndex = GetIsometricDirection();
         sheetRec = sheet.Update(gameTime);
-
-        if (sprite == null)
-        {
-            return;
-        }
-
         base.Update(gameTime);
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
-        //List<Enemy> airnemies = new List<Enemy>();
-        //airnemies = GameWorld.FindByType<Camera>()[0].Air.FindByType<Enemy>();
-        spriteBatch.Draw(sprite, GlobalPosition + new Vector2(sheetRec.Width - 10, sheet.Height - 10)/2, sheetRec, Color.Black * 0.3f, 0f, new Vector2(sheetRec.Width / 2, sheetRec.Height / 2), 1.2f, SpriteEffects.None, 0);
+        //spriteBatch.Draw(sprite, GlobalPosition + new Vector2(sheetRec.Width - 10, sheet.Height - 10)/2, sheetRec, Color.Black * 0.3f, 0f, new Vector2(sheetRec.Width / 2, sheetRec.Height / 2), 1.2f, SpriteEffects.None, 0);
         spriteBatch.Draw(sprite, GlobalPosition, null, sheetRec, Vector2.Zero, 0f);
     }
 

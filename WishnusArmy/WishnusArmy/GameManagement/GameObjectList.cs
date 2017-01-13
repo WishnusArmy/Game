@@ -99,10 +99,7 @@ public class GameObjectList : GameObject
             {
                 GameObjectList objList = obj as GameObjectList;
                 List<T> subList = objList.FindByType<T>();
-                if (subList != null)
-                {
-                    list.AddRange(subList);
-                }
+                list.AddRange(subList);
             }
         }
         return list;

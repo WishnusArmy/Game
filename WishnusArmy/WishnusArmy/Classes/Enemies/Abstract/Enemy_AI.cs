@@ -9,6 +9,10 @@ using static Functions;
 
 public abstract partial class Enemy
 {
+    protected void requestPath()
+    {
+        GameWorld.FindByType<PathfindingControl>()[0].AddRequest(this);
+    }
     protected List<GridNode> getPath(GridNode startNode)
     {
         List<GridNode> path = new List<GridNode>(); //Make a container for the return value
@@ -29,6 +33,7 @@ public abstract partial class Enemy
             inList.Add(currentNode);
             currentNode = currentNode.pathParent; //Move to the next node in the path
         }
+        Console.WriteLine("Fval: " + path[path.Count-1].Fval + "  ("+MyPlane.FindByType<Enemy>().Count+")");
         return path; //Return the path
     }
 
@@ -68,6 +73,7 @@ public abstract partial class Enemy
         openList = openList.OrderBy(o => o.Fval).ToList();
         if (openList.Count > 0) //Are there items in the openList left?
         {
+            openList[0].beacon = true;
             calcNode(openList[0], targetNode, openList, closedList); //Recursive call
         }
     }
