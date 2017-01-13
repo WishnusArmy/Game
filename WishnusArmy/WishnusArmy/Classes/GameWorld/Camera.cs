@@ -16,7 +16,6 @@ public class Camera : GameObjectList
     public GridPlane currentPlane;
     public GridPlane Land, Air;
     List<GridPlane> planes;
-    LevelGenerator levelGenerator;
 
     public Camera() : base()
     {
@@ -51,10 +50,9 @@ public class Camera : GameObjectList
         }
         currentPlane = planes[(int)Plane.Land]; //Reference the current plane to one of the three
         Console.WriteLine("Current Plane: " + currentPlane.planeType.ToString());
-        levelGenerator = new LevelGenerator();
+        LevelGenerator levelGenerator = new LevelGenerator();
         List<int[,]> list = new List<int[,]>();
         list = levelGenerator.GenerateNewLevel();
-        //GridNode[,] tempGrid = new GridNode[LEVEL_SIZE.X, LEVEL_SIZE.Y];
         for(int x=0; x<LEVEL_SIZE.X; ++x)
         {
             for(int y=0; y<LEVEL_SIZE.Y; ++y)
@@ -68,12 +66,12 @@ public class Camera : GameObjectList
     {
         base.Update(gameTime);
         //Manually handle the updates because the planes are inactive.
-        for(int i=0; i<2; ++i)
+        for(int i=0; i<planes.Count; ++i)
         {
             planes[i].Update(gameTime);
         }
 
-        if (RANDOM.Next(40) == 0)
+        if (RANDOM.Next(80) == 0)
         {
             GridNode node = Land.grid[0, RANDOM.Next(LEVEL_SIZE.Y)];
             Land.Add(new Tank { startNode = node, Position = node.Position });

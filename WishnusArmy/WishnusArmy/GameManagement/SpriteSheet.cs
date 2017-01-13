@@ -50,11 +50,11 @@ public class SpriteSheet
         int columnIndex = sheetIndex % sheetColumns;
         int rowIndex = sheetIndex / sheetColumns % sheetRows;
         spritePart = new Rectangle(columnIndex * Width, rowIndex * Height, Width, Height);
-        SpriteEffects spriteEffects = SpriteEffects.None;
-        if (mirror)
-        {
-            spriteEffects = SpriteEffects.FlipHorizontally;
-        }
+        //SpriteEffects spriteEffects = SpriteEffects.None;
+        //if (mirror)
+        //{
+        //    spriteEffects = SpriteEffects.FlipHorizontally;
+        //}
         return spritePart;
     }
 

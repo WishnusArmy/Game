@@ -20,7 +20,7 @@ class PulseTower : Tower
         base.Update(gameTime);
         if(canShoot && target != null)
         {
-            Add(new Pulse(TowerDamage(type, stats), TowerRange(type, stats)));
+            Add(new Pulse(TowerDamage(type, stats), TowerRange(type, stats), enemies));
         }
     }
 }

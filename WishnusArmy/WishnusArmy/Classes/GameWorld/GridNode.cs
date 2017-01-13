@@ -10,7 +10,7 @@ using static Constant;
 using static ContentImporter.Textures;
 using static ContentImporter.Fonts;
 
-public class GridNode : GameObjectList
+public class GridNode : GameObject
 {
     public static Vector2 origin = IMAGE_NODE_SIZE.toVector() / 2;
     int _texture;
@@ -35,7 +35,7 @@ public class GridNode : GameObjectList
     public Camera.Plane plane;
 
     //AI
-    public int Hval, Gval, Fval, Dval; //Heuristic, Movement, Sum, Danger
+    public long Hval, Gval, Fval, Dval; //Heuristic, Movement, Sum, Danger
     public GridNode pathParent;
     public int congestion;
 

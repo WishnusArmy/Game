@@ -12,7 +12,7 @@ using static Economy;
 using static Functions;
 using static GameStats;
 
-public class Overlay : GameObjectList
+public class Overlay : DrawOnTopList
 {
     public OverlayTowerItem selected;
     public OverlayTowerInfo TowerInfo;

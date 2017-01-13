@@ -22,7 +22,7 @@ public class GridPlane: GameObjectList
         //Fill the grid with GridItems
         for(int x=0; x<LEVEL_SIZE.X; ++x)
         {
-            for(int y=LEVEL_SIZE.Y-1; y>=0; --y) //Make sure the grid gets build up from the bottom
+            for(int y=0; y<LEVEL_SIZE.Y; ++y) //Make sure the grid gets build up from the bottom
             {
                 if (y % 2 == 0) //All odd rows will be shifted half a node in order to lock together
                 {
@@ -57,7 +57,7 @@ public class GridPlane: GameObjectList
             }
         }
 
-        for(int x = 0; x < LEVEL_SIZE.X; ++x)
+        for(int x = 0; x < LEVEL_SIZE.X; ++x) //set the extended neighbours
         {
             for(int y=0; y<LEVEL_SIZE.Y; ++y)
             {

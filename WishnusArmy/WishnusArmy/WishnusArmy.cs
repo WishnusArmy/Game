@@ -15,6 +15,7 @@ namespace WishnusArmy
         static extern bool AllocConsole();
 
         public static Game self;
+        public static bool startSorting;
 
         public WishnusArmy()
         {
@@ -54,6 +55,7 @@ namespace WishnusArmy
             gameStateManager.AddGameState("LevelBuilderState", new LevelBuilderState());
             gameStateManager.AddGameState("LevelGeneratorState", new LevelGeneratorState());
             gameStateManager.SwitchTo("PlayingState");
+            startSorting = true;
         }
 
         public static void ExitGame()

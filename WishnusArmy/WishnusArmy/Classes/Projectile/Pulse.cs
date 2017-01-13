@@ -12,34 +12,35 @@ class Pulse : Projectile
 {
     static int speed = 15;
     private int radiusCurrent;
-    private List<Enemy> enemies, TargetsHit;
+    private List<Enemy> enemies, targetsHit;
     private Color color;
     double range;
     float p;
+    Tower myTower;
 
-    public Pulse(double damage, double range) : base(damage)
+    public Pulse(double damage, double range, List<Enemy> enemies) : base(damage)
     {
         sprite = SPR_PULSE;
-        TargetsHit = new List<Enemy>();
         radiusCurrent = 0;
+        targetsHit = new List<Enemy>();
         color = new Color(0, 0, 210);
         this.range = range;
         p = 0;
+        myTower = Parent as Tower;
     }
 
     public void CheckCollision()
     {
-        if (enemies == null)
-            enemies = MyPlane.FindByType<Enemy>(); //Too much to do this everytime
-        foreach (Enemy enemy in enemies)
+        myTower = parent as Tower;
+        foreach (Enemy enemy in  myTower.enemies)
         {
-            if (!TargetsHit.Contains(enemy))
+            if (!targetsHit.Contains(enemy))
             {
                 double distance = DISTANCE(GlobalPosition, enemy.GlobalPositionCenter);
                 if (distance < radiusCurrent + speed * 2 && distance > radiusCurrent - speed * 2)
                 {
-                    TargetsHit.Add(enemy);
                     enemy.health -= (int)damage * (1 - 0.5 * p);
+                    targetsHit.Add(enemy);
                 }
             }
         }

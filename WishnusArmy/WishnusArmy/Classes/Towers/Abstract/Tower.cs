@@ -11,6 +11,7 @@ using static ContentImporter.Sprites;
 
 public abstract class Tower : GameObjectList
 {
+    static List<Enemy> _enemies;
     public Texture2D baseTexture;
     public Vector2 gridPosition, mousePosition, previousPosition = new Vector2(0, 0);
     protected Enemy target;
@@ -19,6 +20,19 @@ public abstract class Tower : GameObjectList
     public Type type;
     public int[] stats;
     int timer;
+    bool gotEnemies;
+    public List<Enemy> enemies
+    {
+        get
+        {
+            if (!gotEnemies)
+            {
+                Tower._enemies = MyPlane.FindByType<Enemy>();
+                gotEnemies = true;
+            }
+            return Tower._enemies;
+        }
+    }
 
     public enum Type { RocketTower, LaserTower, PulseTower, Base}
 
@@ -27,6 +41,7 @@ public abstract class Tower : GameObjectList
         this.type = type;
         stats = new int[] {0, 0, 0}; // damage, range, rate
         timer = 0;
+        gotEnemies = false;
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -58,6 +73,7 @@ public abstract class Tower : GameObjectList
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
+        gotEnemies = false;
 
         if (timer <= 0)
             timer = TowerRate(type, stats);
@@ -85,7 +101,7 @@ public abstract class Tower : GameObjectList
 
     public virtual Enemy findTarget()
     {
-        List<Enemy> enemies = MyPlane.FindByType<Enemy>();
+        
         for(int i=enemies.Count-1; i>=0; --i)
         {
             if (CalculateDistance(GlobalPosition, enemies[i].GlobalPositionCenter) > TowerRange(type, stats))
@@ -95,6 +111,7 @@ public abstract class Tower : GameObjectList
         }
         if (enemies.Count > 0)
             return enemies[RANDOM.Next(enemies.Count)];
+        
 
         return null;
     }
