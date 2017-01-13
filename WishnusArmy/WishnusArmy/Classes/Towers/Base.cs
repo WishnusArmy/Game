@@ -42,7 +42,7 @@ public class Base : GameObject
                 hover = true;
         }
 
-        BaseHealth -= 2; // test
+        BaseHealth -= 3; // test
 
     }
 
