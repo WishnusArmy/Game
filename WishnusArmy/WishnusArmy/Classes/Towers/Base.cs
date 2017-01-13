@@ -41,22 +41,20 @@ public class Base : GameObject
             if (node.selected)
                 hover = true;
         }
+
+        BaseHealth -= 2; // test
+
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
-        spriteBatch.Draw(baseTexture, GlobalPosition, null, null, new Vector2(baseTexture.Width / 2, baseTexture.Height / 2), 0f, new Vector2(1f), Color.White * (1f - 0.4f * hover.ToInt()), SpriteEffects.None, 0);
-        spriteBatch.Draw(cannonTexture, GlobalPosition, null, null, new Vector2(cannonTexture.Width / 2, cannonTexture.Height / 2), rotation);
-    }
-
-    public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-    {
-        double p =((double)BaseHealth / (double)MaxBaseHealth);
+        double p = ((double)BaseHealth / (double)MaxBaseHealth);
         //healthColor = new Color((int)((1-p)*74),74+(int)(28*p),74+(int)(130*p));
         healthColor = new Color((int)(255 * (1 - p)), (int)(255 * p), 0);
-        spriteBatch.Draw(baseTexture, GlobalPosition, null, null, new Vector2(baseTexture.Width / 2, baseTexture.Height / 2), 0, null, healthColor);
-        base.Draw(gameTime, spriteBatch);
+        //spriteBatch.Draw(baseTexture, GlobalPosition, null, null, new Vector2(baseTexture.Width / 2, baseTexture.Height / 2), 0, null, healthColor);
+        spriteBatch.Draw(baseTexture, GlobalPosition, null, null, new Vector2(baseTexture.Width / 2, baseTexture.Height / 2), 0f, new Vector2(1f), healthColor * (1f - 0.4f * hover.ToInt()), SpriteEffects.None, 0);
+        spriteBatch.Draw(cannonTexture, GlobalPosition, null, null, new Vector2(cannonTexture.Width / 2, cannonTexture.Height / 2), rotation);
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -66,11 +64,5 @@ public class Base : GameObject
         double opposite = targetPos.Y - GlobalPosition.Y;
         double adjacent = targetPos.X - GlobalPosition.X;
         rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
-    }
-
-    public override void Update(GameTime gameTime)
-    {
-        base.Update(gameTime);
-        BaseHealth -= 1;
     }
 }
