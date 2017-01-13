@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using static Constant;
 using static DrawingHelper;
+using static GameStats;
 
 public abstract partial class Enemy : IsometricMovingGameObject
 {
@@ -56,9 +57,17 @@ public abstract partial class Enemy : IsometricMovingGameObject
             if (_health <= 0)
             {
                 kill = true;
-                GameStats.TotalEnemiesKilled++;
+                TotalEnemiesKilled++;
                 PlaySound(SND_WILHELM_SCREAM);
             }
+        }
+    }
+
+    public int Damage
+    {
+        get
+        {
+            return EnemyHealth((int)type)/50;
         }
     }
 
@@ -84,8 +93,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
         if (healthText != null)
         {
             healthText.Position = GlobalPositionCenter - new Vector2(0, 40) - GameWorld.FindByType<Camera>()[0].Position;
-        }       
-       
+        }
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -120,7 +128,9 @@ public abstract partial class Enemy : IsometricMovingGameObject
                 {
                     path = getPath(path[pathIndex]);
                     if (path.Count == 0)
-                        kill = true;
+                    {
+                        Kill = true;
+                    }
                     pathIndex = path.Count - 1;
                 }
                 else
@@ -131,11 +141,10 @@ public abstract partial class Enemy : IsometricMovingGameObject
             }
             else
             {
-                kill = true;
+                Kill = true;
                 position = targetNode.Position;
             }
         }
-
 
         //sprite beweegt richting de muis met vaste snelheid (speed)
         velocity = (targetNode.Position - position);

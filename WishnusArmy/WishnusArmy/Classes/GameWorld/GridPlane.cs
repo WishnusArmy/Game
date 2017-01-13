@@ -127,7 +127,7 @@ public class GridPlane: GameObjectList
     {
         base.Update(gameTime);
         
-        if (RANDOM.Next(40) == 0)
+        if (RANDOM.Next(100) == 0)
         {
             GridNode node = grid[0, RANDOM.Next(LEVEL_SIZE.Y)];
             Add(new Tank { startNode = node, Position = node.Position });
