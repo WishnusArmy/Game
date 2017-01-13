@@ -71,7 +71,7 @@ public class Camera : GameObjectList
             planes[i].Update(gameTime);
         }
 
-        int r = RANDOM.Next(40);
+        int r = RANDOM.Next(30);
         if (r == 0)
         {
             GridNode node = Land.grid[0, RANDOM.Next(LEVEL_SIZE.Y)];

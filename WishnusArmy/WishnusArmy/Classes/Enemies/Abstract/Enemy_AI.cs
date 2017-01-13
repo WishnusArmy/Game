@@ -13,12 +13,15 @@ public abstract partial class Enemy
     {
         GameWorld.FindByType<PathfindingControl>()[0].AddRequest(this);
     }
-    protected List<GridNode> getPath(GridNode startNode)
+
+    public void getPath()
     {
-        List<GridNode> path = new List<GridNode>(); //Make a container for the return value
+        if (startNode == null)
+            throw new Exception("startNode is null");
+        List<GridNode> newPath = new List<GridNode>(); //Make a container for the return value
         List<GridNode> openList = new List<GridNode>(); //Nodes to be checked
         List<GridNode> closedList = new List<GridNode>(); //Nodes that have been checked
-        GridNode targetNode = MyPlane.CenterNode;
+        GridNode targetNode = centerNode;
 
         calcNode(startNode, targetNode, openList, closedList); //Start the recursive pathfinding.
 
@@ -27,14 +30,15 @@ public abstract partial class Enemy
         List<GridNode> inList = new List<GridNode>(); //Track the nodes that have already been in the route
         while (!done) //While not reached the origin node
         {
-            path.Add(currentNode); //Add the node to the path
+            newPath.Add(currentNode); //Add the node to the path
             if (currentNode == startNode || currentNode == currentNode.pathParent || inList.Contains(currentNode)) //Path found || stuck
                 done = true;
             inList.Add(currentNode);
             currentNode = currentNode.pathParent; //Move to the next node in the path
         }
-        Console.WriteLine("Fval: " + path[path.Count-1].Fval + "  ("+MyPlane.FindByType<Enemy>().Count+")");
-        return path; //Return the path
+        path = newPath; //Return the path
+        pathIndex = path.Count - 1;
+        PathfindingControl.threadCount--;
     }
 
     private void calcNode(GridNode node, GridNode targetNode, List<GridNode> openList, List<GridNode> closedList)
@@ -73,7 +77,6 @@ public abstract partial class Enemy
         openList = openList.OrderBy(o => o.Fval).ToList();
         if (openList.Count > 0) //Are there items in the openList left?
         {
-            openList[0].beacon = true;
             calcNode(openList[0], targetNode, openList, closedList); //Recursive call
         }
     }

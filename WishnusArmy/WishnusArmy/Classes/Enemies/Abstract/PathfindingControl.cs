@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ using static Constant;
 //This object handles pathfinding like an operating system handles processes.
 public class PathfindingControl : GameObject
 {
+    public static int threadCount;
     List<Enemy> pendingRequests;
     int timer;
 
@@ -16,6 +18,7 @@ public class PathfindingControl : GameObject
     {
         pendingRequests = new List<Enemy>();
         timer = -1;
+        threadCount = 0;
     }
 
     public void AddRequest(Enemy e)
@@ -31,11 +34,17 @@ public class PathfindingControl : GameObject
     {
         if (timer < 0)
             timer++;
-        for(int i = Math.Min(pendingRequests.Count-1, timer); i>=0; --i)
+        if (pendingRequests.Count > 1000)
+            throw new Exception("Pathfinding Request Overflow!");
+        for(int i = Math.Min(pendingRequests.Count-1, 0); i>=0; --i)
         {
-            pendingRequests[i].requestGranted = true;
-            pendingRequests.RemoveAt(i);
-            timer = -5;
+            if (timer == 0)
+            {
+                pendingRequests[i].requestGranted = true;
+                pendingRequests.RemoveAt(i);
+                timer = -5 - (threadCount)*5;
+                //Console.WriteLine("Request Granted ("+threadCount+" active): " + (pendingRequests.Count) + " to go, delay set to: " + timer);
+            }
         }
         base.Update(gameTime);
     }

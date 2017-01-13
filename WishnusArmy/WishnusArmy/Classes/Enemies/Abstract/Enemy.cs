@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,10 @@ public abstract partial class Enemy : IsometricMovingGameObject
     public enum Type {Tank, Soldier, AirBaloon, Airplane }
     public Type type;
     public bool requestGranted;
+    protected bool wait;
+    protected GridNode waitAt;
+    Thread thread;
+    GridNode centerNode;
 
     public Enemy(Type type, Texture2D sprite, int SheetIndex = 0) 
         : base(sprite, SheetIndex)
@@ -70,22 +75,28 @@ public abstract partial class Enemy : IsometricMovingGameObject
 
     public override void Update(GameTime gameTime)
     {
+        if (centerNode == null)
+            centerNode = MyPlane.CenterNode;
         base.Update(gameTime);
 
         if (requestGranted)
         {
-            path = getPath(startNode);
-            pathIndex = path.Count - 1;
+            thread = new Thread(new ThreadStart(getPath));
+            PathfindingControl.threadCount++;
+            thread.Start();
             requestGranted = false;
+            wait = false;
+            waitAt = null;
         }
 
-        if (path == null && startNode != null)
+        if (path == null && startNode != null && thread == null)
         {
-            requestPath();
+             requestPath();
         }
 
         if (path != null)
         {
+            velocity = Vector2.Zero;
             moveAlongPath();
         }
 
@@ -123,10 +134,26 @@ public abstract partial class Enemy : IsometricMovingGameObject
         {
             if (pathIndex > 0)
             {
-                if (path[pathIndex - 1].solid && !requestGranted) //Path has changed on the way.
+                if (path[pathIndex - 1].solid && !requestGranted && !wait) //Path has changed on the way.
                 {
+                    GridNode solidNode = path[pathIndex - 1];
                     startNode = path[pathIndex]; //set the startNode for the request
-                    requestPath();
+                    requestPath(); //Request a new path around the obstacle
+                    List<Enemy> enemies = MyPlane.FindByType<Enemy>();
+                    enemies = enemies.OrderBy(o => o.CalculateDistance(o.position, position)).ToList();
+                    foreach(Enemy enemy in enemies)
+                    {
+                        if (enemy.path != null)
+                        {
+                            if (enemy.path.Contains(solidNode))
+                            {
+                                enemy.startNode = enemy.path[enemy.pathIndex];
+                                enemy.wait = true;
+                                enemy.waitAt = solidNode;
+                                enemy.requestPath();
+                            }
+                        }
+                    }
                     if (path.Count == 0)
                     {
                         Kill = true;
@@ -134,7 +161,11 @@ public abstract partial class Enemy : IsometricMovingGameObject
                 }
                 else
                 {
-                    pathIndex -= 1;
+                    if (path[pathIndex-1] != waitAt)
+                    {
+                        path.RemoveAt(pathIndex);
+                        pathIndex -= 1;
+                    }
                 }
             }
             else
