@@ -25,11 +25,11 @@ public abstract partial class Enemy : IsometricMovingGameObject
     public HealthText healthText;
     public enum Type {Tank, Soldier, AirBaloon, Airplane }
     public Type type;
-    public bool requestGranted;
-    protected bool wait;
-    protected GridNode waitAt;
-    Thread thread;
+    public bool wait;
+    public GridNode waitAt;
     GridNode centerNode;
+    public List<GridNode> path;
+    public int pathIndex;
 
     public Enemy(Type type, Texture2D sprite, int SheetIndex = 0) 
         : base(sprite, SheetIndex)
@@ -39,7 +39,6 @@ public abstract partial class Enemy : IsometricMovingGameObject
         pathIndex = 0;
         maxHealth = EnemyHealth((int)type);
         _health = (int)maxHealth;
-        requestGranted = false;
     }
 
     public double health
@@ -70,31 +69,19 @@ public abstract partial class Enemy : IsometricMovingGameObject
         }
     }
 
-    List<GridNode> path;
-    int pathIndex;
-
     public override void Update(GameTime gameTime)
     {
         if (centerNode == null)
             centerNode = MyPlane.CenterNode;
         base.Update(gameTime);
 
-        if (requestGranted)
+        if (path == null && startNode != null)
         {
-            thread = new Thread(new ThreadStart(getPath));
-            PathfindingControl.threadCount++;
-            thread.Start();
-            requestGranted = false;
-            wait = false;
-            waitAt = null;
+            path = new List<GridNode>();
+            requestPath();
         }
 
-        if (path == null && startNode != null && thread == null)
-        {
-             requestPath();
-        }
-
-        if (path != null)
+        if (path != null && path.Count > 0)
         {
             velocity = Vector2.Zero;
             moveAlongPath();
@@ -134,7 +121,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
         {
             if (pathIndex > 0)
             {
-                if (path[pathIndex - 1].solid && !requestGranted && !wait) //Path has changed on the way.
+                if (path[pathIndex - 1].solid && !wait) //Path has changed on the way.
                 {
                     GridNode solidNode = path[pathIndex - 1];
                     startNode = path[pathIndex]; //set the startNode for the request

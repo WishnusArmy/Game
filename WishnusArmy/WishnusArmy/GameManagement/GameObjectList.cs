@@ -34,8 +34,12 @@ public class GameObjectList : GameObject
         */
         children.Add(obj);
 
-        if (!WishnusArmy.WishnusArmy.startSorting)
+        if (!WishnusArmy.WishnusArmy.startSorting) //For the initialization process
             return;
+
+        if (!(obj is Tower))
+            return;
+
         children = children.OrderBy(o => o.Position.Y).ToList(); //Sort all the children
         int lastNode = 0;
         for (int i = 0; i < children.Count; ++i) //Iterate through all the children
@@ -50,13 +54,15 @@ public class GameObjectList : GameObject
 
         for (int i = children.Count - 1; i >= 0; --i)
         {
-            if (children[i] is DrawOnTop) //If the current child should be drawn on top
+            if (children[i] is DrawOnTop || children[i] is DrawOnTopList) //If the current child should be drawn on top
             {
                 GameObject temp = children[i];
                 children.RemoveAt(i);
                 children.Insert(children.Count - 1, temp);
             }
         }
+
+
     }
 
     public void Remove(GameObject obj)

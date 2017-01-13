@@ -32,13 +32,6 @@ public class Camera : GameObjectList
                     planes.Add(Land);
                     //Add items to the land plane (p.Add)
                     p.Add(new Base { Position = LEVEL_CENTER });
-                    //(testcode) plaatst torens en voegt een enemy toe
-                    for (int q = 0; q < 1; ++q)
-                    {
-                        GridNode node = Land.grid[0, LEVEL_SIZE.Y / 2];
-                        p.Add(new Tank { startNode = node, Position = node.Position });
-                        
-                    }
                     break;
 
                 case Plane.Air:
