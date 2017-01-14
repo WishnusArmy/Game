@@ -99,6 +99,9 @@ public class Overlay : DrawOnTopList
             if(!inputHelper.IsKeyDown(Keys.LeftShift)) //allow shift-clicking multiple towers
             selected = null; //Reset the selected object reference
         }
+
+        if (inputHelper.KeyPressed(Keys.X) && selected != null)
+            selected = null;
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
