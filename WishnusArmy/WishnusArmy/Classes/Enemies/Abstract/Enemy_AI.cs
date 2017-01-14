@@ -11,7 +11,7 @@ public abstract partial class Enemy
 {
     protected void requestPath()
     {
-        GameWorld.FindByType<PathfindingControl>()[0].AddRequest(this);
+        PathfindingControl.AddRequest(this);
     }
 
     public void getPath()
@@ -48,7 +48,8 @@ public abstract partial class Enemy
             openList.RemoveAt(0); //Remove self from the openList
         }
         closedList.Add(node); //Add itself to the closedList
-        List<GridNode> next = node.Neighbours; //Find all the neighbours
+        List<GridNode> next = node.neighbours;
+
         for(int i=0; i<next.Count; ++i) //Loop through the neighbours
         {
             if (next[i] == targetNode)  //If my neighbour is the target

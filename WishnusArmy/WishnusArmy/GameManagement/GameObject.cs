@@ -34,6 +34,7 @@ public abstract class GameObject : IGameLoopObject
     {
         GameTime gt = gameTime as GameTime;
         position += (velocity*60) * (float)gt.ElapsedGameTime.TotalSeconds;
+        active = !kill;
     }
 
     public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)

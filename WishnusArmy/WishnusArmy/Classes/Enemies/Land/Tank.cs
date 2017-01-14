@@ -8,12 +8,12 @@ using static ContentImporter.Sheets;
 using static Constant;
 using Microsoft.Xna.Framework.Graphics;
 
-public class Tank : Enemy
+public class Tank : EnemyLand
 {
     public Tank()
         : base(Type.Tank, SHEET_TANK)
     {
         this.sprite = SHEET_TANK;
-        this.speed = 3;
+        this.speed = 1.5f;
     }
 }
