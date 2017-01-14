@@ -96,6 +96,7 @@ public class Overlay : DrawOnTopList
             obj.Position = node.Position + new Vector2(NODE_SIZE.X / 2, 0); //Adjust the position to the middle of the GridNode
             plane.Add(obj); //Add it to the hierarchy
             EcResources -= selected.cost; //Subract its cost from the resources
+            if(!inputHelper.IsKeyDown(Keys.LeftShift)) //allow shift-clicking multiple towers
             selected = null; //Reset the selected object reference
         }
     }
