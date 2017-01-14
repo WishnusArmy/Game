@@ -28,7 +28,6 @@ class Laser : ProjectileAtTower
                 pos = target.GlobalPositionCenter;
             }
             DrawingHelper.DrawLine(spriteBatch, GlobalPosition, pos, Color.Red * (p * p * p), 10);
-            //PlaySound(ContentImporter.Sounds.SND_LASER);
         }
         base.Draw(gameTime, spriteBatch);
     }
@@ -41,6 +40,7 @@ class Laser : ProjectileAtTower
         if (HasTarget && (visibleTimer == visibleTimerMax))
         {
             target.health -= damage;
+            PlaySound(ContentImporter.Sounds.SND_LASER);
         }
 
         if (visibleTimer > 0)
