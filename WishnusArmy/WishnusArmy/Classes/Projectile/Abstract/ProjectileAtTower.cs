@@ -27,7 +27,7 @@ public abstract class ProjectileAtTower : Projectile
         this.timer = rate;
     }
 
-    public override void Update(GameTime gameTime)
+    public override void Update(object gameTime)
     {
         if (timer == 0)
             timer = rate;

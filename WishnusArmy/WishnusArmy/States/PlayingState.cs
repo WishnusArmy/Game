@@ -29,7 +29,7 @@ public class PlayingState : IGameLoopObject
 
     }
 
-    public virtual void Update(GameTime gameTime)
+    public virtual void Update(object gameTime)
     {
         levels[currentLevel].Update(gameTime);
     }

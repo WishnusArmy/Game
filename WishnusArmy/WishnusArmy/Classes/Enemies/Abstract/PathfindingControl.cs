@@ -11,41 +11,57 @@ using static Constant;
 public class PathfindingControl : GameObject
 {
     public static int threadCount;
-    List<Enemy> pendingRequests;
-    int timer;
+    static Thread thread;
+    static List<Enemy> pendingRequests;
 
     public PathfindingControl() : base()
     {
         pendingRequests = new List<Enemy>();
-        timer = -1;
         threadCount = 0;
+        thread = new Thread(new ThreadStart(delegate { }));
     }
 
-    public void AddRequest(Enemy e)
+    public static void AddRequest(Enemy e)
     {
         if (!pendingRequests.Contains(e))
         {
-            e.requestGranted = false;
-            pendingRequests.Add(e);
-        }
-    }
-
-    public override void Update(GameTime gameTime)
-    {
-        if (timer < 0)
-            timer++;
-        if (pendingRequests.Count > 1000)
-            throw new Exception("Pathfinding Request Overflow!");
-        for(int i = Math.Min(pendingRequests.Count-1, 0); i>=0; --i)
-        {
-            if (timer == 0)
+            if (pendingRequests.Count < 100)
             {
-                pendingRequests[i].requestGranted = true;
-                pendingRequests.RemoveAt(i);
-                timer = -5 - (threadCount)*5;
-                //Console.WriteLine("Request Granted ("+threadCount+" active): " + (pendingRequests.Count) + " to go, delay set to: " + timer);
+                pendingRequests.Add(e);
+            }
+            else
+            {
+                Console.WriteLine("Request Denied: Queue full! FLUSHING ALL REQUESTS...");
+                pendingRequests.Clear();
             }
         }
+        //else Console.WriteLine("Request Denied: Enemy already has a pending request");
+    }
+
+    public override void Update(object gameTime)
+    {
         base.Update(gameTime);
+
+        //pendingRequests = pendingRequests.OrderBy(o => o.pathIndex).ToList();
+        if (!thread.IsAlive && pendingRequests.Count > 0)
+        {
+            Enemy e = pendingRequests[0];
+            if (e.kill)
+            {
+                pendingRequests.Remove(e);
+                //Console.WriteLine("Request Denied: Enemy already killed");
+            }
+            else
+            {
+                if (e.path != null && e.pathIndex < e.path.Count)
+                    e.startNode = e.path[e.pathIndex];
+                thread = new Thread(new ThreadStart(e.getPath), 4194304);
+                thread.Start();
+                e.wait = false;
+                e.waitAt = null;
+                pendingRequests.Remove(e);
+                //Console.WriteLine("Request Granted: " + (pendingRequests.Count) + " to go");
+            }
+        }
     }
 }

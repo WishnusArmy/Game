@@ -12,7 +12,7 @@ class Pulse : Projectile
 {
     static int speed = 15;
     private int radiusCurrent;
-    private List<Enemy> enemies, targetsHit;
+    private List<Enemy> targetsHit;
     private Color color;
     double range;
     float p;
@@ -67,7 +67,7 @@ class Pulse : Projectile
                0);
     }
 
-    public override void Update(GameTime gameTime)
+    public override void Update(object gameTime)
     {
         base.Update(gameTime);
         p = (float)(radiusCurrent / range);

@@ -26,7 +26,7 @@ public class Base : GameObject
         this.baseTexture = SPR_BASE;
     }
 
-    public override void Update(GameTime gameTime)
+    public override void Update(object gameTime)
     {
         base.Update(gameTime);
         if (myNodes == null)

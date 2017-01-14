@@ -28,7 +28,6 @@ internal static class ContentImporter
             SPR_CREDITSPLANE,
             SPR_ENEMY,
             SPR_SHADOW,
-            SPR_AIRPLANE,
             SPR_WHITEPIXEL,
 
             // Projectiles
@@ -84,7 +83,8 @@ internal static class ContentImporter
             TEX_STONE_ROAD,
             TEX_DIRT,
             TEX_WATER,
-            TEX_FOREST;
+            TEX_FOREST,
+            TEX_AIR;
 
         public static void Initialize(ContentManager Content)
         {
@@ -96,6 +96,7 @@ internal static class ContentImporter
             TEX_DIRT = Content.Load<Texture2D>("Content/Textures/tex_dirt");
             TEX_WATER = Content.Load<Texture2D>("Content/Textures/tex_water");
             TEX_FOREST = Content.Load<Texture2D>("Content/Textures/tex_forest");
+            TEX_AIR = Content.Load<Texture2D>("Content/Textures/tex_air");
         }
     }
 
@@ -180,7 +181,7 @@ internal static class ContentImporter
             //Buttons
             SND_BUTTON_BASIC = Content.Load<SoundEffect>("Content/SoundEffects/Buttons/click_basic");
             //Projectiles
-            SND_LASER = Content.Load<SoundEffect>("Content/SoundEffects/Projectiles/laser01");
+            SND_LASER = Content.Load<SoundEffect>("Content/SoundEffects/Projectiles/laser02");
             SND_ROCKET_IMPACT = Content.Load<SoundEffect>("Content/SoundEffects/Projectiles/rocketImpact");
 
             //Enemies

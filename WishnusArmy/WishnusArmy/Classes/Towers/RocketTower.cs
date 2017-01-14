@@ -21,7 +21,7 @@ class RocketTower : Tower
     {
         base.Draw(gameTime, spriteBatch);
     }
-    public override void Update(GameTime gameTime)
+    public override void Update(object gameTime)
     {
         base.Update(gameTime);
         if (target != null)

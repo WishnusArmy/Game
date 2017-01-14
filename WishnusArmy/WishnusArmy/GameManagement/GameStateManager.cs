@@ -75,7 +75,7 @@ public class GameStateManager : IGameLoopObject
         }
     }
 
-    public void Update(GameTime gameTime)
+    public void Update(object gameTime)
     {
         if (currentGameState != null)
         {

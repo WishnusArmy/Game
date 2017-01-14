@@ -15,7 +15,7 @@ class PulseTower : Tower
         this.baseTexture = SPR_PULSE_TOWER;
     }
 
-    public override void Update(GameTime gameTime)
+    public override void Update(object gameTime)
     {
         base.Update(gameTime);
         if(canShoot && target != null)

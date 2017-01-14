@@ -27,7 +27,7 @@ public class ToolBarSelector : GameObject
         selected = -1;
         items = new List<ToolBarSelectorItem>
         {
-            new ToolBarSelectorItem("Land Textures", LIST_LAND_TEXTURES),
+            new ToolBarSelectorItem("Land Textures", LIST_TEXTURES),
             new ToolBarSelectorItem("Game Objects", LIST_OBJECTS)
         };
     }
@@ -52,7 +52,7 @@ public class ToolBarSelector : GameObject
     }
     
 
-    public override void Update(GameTime gameTime)
+    public override void Update(object gameTime)
     {
         base.Update(gameTime);
         if (width != targetWidth)
