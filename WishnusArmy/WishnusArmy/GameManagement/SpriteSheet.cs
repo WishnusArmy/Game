@@ -45,7 +45,7 @@ public class SpriteSheet
         }
     }
 
-    public Rectangle Update(GameTime gameTime)
+    public Rectangle Update(object gameTime)
     {
         int columnIndex = sheetIndex % sheetColumns;
         int rowIndex = sheetIndex / sheetColumns % sheetRows;

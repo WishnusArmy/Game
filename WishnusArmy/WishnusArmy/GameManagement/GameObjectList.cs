@@ -122,7 +122,7 @@ public class GameObjectList : GameObject
         }
     }
 
-    public override void Update(GameTime gameTime)
+    public override void Update(object gameTime)
     {
         for (int i = children.Count-1; i >= 0; --i)
         {

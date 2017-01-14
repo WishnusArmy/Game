@@ -29,22 +29,27 @@ public class PathfindingControl : GameObject
         }
     }
 
-    public override void Update(GameTime gameTime)
+    public override void Update(object gameTime)
     {
+        base.Update(gameTime);
         if (pendingRequests.Count > 1000)
             throw new Exception("Pathfinding Request Overflow!");
         if (!thread.IsAlive && pendingRequests.Count > 0)
         {
             Enemy e = pendingRequests[0];
+            if (e.kill)
+            {
+                pendingRequests.Remove(e);
+                return;
+            }
             if (e.path != null && e.pathIndex < e.path.Count)
                 e.startNode = e.path[e.pathIndex];
-            thread = new Thread(new ThreadStart(e.getPath));
+            thread = new Thread(new ThreadStart(e.getPath), 4194304);
             thread.Start();
             e.wait = false;
             e.waitAt = null;
-            pendingRequests.RemoveAt(0);
+            pendingRequests.Remove(e);
             Console.WriteLine("Request Granted: " + (pendingRequests.Count) + " to go");
         }
-        base.Update(gameTime);
     }
 }

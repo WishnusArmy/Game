@@ -67,7 +67,7 @@ class Pulse : Projectile
                0);
     }
 
-    public override void Update(GameTime gameTime)
+    public override void Update(object gameTime)
     {
         base.Update(gameTime);
         p = (float)(radiusCurrent / range);

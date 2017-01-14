@@ -21,7 +21,7 @@ public class CreditsState : IGameLoopObject
         credits.HandleInput(inputHelper);
     }
 
-    public void Update(GameTime gameTime)
+    public void Update(object gameTime)
     {
         credits.Update(gameTime);
     }

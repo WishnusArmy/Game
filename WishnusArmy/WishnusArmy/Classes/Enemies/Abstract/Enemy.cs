@@ -69,7 +69,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
         }
     }
 
-    public override void Update(GameTime gameTime)
+    public override void Update(object gameTime)
     {
         if (centerNode == null)
             centerNode = MyPlane.CenterNode;

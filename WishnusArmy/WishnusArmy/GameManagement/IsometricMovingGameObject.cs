@@ -36,7 +36,7 @@ public partial class IsometricMovingGameObject : GameObject
         }
     }
 
-    public override void Update(GameTime gameTime)
+    public override void Update(object gameTime)
     {
         sheet.SheetIndex = GetIsometricDirection();
         sheetRec = sheet.Update(gameTime);

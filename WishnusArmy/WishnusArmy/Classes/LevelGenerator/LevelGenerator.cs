@@ -242,7 +242,7 @@ public class LevelGenerator : GameObject
         }
     }
 
-    public override void Update(GameTime gameTime)
+    public override void Update(object gameTime)
     {
         base.Update(gameTime);
     }

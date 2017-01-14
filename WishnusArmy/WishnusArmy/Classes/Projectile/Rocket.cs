@@ -81,7 +81,7 @@ public class Rocket : Projectile
             0f);
     }
 
-    public override void Update(GameTime gameTime)
+    public override void Update(object gameTime)
     {
         rotation = targetRotation;
         base.Update(gameTime);

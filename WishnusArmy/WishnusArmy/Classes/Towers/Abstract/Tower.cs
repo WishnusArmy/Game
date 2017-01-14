@@ -70,7 +70,7 @@ public abstract class Tower : GameObjectList
         get { return timer <= 0; }
     }
 
-    public override void Update(GameTime gameTime)
+    public override void Update(object gameTime)
     {
         base.Update(gameTime);
         gotEnemies = false;

@@ -55,7 +55,7 @@ public class MainMenu : GameObjectList
         base.HandleInput(inputHelper);
     }
 
-    public override void Update(GameTime gameTime)
+    public override void Update(object gameTime)
     {
         base.Update(gameTime);
 

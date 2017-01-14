@@ -21,7 +21,7 @@ public class ButtonWithDelegate : Button
         obj = new Clicked(EmptyMethod);
     }
 
-    public override void Update(GameTime gameTime)
+    public override void Update(object gameTime)
     {
         base.Update(gameTime);
         if (pressed)

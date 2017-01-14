@@ -23,7 +23,7 @@ public class MainMenuState : IGameLoopObject
         menu.HandleInput(inputHelper);
     }
 
-    public void Update(GameTime gameTime)
+    public void Update(object gameTime)
     {
         menu.Update(gameTime);
     }

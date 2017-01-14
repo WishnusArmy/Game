@@ -13,8 +13,9 @@ public class Level : GameObjectList
     {
         Economy.Initialize();
         GameStats.Initialize();
-        Add(new Camera());
-        Add(new Overlay());
+        Overlay overlay;
+        Add(overlay = new Overlay());
+        Add(new Camera() { overlay = overlay });
         Add(new PathfindingControl());
     }
 

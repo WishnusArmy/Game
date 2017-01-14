@@ -24,7 +24,7 @@ class LaserTower : Tower
     {
         base.HandleInput(inputHelper);
     }
-    public override void Update(GameTime gameTime)
+    public override void Update(object gameTime)
     {
         base.Update(gameTime);
         if (canShoot && target != null)

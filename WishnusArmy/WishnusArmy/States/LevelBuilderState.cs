@@ -27,7 +27,7 @@ public class LevelBuilderState : IGameLoopObject
 
     }
 
-    public virtual void Update(GameTime gameTime)
+    public virtual void Update(object gameTime)
     {
         level.Update(gameTime);
     }

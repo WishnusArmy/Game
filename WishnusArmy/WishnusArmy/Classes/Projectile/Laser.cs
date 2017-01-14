@@ -35,7 +35,7 @@ class Laser : ProjectileAtTower
 
     
 
-    public override void Update(GameTime gameTime)
+    public override void Update(object gameTime)
     {
         base.Update(gameTime);
         if (HasTarget && (visibleTimer == visibleTimerMax))
