@@ -12,8 +12,11 @@ public class Level : GameObjectList
     public Level() : base()
     {
         Economy.Initialize();
-        Add(new Camera());
-        Add(new Overlay());
+        GameStats.Initialize();
+        Overlay overlay;
+        Add(overlay = new Overlay());
+        Add(new Camera() { overlay = overlay });
+        Add(new PathfindingControl());
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

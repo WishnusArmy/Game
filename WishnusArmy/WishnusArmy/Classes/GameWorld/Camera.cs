@@ -1,51 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Input;
 using static Constant;
+using static ContentImporter.Textures;
 using Microsoft.Xna.Framework.Graphics;
 
 public class Camera : GameObjectList
 {
     //Every object in this class will move with the camera. 
     //HUD items should therefore be put in the playingState children list.
-    public enum Plane { Underground, Land, Air };
+    public enum Plane { Land, Air };
     public GridPlane currentPlane;
-    public GridPlane Underground, Land, Air;
+    public GridPlane Land, Air;
     List<GridPlane> planes;
-    LevelGenerator levelGenerator;
+    public Overlay overlay;
 
     public Camera() : base()
     {
         planes = new List<GridPlane>();
-        for (int i=0; i<3; ++i)
+        for (int i=0; i<2; ++i)
         { 
             GridPlane p = new GridPlane((Plane)i);
             p.active = false;
             Add(p);
             switch((Plane)i)
             {
-                case Plane.Underground:
-                    Underground = p;
-                    planes.Add(Underground);
-                    //Add items to the underground plane (p.Add)
-                    break;
-
                 case Plane.Land:
                     Land = p;
                     planes.Add(Land);
                     //Add items to the land plane (p.Add)
                     p.Add(new Base { Position = LEVEL_CENTER });
-                    //(testcode) plaatst torens en voegt een enemy toe
-                    for (int q = 0; q < 1; ++q)
-                    {
-                        GridNode node = Land.grid[0, LEVEL_SIZE.Y / 2];
-                        p.Add(new Tank { startNode = node, Position = node.Position });
-                        
-                    }
                     break;
 
                 case Plane.Air:
@@ -57,26 +47,38 @@ public class Camera : GameObjectList
         }
         currentPlane = planes[(int)Plane.Land]; //Reference the current plane to one of the three
         Console.WriteLine("Current Plane: " + currentPlane.planeType.ToString());
-        levelGenerator = new LevelGenerator();
+        LevelGenerator levelGenerator = new LevelGenerator();
         List<int[,]> list = new List<int[,]>();
         list = levelGenerator.GenerateNewLevel();
-        //GridNode[,] tempGrid = new GridNode[LEVEL_SIZE.X, LEVEL_SIZE.Y];
         for(int x=0; x<LEVEL_SIZE.X; ++x)
         {
             for(int y=0; y<LEVEL_SIZE.Y; ++y)
             {
                 Land.grid[x, y].texture = list[0][x,y];
+                Air.grid[x, y].texture = 6; //Air
             }
         }
     }
 
-    public override void Update(GameTime gameTime)
+    public override void Update(object gameTime)
     {
         base.Update(gameTime);
         //Manually handle the updates because the planes are inactive.
-        for(int i=0; i<3; ++i)
+        for(int i=0; i<2; ++i)
         {
             planes[i].Update(gameTime);
+        }
+
+        int r = RANDOM.Next(30);
+        if (r == 0)
+        {
+            GridNode node = Land.grid[0, RANDOM.Next(LEVEL_SIZE.Y)];
+            Land.Add(new Tank { startNode = node, Position = node.Position - new Vector2(100,0) });
+        }
+        if (r==1)
+        {
+            GridNode node = Air.grid[0, RANDOM.Next(LEVEL_SIZE.Y)];
+            Air.Add(new Airplane { startNode = node, Position = node.Position - new Vector2(100,0) });
         }
     }
 
@@ -84,32 +86,45 @@ public class Camera : GameObjectList
     {
         base.Draw(gameTime, spriteBatch);
         //Only draw the active plane;
-        currentPlane.Draw(gameTime, spriteBatch);
-}
+        SpriteBatch batchLevel = new SpriteBatch(DrawingHelper.Graphics);
+        batchLevel.Begin(SpriteSortMode.Deferred, null, null, null, null, null, Matrix.CreateScale(overlay.scale.X, overlay.scale.Y, 1f) * WishnusArmy.WishnusArmy.self.spriteScale) ;
+        Land.Draw(gameTime, batchLevel);
+        if (currentPlane == Air)
+            Air.Draw(gameTime, batchLevel);
+        batchLevel.End();
+    }
 
 
     public override void HandleInput(InputHelper inputHelper)
     {
+        if (inputHelper.KeyPressed(Keys.Up) || inputHelper.KeyPressed(Keys.Down))
+        {
+            if (currentPlane == Land)
+                currentPlane = Air;
+            else
+                currentPlane = Land;
+        }
         //Manually handle the input of the active plane
         currentPlane.HandleInput(inputHelper);
 
         //Camera Movement
         Vector2 mp = inputHelper.MousePosition;
+        float spd = SLIDE_SPEED / overlay.scale.X;
         if (mp.X < SLIDE_BORDER)
-            position.X += SLIDE_SPEED;
+            position.X += spd;
         if (mp.X > SCREEN_SIZE.X - SLIDE_BORDER)
-            position.X -= SLIDE_SPEED;
+            position.X -= spd;
         if (mp.Y < SLIDE_BORDER)
-            position.Y += SLIDE_SPEED;
+            position.Y += spd;
         if (mp.Y > SCREEN_SIZE.Y - SLIDE_BORDER)
-            position.Y -= SLIDE_SPEED;
+            position.Y -= spd;
 
         //Make sure the camera doesn't move out of bounds
         if (position.X > -NODE_SIZE.X/2 - GridNode.origin.X/2) { position.X = -NODE_SIZE.X/2 - GridNode.origin.X/2; }
         if (position.Y > -NODE_SIZE.Y/2 - GridNode.origin.Y) { position.Y = -NODE_SIZE.Y/2 - GridNode.origin.Y; }
 
-        if (position.X < -NODE_SIZE.X * LEVEL_SIZE.X + GAME_WINDOW_SIZE.X) { position.X = -NODE_SIZE.X * LEVEL_SIZE.X + GAME_WINDOW_SIZE.X;  }
-        if (position.Y < -NODE_SIZE.Y/2 * LEVEL_SIZE.Y + GAME_WINDOW_SIZE.Y) { position.Y = -NODE_SIZE.Y/2 * LEVEL_SIZE.Y + GAME_WINDOW_SIZE.Y; }
+        if (position.X < -NODE_SIZE.X * LEVEL_SIZE.X + GAME_WINDOW_SIZE.X/overlay.scale.X) { position.X = -NODE_SIZE.X * LEVEL_SIZE.X + GAME_WINDOW_SIZE.X/overlay.scale.X;  }
+        if (position.Y < -NODE_SIZE.Y/2 * LEVEL_SIZE.Y + GAME_WINDOW_SIZE.Y/overlay.scale.Y) { position.Y = -NODE_SIZE.Y/2 * LEVEL_SIZE.Y + GAME_WINDOW_SIZE.Y/overlay.scale.Y; }
 
         base.HandleInput(inputHelper);
     }

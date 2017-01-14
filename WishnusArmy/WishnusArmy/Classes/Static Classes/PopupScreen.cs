@@ -77,7 +77,7 @@ public static class PopupScreen
         }
     }
 
-    public static void Update(GameTime gameTime)
+    public static void Update(object gameTime)
     {
        // foreach(Button but in buttons)
        for(int i=0; i<buttons.Count; ++i)

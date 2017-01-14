@@ -11,6 +11,7 @@ using static ContentImporter.Sprites;
 
 public abstract class Tower : GameObjectList
 {
+    static List<Enemy> _enemies;
     public Texture2D baseTexture;
     public Vector2 gridPosition, mousePosition, previousPosition = new Vector2(0, 0);
     protected Enemy target;
@@ -19,6 +20,19 @@ public abstract class Tower : GameObjectList
     public Type type;
     public int[] stats;
     int timer;
+    bool gotEnemies;
+    public List<Enemy> enemies
+    {
+        get
+        {
+            if (!gotEnemies)
+            {
+                Tower._enemies = MyPlane.FindByType<Enemy>();
+                gotEnemies = true;
+            }
+            return Tower._enemies;
+        }
+    }
 
     public enum Type { RocketTower, LaserTower, PulseTower, Base}
 
@@ -27,12 +41,13 @@ public abstract class Tower : GameObjectList
         this.type = type;
         stats = new int[] {0, 0, 0}; // damage, range, rate
         timer = 0;
+        gotEnemies = false;
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         if (hover)
-            spriteBatch.Draw(SPR_CIRCLE, GlobalPosition, null, null, new Vector2(SPR_CIRCLE.Width / 2, SPR_CIRCLE.Height / 2), 0f, new Vector2(1f, 1f) * ((float)TowerRange(type, stats) / ((float)SPR_CIRCLE.Width / 2)), new Color(0.2f, 0.2f, 0.2f, 0.05f));
+            spriteBatch.Draw(SPR_CIRCLE, GlobalPosition, null, null, new Vector2(SPR_CIRCLE.Width / 2, SPR_CIRCLE.Height / 2), 0f, new Vector2(1f, 0.5f) * ((float)TowerRange(type, stats) / ((float)SPR_CIRCLE.Width / 2)), new Color(0.2f, 0.2f, 0.2f, 0.05f));
         spriteBatch.Draw(baseTexture, GlobalPosition, null, null, new Vector2(baseTexture.Width / 2, baseTexture.Height / 2));
         base.Draw(gameTime, spriteBatch);
     }
@@ -55,9 +70,10 @@ public abstract class Tower : GameObjectList
         get { return timer <= 0; }
     }
 
-    public override void Update(GameTime gameTime)
+    public override void Update(object gameTime)
     {
         base.Update(gameTime);
+        gotEnemies = false;
 
         if (timer <= 0)
             timer = TowerRate(type, stats);
@@ -69,11 +85,13 @@ public abstract class Tower : GameObjectList
         {
             myNode = MyPlane.NodeAt(GlobalPosition);
             myNode.solid = true;
-            myNode.setDval(myNode, TowerRange(type, stats), new List<GridNode>(), 250);
+            myNode.setDval(myNode, TowerRange(type, stats), new List<GridNode>(), (int)TowerDamage(type, stats)*15);
         }
         hover = myNode.selected; //check if the  mouse is hovering the tower
 
-       
+        //if target is out of range
+        if (target != null && DISTANCE(target.GlobalPositionCenter, GlobalPosition) > TowerRange(type, stats))
+            target = null;
 
         if (target == null || target.Kill)
         {
@@ -83,31 +101,22 @@ public abstract class Tower : GameObjectList
 
     public virtual Enemy findTarget()
     {
-        List<Enemy> enemies = MyPlane.FindByType<Enemy>();
-        if (enemies.Count == 0)
-            return null;
-        List<Enemy> inrange = new List<Enemy>();
-        foreach(Enemy x in enemies)
+        
+        for(int i=enemies.Count-1; i>=0; --i)
         {
-            if (CalculateDistance(GlobalPosition, x.GlobalPosition) <= TowerRange(type, stats))
+            if (CalculateDistance(GlobalPosition, enemies[i].GlobalPositionCenter) > TowerRange(type, stats))
             {
-                inrange.Add(x);
+                enemies.RemoveAt(i);
             }
         }
-        if (inrange.Count > 0)
-            return inrange[RANDOM.Next(inrange.Count)];
+        if (enemies.Count > 0)
+            return enemies[RANDOM.Next(enemies.Count)];
+        
 
         return null;
     }
 
     public virtual void Attack()
     {
-        foreach (Projectile p in children)
-        {
-            if (!p.HasTarget)
-            {
-                p.target = findTarget();
-            }
-        }
     }
 }

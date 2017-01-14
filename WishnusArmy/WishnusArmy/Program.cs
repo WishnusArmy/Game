@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace WishnusArmy
 {
@@ -11,11 +12,13 @@ namespace WishnusArmy
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        [STAThread]
+        [MTAThread]
         static void Main()
         {
             using (var game = new WishnusArmy())
+            {
                 game.Run();
+            }
         }
     }
 #endif

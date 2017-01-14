@@ -9,12 +9,19 @@ using static Functions;
 
 public abstract partial class Enemy
 {
-    protected List<GridNode> getPath(GridNode startNode)
+    protected void requestPath()
     {
-        List<GridNode> path = new List<GridNode>(); //Make a container for the return value
+        GameWorld.FindByType<PathfindingControl>()[0].AddRequest(this);
+    }
+
+    public void getPath()
+    {
+        if (startNode == null)
+            throw new Exception("startNode is null");
+        List<GridNode> newPath = new List<GridNode>(); //Make a container for the return value
         List<GridNode> openList = new List<GridNode>(); //Nodes to be checked
         List<GridNode> closedList = new List<GridNode>(); //Nodes that have been checked
-        GridNode targetNode = MyPlane.CenterNode;
+        GridNode targetNode = centerNode;
 
         calcNode(startNode, targetNode, openList, closedList); //Start the recursive pathfinding.
 
@@ -23,18 +30,20 @@ public abstract partial class Enemy
         List<GridNode> inList = new List<GridNode>(); //Track the nodes that have already been in the route
         while (!done) //While not reached the origin node
         {
-            path.Add(currentNode); //Add the node to the path
-            if (currentNode == startNode || currentNode == currentNode.pathParent || inList.onList(currentNode)) //Path found || stuck
+            newPath.Add(currentNode); //Add the node to the path
+            if (currentNode == startNode || currentNode == currentNode.pathParent || inList.Contains(currentNode)) //Path found || stuck
                 done = true;
             inList.Add(currentNode);
             currentNode = currentNode.pathParent; //Move to the next node in the path
         }
-        return path; //Return the path
+        path = newPath; //Return the path
+        pathIndex = path.Count - 1;
+        PathfindingControl.threadCount--;
     }
 
     private void calcNode(GridNode node, GridNode targetNode, List<GridNode> openList, List<GridNode> closedList)
     {
-        if (openList.onList(node))
+        if (openList.Contains(node))
         {
             openList.RemoveAt(0); //Remove self from the openList
         }
@@ -48,7 +57,7 @@ public abstract partial class Enemy
                 openList.Clear(); //Clear the openList (ending the recursive call)
                 break;
             }
-            if (openList.onList(next[i])) //If neighbour is on the openList
+            if (openList.Contains(next[i])) //If neighbour is on the openList
             {
                 if (node.Gval + 10 < next[i].Gval) //If the path from here to there is faster than the previous path
                 {
@@ -56,7 +65,7 @@ public abstract partial class Enemy
                     next[i].Gval = node.Gval + 10; //Update the Gval
                 }
             }
-            if (!openList.onList(next[i]) && !closedList.onList(next[i]) && !next[i].solid) //If neither on the openList or closedList and not solid
+            if (!openList.Contains(next[i]) && !closedList.Contains(next[i]) && !next[i].solid) //If neither on the openList or closedList and not solid
             {
                 openList.Add(next[i]); //Add Neighbour to the openList
                 next[i].pathParent = node; //Make it a parent
@@ -66,7 +75,7 @@ public abstract partial class Enemy
         }
         //Sort the openList by Fvalue
         openList = openList.OrderBy(o => o.Fval).ToList();
-        if (openList.Count > 0) //Are their items in the openList left?
+        if (openList.Count > 0) //Are there items in the openList left?
         {
             calcNode(openList[0], targetNode, openList, closedList); //Recursive call
         }

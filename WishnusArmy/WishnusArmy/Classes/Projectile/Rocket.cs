@@ -13,41 +13,39 @@ public class Rocket : Projectile
 {
     float rotation;
     bool foundTarget;
-    public Enemy enemy;
     float speed;
+    float targetRotation;
 
-    public Rocket(double damage, float speed,  Vector2 startPosition) : base(damage)
+    public Rocket(double damage, float speed) : base(damage)
     {
         sprite = SPR_ROCKET;
         foundTarget = false;
         this.damage = damage;
         this.speed = speed;
-        Position = Vector2.Zero;
+        rotation = 0;
+        targetRotation = 0;
     }
 
-    private void findTarget()
+    private Enemy findTarget()
     {
-        if (foundTarget)
-            return;
         List<Enemy> enemies = MyPlane.FindByType<Enemy>();
+        enemies = enemies.OrderBy(o => o.CalculateDistance(o.GlobalPositionCenter, GlobalPositionCenter)).ToList();
         if (enemies.Count > 0)
-        {
-            enemy = enemies[RANDOM.Next(enemies.Count)];
-            foundTarget = true;
-        }
+            return enemies[0];
+        return null;
     }
 
     private void calculateCourse()
     {
-        if (foundTarget)
+        if (target != null)
         {
-            double opposite = (enemy.GlobalPositionCenter.Y) - (GlobalPosition.Y + sprite.Height / 2);
-            double adjacent = (enemy.GlobalPositionCenter.X) - (GlobalPosition.X + sprite.Width / 2);
+            double opposite = (target.GlobalPositionCenter.Y) - (GlobalPosition.Y + sprite.Height / 2);
+            double adjacent = (target.GlobalPositionCenter.X) - (GlobalPosition.X + sprite.Width / 2);
             rotation = (float)Math.Atan2(opposite, adjacent);
         }
         else
         {
-            rotation += (float)0.05;
+           rotation = rotation + 0.05f;
         }
         float x = (float)Math.Cos(rotation) * speed;
         float y = (float)Math.Sin(rotation) * speed;
@@ -57,9 +55,9 @@ public class Rocket : Projectile
 
     public void CheckCollision()
     {
-        if (CalculateDistance(enemy.GlobalPositionCenter, GlobalPosition + sprite.getOrigin()) < 50)
+        if (CalculateDistance(target.GlobalPositionCenter, GlobalPosition + sprite.getOrigin()) < 50)
         {
-            enemy.health -= damage;
+            target.health -= damage;
             Kill = true;
             PlaySound(SND_ROCKET_IMPACT);
         }
@@ -77,23 +75,25 @@ public class Rocket : Projectile
             null,
             sprite.getOrigin(),
             rotation + 0.5f * (float)Math.PI,
-            null,
+            new Vector2(1f, 1f - 0.5f*(float)Math.Abs(Math.Sin(rotation))),
             Color.White,
             SpriteEffects.None,
             0f);
     }
 
-    public override void Update(GameTime gameTime)
+    public override void Update(object gameTime)
     {
+        rotation = targetRotation;
         base.Update(gameTime);
         findTarget();
-        if (enemy == null)
+        if (target == null)
         {
-            foundTarget = false;
+            target = findTarget();
         }
-        else
-        {
-            foundTarget = !enemy.Kill;
+       
+        if (target != null)
+        { 
+            foundTarget = !target.Kill;
             CheckCollision();
         }
         calculateCourse();

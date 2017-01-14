@@ -30,13 +30,15 @@ public abstract class GameObject : IGameLoopObject
     {
     }
 
-    public virtual void Update(GameTime gameTime)
+    public virtual void Update(object gameTime)
     {
-        position += (velocity*60) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+        GameTime gt = gameTime as GameTime;
+        position += (velocity*60) * (float)gt.ElapsedGameTime.TotalSeconds;
     }
 
     public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
+
     }
 
     public virtual void Reset()
@@ -147,7 +149,7 @@ public abstract class GameObject : IGameLoopObject
     //returns the length of the direct line between two points
     public float CalculateDistance(Vector2 A, Vector2 B)
     {
-        float K = A.Y - B.Y;
+        float K = (A.Y - B.Y)*2;
         float L = A.X - B.X;
         float distance = (float)Math.Sqrt(K * K + L * L);
         return distance;

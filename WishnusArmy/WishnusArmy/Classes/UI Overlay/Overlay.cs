@@ -4,29 +4,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using static Constant;
 using static DrawingHelper;
 using static ContentImporter.Fonts;
+using static ContentImporter.Sprites;
 using static Economy;
 using static Functions;
 using static GameStats;
 
-public class Overlay : GameObjectList
+public class Overlay : DrawOnTopList
 {
     public OverlayTowerItem selected;
     public OverlayTowerInfo TowerInfo;
     bool selectedPossible;
     Vector2 mousePos;
+    public Vector2 scale;
 
     int gridSize;
     int gridWidth;
     int gridHeight;
     Vector2 gridPos;
+    GridPlane plane;
+    GridNode node, previousNode;
 
 
     public Overlay() : base()
     {
+        scale = new Vector2(1);
         selected = null;
         selectedPossible = false;
         mousePos = Vector2.Zero;
@@ -42,16 +48,40 @@ public class Overlay : GameObjectList
         Add(TowerInfo = new OverlayTowerInfo { Position = new Vector2(5, SCREEN_SIZE.Y - OVERLAY_SIZE.Y) });
     }
 
+    public override void Update(object gameTime)
+    {
+        base.Update(gameTime);
+    }
+
     public override void HandleInput(InputHelper inputHelper)
     {
         base.HandleInput(inputHelper);
         mousePos = inputHelper.MousePosition;
 
-        GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane;
-        GridNode node;
-        node = plane.NodeAt(inputHelper.MousePosition, false);
+        if (inputHelper.IsKeyDown(Keys.Q))
+        {
+            if (scale.X < 1f)
+                scale *= new Vector2(1.01f);
+        }
+        if (inputHelper.IsKeyDown(Keys.A))
+        {
+            if ((LEVEL_SIZE.X * NODE_SIZE.X * scale.X > GAME_WINDOW_SIZE.X + 96))
+                scale *= new Vector2(1/1.01f);
+        }
+
+        plane = GameWorld.FindByType<Camera>()[0].currentPlane;
+        node = plane.NodeAt(mousePos / scale, false);
+        if (previousNode != node)
+        {
+            if (previousNode != null)
+                previousNode.selected = false;
+            previousNode = node;
+        }
+
         if (node == null)
             return;
+        else
+            node.selected = true;
 
         selectedPossible = !node.solid && inputHelper.MouseInGameWindow;
 
@@ -77,22 +107,21 @@ public class Overlay : GameObjectList
         DrawRectangleFilled(new Rectangle(new Point(0, SCREEN_SIZE.Y - OVERLAY_SIZE.Y), new Point(SCREEN_SIZE.X - OVERLAY_SIZE.X, OVERLAY_SIZE.Y)), spriteBatch, Color.Black, 0.4f);
         if (selected != null)
         {
-            GridNode node = null;
-            GridPlane plane = GameWorld.FindByType<Camera>()[0].currentPlane;
-            node = plane.NodeAt(mousePos, false);
-
             if (node != null)
             {
-                spriteBatch.Draw(selected.icon, node.GlobalPosition + new Vector2(NODE_SIZE.X / 2, 0) - new Vector2(selected.icon.Width, selected.icon.Height) / 2, Color.White * (selectedPossible.ToInt()+0.5f)); //Draw the selected object at the mouse
+                spriteBatch.Draw(selected.icon, (node.GlobalPosition + new Vector2(NODE_SIZE.X/2, 0))*scale, null,  null, new Vector2(selected.icon.Width, selected.icon.Height)/2, 0f, scale, Color.White * (selectedPossible.ToInt() + 0.5f), SpriteEffects.None, 0); //Draw the selected object at the mouse
+                spriteBatch.Draw(SPR_CIRCLE, (node.GlobalPosition + new Vector2(NODE_SIZE.X / 2, 0)) * scale, null, null, new Vector2(SPR_CIRCLE.Width / 2, SPR_CIRCLE.Height / 2), 0f, new Vector2(1f, 0.5f) * ((float)selected.range) / ((float)SPR_CIRCLE.Width / 2), new Color(0.2f, 0.2f, 0.2f, 0.05f)); // draw the range indicator
             }
         }
         DrawText(spriteBatch, FNT_OVERLAY, "Resources: " + EcResources.ToString(), new Vector2(400, SCREEN_SIZE.Y - OVERLAY_SIZE.Y + 20), Color.White);
-        DrawText(spriteBatch, FNT_OVERLAY, "Total Kills: " + TotalEnemiesKilled.ToString(), new Vector2(400, SCREEN_SIZE.Y - OVERLAY_SIZE.Y + 60), Color.White);
-        DrawGrid(spriteBatch);
+        DrawText(spriteBatch, FNT_OVERLAY, "Base Health: " + BaseHealth.ToString() +"/"+ MaxBaseHealth.ToString(), new Vector2(400, SCREEN_SIZE.Y - OVERLAY_SIZE.Y + 60), Color.White);
+        DrawText(spriteBatch, FNT_OVERLAY, "Total Kills: " + TotalEnemiesKilled.ToString(), new Vector2(400, SCREEN_SIZE.Y - OVERLAY_SIZE.Y + 100), Color.White);
+        //DrawGrid(spriteBatch);
 
         base.Draw(gameTime, spriteBatch);
     }
 
+    /*
     void DrawGrid(SpriteBatch spriteBatch)
     {
         //Draw the grid at the top right
@@ -106,4 +135,5 @@ public class Overlay : GameObjectList
             DrawLine(spriteBatch, gridPos + new Vector2(0, gridSize * y), gridPos + new Vector2(gridSize * gridWidth, gridSize * y), Color.Black, 2, 0.4f);
         }
     }
+    */
 }

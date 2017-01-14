@@ -637,3 +637,15 @@
 /processorParam:Quality=Best
 /build:Content/SoundEffects/Projectiles/laser02.mp3
 
+#begin Content/Textures/tex_air.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Textures/tex_air.png
+

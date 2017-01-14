@@ -18,14 +18,6 @@ public abstract class Projectile : GameObject
         target = null;
         this.damage = damage;
     }
-    public override void Update(GameTime gameTime)
-    {
-        base.Update(gameTime);
-    }
-    public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-    {
-        base.Draw(gameTime, spriteBatch);
-    }
 
     public bool HasTarget
     {

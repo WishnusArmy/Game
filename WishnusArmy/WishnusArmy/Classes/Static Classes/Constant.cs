@@ -28,7 +28,7 @@ internal static class Constant
     internal const int NODE_TEXTURE_SIZE = 64; //The raw, square size of a node
     internal static readonly Point IMAGE_NODE_SIZE = new Point(128, 64); //size of the original texture image
     internal static readonly Point NODE_SIZE  =  new Point(96, 48); //The size of a node in the grid
-    internal static readonly Point LEVEL_SIZE = new Point(27, 70); //The size of the level grid
+    internal static readonly Point LEVEL_SIZE = new Point(60, 120); //The size of the level grid
     internal static readonly Vector2 LEVEL_CENTER = new Vector2(LEVEL_SIZE.X * NODE_SIZE.X, LEVEL_SIZE.Y/2 * NODE_SIZE.Y)/2;
 
     //CAMERA
@@ -97,14 +97,15 @@ internal static class Constant
     {
         public string name;
         public int cost;
+        public int range;
         public Texture2D icon;
     }
 
     public static readonly Dictionary<string, TowerInfo> TOWER_INFO = new Dictionary<string, TowerInfo>()
     {
-        { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 100, icon = SPR_LASER_TOWER } },
-        { "RocketTower", new TowerInfo() { name = "Rocket Tower", cost = 250, icon = SPR_ROCKET_TOWER } },
-        { "PulseTower", new TowerInfo() { name = "PulseTower", cost = 300, icon = SPR_PULSE_TOWER } }
+        { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 100, icon = SPR_LASER_TOWER, range = TowerRange(Tower.Type.LaserTower, new int[] {0,0,0})} },
+        { "RocketTower", new TowerInfo() { name = "Rocket Tower", cost = 250, icon = SPR_ROCKET_TOWER, range = TowerRange(Tower.Type.RocketTower, new int[] {0,0,0}) } },
+        { "PulseTower", new TowerInfo() { name = "PulseTower", cost = 300, icon = SPR_PULSE_TOWER, range = TowerRange(Tower.Type.PulseTower, new int[] {0,0,0}) } }
     };
     
 
@@ -140,14 +141,15 @@ internal static class Constant
     //LISTS
 
     //Textures that should show up in the LevelBuilder Toolbar Land
-    internal static readonly List<Texture2D> LIST_LAND_TEXTURES = new List<Texture2D>
+    internal static readonly List<Texture2D> LIST_TEXTURES = new List<Texture2D>
     {
-        TEX_GRASS,
-        TEX_GRASS_DIRT,
-        TEX_STONE_ROAD,
-        TEX_DIRT,
-        TEX_WATER,
-        TEX_FOREST
+        TEX_GRASS, //0
+        TEX_GRASS_DIRT, //1
+        TEX_STONE_ROAD, //2
+        TEX_DIRT, //3
+        TEX_WATER, //4
+        TEX_FOREST, //5 
+        TEX_AIR //5
     };
 
     internal static readonly List<ToolBarObjectsItem> LIST_OBJECTS = new List<ToolBarObjectsItem>

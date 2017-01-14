@@ -9,7 +9,7 @@ public class GameEnvironment : Game
     protected GraphicsDeviceManager graphics;
     protected SpriteBatch spriteBatch;
     protected InputHelper inputHelper;
-    protected Matrix spriteScale;
+    public Matrix spriteScale;
     protected Point windowSize;
     SoundManager soundManager;
 
