@@ -12,6 +12,6 @@ public class Airplane : EnemyAir
     public Airplane() : base(Type.Airplane, SHEET_AIRPLANE)
     {
         this.sprite = SHEET_AIRPLANE;
-        this.speed = 5;
+        this.speed = 3;
     }
 }

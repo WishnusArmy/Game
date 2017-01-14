@@ -25,7 +25,7 @@ public class PathfindingControl : GameObject
     {
         if (!pendingRequests.Contains(e))
         {
-            if (pendingRequests.Count < 50)
+            if (pendingRequests.Count < 100)
             {
                 pendingRequests.Add(e);
             }
@@ -35,7 +35,7 @@ public class PathfindingControl : GameObject
                 pendingRequests.Clear();
             }
         }
-        else Console.WriteLine("Request Denied: Enemy already has a pending request");
+        //else Console.WriteLine("Request Denied: Enemy already has a pending request");
     }
 
     public override void Update(object gameTime)
@@ -49,7 +49,7 @@ public class PathfindingControl : GameObject
             if (e.kill)
             {
                 pendingRequests.Remove(e);
-                Console.WriteLine("Request Denied: Enemy already killed");
+                //Console.WriteLine("Request Denied: Enemy already killed");
             }
             else
             {
@@ -60,7 +60,7 @@ public class PathfindingControl : GameObject
                 e.wait = false;
                 e.waitAt = null;
                 pendingRequests.Remove(e);
-                Console.WriteLine("Request Granted: " + (pendingRequests.Count) + " to go");
+                //Console.WriteLine("Request Granted: " + (pendingRequests.Count) + " to go");
             }
         }
     }
