@@ -111,7 +111,7 @@ public class Overlay : DrawOnTopList
             if (node != null)
             {
                 spriteBatch.Draw(selected.icon, (node.GlobalPosition + new Vector2(NODE_SIZE.X/2, 0))*scale, null,  null, new Vector2(selected.icon.Width, selected.icon.Height)/2, 0f, scale, Color.White * (selectedPossible.ToInt() + 0.5f), SpriteEffects.None, 0); //Draw the selected object at the mouse
-                spriteBatch.Draw(SPR_CIRCLE, (node.GlobalPosition + new Vector2(NODE_SIZE.X / 2, 0)) * scale, null, null, new Vector2(SPR_CIRCLE.Width / 2, SPR_CIRCLE.Height / 2), 0f, new Vector2(1f, 0.5f) * ((float)selected.range) / ((float)SPR_CIRCLE.Width / 2), new Color(0.2f, 0.2f, 0.2f, 0.05f)); // draw the range indicator
+                spriteBatch.Draw(SPR_CIRCLE, (node.GlobalPosition + new Vector2(NODE_SIZE.X / 2, 0)) * scale, null, null, new Vector2(SPR_CIRCLE.Width / 2, SPR_CIRCLE.Height / 2), 0f, new Vector2(1f, 0.5f) * ((float)selected.range) / ((float)SPR_CIRCLE.Width / 2) * scale, new Color(0.2f, 0.2f, 0.2f, 0.05f)); // draw the range indicator
             }
         }
         DrawText(spriteBatch, FNT_OVERLAY, "Resources: " + EcResources.ToString(), new Vector2(400, SCREEN_SIZE.Y - OVERLAY_SIZE.Y + 20), Color.White);
