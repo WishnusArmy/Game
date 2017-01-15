@@ -46,6 +46,7 @@ public class Overlay : DrawOnTopList
             Add(new OverlayTowerItem(TowerNames[i], gridPos + new Vector2(gridSize * (i%gridWidth), gridSize * (i/gridWidth))));
         }
         Add(TowerInfo = new OverlayTowerInfo { Position = new Vector2(5, SCREEN_SIZE.Y - OVERLAY_SIZE.Y) });
+        Add(new MiniMap());
     }
 
     public override void Update(object gameTime)

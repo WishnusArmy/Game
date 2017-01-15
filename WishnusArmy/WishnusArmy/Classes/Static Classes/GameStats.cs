@@ -12,6 +12,14 @@ using static Constant;
 internal static class GameStats
 {
     static int wave;
+
+
+    // temp
+    static Vector2 cameraPosition;
+    static Vector2 cameraScale;
+    public static List<Enemy> enemies;
+    public static List<Tower> towers;
+
     static int totalEnemiesKilled;
     static int maxBaseHealth;
     static int baseHealth;
@@ -22,6 +30,11 @@ internal static class GameStats
         baseHealth = 10000;
         wave = 0;
         totalEnemiesKilled = 0;
+
+        cameraPosition = Vector2.Zero;
+        cameraScale = Vector2.Zero;
+        enemies = new List<Enemy>();
+        towers = new List<Tower>();
     }
 
     internal static int TotalEnemiesKilled
@@ -65,6 +78,29 @@ internal static class GameStats
         set
         {
             baseHealth = value;
+        }
+    }
+
+    internal static Vector2 CameraPosition
+    {
+        get
+        {
+            return cameraPosition;
+        }
+        set
+        {
+            cameraPosition = value;
+        }
+    }
+    internal static Vector2 CameraScale
+    {
+        get
+        {
+            return cameraScale;
+        }
+        set
+        {
+            cameraScale = value;
         }
     }
 }
