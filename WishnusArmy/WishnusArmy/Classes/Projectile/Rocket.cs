@@ -12,14 +12,12 @@ using static Constant;
 public class Rocket : Projectile
 {
     float rotation;
-    bool foundTarget;
     float speed;
     float targetRotation;
 
     public Rocket(double damage, float speed) : base(damage)
     {
         sprite = SPR_ROCKET;
-        foundTarget = false;
         this.damage = damage;
         this.speed = speed;
         rotation = 0;
@@ -86,14 +84,12 @@ public class Rocket : Projectile
         rotation = targetRotation;
         base.Update(gameTime);
         findTarget();
-        if (target == null)
+        if (!HasTarget)
         {
             target = findTarget();
         }
-       
-        if (target != null)
+        else
         { 
-            foundTarget = !target.Kill;
             CheckCollision();
         }
         calculateCourse();

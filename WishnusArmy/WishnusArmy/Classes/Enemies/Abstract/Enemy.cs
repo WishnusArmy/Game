@@ -175,7 +175,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
     {
         get
         {
-            return GlobalPosition + new Vector2(sheetRec.Width, sheetRec.Height) / 2;
+            return GlobalPosition + sheetRec.Size.toVector()/2;
         }
     }
 

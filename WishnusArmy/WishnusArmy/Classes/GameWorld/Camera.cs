@@ -114,6 +114,7 @@ public class Camera : GameObjectList
         }
 
         //zoom
+        Vector2 oldScale = scale;
         if (inputHelper.IsKeyDown(Keys.Q))
         {
             if (scale.X < 1f)
@@ -124,7 +125,8 @@ public class Camera : GameObjectList
             if ((LEVEL_SIZE.X * NODE_SIZE.X * scale.X > GAME_WINDOW_SIZE.X + 96))
                 scale *= new Vector2(1 / 1.01f);
         }
-
+        Vector2 dScale = scale - oldScale;
+        position -= (position + (SCREEN_SIZE.toVector())) * dScale/oldScale;
         //Focus on base
         if (inputHelper.IsKeyDown(Keys.Space))
         {
