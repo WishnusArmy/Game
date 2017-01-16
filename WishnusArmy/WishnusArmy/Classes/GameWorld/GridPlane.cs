@@ -14,6 +14,7 @@ public class GridPlane: GameObjectList
     public GridNode[,] grid; //A set of all the nodes
     public List<GridNode> spawnGrid; //A set of all center nodes not solid (to be spawned on)
     public Camera.Plane planeType;
+    public ParticleController particleControl;
         
     public GridPlane(Camera.Plane planeType) : base()
     {
@@ -22,9 +23,9 @@ public class GridPlane: GameObjectList
         //Initialize the grid with the size of the level
         grid = new GridNode[LEVEL_SIZE.X, LEVEL_SIZE.Y]; 
         //Fill the grid with GridItems
-        for(int x=0; x<LEVEL_SIZE.X; ++x)
+        for(int y=0; y<LEVEL_SIZE.Y; ++y)
         {
-            for(int y=0; y<LEVEL_SIZE.Y; ++y) //Make sure the grid gets build up from the bottom
+            for(int x=0; x<LEVEL_SIZE.X; ++x) //Make sure the grid gets build up from the bottom
             {
                 if (y % 2 == 0) //All odd rows will be shifted half a node in order to lock together
                 {
@@ -78,6 +79,7 @@ public class GridPlane: GameObjectList
 
         //ADD LEVEL OBJECTS IN THE CAMERA CLASS.
         //ADDING THEM HERE WILL ADD THEM TO EVERY PLANE AL THE SAME
+        Add(particleControl = new ParticleController());
     }
 
     public GridNode NodeAt(Vector2 pos, bool throwClosest = true) //throwClosest=true will return the closest node if not found
@@ -118,16 +120,6 @@ public class GridPlane: GameObjectList
                 return null;
         }
         throw new Exception("No node found at: " + pos.X + ", " + pos.Y);
-    }
-
-    public override void HandleInput(InputHelper inputHelper)
-    {
-        base.HandleInput(inputHelper);
-    }
-
-    public override void Update(object gameTime)
-    {
-        base.Update(gameTime);       
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

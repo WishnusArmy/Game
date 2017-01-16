@@ -37,8 +37,8 @@ public class Rocket : Projectile
     {
         if (target != null)
         {
-            double opposite = (target.GlobalPositionCenter.Y) - (GlobalPosition.Y + sprite.Height / 2);
-            double adjacent = (target.GlobalPositionCenter.X) - (GlobalPosition.X + sprite.Width / 2);
+            double opposite = (target.GlobalPositionCenter.Y) - (GlobalPosition.Y);
+            double adjacent = (target.GlobalPositionCenter.X) - (GlobalPosition.X);
             rotation = (float)Math.Atan2(opposite, adjacent);
         }
         else
@@ -53,10 +53,12 @@ public class Rocket : Projectile
 
     public void CheckCollision()
     {
-        if (CalculateDistance(target.GlobalPositionCenter, GlobalPosition + sprite.getOrigin()) < 50)
+        if (CalculateDistance(target.GlobalPositionCenter, GlobalPosition) < speed)
         {
             target.health -= damage;
             Kill = true;
+            Vector2 pos = position + parent.Position;
+            MyParticleControl.AddExplosion(pos);
             PlaySound(SND_ROCKET_IMPACT);
         }
     }
