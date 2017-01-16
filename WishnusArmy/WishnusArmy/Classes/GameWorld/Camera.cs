@@ -20,9 +20,12 @@ public class Camera : GameObjectList
     public GridPlane Land, Air;
     List<GridPlane> planes;
     public Overlay overlay;
+    public static Vector2 scale;
 
     public Camera() : base()
     {
+        position = -LEVEL_CENTER + GAME_WINDOW_SIZE.toVector() / 2;
+        scale = new Vector2(1f);
         planes = new List<GridPlane>();
         for (int i=0; i<2; ++i)
         { 
@@ -36,6 +39,7 @@ public class Camera : GameObjectList
                     planes.Add(Land);
                     //Add items to the land plane (p.Add)
                     p.Add(new Base { Position = LEVEL_CENTER });
+                    //p.Add(new ParticleController());
                     break;
 
                 case Plane.Air:
@@ -69,7 +73,7 @@ public class Camera : GameObjectList
             planes[i].Update(gameTime);
         }
 
-        int r = RANDOM.Next(30);
+        int r = RANDOM.Next(80);
         if (r == 0)
         {
             GridNode node = Land.grid[0, RANDOM.Next(LEVEL_SIZE.Y)];
@@ -80,6 +84,11 @@ public class Camera : GameObjectList
             GridNode node = Air.grid[0, RANDOM.Next(LEVEL_SIZE.Y)];
             Air.Add(new Airplane { startNode = node, Position = node.Position - new Vector2(100,0) });
         }
+
+        // tijdelijke oplossing om Camera positie op te vragen in andere classes (MiniMap)
+        GameStats.CameraPosition = position;
+        GameStats.CameraScale = scale;
+
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -87,7 +96,7 @@ public class Camera : GameObjectList
         base.Draw(gameTime, spriteBatch);
         //Only draw the active plane;
         SpriteBatch batchLevel = new SpriteBatch(DrawingHelper.Graphics);
-        batchLevel.Begin(SpriteSortMode.Deferred, null, null, null, null, null, Matrix.CreateScale(overlay.scale.X, overlay.scale.Y, 1f) * WishnusArmy.WishnusArmy.self.spriteScale) ;
+        batchLevel.Begin(SpriteSortMode.Immediate, null, null, null, null, null, Matrix.CreateScale(scale.X, scale.Y, 1f) * WishnusArmy.WishnusArmy.self.spriteScale) ;
         Land.Draw(gameTime, batchLevel);
         if (currentPlane == Air)
             Air.Draw(gameTime, batchLevel);
@@ -97,6 +106,7 @@ public class Camera : GameObjectList
 
     public override void HandleInput(InputHelper inputHelper)
     {
+        //Change the plane
         if (inputHelper.KeyPressed(Keys.Up) || inputHelper.KeyPressed(Keys.Down))
         {
             if (currentPlane == Land)
@@ -104,12 +114,32 @@ public class Camera : GameObjectList
             else
                 currentPlane = Land;
         }
+
+        //zoom
+        Vector2 oldScale = scale;
+        if (inputHelper.IsKeyDown(Keys.Q))
+        {
+            if (scale.X < 1f)
+                scale *= new Vector2(1.015f);
+        }
+        if (inputHelper.IsKeyDown(Keys.A))
+        {
+            if ((LEVEL_SIZE.X * NODE_SIZE.X * scale.X > GAME_WINDOW_SIZE.X + 96))
+                scale *= new Vector2(1 / 1.01f);
+        }
+        Vector2 dScale = scale - oldScale;
+        position -= (position + (SCREEN_SIZE.toVector())) * dScale/oldScale;
+        //Focus on base
+        if (inputHelper.IsKeyDown(Keys.Space))
+        {
+            position += (-position - LEVEL_CENTER*scale + scale*GAME_WINDOW_SIZE.toVector()/2) / 22;
+        }
         //Manually handle the input of the active plane
         currentPlane.HandleInput(inputHelper);
 
         //Camera Movement
         Vector2 mp = inputHelper.MousePosition;
-        float spd = SLIDE_SPEED / overlay.scale.X;
+        float spd = SLIDE_SPEED / scale.X;
         if (mp.X < SLIDE_BORDER)
             position.X += spd;
         if (mp.X > SCREEN_SIZE.X - SLIDE_BORDER)
@@ -123,8 +153,8 @@ public class Camera : GameObjectList
         if (position.X > -NODE_SIZE.X/2 - GridNode.origin.X/2) { position.X = -NODE_SIZE.X/2 - GridNode.origin.X/2; }
         if (position.Y > -NODE_SIZE.Y/2 - GridNode.origin.Y) { position.Y = -NODE_SIZE.Y/2 - GridNode.origin.Y; }
 
-        if (position.X < -NODE_SIZE.X * LEVEL_SIZE.X + GAME_WINDOW_SIZE.X/overlay.scale.X) { position.X = -NODE_SIZE.X * LEVEL_SIZE.X + GAME_WINDOW_SIZE.X/overlay.scale.X;  }
-        if (position.Y < -NODE_SIZE.Y/2 * LEVEL_SIZE.Y + GAME_WINDOW_SIZE.Y/overlay.scale.Y) { position.Y = -NODE_SIZE.Y/2 * LEVEL_SIZE.Y + GAME_WINDOW_SIZE.Y/overlay.scale.Y; }
+        if (position.X < -NODE_SIZE.X * LEVEL_SIZE.X + GAME_WINDOW_SIZE.X/scale.X) { position.X = -NODE_SIZE.X * LEVEL_SIZE.X + GAME_WINDOW_SIZE.X/scale.X;  }
+        if (position.Y < -NODE_SIZE.Y/2 * LEVEL_SIZE.Y + GAME_WINDOW_SIZE.Y/scale.Y) { position.Y = -NODE_SIZE.Y/2 * LEVEL_SIZE.Y + GAME_WINDOW_SIZE.Y/scale.Y; }
 
         base.HandleInput(inputHelper);
     }

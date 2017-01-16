@@ -57,7 +57,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
             }
             else
             {
-                healthText.text += (int)(value - _health);
+                healthText.text += (int)(Math.Min(value, _health));
                 healthText.timer /= 2;
             }
             _health = value;
@@ -83,7 +83,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
             requestPath();
         }
 
-        if (path != null && path.Count > 0)
+        if (path != null && path.Count > 0 && !Kill)
         {
             velocity = Vector2.Zero;
             moveAlongPath();
@@ -130,7 +130,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
                     requestPath(); //Request a new path around the obstacle
                     List<Enemy> enemies = MyPlane.FindByType<Enemy>();
                     enemies = enemies.OrderBy(o => o.CalculateDistance(o.position, position)).ToList();
-                    foreach(Enemy enemy in enemies)
+                    foreach (Enemy enemy in enemies)
                     {
                         if (enemy.path != null)
                         {
@@ -150,7 +150,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
                 }
                 else
                 {
-                    if (path[pathIndex-1] != waitAt)
+                    if (path[pathIndex - 1] != waitAt)
                     {
                         path.RemoveAt(pathIndex);
                         pathIndex -= 1;
@@ -172,12 +172,12 @@ public abstract partial class Enemy : IsometricMovingGameObject
             velocity *= (speed / ((Math.Abs(velocity.X) + Math.Abs(velocity.Y))));
         }
     }
-
+    
     public Vector2 GlobalPositionCenter
     {
         get
         {
-            return GlobalPosition + new Vector2(sheetRec.Width, sheetRec.Height) / 2;
+            return GlobalPosition + sheetRec.Size.toVector()/2;
         }
     }
 

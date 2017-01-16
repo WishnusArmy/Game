@@ -29,6 +29,7 @@ public class GridNode : GameObject
                 case 5: solid = true; break; //forest
                 default: solid = false; break;
             }
+            origin = new Vector2(IMAGE_NODE_SIZE.X / 2, LIST_TEXTURES[texture].Height - IMAGE_NODE_SIZE.Y / 2);
         }
     }
 

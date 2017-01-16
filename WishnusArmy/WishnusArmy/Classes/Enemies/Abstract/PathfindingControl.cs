@@ -11,8 +11,8 @@ using static Constant;
 public class PathfindingControl : GameObject
 {
     public static int threadCount;
-    public static Thread thread;
-    List<Enemy> pendingRequests;
+    static Thread thread;
+    static List<Enemy> pendingRequests;
 
     public PathfindingControl() : base()
     {
@@ -21,35 +21,47 @@ public class PathfindingControl : GameObject
         thread = new Thread(new ThreadStart(delegate { }));
     }
 
-    public void AddRequest(Enemy e)
+    public static void AddRequest(Enemy e)
     {
         if (!pendingRequests.Contains(e))
         {
-            pendingRequests.Add(e);
+            if (pendingRequests.Count < 100)
+            {
+                pendingRequests.Add(e);
+            }
+            else
+            {
+                Console.WriteLine("Request Denied: Queue full! FLUSHING ALL REQUESTS...");
+                pendingRequests.Clear();
+            }
         }
+        //else Console.WriteLine("Request Denied: Enemy already has a pending request");
     }
 
     public override void Update(object gameTime)
     {
         base.Update(gameTime);
-        if (pendingRequests.Count > 1000)
-            throw new Exception("Pathfinding Request Overflow!");
+
+        //pendingRequests = pendingRequests.OrderBy(o => o.pathIndex).ToList();
         if (!thread.IsAlive && pendingRequests.Count > 0)
         {
             Enemy e = pendingRequests[0];
             if (e.kill)
             {
                 pendingRequests.Remove(e);
-                return;
+                //Console.WriteLine("Request Denied: Enemy already killed");
             }
-            if (e.path != null && e.pathIndex < e.path.Count)
-                e.startNode = e.path[e.pathIndex];
-            thread = new Thread(new ThreadStart(e.getPath), 4194304);
-            thread.Start();
-            e.wait = false;
-            e.waitAt = null;
-            pendingRequests.Remove(e);
-            Console.WriteLine("Request Granted: " + (pendingRequests.Count) + " to go");
+            else
+            {
+                if (e.path != null && e.pathIndex < e.path.Count)
+                    e.startNode = e.path[e.pathIndex];
+                thread = new Thread(new ThreadStart(e.getPath), 4194304);
+                thread.Start();
+                e.wait = false;
+                e.waitAt = null;
+                pendingRequests.Remove(e);
+                //Console.WriteLine("Request Granted: " + (pendingRequests.Count) + " to go");
+            }
         }
     }
 }
