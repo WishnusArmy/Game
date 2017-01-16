@@ -15,5 +15,6 @@ public class Tank : Enemy
     {
         this.sprite = SHEET_TANK;
         this.speed = 3;
+        this.killReward = EnemyRewardMoney(0);
     }
 }

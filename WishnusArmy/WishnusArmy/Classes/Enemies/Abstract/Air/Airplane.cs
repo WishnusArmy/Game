@@ -13,5 +13,6 @@ public class Airplane : Enemy
     {
         this.sprite = SHEET_AIRPLANE;
         this.speed = 6;
+        this.killReward = EnemyRewardMoney(3);
     }
 }

@@ -114,6 +114,10 @@ internal static class Constant
     {
         return (int)mod * (18 * Wave + 100);
     }
+
+    /// <summary>
+    /// 0=Tank, 1=soldier, 2=airballoon, 3=airplane
+    /// </summary>
     internal static int EnemyHealth(int type)
     {
         //0=Tank, 1=soldier, 2=airballoon, 3=airplane
@@ -131,6 +135,27 @@ internal static class Constant
                 return EnemyHealthFunction(1);
         }
         
+    }
+    //reward for killing an enemy
+    /// <summary>
+    /// 0=Tank, 1=soldier, 2=airballoon, 3=airplane
+    /// </summary>
+    internal static int EnemyRewardMoney(int type)
+    {
+        //0=Tank, 1=soldier, 2=airballoon, 3=airplane
+        switch (type)
+        {
+            case 0:
+                return 30;
+            case 1:
+                return 10;
+            case 2:
+                return 40;
+            case 3:
+                return 50;
+            default:
+                return 10;
+        }
     }
 
     //LEVEL BUILDER
