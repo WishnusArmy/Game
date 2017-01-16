@@ -33,36 +33,38 @@ public class GameObjectList : GameObject
         }
         */
         children.Add(obj);
-
         if (!WishnusArmy.WishnusArmy.startSorting) //For the initialization process
             return;
 
-        if (!(obj is Tower || obj is Enemy))
-            return;
+        if (obj is Tower || obj is Enemy)
+            SortingThread.AddRequest(this);
+    }
 
-        children = children.OrderBy(o => o.Position.Y).ToList(); //Sort all the children
+    public void SortChildren()
+    {
+        List<GameObject> childrenTemp = children.OrderBy(o => o.Position.Y).ToList(); //Sort all the children
         int lastNode = 0;
-        for (int i = 0; i < children.Count; ++i) //Iterate through all the children
+        for (int i = 0; i < childrenTemp.Count; ++i) //Iterate through all the children
         {
-            if (children[i] is GridNode) //If the current child is a GridNode...
+            if (childrenTemp[i] is GridNode) //If the current child is a GridNode...
             {
-                GameObject temp = children[i]; //Buffer the child
-                children.RemoveAt(i);  //Remove the child from the sorted list
-                children.Insert(lastNode++, temp); //Squeeze it in at the beginning to make sure the grid is always drawn on the bottom.
+                GameObject temp = childrenTemp[i]; //Buffer the child
+                childrenTemp.RemoveAt(i);  //Remove the child from the sorted list
+                childrenTemp.Insert(lastNode++, temp); //Squeeze it in at the beginning to make sure the grid is always drawn on the bottom.
             }
         }
 
-        for (int i = children.Count - 1; i >= 0; --i)
+        for (int i = childrenTemp.Count - 1; i >= 0; --i)
         {
-            if (children[i] is DrawOnTop || children[i] is DrawOnTopList) //If the current child should be drawn on top
+            if (childrenTemp[i] is DrawOnTop || childrenTemp[i] is DrawOnTopList) //If the current child should be drawn on top
             {
-                GameObject temp = children[i];
-                children.RemoveAt(i);
-                children.Insert(children.Count - 1, temp);
+                GameObject temp = childrenTemp[i];
+                childrenTemp.RemoveAt(i);
+                childrenTemp.Insert(childrenTemp.Count - 1, temp);
             }
         }
-
-
+        if (children.Count == childrenTemp.Count)
+            children = childrenTemp;
     }
 
     public void Remove(GameObject obj)

@@ -17,5 +17,6 @@ public class Level : GameObjectList
         Add(overlay = new Overlay());
         Add(new Camera() { overlay = overlay });
         Add(new PathfindingControl());
+        Add(new SortingThread());
     }
 }

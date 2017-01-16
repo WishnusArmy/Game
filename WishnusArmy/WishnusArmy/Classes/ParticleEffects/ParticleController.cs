@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,8 @@ public class ParticleController : DrawOnTopList
         effects = new List<GameObject>
         {
             new ExplosionParticleSystem(WishnusArmy.WishnusArmy.self, 30),
-            new ExplosionSmokeParticleSystem(WishnusArmy.WishnusArmy.self, 50)
+            new ExplosionSmokeParticleSystem(WishnusArmy.WishnusArmy.self, 50),
+            new BuildTowerParticleSystem(WishnusArmy.WishnusArmy.self, 5)
         };
         foreach(GameObject obj in effects)
         {
@@ -24,17 +26,17 @@ public class ParticleController : DrawOnTopList
         }
     }
 
-    public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-    {
-        base.Draw(gameTime, spriteBatch);
-    }
-
     public void AddExplosion(Vector2 pos)
     {
         foreach (ParticleSystem e in effects)
-        {
             if (e is ExplosionSmokeParticleSystem || e is ExplosionParticleSystem)
                 e.AddParticles(pos);
-        }
+    }
+
+    public void AddTowerBuildGlow(Vector2 pos)
+    {
+        foreach (ParticleSystem e in effects)
+            if (e is BuildTowerParticleSystem)
+                e.AddParticles(pos);
     }
 }
