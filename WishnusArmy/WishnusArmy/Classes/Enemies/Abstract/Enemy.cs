@@ -19,7 +19,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
     public GridNode startNode;
     GridNode targetNode;
     protected float speed;
-
+    protected int killReward;
     double _health;
     int maxHealth;
     public HealthText healthText;
@@ -39,6 +39,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
         pathIndex = 0;
         maxHealth = EnemyHealth((int)type);
         _health = (int)maxHealth;
+        killReward = 20;
     }
 
     public double health
@@ -64,6 +65,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
             {
                 kill = true;
                 TotalEnemiesKilled++;
+                Economy.EcResources += killReward;
                 //PlaySound(SND_WILHELM_SCREAM);
             }
         }
