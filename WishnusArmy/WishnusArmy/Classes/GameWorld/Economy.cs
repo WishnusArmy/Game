@@ -14,6 +14,6 @@ public static class Economy
     
     public static void Initialize()
     {
-        EcResources = 42068;
+        EcResources = 5000;
     }
 }
