@@ -6,16 +6,16 @@ using System;
 using System.Collections.Generic;
 using WishnusArmy.GameManagement;
 
-public abstract class GameObject : IGameLoopObject
+public abstract class GameObject : DrawableGameComponent, IGameLoopObject
 {
-    SoundManager soundManager = new SoundManager();
+    static SoundManager soundManager = new SoundManager();
     protected GameObject parent;
     protected Vector2 position, velocity;
     protected int layer;
     protected string id;
     public bool visible, active, kill;
 
-    public GameObject(int layer = 0, string id = "")
+    public GameObject(int layer = 0, string id = "") : base(WishnusArmy.WishnusArmy.self)
     {
         this.layer = layer;
         this.id = id;
@@ -114,7 +114,7 @@ public abstract class GameObject : IGameLoopObject
         get { return id; }
     }
 
-    public bool Visible
+    public new bool Visible
     {
         get { return visible; }
         set { visible = value; }
@@ -131,6 +131,14 @@ public abstract class GameObject : IGameLoopObject
                 return parent.MyPlane;
             else
                 return null;
+        }
+    }
+
+    public ParticleController MyParticleControl
+    {
+        get
+        {
+            return MyPlane.particleControl;
         }
     }
 
@@ -157,7 +165,7 @@ public abstract class GameObject : IGameLoopObject
     }
     public void PlaySound(SoundEffect soundEffect, Boolean looping = false)
     {
-        this.soundManager.PlaySound(soundEffect, looping);
+        soundManager.PlaySound(soundEffect, looping);
     }
     public void StopSoundLoops()
     {

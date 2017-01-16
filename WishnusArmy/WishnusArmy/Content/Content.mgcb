@@ -649,7 +649,11 @@
 /processorParam:TextureFormat=Color
 /build:Content/Textures/dot.png
 
+<<<<<<< HEAD
 #begin Content/Textures/tex_mountain_3.png
+=======
+#begin Content/Textures/smoke.png
+>>>>>>> master
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -659,9 +663,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+<<<<<<< HEAD
 /build:Content/Textures/tex_mountain_3.png
 
 #begin Content/Textures/tex_mountain_1.png
+=======
+/build:Content/Textures/smoke.png
+
+#begin Content/Textures/explosion.png
+>>>>>>> master
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -671,6 +681,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Content/Textures/tex_mountain_1.png
 
 #begin Content/Textures/tex_mountain_2.png
@@ -684,4 +695,7 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Textures/tex_mountain_2.png
+
+/build:Content/Textures/explosion.png
+
 

@@ -88,7 +88,9 @@ internal static class ContentImporter
             TEX_AIR,
             TEX_MOUNTAIN_1,
             TEX_MOUNTAIN_2,
-            TEX_MOUNTAIN_3;
+            TEX_MOUNTAIN_3,
+            TEX_EXPLOSION,
+            TEX_SMOKE;
 
         public static void Initialize(ContentManager Content)
         {
@@ -105,6 +107,8 @@ internal static class ContentImporter
             TEX_MOUNTAIN_1 = Content.Load<Texture2D>("Content/Textures/tex_mountain_1");
             TEX_MOUNTAIN_2 = Content.Load<Texture2D>("Content/Textures/tex_mountain_2");
             TEX_MOUNTAIN_3 = Content.Load<Texture2D>("Content/Textures/tex_mountain_3");
+            TEX_EXPLOSION = Content.Load<Texture2D>("Content/Textures/Explosion");
+            TEX_SMOKE = Content.Load<Texture2D>("Content/Textures/smoke");
         }
     }
 

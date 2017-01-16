@@ -50,10 +50,13 @@
     <Compile Include="Classes\Functional\DrawOnTop.cs" />
     <Compile Include="Classes\GameWorld\Camera.cs" />
     <Compile Include="Classes\GameWorld\HealthText.cs" />
-    <Compile Include="Classes\ParticleEffects\Explosion.cs" />
+    <Compile Include="Classes\ParticleEffects\ExplosionSmokeParticleSystem.cs" />
+    <Compile Include="Classes\ParticleEffects\Particle.cs" />
+    <Compile Include="Classes\ParticleEffects\ParticleController.cs" />
     <Compile Include="Classes\ParticleEffects\ParticleSystem.cs" />
     <Compile Include="Classes\Projectile\Abstract\Projectile.cs" />
     <Compile Include="Classes\Projectile\Bullet.cs" />
+    <Compile Include="Classes\ParticleEffects\ExplosionParticleSystem.cs" />
     <Compile Include="Classes\Projectile\Rocket.cs" />
     <Compile Include="Classes\Static Classes\Functions.cs" />
     <Compile Include="Classes\Static Classes\GameStats.cs" />

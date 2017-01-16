@@ -18,9 +18,4 @@ public class Level : GameObjectList
         Add(new Camera() { overlay = overlay });
         Add(new PathfindingControl());
     }
-
-    public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-    {
-        base.Draw(gameTime, spriteBatch);
-    }
 }

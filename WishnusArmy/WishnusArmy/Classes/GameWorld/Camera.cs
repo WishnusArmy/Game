@@ -24,6 +24,7 @@ public class Camera : GameObjectList
 
     public Camera() : base()
     {
+        position = -LEVEL_CENTER + GAME_WINDOW_SIZE.toVector() / 2;
         scale = new Vector2(1f);
         planes = new List<GridPlane>();
         for (int i=0; i<2; ++i)
@@ -38,6 +39,7 @@ public class Camera : GameObjectList
                     planes.Add(Land);
                     //Add items to the land plane (p.Add)
                     p.Add(new Base { Position = LEVEL_CENTER });
+                    //p.Add(new ParticleController());
                     break;
 
                 case Plane.Air:
@@ -94,7 +96,7 @@ public class Camera : GameObjectList
         base.Draw(gameTime, spriteBatch);
         //Only draw the active plane;
         SpriteBatch batchLevel = new SpriteBatch(DrawingHelper.Graphics);
-        batchLevel.Begin(SpriteSortMode.Deferred, null, null, null, null, null, Matrix.CreateScale(scale.X, scale.Y, 1f) * WishnusArmy.WishnusArmy.self.spriteScale) ;
+        batchLevel.Begin(SpriteSortMode.Immediate, null, null, null, null, null, Matrix.CreateScale(scale.X, scale.Y, 1f) * WishnusArmy.WishnusArmy.self.spriteScale) ;
         Land.Draw(gameTime, batchLevel);
         if (currentPlane == Air)
             Air.Draw(gameTime, batchLevel);

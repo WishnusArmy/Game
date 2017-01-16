@@ -90,7 +90,7 @@ public abstract class Tower : GameObjectList
         hover = myNode.selected; //check if the  mouse is hovering the tower
 
         //if target is out of range
-        if (target != null && DISTANCE(target.GlobalPositionCenter, GlobalPosition) > TowerRange(type, stats))
+        if (target != null && CalculateDistance(target.GlobalPositionCenter, GlobalPosition) > TowerRange(type, stats))
             target = null;
 
         if (target == null || target.Kill)
