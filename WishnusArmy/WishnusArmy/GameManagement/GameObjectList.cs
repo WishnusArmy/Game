@@ -37,7 +37,7 @@ public class GameObjectList : GameObject
         if (!WishnusArmy.WishnusArmy.startSorting) //For the initialization process
             return;
 
-        if (!(obj is Tower))
+        if (!(obj is Tower || obj is Enemy))
             return;
 
         children = children.OrderBy(o => o.Position.Y).ToList(); //Sort all the children

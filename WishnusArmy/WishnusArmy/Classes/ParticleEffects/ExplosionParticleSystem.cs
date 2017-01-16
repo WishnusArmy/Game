@@ -36,21 +36,23 @@ public class ExplosionParticleSystem : ParticleSystem
 
         // high initial speed with lots of variance.  make the values closer
         // together to have more consistently circular explosions.
-        minInitialSpeed = 100;
-        maxInitialSpeed = 1000;
+        minInitialSpeed = 80;
+        maxInitialSpeed = 100;
 
         // doesn't matter what these values are set to, acceleration is tweaked in
         // the override of InitializeParticle.
-        minAcceleration = -20;
-        maxAcceleration = -80;
+        minAcceleration = -2;
+        maxAcceleration = -8;
 
 
         // explosions should be relatively short lived
-        minLifetime = .2f;
-        maxLifetime = 0.5f;
+        minLifetime = .5f;
+        maxLifetime = 0.6f;
 
-        minScale = .3f;
-        maxScale = .7f;
+        minScale = .2f;
+        maxScale = .5f;
+
+        maxAlpha = 0.7f;
 
         minNumParticles = 80;
         maxNumParticles = 100;
