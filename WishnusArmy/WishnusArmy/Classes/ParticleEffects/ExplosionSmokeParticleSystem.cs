@@ -52,12 +52,12 @@ public class ExplosionSmokeParticleSystem : ParticleSystem
         // explosion smoke lasts for longer than the explosion itself, but not
         // as long as the plumes do.
         minLifetime = 1.5f;
-        maxLifetime = 3.5f;
+        maxLifetime = 2.5f;
 
         minNumParticles = 30;
         maxNumParticles = 45;
 
-        minScale = 0.3f;
+        minScale = 0.2f;
         maxScale = 1f;
         maxAlpha = 0.3f;
         alphaRamp = 0.2f;
