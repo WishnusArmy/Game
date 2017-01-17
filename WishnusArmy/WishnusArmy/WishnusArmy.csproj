@@ -55,6 +55,7 @@
     <Compile Include="Classes\ParticleEffects\ParticleController.cs" />
     <Compile Include="Classes\ParticleEffects\ParticleSystem.cs" />
     <Compile Include="Classes\Projectile\Abstract\Projectile.cs" />
+    <Compile Include="Classes\Projectile\BaseProjectile.cs" />
     <Compile Include="Classes\Projectile\Bullet.cs" />
     <Compile Include="Classes\ParticleEffects\ExplosionParticleSystem.cs" />
     <Compile Include="Classes\Projectile\Rocket.cs" />
