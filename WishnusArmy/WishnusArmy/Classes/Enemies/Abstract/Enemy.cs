@@ -57,7 +57,10 @@ public abstract partial class Enemy : IsometricMovingGameObject
             }
             else
             {
-                healthText.text += (int)(Math.Min(value, _health));
+                healthText.text += (int)(value - _health);
+                if (healthText.text > maxHealth)
+                    healthText.text = maxHealth;
+
                 healthText.timer /= 2;
             }
             _health = value;

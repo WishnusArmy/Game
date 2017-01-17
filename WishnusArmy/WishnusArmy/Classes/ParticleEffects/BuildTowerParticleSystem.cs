@@ -19,9 +19,9 @@ using static ContentImporter.Textures;
 /// fiery explosion. It should be combined with ExplosionSmokeParticleSystem for
 /// best effect.
 /// </summary>
-public class ExplosionParticleSystem : ParticleSystem
+public class BuildTowerParticleSystem : ParticleSystem
 {
-    public ExplosionParticleSystem(Game game, int howManyEffects)
+    public BuildTowerParticleSystem(Game game, int howManyEffects)
         : base(game, howManyEffects)
     {
     }
@@ -32,12 +32,12 @@ public class ExplosionParticleSystem : ParticleSystem
     /// </summary>
     protected override void InitializeConstants()
     {
-        texture = TEX_EXPLOSION;
+        texture = ContentImporter.Sprites.SPR_CIRCLE;
 
         // high initial speed with lots of variance.  make the values closer
         // together to have more consistently circular explosions.
-        minInitialSpeed = 80;
-        maxInitialSpeed = 100;
+        minInitialSpeed = 600;
+        maxInitialSpeed = 650;
 
         // doesn't matter what these values are set to, acceleration is tweaked in
         // the override of InitializeParticle.
@@ -49,13 +49,14 @@ public class ExplosionParticleSystem : ParticleSystem
         minLifetime = .5f;
         maxLifetime = 0.6f;
 
-        minScale = .2f;
-        maxScale = .5f;
+        minScale = 0.01f;
+        maxScale = 0.03f;
 
         maxAlpha = 0.7f;
+        color = Color.Brown;
 
-        minNumParticles = 80;
-        maxNumParticles = 100;
+        minNumParticles = 250;
+        maxNumParticles = 300;
 
         minRotationSpeed = -MathHelper.PiOver4;
         maxRotationSpeed = MathHelper.PiOver4;
