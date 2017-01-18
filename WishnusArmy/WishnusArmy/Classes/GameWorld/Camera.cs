@@ -84,11 +84,6 @@ public class Camera : GameObjectList
             GridNode node = Air.grid[0, RANDOM.Next(LEVEL_SIZE.Y)];
             Air.Add(new Airplane { startNode = node, Position = node.Position - new Vector2(100,0) });
         }
-
-        // tijdelijke oplossing om Camera positie op te vragen in andere classes (MiniMap)
-        GameStats.CameraPosition = position;
-        GameStats.CameraScale = scale;
-
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -157,5 +152,13 @@ public class Camera : GameObjectList
         if (position.Y < -NODE_SIZE.Y/2 * LEVEL_SIZE.Y + GAME_WINDOW_SIZE.Y/scale.Y) { position.Y = -NODE_SIZE.Y/2 * LEVEL_SIZE.Y + GAME_WINDOW_SIZE.Y/scale.Y; }
 
         base.HandleInput(inputHelper);
+    }
+
+    public Vector2 Scale
+    {
+        get
+        {
+            return scale;
+        }
     }
 }
