@@ -11,9 +11,9 @@ using static Constant;
 
 public class Rocket : Projectile
 {
-    float rotation;
+    public float rotation;
     float speed;
-    float targetRotation;
+    public float targetRotation;
 
     public Rocket(double damage, float speed) : base(damage)
     {
@@ -24,7 +24,7 @@ public class Rocket : Projectile
         targetRotation = 0;
     }
 
-    private Enemy findTarget()
+    public virtual Enemy findTarget()
     {
         List<Enemy> enemies = MyPlane.FindByType<Enemy>();
         enemies = enemies.OrderBy(o => o.CalculateDistance(o.GlobalPositionCenter, GlobalPositionCenter)).ToList();

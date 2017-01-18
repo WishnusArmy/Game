@@ -11,11 +11,14 @@ using static Constant;
 using static DrawingHelper;
 using static GameStats;
 
-public class Base : GameObject
+public class Base : GameObjectList
 {
+    int damage = 50;
+    float speed = 10;
     Color healthColor;
     float rotation;
     Texture2D cannonTexture, baseTexture;
+    public Vector2 mousePosition;
     List<GridNode> myNodes;
     bool hover;
 
@@ -62,9 +65,14 @@ public class Base : GameObject
     public override void HandleInput(InputHelper inputHelper)
     {
         base.HandleInput(inputHelper);
-        Vector2 targetPos = inputHelper.MousePosition;
+        mousePosition = inputHelper.MousePosition;
+        Vector2 targetPos = mousePosition;
         double opposite = targetPos.Y - GlobalPosition.Y;
         double adjacent = targetPos.X - GlobalPosition.X;
         rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
+        if (inputHelper.MouseLeftButtonPressed())
+        {
+            Add(new BaseProjectile(damage, speed));
+        }
     }
 }

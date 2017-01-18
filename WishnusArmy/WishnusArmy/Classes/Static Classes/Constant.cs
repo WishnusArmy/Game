@@ -46,7 +46,7 @@ internal static class Constant
         return max / (1 + Math.Pow(Math.E, -slope));
     }
     
-    // 0=Projectile Tower, 1=LaserTower, 2=PulseTower
+    // 0=Projectile Tower, 1=LaserTower, 2=PulseTower, 3=base
     internal static double TowerDamage(Tower.Type type, int[] stats)
     {
         int s = stats[0];
