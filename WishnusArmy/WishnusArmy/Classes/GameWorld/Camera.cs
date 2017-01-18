@@ -15,7 +15,7 @@ public class Camera : GameObjectList
 {
     //Every object in this class will move with the camera. 
     //HUD items should therefore be put in the playingState children list.
-    public enum Plane { Land, Air };
+    public enum Plane { Land };
     public GridPlane currentPlane;
     public GridPlane Land, Air;
     List<GridPlane> planes;
@@ -27,7 +27,7 @@ public class Camera : GameObjectList
         position = -LEVEL_CENTER + GAME_WINDOW_SIZE.toVector() / 2;
         scale = new Vector2(1f);
         planes = new List<GridPlane>();
-        for (int i=0; i<2; ++i)
+        for (int i=0; i<1; ++i)
         { 
             GridPlane p = new GridPlane((Plane)i);
             p.active = false;
@@ -41,12 +41,6 @@ public class Camera : GameObjectList
                     p.Add(new Base { Position = LEVEL_CENTER });
                     //p.Add(new ParticleController());
                     break;
-
-                case Plane.Air:
-                    Air = p;
-                    planes.Add(Air);
-                    //Add items to the air plane (p.Add)
-                    break;
             }
         }
         currentPlane = planes[(int)Plane.Land]; //Reference the current plane to one of the three
@@ -59,7 +53,6 @@ public class Camera : GameObjectList
             for(int y=0; y<LEVEL_SIZE.Y; ++y)
             {
                 Land.grid[x, y].texture = list[0][x,y];
-                Air.grid[x, y].texture = 6; //Air
             }
         }
     }
@@ -68,7 +61,7 @@ public class Camera : GameObjectList
     {
         base.Update(gameTime);
         //Manually handle the updates because the planes are inactive.
-        for(int i=0; i<2; ++i)
+        for(int i=0; i<1; ++i)
         {
             planes[i].Update(gameTime);
         }
@@ -78,11 +71,6 @@ public class Camera : GameObjectList
         {
             GridNode node = Land.grid[0, RANDOM.Next(LEVEL_SIZE.Y)];
             Land.Add(new Tank { startNode = node, Position = node.Position - new Vector2(100,0) });
-        }
-        if (r==1)
-        {
-            GridNode node = Air.grid[0, RANDOM.Next(LEVEL_SIZE.Y)];
-            Air.Add(new Airplane { startNode = node, Position = node.Position - new Vector2(100,0) });
         }
 
         // tijdelijke oplossing om Camera positie op te vragen in andere classes (MiniMap)
@@ -98,23 +86,12 @@ public class Camera : GameObjectList
         SpriteBatch batchLevel = new SpriteBatch(DrawingHelper.Graphics);
         batchLevel.Begin(SpriteSortMode.Immediate, null, null, null, null, null, Matrix.CreateScale(scale.X, scale.Y, 1f) * WishnusArmy.WishnusArmy.self.spriteScale) ;
         Land.Draw(gameTime, batchLevel);
-        if (currentPlane == Air)
-            Air.Draw(gameTime, batchLevel);
         batchLevel.End();
     }
 
 
     public override void HandleInput(InputHelper inputHelper)
     {
-        //Change the plane
-        if (inputHelper.KeyPressed(Keys.Up) || inputHelper.KeyPressed(Keys.Down))
-        {
-            if (currentPlane == Land)
-                currentPlane = Air;
-            else
-                currentPlane = Land;
-        }
-
         //zoom
         Vector2 oldScale = scale;
         if (inputHelper.IsKeyDown(Keys.Q))
