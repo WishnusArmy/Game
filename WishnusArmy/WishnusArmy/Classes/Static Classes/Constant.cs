@@ -118,18 +118,18 @@ internal static class Constant
     /// <summary>
     /// 0=Tank, 1=soldier, 2=airballoon, 3=airplane
     /// </summary>
-    internal static int EnemyHealth(int type)
+    internal static int EnemyHealth(Enemy.Type type)
     {
         //0=Tank, 1=soldier, 2=airballoon, 3=airplane
         switch (type)
         {
-            case 0:
+            case Enemy.Type.Tank:
                 return EnemyHealthFunction(1.2);
-            case 1:
+            case Enemy.Type.Soldier:
                 return EnemyHealthFunction(0.6);
-            case 2:
+            case Enemy.Type.AirBaloon:
                 return EnemyHealthFunction(1.5);
-            case 3:
+            case Enemy.Type.Airplane:
                 return EnemyHealthFunction(1.8);
             default:
                 return EnemyHealthFunction(1);
