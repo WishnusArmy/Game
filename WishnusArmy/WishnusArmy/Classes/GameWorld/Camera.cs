@@ -71,12 +71,12 @@ public class Camera : GameObjectList
         {
             GridNode node = Land.grid[0, RANDOM.Next(LEVEL_SIZE.Y)];
             Land.Add(new Tank { startNode = node, Position = node.Position - new Vector2(100,0) });
+            Land.Add(new Infantry { startNode = node, Position = node.Position - new Vector2(100, 0) });
         }
 
         // tijdelijke oplossing om Camera positie op te vragen in andere classes (MiniMap)
         GameStats.CameraPosition = position;
         GameStats.CameraScale = scale;
-
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

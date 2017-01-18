@@ -34,7 +34,7 @@ public abstract class Tower : GameObjectList
         }
     }
 
-    public enum Type { RocketTower, LaserTower, PulseTower, Base}
+    public enum Type { RocketTower, LaserTower, PulseTower }
 
     public Tower(Type type) : base()
     {
@@ -87,6 +87,10 @@ public abstract class Tower : GameObjectList
             myNode = MyPlane.NodeAt(GlobalPosition);
             myNode.solid = true;
             myNode.setDval(myNode, TowerRange(type, stats), new List<GridNode>(), (int)TowerDamage(type, stats)*15);
+            foreach (GridNode node in myNode.ExtendedNeighbours)
+            {
+                node.available = false;
+            }
         }
         hover = myNode.selected; //check if the  mouse is hovering the tower
 

@@ -685,3 +685,15 @@
 /processorParam:TextureFormat=Color
 /build:Content/Textures/explosion.png
 
+#begin Content/Sheets/sheet_infantry@4x1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Sheets/sheet_infantry@4x1.png
+
