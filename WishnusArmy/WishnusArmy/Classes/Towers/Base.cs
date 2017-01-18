@@ -44,11 +44,6 @@ public class Base : GameObjectList
             if (node.selected)
                 hover = true;
         }
-
-        // test!
-        BaseHealth -= 2;
-        GameStats.enemies = MyPlane.FindByType<Enemy>();
-        GameStats.towers = MyPlane.FindByType<Tower>();
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
