@@ -16,5 +16,6 @@ public class Infantry : EnemyLand
         this.sprite = SHEET_INFANTRY;
         this.killReward = EnemyRewardMoney(0);
         this.speed = 2f;
+        strongness = Tower.Type.PulseTower;
     }
 }

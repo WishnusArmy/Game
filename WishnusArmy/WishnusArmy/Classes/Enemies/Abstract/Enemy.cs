@@ -30,6 +30,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
     GridNode centerNode;
     public List<GridNode> path;
     public int pathIndex;
+    public Tower.Type weakness, strongness;
 
     public Enemy(Type type, Texture2D sprite, int SheetIndex = 0) 
         : base(sprite, SheetIndex)
@@ -42,7 +43,12 @@ public abstract partial class Enemy : IsometricMovingGameObject
         killReward = 20;
     }
 
-    public double health
+    public void dealDamage(double damage, Tower.Type type)
+    {
+        health -= damage * (1 + 0.3 * (type == weakness).ToInt()) * (1 / (1 + 0.3 * (type == strongness).ToInt()));
+    }
+
+    double health
     {
         get { return _health;  }
         set

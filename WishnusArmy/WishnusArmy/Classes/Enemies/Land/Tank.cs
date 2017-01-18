@@ -16,5 +16,7 @@ public class Tank : EnemyLand
         this.sprite = SHEET_TANK;
         this.killReward = EnemyRewardMoney(0);
         this.speed = 1.5f;
+        weakness = Tower.Type.RocketTower;
+        strongness = Tower.Type.LaserTower;
     }
 }

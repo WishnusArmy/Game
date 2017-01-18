@@ -36,7 +36,7 @@ class Laser : ProjectileAtTower
         base.Update(gameTime);
         if (target != null && (visibleTimer == visibleTimerMax))
         {
-            target.health -= damage;
+            target.dealDamage(damage, Tower.Type.LaserTower);
             PlaySound(ContentImporter.Sounds.SND_LASER);
         }
 
