@@ -721,7 +721,11 @@
 /processorParam:TextureFormat=Color
 /build:Content/Textures/smoke.png
 
+
 #begin Content/Textures/tex_mountain_1.png
+
+#begin Content/Sheets/sheet_infantry@4x1.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -734,6 +738,9 @@
 /build:Content/Textures/tex_mountain_1.png
 
 #begin Content/Textures/tex_mountain_2.png
+/build:Content/Sheets/sheet_infantry@4x1.png
+
+#begin Content/Textures/explosion.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -743,6 +750,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Content/Textures/tex_mountain_2.png
 
 #begin Content/Textures/tex_mountain_3.png
@@ -900,4 +908,7 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Textures/tex_water.png
+
+/build:Content/Textures/explosion.png
+
 

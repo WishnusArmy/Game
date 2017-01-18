@@ -76,10 +76,11 @@ class MiniMap : DrawOnTop
         {
             if (t.hover)
             {
-                int rangesize = (int)(TowerRange(t.type, t.stats));
-                Point rangeSize = new Point((int)((double)rangesize * ((double)rangesize / (double)realMapSize)));
+                int range = (int)(TowerRange(t.type, t.stats));
+                int miniMapRangeX = (int)((double)range * ((double)range / (double)realMapSize*2));
+                int miniMapRangeY = (int)((double)range * ((double)range / (double)realMapSize));
                 Color c = new Color(30, 30, 60, 20);
-                spriteBatch.Draw(TEX_DOT, new Rectangle(overlayPosition + toMiniMapPosition(t.Position) - new Point(rangeSize.X / 2, rangeSize.X / 2), rangeSize), c);
+                spriteBatch.Draw(TEX_DOT, new Rectangle(overlayPosition + toMiniMapPosition(t.Position) - new Point(miniMapRangeX / 2, miniMapRangeY / 2), new Point(miniMapRangeX, miniMapRangeY)), c);
             }
         }
 
@@ -93,6 +94,8 @@ class MiniMap : DrawOnTop
                 continue;
             if(e is Tank)
                 spriteBatch.Draw(TEX_DOT, new Rectangle(overlayPosition + toMiniMapPosition(e.Position) - offset, enemySize), Color.Red);
+            if (e is Infantry)
+                spriteBatch.Draw(TEX_DOT, new Rectangle(overlayPosition + toMiniMapPosition(e.Position) - offset, new Point((int)(enemySize.X/1.7))), Color.Salmon);
             if (e is Airplane)
                 spriteBatch.Draw(TEX_DOT, new Rectangle(overlayPosition + toMiniMapPosition(e.Position) - offset, enemySize), Color.Yellow);
         }

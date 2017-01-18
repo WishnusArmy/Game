@@ -16,6 +16,7 @@ public class GridNode : GameObject
     int _texture;
     public List<GridNode> neighbours, extendedNeighbours;
     public bool solid;
+    public bool available;
     public int texture
     {
         get { return _texture;  }
@@ -58,6 +59,7 @@ public class GridNode : GameObject
         pathParent = this;
         beacon = false;
         congestion = 0;
+        available = true;
     }
 
     public List<GridNode> Neighbours
