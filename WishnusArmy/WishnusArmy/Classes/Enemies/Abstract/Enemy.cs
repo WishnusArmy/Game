@@ -41,7 +41,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
         pathIndex = 0;
         maxHealth = EnemyHealth(type);
         _health = (int)maxHealth;
-        killReward = 20;
+        killReward = EnemyRewardMoney(type);
     }
 
     public void dealDamage(double damage, Tower.Type type)
@@ -59,7 +59,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
                 float deltaHealth = (float)(value - _health);
                 if (deltaHealth > _health)
                     deltaHealth = (float)_health;
-                healthText = new HealthText(((int)(deltaHealth)), deltaHealth/maxHealth) { Position = GlobalPosition };
+                healthText = new HealthText(((int)(deltaHealth)), deltaHealth/maxHealth) { Position = GlobalPosition + new Vector2(0, -15) };
                 MyPlane.Add(healthText);
             }
             else

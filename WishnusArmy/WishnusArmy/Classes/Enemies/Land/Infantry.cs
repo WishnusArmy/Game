@@ -14,7 +14,7 @@ public class Infantry : EnemyLand
         : base(Type.Tank, SHEET_INFANTRY)
     {
         this.sprite = SHEET_INFANTRY;
-        this.killReward = EnemyRewardMoney(0);
+        this.killReward = EnemyRewardMoney(type);
         this.speed = 2f;
         strongness = Tower.Type.PulseTower;
     }
