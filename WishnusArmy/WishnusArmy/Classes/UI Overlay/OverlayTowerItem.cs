@@ -15,7 +15,7 @@ public class OverlayTowerItem : GameObject
 {
     public Texture2D icon;
     public string itemType;
-    public int cost;
+    public int cost, range;
     public string name;
     bool hover;
 
@@ -34,6 +34,8 @@ public class OverlayTowerItem : GameObject
         icon = TOWER_INFO[itemType].icon;
         cost = TOWER_INFO[itemType].cost;
         name = TOWER_INFO[itemType].name;
+        range = TOWER_INFO[itemType].range;
+
         Position = pos;
     }
 

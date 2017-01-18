@@ -21,7 +21,7 @@ public class HelpState : IGameLoopObject
         help.HandleInput(inputHelper);
     }
 
-    public void Update(GameTime gameTime)
+    public void Update(object gameTime)
     {
         help.Update(gameTime);
     }

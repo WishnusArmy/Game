@@ -20,7 +20,7 @@ public class ToolBarTextures : GameObject
     public ToolBarTextures()
     {
         selected = 0;
-        toolList = LIST_LAND_TEXTURES;
+        toolList = LIST_TEXTURES;
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

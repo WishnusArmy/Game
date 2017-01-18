@@ -28,7 +28,6 @@ internal static class ContentImporter
             SPR_CREDITSPLANE,
             SPR_ENEMY,
             SPR_SHADOW,
-            SPR_AIRPLANE,
             SPR_WHITEPIXEL,
 
             // Projectiles
@@ -81,21 +80,29 @@ internal static class ContentImporter
             TEX_GRASS_DIRT,
             TEX_EMPTY,
             TEX_EMPTY_SMALL,
+            TEX_DOT,
             TEX_STONE_ROAD,
             TEX_DIRT,
             TEX_WATER,
-            TEX_FOREST;
+            TEX_FOREST,
+            TEX_AIR,
+            TEX_EXPLOSION,
+            TEX_SMOKE;
 
         public static void Initialize(ContentManager Content)
         {
             TEX_GRASS = Content.Load<Texture2D>("Content/Textures/tex_grass");
             TEX_GRASS_DIRT = Content.Load<Texture2D>("Content/Textures/tex_grass_dirt");
             TEX_EMPTY = Content.Load<Texture2D>("Content/Textures/emptytexture");
+            TEX_DOT = Content.Load<Texture2D>("Content/Textures/dot");
             TEX_EMPTY_SMALL = Content.Load<Texture2D>("Content/Textures/emptytexturesmall");
             TEX_STONE_ROAD = Content.Load<Texture2D>("Content/Textures/tex_stone_road");
             TEX_DIRT = Content.Load<Texture2D>("Content/Textures/tex_dirt");
             TEX_WATER = Content.Load<Texture2D>("Content/Textures/tex_water");
             TEX_FOREST = Content.Load<Texture2D>("Content/Textures/tex_forest");
+            TEX_AIR = Content.Load<Texture2D>("Content/Textures/tex_air");
+            TEX_EXPLOSION = Content.Load<Texture2D>("Content/Textures/Explosion");
+            TEX_SMOKE = Content.Load<Texture2D>("Content/Textures/smoke");
         }
     }
 
@@ -180,7 +187,7 @@ internal static class ContentImporter
             //Buttons
             SND_BUTTON_BASIC = Content.Load<SoundEffect>("Content/SoundEffects/Buttons/click_basic");
             //Projectiles
-            SND_LASER = Content.Load<SoundEffect>("Content/SoundEffects/Projectiles/laser01");
+            SND_LASER = Content.Load<SoundEffect>("Content/SoundEffects/Projectiles/laser02");
             SND_ROCKET_IMPACT = Content.Load<SoundEffect>("Content/SoundEffects/Projectiles/rocketImpact");
 
             //Enemies

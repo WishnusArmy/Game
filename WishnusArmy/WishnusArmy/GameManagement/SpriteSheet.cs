@@ -45,16 +45,16 @@ public class SpriteSheet
         }
     }
 
-    public Rectangle Update(GameTime gameTime)
+    public Rectangle Update(object gameTime)
     {
         int columnIndex = sheetIndex % sheetColumns;
         int rowIndex = sheetIndex / sheetColumns % sheetRows;
         spritePart = new Rectangle(columnIndex * Width, rowIndex * Height, Width, Height);
-        SpriteEffects spriteEffects = SpriteEffects.None;
-        if (mirror)
-        {
-            spriteEffects = SpriteEffects.FlipHorizontally;
-        }
+        //SpriteEffects spriteEffects = SpriteEffects.None;
+        //if (mirror)
+        //{
+        //    spriteEffects = SpriteEffects.FlipHorizontally;
+        //}
         return spritePart;
     }
 

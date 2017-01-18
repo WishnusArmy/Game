@@ -5,7 +5,7 @@ public interface IGameLoopObject
 {
     void HandleInput(InputHelper inputHelper);
 
-    void Update(GameTime gameTime);
+    void Update(object gameTime);
 
     void Draw(GameTime gameTime, SpriteBatch spriteBatch);
 

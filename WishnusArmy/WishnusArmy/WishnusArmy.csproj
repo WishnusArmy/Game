@@ -40,16 +40,25 @@
   <ItemGroup>
     <Compile Include="Classes\ButtonWithDelegate.cs" />
     <Compile Include="Classes\Button.cs" />
+    <Compile Include="Classes\Enemies\Abstract\EnemyLand.cs" />
+    <Compile Include="Classes\Enemies\Abstract\EnemyAir.cs" />
     <Compile Include="Classes\Enemies\Abstract\Enemy_AI.cs" />
+    <Compile Include="Classes\Enemies\Abstract\PathfindingControl.cs" />
     <Compile Include="Classes\Enemies\Air\Airplane.cs" />
     <Compile Include="Classes\Enemies\Land\Tank.cs" />
-    <Compile Include="Classes\Enemies\Air\Functional\DrawOnTop.cs" />
+    <Compile Include="Classes\Functional\DrawOnTopList.cs" />
+    <Compile Include="Classes\Functional\DrawOnTop.cs" />
     <Compile Include="Classes\GameWorld\Camera.cs" />
     <Compile Include="Classes\GameWorld\HealthText.cs" />
-    <Compile Include="Classes\ParticleEffects\Explosion.cs" />
+    <Compile Include="Classes\ParticleEffects\BuildTowerParticleSystem.cs" />
+    <Compile Include="Classes\ParticleEffects\ExplosionSmokeParticleSystem.cs" />
+    <Compile Include="Classes\ParticleEffects\Particle.cs" />
+    <Compile Include="Classes\ParticleEffects\ParticleController.cs" />
     <Compile Include="Classes\ParticleEffects\ParticleSystem.cs" />
     <Compile Include="Classes\Projectile\Abstract\Projectile.cs" />
+    <Compile Include="Classes\Projectile\BaseProjectile.cs" />
     <Compile Include="Classes\Projectile\Bullet.cs" />
+    <Compile Include="Classes\ParticleEffects\ExplosionParticleSystem.cs" />
     <Compile Include="Classes\Projectile\Rocket.cs" />
     <Compile Include="Classes\Static Classes\Functions.cs" />
     <Compile Include="Classes\Static Classes\GameStats.cs" />
@@ -60,6 +69,7 @@
     <Compile Include="Classes\Static Classes\ContentImporter.cs" />
     <Compile Include="Classes\Enemies\Abstract\Enemy.cs" />
     <Compile Include="Classes\GameWorld\Economy.cs" />
+    <Compile Include="Classes\UI Overlay\MiniMap.cs" />
     <Compile Include="Classes\UI Overlay\Overlay.cs" />
     <Compile Include="Classes\HelpMenu.cs" />
     <Compile Include="Classes\GameWorld\GridNode.cs" />
@@ -91,6 +101,7 @@
     <Compile Include="GameManagement\GameStateManager.cs" />
     <Compile Include="GameManagement\IGameLoopObject.cs" />
     <Compile Include="GameManagement\InputHelper.cs" />
+    <Compile Include="GameManagement\SortingThread.cs" />
     <Compile Include="GameManagement\SoundManager.cs" />
     <Compile Include="GameManagement\IsometricMovingGameObject.cs" />
     <Compile Include="GameManagement\SpriteSheet.cs" />

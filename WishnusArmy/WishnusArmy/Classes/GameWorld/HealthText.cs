@@ -17,10 +17,10 @@ public class HealthText : DrawOnTop
     public int maxTimer;
     public float p;
     public float impact;
-    Color startColor;
-    Color endColor;
-    int height;
-    SpriteFont font;
+    protected Color startColor;
+    protected Color endColor;
+    protected int height;
+    protected SpriteFont font;
 
     public HealthText(int text, float impact) : base()
     {
@@ -33,7 +33,7 @@ public class HealthText : DrawOnTop
         font = FNT_HEALTH_INFO;
     }
 
-    public override void Update(GameTime gameTime)
+    public override void Update(object gameTime)
     {
         base.Update(gameTime);
         if (timer < maxTimer)

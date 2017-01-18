@@ -6,16 +6,16 @@ using System;
 using System.Collections.Generic;
 using WishnusArmy.GameManagement;
 
-public abstract class GameObject : IGameLoopObject
+public abstract class GameObject : DrawableGameComponent, IGameLoopObject
 {
-    SoundManager soundManager = new SoundManager();
+    static SoundManager soundManager = new SoundManager();
     protected GameObject parent;
     protected Vector2 position, velocity;
     protected int layer;
     protected string id;
     public bool visible, active, kill;
 
-    public GameObject(int layer = 0, string id = "")
+    public GameObject(int layer = 0, string id = "") : base(WishnusArmy.WishnusArmy.self)
     {
         this.layer = layer;
         this.id = id;
@@ -30,13 +30,16 @@ public abstract class GameObject : IGameLoopObject
     {
     }
 
-    public virtual void Update(GameTime gameTime)
+    public virtual void Update(object gameTime)
     {
-        position += (velocity*60) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+        GameTime gt = gameTime as GameTime;
+        position += (velocity*60) * (float)gt.ElapsedGameTime.TotalSeconds;
+        active = !kill;
     }
 
     public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
+
     }
 
     public virtual void Reset()
@@ -111,7 +114,7 @@ public abstract class GameObject : IGameLoopObject
         get { return id; }
     }
 
-    public bool Visible
+    public new bool Visible
     {
         get { return visible; }
         set { visible = value; }
@@ -131,6 +134,14 @@ public abstract class GameObject : IGameLoopObject
         }
     }
 
+    public ParticleController MyParticleControl
+    {
+        get
+        {
+            return MyPlane.particleControl;
+        }
+    }
+
     public bool Kill
     {
         get { return kill; }
@@ -147,14 +158,14 @@ public abstract class GameObject : IGameLoopObject
     //returns the length of the direct line between two points
     public float CalculateDistance(Vector2 A, Vector2 B)
     {
-        float K = A.Y - B.Y;
+        float K = (A.Y - B.Y)*2;
         float L = A.X - B.X;
         float distance = (float)Math.Sqrt(K * K + L * L);
         return distance;
     }
     public void PlaySound(SoundEffect soundEffect, Boolean looping = false)
     {
-        this.soundManager.PlaySound(soundEffect, looping);
+        soundManager.PlaySound(soundEffect, looping);
     }
     public void StopSoundLoops()
     {

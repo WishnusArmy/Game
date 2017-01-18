@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,18 +12,24 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using static Constant;
 using static DrawingHelper;
+using static GameStats;
 
 public abstract partial class Enemy : IsometricMovingGameObject
 {
     public GridNode startNode;
     GridNode targetNode;
     protected float speed;
-
+    protected int killReward;
     double _health;
     int maxHealth;
     public HealthText healthText;
     public enum Type {Tank, Soldier, AirBaloon, Airplane }
     public Type type;
+    public bool wait;
+    public GridNode waitAt;
+    GridNode centerNode;
+    public List<GridNode> path;
+    public int pathIndex;
 
     public Enemy(Type type, Texture2D sprite, int SheetIndex = 0) 
         : base(sprite, SheetIndex)
@@ -32,6 +39,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
         pathIndex = 0;
         maxHealth = EnemyHealth((int)type);
         _health = (int)maxHealth;
+        killReward = 20;
     }
 
     public double health
@@ -50,42 +58,44 @@ public abstract partial class Enemy : IsometricMovingGameObject
             else
             {
                 healthText.text += (int)(value - _health);
+                if (healthText.text > maxHealth)
+                    healthText.text = maxHealth;
+
                 healthText.timer /= 2;
             }
             _health = value;
             if (_health <= 0)
             {
                 kill = true;
-                GameStats.TotalEnemiesKilled++;
-                PlaySound(SND_WILHELM_SCREAM);
+                TotalEnemiesKilled++;
+                Economy.EcResources += killReward;
+                //PlaySound(SND_WILHELM_SCREAM);
             }
         }
     }
 
-    List<GridNode> path;
-    int pathIndex;
-
-    public override void Update(GameTime gameTime)
+    public override void Update(object gameTime)
     {
+        if (centerNode == null)
+            centerNode = MyPlane.CenterNode;
         base.Update(gameTime);
 
         if (path == null && startNode != null)
         {
-            GridPlane plane = Parent as GridPlane;
-            path = getPath(startNode);
-            pathIndex = path.Count - 1;
+            path = new List<GridNode>();
+            requestPath();
         }
 
-        if (path != null)
+        if (path != null && path.Count > 0 && !Kill)
         {
+            velocity = Vector2.Zero;
             moveAlongPath();
         }
 
         if (healthText != null)
         {
-            healthText.Position = GlobalPositionCenter - new Vector2(0, 40) - GameWorld.FindByType<Camera>()[0].Position;
-        }       
-       
+            healthText.Position = GlobalPositionCenter - GlobalPosition + Position - new Vector2(0, 40);
+        }
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -116,26 +126,45 @@ public abstract partial class Enemy : IsometricMovingGameObject
         {
             if (pathIndex > 0)
             {
-                if (path[pathIndex - 1].solid) //Path has changed on the way.
+                if (path[pathIndex - 1].solid && !wait) //Path has changed on the way.
                 {
-                    path = getPath(path[pathIndex]);
+                    GridNode solidNode = path[pathIndex - 1];
+                    startNode = path[pathIndex]; //set the startNode for the request
+                    requestPath(); //Request a new path around the obstacle
+                    List<Enemy> enemies = MyPlane.FindByType<Enemy>();
+                    enemies = enemies.OrderBy(o => o.CalculateDistance(o.position, position)).ToList();
+                    foreach (Enemy enemy in enemies)
+                    {
+                        if (enemy.path != null)
+                        {
+                            if (enemy.path.Contains(solidNode))
+                            {
+                                enemy.startNode = enemy.path[enemy.pathIndex];
+                                enemy.wait = true;
+                                enemy.waitAt = solidNode;
+                                enemy.requestPath();
+                            }
+                        }
+                    }
                     if (path.Count == 0)
-                        kill = true;
-                    pathIndex = path.Count - 1;
+                    {
+                        Kill = true;
+                    }
                 }
                 else
                 {
-                    if (path[pathIndex - 1].congestion <= 1)
+                    if (path[pathIndex - 1] != waitAt)
+                    {
+                        path.RemoveAt(pathIndex);
                         pathIndex -= 1;
+                    }
                 }
             }
             else
             {
-                kill = true;
-                position = targetNode.Position;
+                Kill = true;
             }
         }
-
 
         //sprite beweegt richting de muis met vaste snelheid (speed)
         velocity = (targetNode.Position - position);
@@ -143,15 +172,15 @@ public abstract partial class Enemy : IsometricMovingGameObject
         //als velocity 0,0 is krijg je deling door 0
         if (velocity != new Vector2(0, 0))
         {
-            velocity *= (speed / (Math.Abs(velocity.X) + Math.Abs(velocity.Y)));
+            velocity *= (speed / ((Math.Abs(velocity.X) + Math.Abs(velocity.Y))));
         }
     }
-
+    
     public Vector2 GlobalPositionCenter
     {
         get
         {
-            return GlobalPosition + new Vector2(sheetRec.Width, sheetRec.Height) / 2;
+            return GlobalPosition + sheetRec.Size.toVector()/2;
         }
     }
 

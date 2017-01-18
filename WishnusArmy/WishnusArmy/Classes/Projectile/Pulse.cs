@@ -10,30 +10,38 @@ using static Constant;
 
 class Pulse : Projectile
 {
-    static int speed = 20;
+    static int speed = 15;
     private int radiusCurrent;
-    private List<Enemy> TargetsHit;
+    private List<Enemy> targetsHit;
     private Color color;
     double range;
+    float p;
+    Tower myTower;
 
-    public Pulse(double damage, double range) : base(damage)
+    public Pulse(double damage, double range, List<Enemy> enemies) : base(damage)
     {
         sprite = SPR_PULSE;
-        TargetsHit = new List<Enemy>();
         radiusCurrent = 0;
+        targetsHit = new List<Enemy>();
         color = new Color(0, 0, 210);
         this.range = range;
+        p = 0;
+        myTower = Parent as Tower;
     }
 
     public void CheckCollision()
     {
-        foreach (Enemy enemy in MyPlane.FindByType<Enemy>())
+        myTower = parent as Tower;
+        foreach (Enemy enemy in  myTower.enemies)
         {
-            double distance = DISTANCE(GlobalPosition, enemy.GlobalPositionCenter);
-            if (distance < radiusCurrent + speed*2 && distance > radiusCurrent - speed*2 && !TargetsHit.Contains(enemy))
+            if (!targetsHit.Contains(enemy))
             {
-                TargetsHit.Add(enemy);
-                enemy.health -= (int)damage;
+                double distance = DISTANCE(GlobalPosition, enemy.GlobalPositionCenter);
+                if (distance < radiusCurrent + speed * 2 && distance > radiusCurrent - speed * 2)
+                {
+                    enemy.health -= (int)damage * (1 - 0.5 * p);
+                    targetsHit.Add(enemy);
+                }
             }
         }
     }
@@ -44,21 +52,25 @@ class Pulse : Projectile
         base.Draw(gameTime, spriteBatch);
         spriteBatch.Draw(
                sprite,
+               null,
                new Rectangle(
                    (int) GlobalPosition.X - radiusCurrent, 
-                   (int) GlobalPosition.Y - radiusCurrent, 
+                   (int) GlobalPosition.Y - radiusCurrent/2, 
                    radiusCurrent*2, 
-                   radiusCurrent*2),
+                   radiusCurrent),
                new Rectangle(0, 0, sprite.Width, sprite.Height),
-               color);
+               Vector2.Zero,
+               0f,
+               new Vector2(1f, 1f),
+               color * (1-p * p ),
+               SpriteEffects.None,
+               0);
     }
 
-    public override void Update(GameTime gameTime)
+    public override void Update(object gameTime)
     {
         base.Update(gameTime);
-        if (!visible)
-            return;
-        base.Update(gameTime);
+        p = (float)(radiusCurrent / range);
         radiusCurrent += speed;
         CheckCollision();
         Kill = radiusCurrent > range;

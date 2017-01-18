@@ -10,7 +10,7 @@ using static Constant;
 using static ContentImporter.Textures;
 using static ContentImporter.Fonts;
 
-public class GridNode : GameObjectList
+public class GridNode : GameObject
 {
     public static Vector2 origin = IMAGE_NODE_SIZE.toVector() / 2;
     int _texture;
@@ -24,10 +24,12 @@ public class GridNode : GameObjectList
             _texture = value;
             switch(value)
             {
+                case 2: solid = true; break; //mountains;
                 case 4: solid = true; break; //water
                 case 5: solid = true; break; //forest
                 default: solid = false; break;
             }
+            origin = new Vector2(IMAGE_NODE_SIZE.X / 2, LIST_TEXTURES[texture].Height - IMAGE_NODE_SIZE.Y / 2);
         }
     }
 
@@ -35,7 +37,7 @@ public class GridNode : GameObjectList
     public Camera.Plane plane;
 
     //AI
-    public int Hval, Gval, Fval, Dval; //Heuristic, Movement, Sum, Danger
+    public long Hval, Gval, Fval, Dval; //Heuristic, Movement, Sum, Danger
     public GridNode pathParent;
     public int congestion;
 
@@ -48,7 +50,6 @@ public class GridNode : GameObjectList
         extendedNeighbours = new List<GridNode>();
         this.texture = texture;
         this.position = position;
-        this.texture = RANDOM.Next(2);
         this.plane = plane;
         Hval = 0;
         Gval = 0;
@@ -81,12 +82,6 @@ public class GridNode : GameObjectList
     public override void HandleInput(InputHelper inputHelper)
     {
         base.HandleInput(inputHelper);
-        selected = false;
-        Vector2 mousePos = inputHelper.MousePosition;
-        if (inputHelper.MouseInGameWindow && HoversMeRelative(mousePos))
-        {
-           selected = true;
-        }
     }
 
     public void setDval(GridNode origin, int range, List<GridNode> done, int D)
@@ -100,7 +95,7 @@ public class GridNode : GameObjectList
                 if (!done.onList(node))
                 {
                     done.Add(node);
-                    node.Dval += (int)(D * (1-((float)dis/range)*0.9));
+                    node.Dval += (int)(D * (1-((float)dis/range)*0.8));
                     node.setDval(origin, range, done, D);
                 }
             }
@@ -129,23 +124,23 @@ public class GridNode : GameObjectList
         return false;
     }
 
-    public override void Update(GameTime gameTime)
+    public override void Update(object gameTime)
     {
         base.Update(gameTime);
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(LIST_LAND_TEXTURES[texture], GlobalPosition + origin, null, Color.White, 0f, origin, NODE_SIZE.toVector() / IMAGE_NODE_SIZE.toVector(), SpriteEffects.None, 0);
+        spriteBatch.Draw(LIST_TEXTURES[texture], GlobalPosition + origin, null, Color.White, 0f, origin, NODE_SIZE.toVector() / IMAGE_NODE_SIZE.toVector(), SpriteEffects.None, 0);
         //DrawingHelper.DrawText(spriteBatch, FNT_LEVEL_BUILDER, "D: " + Dval.ToString(), GlobalPosition + new Vector2(30, 10), Color.Red);
         if (selected)
         {
-            spriteBatch.Draw(LIST_LAND_TEXTURES[texture], GlobalPosition + origin, null, Color.Black * 0.4f, 0f,  origin, NODE_SIZE.toVector()/IMAGE_NODE_SIZE.toVector(), SpriteEffects.None, 0);
+            spriteBatch.Draw(LIST_TEXTURES[texture], GlobalPosition + origin, null, Color.Black * 0.4f, 0f,  origin, NODE_SIZE.toVector()/IMAGE_NODE_SIZE.toVector(), SpriteEffects.None, 0);
         }
 
         if (beacon)
         {
-            spriteBatch.Draw(LIST_LAND_TEXTURES[texture], GlobalPosition + origin, null, Color.Blue * 0.4f, 0f, origin, NODE_SIZE.toVector() / IMAGE_NODE_SIZE.toVector(), SpriteEffects.None, 0);
+            spriteBatch.Draw(LIST_TEXTURES[texture], GlobalPosition + origin, null, Color.Blue * 0.4f, 0f, origin, NODE_SIZE.toVector() / IMAGE_NODE_SIZE.toVector(), SpriteEffects.None, 0);
         }
         base.Draw(gameTime, spriteBatch); 
     }

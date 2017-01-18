@@ -14,7 +14,8 @@ namespace WishnusArmy
         [DllImport("kernel32")]
         static extern bool AllocConsole();
 
-        public static Game self;
+        public static GameEnvironment self;
+        public static bool startSorting;
 
         public WishnusArmy()
         {
@@ -54,21 +55,12 @@ namespace WishnusArmy
             gameStateManager.AddGameState("LevelBuilderState", new LevelBuilderState());
             gameStateManager.AddGameState("LevelGeneratorState", new LevelGeneratorState());
             gameStateManager.SwitchTo("PlayingState");
+            startSorting = true;
         }
 
         public static void ExitGame()
         {
             self.Exit();
-        }
-
-        protected override void Draw(GameTime gameTime)
-        {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            spriteBatch.Begin();
-            spriteBatch.End();
-
-            base.Draw(gameTime);
         }
     }
 }

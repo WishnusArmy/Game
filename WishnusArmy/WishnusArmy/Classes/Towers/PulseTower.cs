@@ -15,12 +15,12 @@ class PulseTower : Tower
         this.baseTexture = SPR_PULSE_TOWER;
     }
 
-    public override void Update(GameTime gameTime)
+    public override void Update(object gameTime)
     {
         base.Update(gameTime);
         if(canShoot && target != null)
         {
-            Add(new Pulse(TowerDamage(type, stats), TowerRange(type, stats)));
+            Add(new Pulse(TowerDamage(type, stats), TowerRange(type, stats), enemies));
         }
     }
 }

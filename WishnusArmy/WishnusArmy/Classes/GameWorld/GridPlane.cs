@@ -11,18 +11,21 @@ using static ContentImporter.Textures;
 
 public class GridPlane: GameObjectList
 {
-    public GridNode[,] grid;
+    public GridNode[,] grid; //A set of all the nodes
+    public List<GridNode> spawnGrid; //A set of all center nodes not solid (to be spawned on)
     public Camera.Plane planeType;
+    public ParticleController particleControl;
         
     public GridPlane(Camera.Plane planeType) : base()
     {
+        spawnGrid = new List<GridNode>();
         this.planeType = planeType;
         //Initialize the grid with the size of the level
         grid = new GridNode[LEVEL_SIZE.X, LEVEL_SIZE.Y]; 
         //Fill the grid with GridItems
-        for(int x=0; x<LEVEL_SIZE.X; ++x)
+        for(int y=0; y<LEVEL_SIZE.Y; ++y)
         {
-            for(int y=LEVEL_SIZE.Y-1; y>=0; --y) //Make sure the grid gets build up from the bottom
+            for(int x=0; x<LEVEL_SIZE.X; ++x) //Make sure the grid gets build up from the bottom
             {
                 if (y % 2 == 0) //All odd rows will be shifted half a node in order to lock together
                 {
@@ -57,7 +60,7 @@ public class GridPlane: GameObjectList
             }
         }
 
-        for(int x = 0; x < LEVEL_SIZE.X; ++x)
+        for(int x = 0; x < LEVEL_SIZE.X; ++x) //set the extended neighbours
         {
             for(int y=0; y<LEVEL_SIZE.Y; ++y)
             {
@@ -76,6 +79,7 @@ public class GridPlane: GameObjectList
 
         //ADD LEVEL OBJECTS IN THE CAMERA CLASS.
         //ADDING THEM HERE WILL ADD THEM TO EVERY PLANE AL THE SAME
+        Add(particleControl = new ParticleController());
     }
 
     public GridNode NodeAt(Vector2 pos, bool throwClosest = true) //throwClosest=true will return the closest node if not found
@@ -116,24 +120,6 @@ public class GridPlane: GameObjectList
                 return null;
         }
         throw new Exception("No node found at: " + pos.X + ", " + pos.Y);
-    }
-
-    public override void HandleInput(InputHelper inputHelper)
-    {
-        base.HandleInput(inputHelper);
-    }
-
-    public override void Update(GameTime gameTime)
-    {
-        base.Update(gameTime);
-        
-        if (RANDOM.Next(40) == 0)
-        {
-            GridNode node = grid[0, RANDOM.Next(LEVEL_SIZE.Y)];
-            Add(new Tank { startNode = node, Position = node.Position });
-            Add(new Airplane { startNode = node, Position = node.Position });
-        }
-        
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
