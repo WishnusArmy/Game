@@ -127,6 +127,7 @@ public abstract class ParticleSystem : DrawOnTop
     protected float maxAlpha;
     protected float alphaRamp;
     protected float gravity;
+    protected Color color;
 
     /// <summary>
     /// different effects can use different blend modes. fire and explosions work
@@ -155,6 +156,7 @@ public abstract class ParticleSystem : DrawOnTop
         maxAlpha = 1f;
         alphaRamp = 0.5f;
         gravity = 10f;
+        color = Color.White;
         Initialize();
     }
 
@@ -356,13 +358,13 @@ public abstract class ParticleSystem : DrawOnTop
                 alpha = maxAlpha * (4/(alphaRamp*alphaRamp)) * normalizedLifetime * ((alphaRamp) - normalizedLifetime);
             else
                 alpha = maxAlpha * (1 / ((float)Math.Pow(1-alphaRamp, 2))) * (normalizedLifetime+1-2*alphaRamp) * (1 - normalizedLifetime);
-            Color color = Color.White * alpha;
+            Color c = color * alpha;
 
             // make particles grow as they age. they'll start at 75% of their size,
             // and increase to 100% once they're finished.
-            float scale = p.Scale * (.75f + .25f * normalizedLifetime);
+            float scale = p.Scale * (.70f + .30f * normalizedLifetime);
 
-            spriteBatch.Draw(texture, GlobalPosition + p.Position, null, color,
+            spriteBatch.Draw(texture, GlobalPosition + p.Position, null, c,
                 p.Rotation, origin, scale, SpriteEffects.None, 0.0f);
         }
         base.Draw(gameTime, spriteBatch);
