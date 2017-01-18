@@ -511,30 +511,6 @@
 /processorParam:Quality=Best
 /build:Content/Sprites/Music/mainMenu.mp3
 
-#begin Content/Music/Last_Dawn.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Content/Music/Last_Dawn.mp3
-
-#begin Content/Music/Run.wav
-/importer:WavImporter
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Content/Music/Run.wav
-
-#begin Content/Music/the_game_is_on.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Content/Music/the_game_is_on.mp3
-
-#begin Content/Music/Fall.wav
-/importer:WavImporter
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Content/Music/Fall.wav
-
 #begin Content/Sprites/spr_cannon.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -643,7 +619,16 @@
 /processorParam:TextureFormat=Color
 /build:Content/Sprites/spr_snipertower.png
 
-#begin Content/Sprites/spr_tesla.png
+#begin Content/Sprites/tesla tower.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
 /build:Content/Sprites/tesla tower.png
 
 #begin Content/Music/Last_Dawn.mp3
@@ -676,6 +661,18 @@
 /processorParam:Quality=Best
 /build:Content/SoundEffects/Projectiles/laser02.mp3
 
+#begin Content/Sprites/spr_tesla.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Sprites/spr_tesla.png
+
 #begin Content/Textures/tex_air.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -685,7 +682,7 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
-/build:Content/Sprites/spr_tesla.png
+/processorParam:TextureFormat=Color
 /build:Content/Textures/tex_air.png
 
 #begin Content/Textures/dot.png
@@ -712,19 +709,6 @@
 /processorParam:TextureFormat=Color
 /build:Content/Textures/smoke.png
 
-#begin Content/Textures/explosion.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-<<<<<<< HEAD
-/build:Content/Textures/explosion.png
-
 #begin Content/Sheets/sheet_infantry@4x1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -737,6 +721,15 @@
 /processorParam:TextureFormat=Color
 /build:Content/Sheets/sheet_infantry@4x1.png
 
-=======
+#begin Content/Textures/explosion.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
 /build:Content/Textures/explosion.png
->>>>>>> master
+
