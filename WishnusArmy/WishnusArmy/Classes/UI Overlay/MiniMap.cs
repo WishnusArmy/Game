@@ -70,7 +70,7 @@ class MiniMap : DrawOnTop
 
         // draw camera frame
         Point framesize = new Point((int)((minimapSize.X * 0.35)/scale.X), (int)((minimapSize.Y * 0.35)/scale.X));
-        DrawRectangle(new Rectangle(toMiniMapPosition(cameraPosition.toVector()) + overlayPosition, framesize), spriteBatch, Color.Yellow, 2, 0.5f);
+        DrawRectangle(new Rectangle(toMiniMapPosition(cameraPosition.toVector()) + overlayPosition - new Point(5, 3), framesize), spriteBatch, Color.Yellow, 2, 0.5f);
 
         foreach (Tower t in towers)
         {
