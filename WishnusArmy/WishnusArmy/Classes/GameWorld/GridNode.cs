@@ -25,6 +25,8 @@ public class GridNode : GameObject
             _texture = value;
             switch(value)
             {
+                case 7:
+                case 8:
                 case 2: solid = true; position.Y -= LIST_TEXTURES[texture].Height - IMAGE_NODE_SIZE.Y - 22; break; //mountains;
                 case 4: solid = true; break; //water
                 case 5: solid = true; position.Y -= LIST_TEXTURES[texture].Height - IMAGE_NODE_SIZE.Y - 10;  break; //forest

@@ -25,6 +25,7 @@ internal static class ContentImporter
     {
         internal static Texture2D
             SPR_MAINBACKGROUND,
+            SPR_GAMEOVERBACKGROUND,
             SPR_CREDITSPLANE,
             SPR_ENEMY,
             SPR_SHADOW,
@@ -51,7 +52,8 @@ internal static class ContentImporter
             
             SPR_MAINBACKGROUND = Content.Load<Texture2D>("Content/Sprites/MainBackground");
             SPR_CREDITSPLANE = Content.Load<Texture2D>("Content/Sprites/Credits");
-            SPR_ENEMY = Content.Load<Texture2D>("Content/Sprites/enemySprite"); 
+            SPR_ENEMY = Content.Load<Texture2D>("Content/Sprites/enemySprite");
+            SPR_GAMEOVERBACKGROUND = Content.Load<Texture2D>("Content/Sprites/GameOver");
             //SPR_AIRPLANE = Content.Load<Texture2D>("Content/Sprites/plane");
             SPR_WHITEPIXEL = Content.Load<Texture2D>("Content/Sprites/WhitePixel");
             SPR_SHADOW = Content.Load<Texture2D>("Content/Sprites/shadow");
@@ -132,6 +134,7 @@ internal static class ContentImporter
         internal static SpriteFont
             FNT_LEVEL_BUILDER,
             FNT_MENU,
+            FNT_GAMEOVER,
             FNT_OVERLAY,
             FNT_OVERLAY_INFO,
             FNT_HEALTH_INFO;
@@ -140,6 +143,7 @@ internal static class ContentImporter
         {
             FNT_LEVEL_BUILDER = Content.Load<SpriteFont>("Content/Fonts/fnt_level_builder");
             FNT_MENU = Content.Load<SpriteFont>("Content/Fonts/fnt_menu");
+            FNT_GAMEOVER = Content.Load<SpriteFont>("Content/Fonts/fnt_gameover");
             FNT_OVERLAY = Content.Load<SpriteFont>("Content/Fonts/fnt_overlay");
             FNT_OVERLAY_INFO = Content.Load<SpriteFont>("Content/Fonts/fnt_overlay_info");
             FNT_HEALTH_INFO = Content.Load<SpriteFont>("Content/Fonts/fnt_health_info");
@@ -184,6 +188,7 @@ internal static class ContentImporter
             //Projectiles
             SND_ROCKET_IMPACT,
             SND_LASER,
+            SND_EXPLOSION,
 
             //Enemies
             SND_HELICOPTER_LOOPING,
@@ -197,6 +202,7 @@ internal static class ContentImporter
             //Projectiles
             SND_LASER = Content.Load<SoundEffect>("Content/SoundEffects/Projectiles/laser02");
             SND_ROCKET_IMPACT = Content.Load<SoundEffect>("Content/SoundEffects/Projectiles/rocketImpact");
+            SND_EXPLOSION = Content.Load<SoundEffect>("Content/SoundEffects/Projectiles/explosion");
 
             //Enemies
             SND_HELICOPTER_LOOPING = Content.Load<SoundEffect>("Content/SoundEffects/Enemies/helicopterLoop");

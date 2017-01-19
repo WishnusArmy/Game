@@ -51,6 +51,7 @@
     <Compile Include="Classes\Functional\DrawOnTop.cs" />
     <Compile Include="Classes\GameWorld\Camera.cs" />
     <Compile Include="Classes\GameWorld\HealthText.cs" />
+    <Compile Include="Classes\GameOverState.cs" />
     <Compile Include="Classes\ParticleEffects\BuildTowerParticleSystem.cs" />
     <Compile Include="Classes\ParticleEffects\ExplosionSmokeParticleSystem.cs" />
     <Compile Include="Classes\ParticleEffects\Particle.cs" />

@@ -11,8 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 public class MainMenu : GameObjectList
 {
-    protected Button campaignButton;
-    protected Button survivalButton;
+    protected Button playButton;
     protected Button helpButton;
     protected Button creditsButton;
 
@@ -29,19 +28,13 @@ public class MainMenu : GameObjectList
         buttonFont = Fonts.FNT_MENU;
 
         //Add campaign button
-        campaignButton = new Button("CAMPAIGN", buttonColor, hoverColor, buttonFont);
-        campaignButton.Position = buttonPosition;
-        Add(campaignButton);
-
-        //Add survival button
-        survivalButton = new Button("SURVIVAL", buttonColor, hoverColor, buttonFont);
-        survivalButton.Position = new Vector2(buttonPosition.X + campaignButton.Dimensions.X + 50, buttonPosition.Y);
-        buttonPosition = survivalButton.Position;
-        Add(survivalButton);
+        playButton = new Button("Play", buttonColor, hoverColor, buttonFont);
+        playButton.Position = buttonPosition;
+        Add(playButton);
 
         //Add help button
         helpButton = new Button("HELP", buttonColor, hoverColor, buttonFont);
-        helpButton.Position = new Vector2(buttonPosition.X + survivalButton.Dimensions.X + 50, buttonPosition.Y);
+        helpButton.Position = new Vector2(buttonPosition.X + playButton.Dimensions.X + 70, buttonPosition.Y);
         buttonPosition = helpButton.Position;
         Add(helpButton);
 
@@ -59,10 +52,8 @@ public class MainMenu : GameObjectList
     {
         base.Update(gameTime);
 
-        if (campaignButton.Pressed)
-            GameEnvironment.GameStateManager.SwitchTo("LevelBuilderState");
-        else if (survivalButton.Pressed)
-            GameEnvironment.GameStateManager.SwitchTo("LevelGeneratorState");
+        if (playButton.Pressed)
+            GameEnvironment.GameStateManager.SwitchTo("PlayingState");
         else if (creditsButton.Pressed)    
             GameEnvironment.GameStateManager.SwitchTo("CreditsState");
         else if (helpButton.Pressed)     
