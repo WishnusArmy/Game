@@ -17,20 +17,17 @@ public class HealthText : DrawOnTop
     public int maxTimer;
     public float p;
     public float impact;
-    protected Color startColor;
-    protected Color endColor;
+    protected static Color startColor = Color.Red;
+    protected static Color endColor = Color.Pink;
     protected int height;
-    protected SpriteFont font;
+    protected static SpriteFont font = FNT_HEALTH_INFO;
 
     public HealthText(int text, float impact) : base()
     {
         this.text = text;
         maxTimer = 50;
         timer = 0;
-        startColor = Color.Black;
-        endColor = Color.Black;
         height = 50;
-        font = FNT_HEALTH_INFO;
     }
 
     public override void Update(object gameTime)
@@ -48,7 +45,11 @@ public class HealthText : DrawOnTop
         Color b = endColor;
         p = (float)timer / maxTimer;
         base.Draw(gameTime, spriteBatch);
-        spriteBatch.DrawString(font, text.ToString(), GlobalPosition - new Vector2(0, p*p * height), new Color(((1 - p) * a.R) - p * b.R, (1 - p) * a.G - p * b.G, (1 - p) * a.B - p * b.B, 255)*(1 - p * p), 0, 
+        //Shadow
+        spriteBatch.DrawString(font, text.ToString(), GlobalPosition - new Vector2(0, p*p * height + 20) + new Vector2(3), Color.Black*(1-p*p), 0, 
             new Vector2(font.MeasureString(text.ToString()).X, font.MeasureString(text.ToString()).Y), 0.3f + 0.2f * impact + impact * (0.9f * impact)*p, SpriteEffects.None, 0);
+        //Actual text
+        spriteBatch.DrawString(font, text.ToString(), GlobalPosition - new Vector2(0, p * p * height + 20), new Color(((1f - p) * a.R)/255f + p * b.R/255f, (1f - p) * a.G/255f + p * b.G/255f, (1f - p) * a.B/255f + p * b.B/255f, 1f)*(1-p*p), 0,
+            new Vector2(font.MeasureString(text.ToString()).X, font.MeasureString(text.ToString()).Y), 0.3f + 0.2f * impact + impact * (0.9f * impact) * p, SpriteEffects.None, 0);
     }
 }

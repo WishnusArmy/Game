@@ -11,6 +11,8 @@ using static Constant;
 
 class BaseProjectile : Rocket
     {
+    Vector2 cameraPosition;
+    Camera c = new Camera();
     Boolean shooting = false;
     float speed;
     int explosionRadius = 500;
@@ -25,6 +27,8 @@ class BaseProjectile : Rocket
     }
     public override void Update(object gameTime)
     {
+        c = GameWorld.FindByType<Camera>()[0];
+        cameraPosition = c.Position;
         base.Update(gameTime);
         if (OutOfScreen())
         {
@@ -47,10 +51,10 @@ class BaseProjectile : Rocket
         {
             mousePos = inputHelper.MousePosition / Camera.scale + sprite.getOrigin();
             shooting = true;
-            cameraPos = GameStats.CameraPosition;
+            cameraPos = cameraPosition;
             distance = CalculateDistance(GlobalPositionCenter, targetPos);
         }
-        adjustment = GameStats.CameraPosition - cameraPos;
+        adjustment = cameraPosition - cameraPos;
         targetPos = mousePos + adjustment;
         
         double opposite = targetPos.Y - GlobalPositionCenter.Y;
@@ -70,7 +74,7 @@ class BaseProjectile : Rocket
         {
             if (CalculateDistance(GlobalPositionCenter, x.GlobalPositionCenter) < explosionRadius)
             {
-                x.health -= damage;
+                x.dealDamage(damage, Tower.Type.Base);
             }
         }
         MyParticleControl.AddExplosion(position + parent.Position);

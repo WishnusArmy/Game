@@ -19,10 +19,6 @@ public class HelpMenu : GameObjectList
         backButton.Position = new Vector2((SCREEN_SIZE.X - backButton.Dimensions.X) / 2, SCREEN_SIZE.Y - 150);
         Add(backButton);
     }
-    public override void HandleInput(InputHelper inputHelper)
-    {
-        base.HandleInput(inputHelper);
-    }
 
     public override void Update(object gameTime)
     {

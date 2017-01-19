@@ -70,7 +70,7 @@ public class Overlay : DrawOnTopList
         else
             node.selected = true;
 
-        selectedPossible = !node.solid && inputHelper.MouseInGameWindow;
+        selectedPossible = !node.solid && node.available && inputHelper.MouseInGameWindow;
 
         if (inputHelper.MouseLeftButtonPressed() &&
             inputHelper.MouseInGameWindow &&

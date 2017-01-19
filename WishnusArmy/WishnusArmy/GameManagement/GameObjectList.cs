@@ -63,6 +63,16 @@ public class GameObjectList : GameObject
                 childrenTemp.Insert(childrenTemp.Count - 1, temp);
             }
         }
+
+        for(int i=childrenTemp.Count-1; i>= 0; --i)
+        {
+            if (childrenTemp[i] is HealthText)
+            {
+                GameObject temp = childrenTemp[i];
+                childrenTemp.RemoveAt(i);
+                childrenTemp.Insert(childrenTemp.Count - 1, temp);
+            }
+        }
         if (children.Count == childrenTemp.Count)
             children = childrenTemp;
     }

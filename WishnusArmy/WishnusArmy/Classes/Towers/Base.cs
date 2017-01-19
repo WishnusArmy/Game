@@ -57,11 +57,6 @@ public class Base : GameObjectList
             if (node.selected)
                 hover = true;
         }
-
-        // test!
-        BaseHealth -= 2;
-        GameStats.enemies = MyPlane.FindByType<Enemy>();
-        GameStats.towers = MyPlane.FindByType<Tower>();
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -78,7 +73,7 @@ public class Base : GameObjectList
     public override void HandleInput(InputHelper inputHelper)
     {
         base.HandleInput(inputHelper);
-        mousePosition = inputHelper.MousePosition;
+        mousePosition = inputHelper.MousePosition / Camera.scale;
         Vector2 targetPos = mousePosition;
         double opposite = targetPos.Y - GlobalPosition.Y;
         double adjacent = targetPos.X - GlobalPosition.X;

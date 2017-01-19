@@ -8,14 +8,14 @@ using static ContentImporter.Sheets;
 using static Constant;
 using Microsoft.Xna.Framework.Graphics;
 
-public class Tank : EnemyLand
+public class Infantry : EnemyLand
 {
-    public Tank()
-        : base(Type.Tank, SHEET_TANK)
+    public Infantry()
+        : base(Type.Tank, SHEET_INFANTRY)
     {
-        this.sprite = SHEET_TANK;
-        this.speed = 1.5f;
-        weakness = Tower.Type.RocketTower;
-        strongness = Tower.Type.LaserTower;
+        this.sprite = SHEET_INFANTRY;
+        this.killReward = EnemyRewardMoney(type);
+        this.speed = 2f;
+        strongness = Tower.Type.PulseTower;
     }
 }

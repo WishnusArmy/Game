@@ -24,29 +24,40 @@ class MiniMap : DrawOnTop
     List<Enemy> enemies;
     List<Tower> towers;
 
+    Point cameraPosition;
+    Vector2 scale;
+
     public MiniMap() : base()
     {
-        timer = 0;
+        timer = 50;
         // can be edited
         overlayPosition = new Point(SCREEN_SIZE.X - OVERLAY_SIZE.X * 2, SCREEN_SIZE.Y - OVERLAY_SIZE.Y);
         minimapSize = new Point(OVERLAY_SIZE.X * 2, OVERLAY_SIZE.X);
         
         // constant
         enemySize = new Point(minimapSize.X/50);
-        towerSize = new Point(minimapSize.X/30);
+        towerSize = new Point(minimapSize.X/40);
         baseSize = new Point(minimapSize.X/15);
         enemies = new List<Enemy>();
         towers = new List<Tower>();
+
+        scale = new Vector2(1000,1000);
+        cameraPosition = new Point(0, 0);
     }
 
     public override void Update(object gameTime)
     {
+        Camera c = GameWorld.FindByType<Camera>()[0];
+        cameraPosition = (c.Position * -1).toPoint();
+        scale = c.Scale;
+
         timer++;
-        if (timer < 20)
+        if (timer < 30)
             return;
         timer = 0;
-        enemies = GameStats.enemies;
-        towers = GameStats.towers;
+
+        enemies = GameWorld.FindByType<Enemy>();
+        towers = GameWorld.FindByType<Tower>();
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -58,9 +69,20 @@ class MiniMap : DrawOnTop
         DrawRectangleFilled(new Rectangle(overlayPosition, minimapSize), spriteBatch, Color.Black, 0.5f);
 
         // draw camera frame
-        Point framesize = new Point((int)((minimapSize.X * 0.35)/CameraScale.X), (int)((minimapSize.Y * 0.35)/CameraScale.X));
-        DrawRectangle(new Rectangle(toMiniMapPosition(GameStats.CameraPosition *-1) + overlayPosition, framesize), spriteBatch, Color.Yellow, 2, 0.5f);
-        
+        Point framesize = new Point((int)((minimapSize.X * 0.35)/scale.X), (int)((minimapSize.Y * 0.35)/scale.X));
+        DrawRectangle(new Rectangle(toMiniMapPosition(cameraPosition.toVector()) + overlayPosition - new Point(5, 3), framesize), spriteBatch, Color.Yellow, 2, 0.5f);
+
+        foreach (Tower t in towers)
+        {
+            if (t.hover)
+            {
+                int range = (int)(TowerRange(t.type, t.stats));
+                int miniMapRangeX = (int)((double)range * ((double)range / (double)realMapSize*2));
+                int miniMapRangeY = (int)((double)range * ((double)range / (double)realMapSize));
+                Color c = new Color(30, 30, 60, 20);
+                spriteBatch.Draw(TEX_DOT, new Rectangle(overlayPosition + toMiniMapPosition(t.Position) - new Point(miniMapRangeX / 2, miniMapRangeY / 2), new Point(miniMapRangeX, miniMapRangeY)), c);
+            }
+        }
 
         // draw enemies
         Vector2 pos;
@@ -70,7 +92,12 @@ class MiniMap : DrawOnTop
             pos = e.Position;
             if (pos.X < - NODE_SIZE.X/4 || pos.Y < -NODE_SIZE.X/4 || pos.X > realMapSize+NODE_SIZE.X/4 || pos.Y > (realMapSize/2)+ NODE_SIZE.Y/4)
                 continue;
-            spriteBatch.Draw(TEX_DOT, new Rectangle(overlayPosition + toMiniMapPosition(e.Position) - offset, enemySize), Color.Red);
+            if(e is Tank)
+                spriteBatch.Draw(TEX_DOT, new Rectangle(overlayPosition + toMiniMapPosition(e.Position) - offset, enemySize), Color.Red);
+            if (e is Infantry)
+                spriteBatch.Draw(TEX_DOT, new Rectangle(overlayPosition + toMiniMapPosition(e.Position) - offset, new Point((int)(enemySize.X/1.7))), Color.Salmon);
+            if (e is Airplane)
+                spriteBatch.Draw(TEX_DOT, new Rectangle(overlayPosition + toMiniMapPosition(e.Position) - offset, enemySize), Color.Yellow);
         }
 
         // draw towers

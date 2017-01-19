@@ -55,7 +55,7 @@ public class Rocket : Projectile
     {
         if (CalculateDistance(target.GlobalPositionCenter, GlobalPosition) < speed)
         {
-            target.health -= damage;
+            target.dealDamage(damage, Tower.Type.RocketTower);
             Kill = true;
             Vector2 pos = position + parent.Position;
             MyParticleControl.AddExplosion(pos);

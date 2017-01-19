@@ -8,7 +8,6 @@ using Microsoft.Xna.Framework;
 
 public class SortingThread : GameObject
 {
-    static Thread thread = new Thread(new ThreadStart(delegate { }));
     static List<GameObjectList> queue = new List<GameObjectList>();
 
     public static void AddRequest(GameObjectList obj)
@@ -23,12 +22,12 @@ public class SortingThread : GameObject
     public override void Update(object gameTime)
     {
         base.Update(gameTime);
-        if (!thread.IsAlive && queue.Count > 0)
+        while(queue.Count > 0)
         {
-            thread = new Thread(new ThreadStart(queue[0].SortChildren));
+            Thread thread = new Thread(new ThreadStart(queue[0].SortChildren));
             thread.Start();
             queue.RemoveAt(0);
-            Console.WriteLine("Granted Request, " + queue.Count() + " to go.");
+            //Console.WriteLine("Granted Request, " + queue.Count() + " to go.");
         }
     }
 }

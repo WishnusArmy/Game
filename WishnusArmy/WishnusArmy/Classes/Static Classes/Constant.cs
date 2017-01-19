@@ -114,24 +114,24 @@ internal static class Constant
     //ENEMIES
     internal static int EnemyHealthFunction(double mod)
     {
-        return (int)mod * (18 * Wave + 100);
+        return (int)(mod * (18 * Wave + 100));
     }
 
     /// <summary>
     /// 0=Tank, 1=soldier, 2=airballoon, 3=airplane
     /// </summary>
-    internal static int EnemyHealth(int type)
+    internal static int EnemyHealth(Enemy.Type type)
     {
         //0=Tank, 1=soldier, 2=airballoon, 3=airplane
         switch (type)
         {
-            case 0:
+            case Enemy.Type.Tank:
                 return EnemyHealthFunction(1.2);
-            case 1:
+            case Enemy.Type.Soldier:
                 return EnemyHealthFunction(0.6);
-            case 2:
+            case Enemy.Type.AirBaloon:
                 return EnemyHealthFunction(1.5);
-            case 3:
+            case Enemy.Type.Airplane:
                 return EnemyHealthFunction(1.8);
             default:
                 return EnemyHealthFunction(1);
@@ -142,18 +142,18 @@ internal static class Constant
     /// <summary>
     /// 0=Tank, 1=soldier, 2=airballoon, 3=airplane
     /// </summary>
-    internal static int EnemyRewardMoney(int type)
+    internal static int EnemyRewardMoney(Enemy.Type type)
     {
         //0=Tank, 1=soldier, 2=airballoon, 3=airplane
         switch (type)
         {
-            case 0:
+            case Enemy.Type.Tank:
                 return 30;
-            case 1:
+            case Enemy.Type.Soldier:
                 return 10;
-            case 2:
+            case Enemy.Type.AirBaloon:
                 return 40;
-            case 3:
+            case Enemy.Type.Airplane:
                 return 50;
             default:
                 return 10;
