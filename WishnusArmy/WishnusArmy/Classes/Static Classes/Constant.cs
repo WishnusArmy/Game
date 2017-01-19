@@ -94,6 +94,23 @@ internal static class Constant
                 return 0;
         }
     }
+    internal static int UpgradeCost(Tower.Type type)
+    {
+        //multiplied by 1.5 for every successive level-up
+        switch (type)
+        {
+            case Tower.Type.RocketTower:
+                return 150;// (s * s / -30) + (17 * s / 30) + 1;
+            case Tower.Type.LaserTower:
+                return 30;
+            case Tower.Type.PulseTower:
+                return 200;
+            case Tower.Type.Base:
+                return 150;
+            default:
+                return 0;
+        }
+    }
 
     public class TowerInfo
     {
