@@ -89,7 +89,7 @@ internal static class Constant
             case Tower.Type.PulseTower:
                 return (int)(200 - 25 * s);
             case Tower.Type.Base:
-                return 350;
+                return 250;
             default:
                 return 0;
         }
@@ -102,7 +102,7 @@ internal static class Constant
             case Tower.Type.RocketTower:
                 return 75;
             case Tower.Type.LaserTower:
-                return 30;
+                return 35;
             case Tower.Type.PulseTower:
                 return 100;
             case Tower.Type.Base:
@@ -131,7 +131,7 @@ internal static class Constant
     //ENEMIES
     internal static int EnemyHealthFunction(double mod)
     {
-        return (int)(mod * (18 * Wave + 100));
+        return (int)(mod * 100 + (GameStats.Wave * GameStats.Wave * 0.5 * 20));
     }
 
     /// <summary>
