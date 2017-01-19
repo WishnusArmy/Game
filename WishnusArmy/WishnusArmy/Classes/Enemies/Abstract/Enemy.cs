@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework.Input;
 using static Constant;
 using static DrawingHelper;
 using static GameStats;
+using static ContentImporter.Fonts;
 
 public abstract partial class Enemy : IsometricMovingGameObject
 {
@@ -21,28 +22,36 @@ public abstract partial class Enemy : IsometricMovingGameObject
     protected float speed;
     protected int killReward;
     double _health;
+    public int damage = 10;
     int maxHealth;
     public HealthText healthText;
-    public enum Type {Tank, Soldier, AirBaloon, Airplane }
+    public enum Type {Tank, Soldier, AirBaloon, Helicopter, Airplane }
     public Type type;
     public bool wait;
     public GridNode waitAt;
     GridNode centerNode;
     public List<GridNode> path;
     public int pathIndex;
+    public Tower.Type weakness, strongness;
 
     public Enemy(Type type, Texture2D sprite, int SheetIndex = 0) 
         : base(sprite, SheetIndex)
 
     {
+        damage = EnemyDamage(type);
         this.type = type;
         pathIndex = 0;
-        maxHealth = EnemyHealth((int)type);
+        maxHealth = EnemyHealth(type);
         _health = (int)maxHealth;
-        killReward = 20;
+        killReward = EnemyRewardMoney(type);
     }
 
-    public double health
+    public void dealDamage(double damage, Tower.Type type)
+    {
+        health -= damage * (1 + 0.3 * (type == weakness).ToInt()) * (1 / (1 + 0.3 * (type == strongness).ToInt()));
+    }
+
+    double health
     {
         get { return _health;  }
         set
@@ -52,7 +61,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
                 float deltaHealth = (float)(value - _health);
                 if (deltaHealth > _health)
                     deltaHealth = (float)_health;
-                healthText = new HealthText(((int)(deltaHealth)), deltaHealth/maxHealth) { Position = GlobalPositionCenter - new Vector2(0, 40) };
+                healthText = new HealthText(((int)(deltaHealth)), deltaHealth/maxHealth) { Position = GlobalPosition + new Vector2(0, -15) };
                 MyPlane.Add(healthText);
             }
             else
@@ -103,9 +112,10 @@ public abstract partial class Enemy : IsometricMovingGameObject
         base.Draw(gameTime, spriteBatch);
         
         //draw Healthbar, above the enemy
-        DrawRectangle(new Rectangle(GlobalPosition.ToPoint() + new Point(-(sheetRec.Width) / 4, -60), new Point(100, 10)), spriteBatch, Color.Black, 2, 1f);
+        DrawRectangle(new Rectangle(GlobalPosition.ToPoint() - new Point(50 - sheetRec.Width / 2, 60), new Point(100, 14)), spriteBatch, Color.Black, 2, 1f);
         Color healthColor = new Color((int)(255 * (1 - (health / maxHealth))), (int)(255 * (health / maxHealth)), 0, 255);
-        DrawRectangleFilled(new Rectangle(GlobalPosition.ToPoint() + new Point(-(sheetRec.Width) / 4, -60), new Point((int)((health/maxHealth)*100), 10)), spriteBatch, healthColor, 0.8f);
+        DrawRectangleFilled(new Rectangle(GlobalPosition.ToPoint() - new Point(50 - sheetRec.Width/2, 60), new Point((int)((health/maxHealth)*100), 14)), spriteBatch, healthColor, 0.8f);
+        DrawText(spriteBatch, FNT_LEVEL_BUILDER, ((int)(health)).ToString(), GlobalPosition + new Vector2(sheetRec.Width / 2, -53), Color.Black, true);
     }
 
     public void moveAlongPath()
@@ -162,6 +172,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
             }
             else
             {
+                GameStats.BaseHealth -= damage;
                 Kill = true;
             }
         }
@@ -180,7 +191,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
     {
         get
         {
-            return GlobalPosition + sheetRec.Size.toVector()/2;
+            return GlobalPosition + NODE_SIZE.toVector()/2;
         }
     }
 

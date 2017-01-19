@@ -81,6 +81,8 @@ class MiniMap : DrawOnTop
         Point position = new Point(0);
         for (int x = 0; x < LEVEL_SIZE.X; x++)
         {
+            if (grid == null || grid.Length == 0)
+                break;
             for (int y = 0; y < LEVEL_SIZE.Y; y++)
             {
                 if (grid[x, y].solid)

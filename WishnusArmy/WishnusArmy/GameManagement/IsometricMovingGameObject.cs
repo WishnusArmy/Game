@@ -47,7 +47,7 @@ public partial class IsometricMovingGameObject : GameObject
     {
         base.Draw(gameTime, spriteBatch);
         //spriteBatch.Draw(sprite, GlobalPosition + new Vector2(sheetRec.Width - 10, sheet.Height - 10)/2, sheetRec, Color.Black * 0.3f, 0f, new Vector2(sheetRec.Width / 2, sheetRec.Height / 2), 1.2f, SpriteEffects.None, 0);
-        spriteBatch.Draw(sprite, GlobalPosition, null, sheetRec, Vector2.Zero, 0f);
+        spriteBatch.Draw(sprite, GlobalPosition + NODE_SIZE.toVector()/2, null, sheetRec, new Vector2(sheetRec.Width, sheetRec.Height)/2, 0f);
     }
 
     public int GetIsometricDirection()

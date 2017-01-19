@@ -39,7 +39,7 @@ class Pulse : Projectile
                 double distance = DISTANCE(GlobalPosition, enemy.GlobalPositionCenter);
                 if (distance < radiusCurrent + speed * 2 && distance > radiusCurrent - speed * 2)
                 {
-                    enemy.health -= (int)damage * (1 - 0.5 * p);
+                    enemy.dealDamage(damage * (1 - 0.5 * p), Tower.Type.PulseTower);
                     targetsHit.Add(enemy);
                 }
             }

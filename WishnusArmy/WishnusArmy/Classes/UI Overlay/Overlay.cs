@@ -119,6 +119,12 @@ public class Overlay : DrawOnTopList
         
         DrawGrid(spriteBatch);
 
+        //Draw the WaveTime
+        if (!GameStats.InWave)
+        {
+            DrawText(spriteBatch, FNT_MENU, "Next wave in: " + (int)(GameStats.WaveTimer / 60), GAME_WINDOW_SIZE.toVector() / 2, Color.White, true);
+        }
+
         base.Draw(gameTime, spriteBatch);
     }
 

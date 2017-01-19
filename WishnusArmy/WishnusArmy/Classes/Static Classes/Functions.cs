@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using static Constant;
 
 public static class Functions
 {
@@ -64,6 +65,11 @@ public static class Functions
         return new Vector2(tex.Width, tex.Height) / 2;
     }
 
+    public static int choose(List<int> list)
+    {
+        return list[RANDOM.Next(list.Count)];
+    }
+
     public static bool onList(this List<GridNode> list, GridNode node)
     {
         bool flag = false;
@@ -73,5 +79,5 @@ public static class Functions
                 flag = true;
         }
         return flag;
-}
+    }
 }

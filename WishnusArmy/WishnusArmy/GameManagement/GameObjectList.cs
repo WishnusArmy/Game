@@ -22,35 +22,29 @@ public class GameObjectList : GameObject
     public void Add(GameObject obj)
     {
         obj.Parent = this;
-        /*
-        for (int i = 0; i < children.Count; i++)
-        {
-            if (children[i].Layer > obj.Layer)
-            {
-                children.Insert(i, obj);
-                return;
-            }
-        }
-        */
         children.Add(obj);
         if (!WishnusArmy.WishnusArmy.startSorting) //For the initialization process
             return;
 
-        if (obj is Tower || obj is Enemy)
-            SortingThread.AddRequest(this);
+        //if (obj is Tower || obj is Enemy)
+          //  SortingThread.AddRequest(this);
     }
 
     public void SortChildren()
     {
-        List<GameObject> childrenTemp = children.OrderBy(o => o.Position.Y).ToList(); //Sort all the children
+        List<GameObject> childrenTemp = children.OrderBy(o => o.GlobalPosition.Y).ToList(); //Sort all the children
         int lastNode = 0;
         for (int i = 0; i < childrenTemp.Count; ++i) //Iterate through all the children
         {
             if (childrenTemp[i] is GridNode) //If the current child is a GridNode...
             {
-                GameObject temp = childrenTemp[i]; //Buffer the child
-                childrenTemp.RemoveAt(i);  //Remove the child from the sorted list
-                childrenTemp.Insert(lastNode++, temp); //Squeeze it in at the beginning to make sure the grid is always drawn on the bottom.
+                GridNode node = childrenTemp[i] as GridNode;
+                if (node.texture != 2 && node.texture != 7 && node.texture != 8 && node.texture != 5) //But not a mountain or forest...
+                {
+                    GameObject temp = childrenTemp[i]; //Buffer the child
+                    childrenTemp.RemoveAt(i);  //Remove the child from the sorted list
+                    childrenTemp.Insert(lastNode++, temp); //Squeeze it in at the beginning to make sure the grid is always drawn on the bottom.
+                }
             }
         }
 

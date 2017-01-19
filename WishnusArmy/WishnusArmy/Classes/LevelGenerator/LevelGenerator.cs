@@ -99,7 +99,6 @@ public class LevelGenerator : GameObject
             for (int y = 0; y < LEVEL_SIZE.Y; y++)
             {
                 int neighbouringTiles = GetSurroundings(x, y, initialRatio);
-
                 if (neighbouringTiles >= 5)
                 {
                     tempGrid[x, y] = true;

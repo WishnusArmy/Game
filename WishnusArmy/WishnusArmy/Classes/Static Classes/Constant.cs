@@ -88,6 +88,25 @@ internal static class Constant
                 return (int)(10-1.5*s);
             case Tower.Type.PulseTower:
                 return (int)Efunction(120, -0.6 * s);
+            case Tower.Type.Base:
+                return 350;
+            default:
+                return 0;
+        }
+    }
+    internal static int UpgradeCost(Tower.Type type)
+    {
+        //multiplied by 1.5 for every successive level-up
+        switch (type)
+        {
+            case Tower.Type.RocketTower:
+                return 150;
+            case Tower.Type.LaserTower:
+                return 30;
+            case Tower.Type.PulseTower:
+                return 200;
+            case Tower.Type.Base:
+                return 150;
             default:
                 return 0;
         }
@@ -112,24 +131,24 @@ internal static class Constant
     //ENEMIES
     internal static int EnemyHealthFunction(double mod)
     {
-        return (int)mod * (18 * Wave + 100);
+        return (int)(mod * (18 * Wave + 100));
     }
 
     /// <summary>
     /// 0=Tank, 1=soldier, 2=airballoon, 3=airplane
     /// </summary>
-    internal static int EnemyHealth(int type)
+    internal static int EnemyHealth(Enemy.Type type)
     {
         //0=Tank, 1=soldier, 2=airballoon, 3=airplane
         switch (type)
         {
-            case 0:
+            case Enemy.Type.Tank:
                 return EnemyHealthFunction(1.2);
-            case 1:
+            case Enemy.Type.Soldier:
                 return EnemyHealthFunction(0.6);
-            case 2:
+            case Enemy.Type.AirBaloon:
                 return EnemyHealthFunction(1.5);
-            case 3:
+            case Enemy.Type.Airplane:
                 return EnemyHealthFunction(1.8);
             default:
                 return EnemyHealthFunction(1);
@@ -140,18 +159,36 @@ internal static class Constant
     /// <summary>
     /// 0=Tank, 1=soldier, 2=airballoon, 3=airplane
     /// </summary>
-    internal static int EnemyRewardMoney(int type)
+    internal static int EnemyRewardMoney(Enemy.Type type)
     {
         //0=Tank, 1=soldier, 2=airballoon, 3=airplane
         switch (type)
         {
-            case 0:
+            case Enemy.Type.Tank:
                 return 30;
-            case 1:
+            case Enemy.Type.Soldier:
                 return 10;
-            case 2:
+            case Enemy.Type.AirBaloon:
                 return 40;
-            case 3:
+            case Enemy.Type.Airplane:
+                return 50;
+            default:
+                return 10;
+        }
+    }
+
+    internal static int EnemyDamage(Enemy.Type type)
+    {
+        //0=Tank, 1=soldier, 2=airballoon, 3=airplane
+        switch (type)
+        {
+            case Enemy.Type.Tank:
+                return 30;
+            case Enemy.Type.Soldier:
+                return 10;
+            case Enemy.Type.AirBaloon:
+                return 40;
+            case Enemy.Type.Airplane:
                 return 50;
             default:
                 return 10;
@@ -170,11 +207,13 @@ internal static class Constant
     {
         TEX_GRASS, //0
         TEX_GRASS_DIRT, //1
-        TEX_STONE_ROAD, //2
+        TEX_MOUNTAIN_1, //2
         TEX_DIRT, //3
         TEX_WATER, //4
         TEX_FOREST, //5 
-        TEX_AIR //5
+        TEX_AIR, //6
+        TEX_MOUNTAIN_2, //7
+        TEX_MOUNTAIN_3 //8
     };
 
     internal static readonly List<ToolBarObjectsItem> LIST_OBJECTS = new List<ToolBarObjectsItem>

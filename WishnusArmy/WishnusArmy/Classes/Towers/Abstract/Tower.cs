@@ -34,7 +34,7 @@ public abstract class Tower : GameObjectList
         }
     }
 
-    public enum Type { RocketTower, LaserTower, PulseTower }
+    public enum Type { RocketTower, LaserTower, PulseTower, Base}
 
     public Tower(Type type) : base()
     {
@@ -48,8 +48,8 @@ public abstract class Tower : GameObjectList
     {
         if (hover)
             spriteBatch.Draw(SPR_CIRCLE, GlobalPosition, null, null, new Vector2(SPR_CIRCLE.Width / 2, SPR_CIRCLE.Height / 2), 0f, new Vector2(1f, 0.5f) * ((float)TowerRange(type, stats) / ((float)SPR_CIRCLE.Width / 2)), new Color(0.2f, 0.2f, 0.2f, 0.05f));
-        spriteBatch.Draw(baseTexture, GlobalPosition + new Vector2(20, -10), null, null, new Vector2(baseTexture.Width / 2, baseTexture.Height / 2), (float)Math.PI/6, new Vector2(1, 1.2f), Color.Black * 0.35f);
-        spriteBatch.Draw(baseTexture, GlobalPosition, null, null, new Vector2(baseTexture.Width / 2, baseTexture.Height / 2));
+        spriteBatch.Draw(baseTexture, myNode.GlobalPosition + NODE_SIZE.toVector()/2 + new Vector2(30, -40), null, null, new Vector2(baseTexture.Width / 2, baseTexture.Height / 2), (float)Math.PI/6, new Vector2(1, 1.2f), Color.Black * 0.35f);
+        spriteBatch.Draw(baseTexture, myNode.GlobalPosition + NODE_SIZE.toVector()/2 + new Vector2(10, -30), null, null, new Vector2(baseTexture.Width / 2, baseTexture.Height / 2));
         base.Draw(gameTime, spriteBatch);
     }
 

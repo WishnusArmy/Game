@@ -33,10 +33,9 @@ class Laser : ProjectileAtTower
 
     public override void Update(object gameTime)
     {
-        base.Update(gameTime);
         if (target != null && (visibleTimer == visibleTimerMax))
         {
-            target.health -= damage;
+            target.dealDamage(damage, Tower.Type.LaserTower);
             PlaySound(ContentImporter.Sounds.SND_LASER);
         }
 
@@ -44,5 +43,7 @@ class Laser : ProjectileAtTower
             visibleTimer--;
         else
             kill = true;
+
+        base.Update(gameTime);
     }
 }

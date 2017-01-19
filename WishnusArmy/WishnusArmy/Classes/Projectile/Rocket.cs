@@ -43,7 +43,7 @@ public class Rocket : Projectile
         }
         else
         {
-           rotation = rotation + 0.05f;
+           //rotation = rotation + 0.05f;
         }
         float x = (float)Math.Cos(rotation) * speed;
         float y = (float)Math.Sin(rotation) * speed;
@@ -55,7 +55,7 @@ public class Rocket : Projectile
     {
         if (CalculateDistance(target.GlobalPositionCenter, GlobalPosition) < speed)
         {
-            target.health -= damage;
+            target.dealDamage(damage, Tower.Type.RocketTower);
             Kill = true;
             Vector2 pos = position + parent.Position;
             MyParticleControl.AddExplosion(pos);
