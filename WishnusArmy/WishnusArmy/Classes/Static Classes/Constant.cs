@@ -53,11 +53,11 @@ internal static class Constant
         switch (type)
         {
             case Tower.Type.RocketTower:
-                return Efunction(110, 0.6 * s);
+                return (int)(70 + 30 * s);
             case Tower.Type.LaserTower:
-                return Efunction(8, 0.7 * s);
+                return (int)(4 + 1.5 * s);
             case Tower.Type.PulseTower:
-                return Efunction(50, 0.5 * s);
+                return (int)(30 + 12*s);
             default:
                 return 0;
         }
@@ -83,11 +83,11 @@ internal static class Constant
         switch (type)
         {
             case Tower.Type.RocketTower:
-                return 40;// (s * s / -30) + (17 * s / 30) + 1;
+                return (int)(100 - 15 * s);
             case Tower.Type.LaserTower:
                 return (int)(10-1.5*s);
             case Tower.Type.PulseTower:
-                return (int)Efunction(120, -0.6 * s);
+                return (int)(200 - 25 * s);
             default:
                 return 0;
         }
@@ -104,8 +104,8 @@ internal static class Constant
     public static readonly Dictionary<string, TowerInfo> TOWER_INFO = new Dictionary<string, TowerInfo>()
     {
         { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 100, icon = SPR_LASER_TOWER, range = TowerRange(Tower.Type.LaserTower, new int[] {0,0,0})} },
-        { "RocketTower", new TowerInfo() { name = "Rocket Tower", cost = 250, icon = SPR_ROCKET_TOWER, range = TowerRange(Tower.Type.RocketTower, new int[] {0,0,0}) } },
-        { "PulseTower", new TowerInfo() { name = "PulseTower", cost = 300, icon = SPR_PULSE_TOWER, range = TowerRange(Tower.Type.PulseTower, new int[] {0,0,0}) } }
+        { "RocketTower", new TowerInfo() { name = "Rocket Tower", cost = 350, icon = SPR_ROCKET_TOWER, range = TowerRange(Tower.Type.RocketTower, new int[] {0,0,0}) } },
+        { "PulseTower", new TowerInfo() { name = "PulseTower", cost = 700, icon = SPR_PULSE_TOWER, range = TowerRange(Tower.Type.PulseTower, new int[] {0,0,0}) } }
     };
     
 
@@ -124,7 +124,7 @@ internal static class Constant
         switch (type)
         {
             case Enemy.Type.Tank:
-                return EnemyHealthFunction(1.2);
+                return EnemyHealthFunction(3.0); 
             case Enemy.Type.Soldier:
                 return EnemyHealthFunction(0.6);
             case Enemy.Type.AirBaloon:
