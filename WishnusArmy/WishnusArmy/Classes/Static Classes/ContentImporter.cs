@@ -122,12 +122,14 @@ internal static class ContentImporter
         internal static Texture2D
             ICON_KILLS,
             ICON_COINS,
+            ICON_WAVE,
             ICON_LIFE;
 
         public static void Initialize(ContentManager Content)
         {
             ICON_COINS = Content.Load<Texture2D>("Content/Sprites/Icons/coin");
             ICON_KILLS = Content.Load<Texture2D>("Content/Sprites/Icons/kill");
+            ICON_WAVE = Content.Load<Texture2D>("Content/Sprites/Icons/wave");
             ICON_LIFE = Content.Load<Texture2D>("Content/Sprites/Icons/life");
         }
     }
