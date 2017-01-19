@@ -50,7 +50,7 @@ public class EnemySpawner : GameObjectList
             {
                 resources -= 100;
                 GridNode node = available[RANDOM.Next(available.Count)];
-                plane.Add(new Tank() { startNode = node, Position = node.Position });
+                plane.Add(new Airplane() { startNode = node, Position = node.Position });
             }
 
             bool AllDeath = true;

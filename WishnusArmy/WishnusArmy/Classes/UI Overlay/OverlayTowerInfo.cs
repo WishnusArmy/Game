@@ -50,7 +50,7 @@ public class OverlayTowerInfo : GameObjectList
                         if (tower.stats[z] < 4)
                         {
                             tower.stats[z]++;
-                            Economy.EcResources -= (int)(UpgradeCost(tower.type)*Math.Pow(1.5,(tower.stats[z]-1)));
+                            Economy.EcResources -= (int)(UpgradeCost(tower.type) * Math.Pow(1.5, (tower.stats[z] - 1)));
                         }
                     },
                 Position = new Vector2(350, 84 + (blockSize.Y + blockSeperation + 15) * i),
@@ -78,6 +78,19 @@ public class OverlayTowerInfo : GameObjectList
                     DrawRectangleFilled(new Rectangle(position.toPoint() + new Point(220 + (blockSize.X + blockSeperation) * i, 80 + (blockSize.Y + 15) * z), blockSize), spriteBatch, Color.Black, 0.4f);
                     DrawRectangleFilled(new Rectangle(position.toPoint() + new Point(220 + (blockSize.X + blockSeperation) * i, 80 + (blockSize.Y + 15) * z), blockSize), spriteBatch, Color.White * (tower.stats[z] >= i).ToInt());
                 }
+            }
+
+            //Hover menu with costs
+            for (int i = 0; i < buttons.Count; i++)
+            {
+
+                if (buttons[i].hover)
+                {
+                    DrawRectangleFilled(new Rectangle(buttons[i].GlobalPosition.toPoint() - new Point(0, 75), new Point(150, 75)), spriteBatch, Color.White);
+                    spriteBatch.DrawString(FNT_LEVEL_BUILDER, "Costs: " + ((int)(UpgradeCost(tower.type) * Math.Pow(1.5, (tower.stats[i] - 1)))).ToString(), buttons[i].GlobalPosition - new Vector2(-23, 48), Color.Black);
+                    DrawRectangle(new Rectangle(buttons[i].GlobalPosition.toPoint() - new Point(0, 75), new Point(150, 75)), spriteBatch, Color.Black, 3);
+                }
+
             }
         }
     }
