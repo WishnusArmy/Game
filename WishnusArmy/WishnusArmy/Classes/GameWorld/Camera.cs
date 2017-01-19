@@ -56,8 +56,8 @@ public class Camera : GameObjectList
                 if (tex == 2) //Mountain
                 {
                     tex = Functions.choose(new List<int> { 2, 7, 8 });
-                    Land.grid[x, y].texture = tex;
                 }
+                Land.grid[x, y].texture = tex;
             }
         }
         currentPlane.Add(new EnemySpawner(currentPlane)); // The grid must be finished
