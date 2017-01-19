@@ -13,5 +13,6 @@ public class Airplane : EnemyAir
     {
         this.sprite = SHEET_AIRPLANE;
         this.speed = 3;
+        cost = 500;
     }
 }

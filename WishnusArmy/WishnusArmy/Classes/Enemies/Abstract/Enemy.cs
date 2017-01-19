@@ -33,6 +33,8 @@ public abstract partial class Enemy : IsometricMovingGameObject
     public List<GridNode> path;
     public int pathIndex;
     public Tower.Type weakness, strongness;
+    public int cost;
+
 
     public Enemy(Type type, Texture2D sprite, int SheetIndex = 0) 
         : base(sprite, SheetIndex)
@@ -136,7 +138,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
         {
             if (pathIndex > 0)
             {
-                if (path[pathIndex - 1].solid && !wait) //Path has changed on the way.
+                if (path[pathIndex - 1].solid && !wait && !(this is EnemyAir)) //Path has changed on the way.
                 {
                     GridNode solidNode = path[pathIndex - 1];
                     startNode = path[pathIndex]; //set the startNode for the request

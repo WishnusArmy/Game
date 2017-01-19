@@ -17,5 +17,6 @@ public class Tank : EnemyLand
         this.speed = 1.5f;
         weakness = Tower.Type.RocketTower;
         strongness = Tower.Type.LaserTower;
+        cost = 100;
     }
 }
