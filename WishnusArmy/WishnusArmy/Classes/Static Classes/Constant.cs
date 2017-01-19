@@ -27,9 +27,9 @@ internal static class Constant
     //LEVEL
     internal const int NODE_TEXTURE_SIZE = 64; //The raw, square size of a node
     internal static readonly Point IMAGE_NODE_SIZE = new Point(128, 64); //size of the original texture image
-    internal static readonly Point NODE_SIZE  =  new Point(96, 48); //The size of a node in the grid
+    internal static readonly Point NODE_SIZE = new Point(96, 48); //The size of a node in the grid
     internal static readonly Point LEVEL_SIZE = new Point(60, 120); //The size of the level grid
-    internal static readonly Vector2 LEVEL_CENTER = new Vector2(LEVEL_SIZE.X * NODE_SIZE.X, LEVEL_SIZE.Y/2 * NODE_SIZE.Y)/2;
+    internal static readonly Vector2 LEVEL_CENTER = new Vector2(LEVEL_SIZE.X * NODE_SIZE.X, LEVEL_SIZE.Y / 2 * NODE_SIZE.Y) / 2;
 
     //CAMERA
     internal const int SLIDE_BORDER = 10; //Defines the width of the edge that will respond to the mouse.
@@ -45,7 +45,7 @@ internal static class Constant
     {
         return max / (1 + Math.Pow(Math.E, -slope));
     }
-    
+
     // 0=Projectile Tower, 1=LaserTower, 2=PulseTower, 3=base
     internal static double TowerDamage(Tower.Type type, int[] stats)
     {
@@ -85,7 +85,7 @@ internal static class Constant
             case Tower.Type.RocketTower:
                 return 40;// (s * s / -30) + (17 * s / 30) + 1;
             case Tower.Type.LaserTower:
-                return (int)(10-1.5*s);
+                return (int)(10 - 1.5 * s);
             case Tower.Type.PulseTower:
                 return (int)Efunction(120, -0.6 * s);
             default:
@@ -98,16 +98,24 @@ internal static class Constant
         public string name;
         public int cost;
         public int range;
+        public Texture2D sprite;
         public Texture2D icon;
     }
 
     public static readonly Dictionary<string, TowerInfo> TOWER_INFO = new Dictionary<string, TowerInfo>()
     {
-        { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 100, icon = SPR_LASER_TOWER, range = TowerRange(Tower.Type.LaserTower, new int[] {0,0,0})} },
-        { "RocketTower", new TowerInfo() { name = "Rocket Tower", cost = 250, icon = SPR_ROCKET_TOWER, range = TowerRange(Tower.Type.RocketTower, new int[] {0,0,0}) } },
-        { "PulseTower", new TowerInfo() { name = "PulseTower", cost = 300, icon = SPR_PULSE_TOWER, range = TowerRange(Tower.Type.PulseTower, new int[] {0,0,0}) } }
+        { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 100, sprite = SPR_LASER_TOWER, icon = SPR_LASER_ICON, range = TowerRange(Tower.Type.LaserTower, new int[] {0,0,0})} },
+        { "RocketTower", new TowerInfo() { name = "Rocket Tower", cost = 250, sprite = SPR_ROCKET_TOWER, icon = SPR_ROCKETLAUNCHER_ICON, range = TowerRange(Tower.Type.RocketTower, new int[] {0,0,0}) } },
+        { "PulseTower", new TowerInfo() { name = "PulseTower", cost = 300, sprite = SPR_PULSE_TOWER, icon = SPR_PULSE_ICON, range = TowerRange(Tower.Type.PulseTower, new int[] {0,0,0}) } },
+        // { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 100, sprite = SPR_LASER_TOWER, icon = SPR_CANNON_ICON, range = TowerRange(Tower.Type.LaserTower, new int[] {0,0,0})} },
+        // { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 100, sprite = SPR_LASER_TOWER, icon = SPR_GATTLING_ICON, range = TowerRange(Tower.Type.LaserTower, new int[] {0,0,0})} },
+        // { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 100, sprite = SPR_LASER_TOWER, icon = SPR_GRENADE_ICON, range = TowerRange(Tower.Type.LaserTower, new int[] {0,0,0})} },
+        // { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 100, sprite = SPR_LASER_TOWER, icon = SPR_FLAMETHROWER_ICON, range = TowerRange(Tower.Type.LaserTower, new int[] {0,0,0})} },
+        // { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 100, sprite = SPR_LASER_TOWER, icon = SPR_SNIPER_ICON, range = TowerRange(Tower.Type.LaserTower, new int[] {0,0,0})} },
+        // { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 100, sprite = SPR_LASER_TOWER, icon = SPR_TESLACOIL_ICON, range = TowerRange(Tower.Type.LaserTower, new int[] {0,0,0})} },
+        // { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 100, sprite = SPR_LASER_TOWER, icon = SPR_MACHINEGUN_ICON, range = TowerRange(Tower.Type.LaserTower, new int[] {0,0,0})} },
     };
-    
+
 
     //ENEMIES
     internal static int EnemyHealthFunction(double mod)
@@ -134,7 +142,7 @@ internal static class Constant
             default:
                 return EnemyHealthFunction(1);
         }
-        
+
     }
     //reward for killing an enemy
     /// <summary>
@@ -194,6 +202,6 @@ internal static class Constant
     internal static double DISTANCE(Vector2 v1, Vector2 v2)
     {
         Vector2 v3 = v1 - v2;
-        return Math.Sqrt(v3.X*v3.X + v3.Y*v3.Y);
+        return Math.Sqrt(v3.X * v3.X + v3.Y * v3.Y);
     }
 }

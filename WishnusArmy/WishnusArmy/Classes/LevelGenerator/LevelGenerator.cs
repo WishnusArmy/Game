@@ -70,10 +70,10 @@ public class LevelGenerator : GameObject
             {
                 if (RANDOM.Next(100) < initialRatio)
                 {
-                    //Keep a square in the center of the grid clear of special tiles
+                    //Keep a square in the center of the grid clear of special tiles in the initial distribution
                     if ((x < LEVEL_SIZE.X / 2 - 5) || (x > LEVEL_SIZE.X / 2 + 5) || (y < LEVEL_SIZE.Y / 2 - 10) || (y > LEVEL_SIZE.Y / 2 + 10))
                     {
-                        //For mountains and rivers, keep a vertical line across the center of the grid clear of special tiles
+                        //For mountains and rivers, keep a vertical line across the center of the grid clear of special tiles in the initial distribution
                         if ((tileType == 2) || (tileType == 4))
                         {
                             if (x != LEVEL_SIZE.X / 2)
@@ -138,14 +138,6 @@ public class LevelGenerator : GameObject
                         count++;
                     }
                 }
-                else
-                {
-                    //Count tiles outside of the grid as either true or false, based on the tiletype's initial ratio
-                    if (RANDOM.Next(100) < initialRatio)
-                    {
-                        count++;
-                    }
-                }
             }
         }
         return count;
@@ -154,13 +146,30 @@ public class LevelGenerator : GameObject
     //Use the distribution in distributionGrid to add special tiles to the level grid
     public void AddDistributionGrid(int tileType)
     {
-        for (int x = 0; x < LEVEL_SIZE.X; x++)
+        //For mountains and rivers, keep the borders and a line through the center clear of special tiles
+        if ((tileType == 2) || (tileType == 4))
         {
-            for (int y = 0; y < LEVEL_SIZE.Y; y++)
+            for (int x = 1; x < LEVEL_SIZE.X - 1; x++)
             {
-                if (distributionGrid[x, y] == true)
+                for (int y = 1; y < LEVEL_SIZE.Y - 1; y++)
                 {
-                    landGrid[x, y] = tileType;
+                    if ((distributionGrid[x, y] == true) && (x != LEVEL_SIZE.X / 2))
+                    {
+                        landGrid[x, y] = tileType;
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (int x = 0; x < LEVEL_SIZE.X; x++)
+            {
+                for (int y = 0; y < LEVEL_SIZE.Y; y++)
+                {
+                    if (distributionGrid[x, y] == true)
+                    {
+                        landGrid[x, y] = tileType;
+                    }
                 }
             }
         }
@@ -205,9 +214,8 @@ public class LevelGenerator : GameObject
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        //base.Update(gameTime);
         Vector2 camPos = GameWorld.FindByType<Camera>()[0].Position;
-        GridPlane plane = GameWorld.FindByType<Camera>()[0].Land; 
+        GridPlane plane = GameWorld.FindByType<Camera>()[0].Land;
 
         for (int x = 0; x < LEVEL_SIZE.X; x++)
         {
