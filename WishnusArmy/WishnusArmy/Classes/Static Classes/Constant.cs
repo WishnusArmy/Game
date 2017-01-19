@@ -207,11 +207,13 @@ internal static class Constant
     {
         TEX_GRASS, //0
         TEX_GRASS_DIRT, //1
-        TEX_STONE_ROAD, //2
+        TEX_MOUNTAIN_1, //2
         TEX_DIRT, //3
         TEX_WATER, //4
         TEX_FOREST, //5 
-        TEX_AIR //5
+        TEX_AIR, //5
+        //TEX_MOUNTAIN_2, //7
+        //TEX_MOUNTAIN_3 //8
     };
 
     internal static readonly List<ToolBarObjectsItem> LIST_OBJECTS = new List<ToolBarObjectsItem>
