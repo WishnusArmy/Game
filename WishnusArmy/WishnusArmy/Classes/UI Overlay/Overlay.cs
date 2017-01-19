@@ -118,7 +118,7 @@ public class Overlay : DrawOnTopList
         DrawText(spriteBatch, FNT_GAMESTATS, EcResources.ToString(), new Vector2(55, 114), Color.White);
 
         spriteBatch.Draw(ICON_LIFE, new Rectangle(new Point(0, 177), new Point(40, 40)), Color.White);
-        DrawText(spriteBatch, FNT_GAMESTATS, BaseHealth.ToString() +"/"+ MaxBaseHealth.ToString(), new Vector2s(55, 170), Color.White);
+        DrawText(spriteBatch, FNT_GAMESTATS, BaseHealth.ToString() +"/"+ MaxBaseHealth.ToString(), new Vector2(55, 170), Color.White);
         
         DrawGrid(spriteBatch);
 
