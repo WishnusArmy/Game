@@ -9,7 +9,6 @@ using static ContentImporter.Sprites;
 using static ContentImporter.Fonts;
 using static DrawingHelper;
 using static Constant;
-using static Economy;
 
 public class OverlayTowerItem : GameObject
 {
@@ -23,7 +22,7 @@ public class OverlayTowerItem : GameObject
     {
         get
         {
-            return EcResources >= cost;
+            return GameStats.EcResources >= cost;
         }
     }
 

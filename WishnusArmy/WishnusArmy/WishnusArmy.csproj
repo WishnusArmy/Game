@@ -72,7 +72,6 @@
     <Compile Include="Classes\Static Classes\Constant.cs" />
     <Compile Include="Classes\Static Classes\ContentImporter.cs" />
     <Compile Include="Classes\Enemies\Abstract\Enemy.cs" />
-    <Compile Include="Classes\GameWorld\Economy.cs" />
     <Compile Include="Classes\UI Overlay\MiniMap.cs" />
     <Compile Include="Classes\UI Overlay\Overlay.cs" />
     <Compile Include="Classes\HelpMenu.cs" />

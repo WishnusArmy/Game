@@ -12,7 +12,7 @@ using static Constant;
 public class Button : GameObject
 {
     protected bool pressed;
-    protected bool hover;
+    public bool hover;
     protected string buttonText;
     public Point padding;
 

@@ -55,7 +55,7 @@ namespace WishnusArmy
             gameStateManager.AddGameState("LevelBuilderState", new LevelBuilderState());
             gameStateManager.AddGameState("LevelGeneratorState", new LevelGeneratorState());
             gameStateManager.AddGameState("GameOverState", new GameOverState());
-            gameStateManager.SwitchTo("GameOverState");
+            gameStateManager.SwitchTo("MainMenuState");
             startSorting = true;
         }
 

@@ -53,6 +53,7 @@ public class EnemySpawner : GameObjectList
                 object temp = Activator.CreateInstance(t); //Create an instance of that object
                 Enemy obj = temp as Enemy; //Cast it as an Enemy
                 GridNode node = available[RANDOM.Next(available.Count)];
+
                 obj.startNode = node;
                 obj.Position = node.Position;
                 plane.Add(obj);
