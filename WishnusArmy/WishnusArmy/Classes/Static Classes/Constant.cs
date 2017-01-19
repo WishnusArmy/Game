@@ -160,6 +160,24 @@ internal static class Constant
         }
     }
 
+    internal static int EnemyDamage(Enemy.Type type)
+    {
+        //0=Tank, 1=soldier, 2=airballoon, 3=airplane
+        switch (type)
+        {
+            case Enemy.Type.Tank:
+                return 30;
+            case Enemy.Type.Soldier:
+                return 10;
+            case Enemy.Type.AirBaloon:
+                return 40;
+            case Enemy.Type.Airplane:
+                return 50;
+            default:
+                return 10;
+        }
+    }
+
     //LEVEL BUILDER
     internal static readonly Point TOOLBAR_SIZE = new Point(SCREEN_SIZE.X, 150);
     internal static readonly Point TOOLBAR_SELECTOR_SIZE = new Point(400, SCREEN_SIZE.Y - TOOLBAR_SIZE.Y);
