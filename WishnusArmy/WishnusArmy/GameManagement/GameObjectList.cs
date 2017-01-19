@@ -32,7 +32,6 @@ public class GameObjectList : GameObject
 
     public void SortChildren()
     {
-        Console.WriteLine(children.OfType<GridNode>().Count());
         List<GameObject> childrenTemp = children.OrderBy(o => o.GlobalPosition.Y).ToList(); //Sort all the children
         int lastNode = 0;
         for (int i = 0; i < childrenTemp.Count; ++i) //Iterate through all the children
@@ -40,7 +39,7 @@ public class GameObjectList : GameObject
             if (childrenTemp[i] is GridNode) //If the current child is a GridNode...
             {
                 GridNode node = childrenTemp[i] as GridNode;
-                if (node.texture != 2 && node.texture != 7 && node.texture != 8) //But not a mountain...
+                if (node.texture != 2 && node.texture != 7 && node.texture != 8 && node.texture != 5) //But not a mountain or forest...
                 {
                     GameObject temp = childrenTemp[i]; //Buffer the child
                     childrenTemp.RemoveAt(i);  //Remove the child from the sorted list
