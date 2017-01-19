@@ -13,6 +13,10 @@ using static GameStats;
 
 public class Base : GameObjectList
 {
+    int timer;
+    Tower.Type type;
+    int[] stats = new int[] { 0, 0, 0 };
+    static int maxRockets = 3;
     int damage = 50;
     float speed = 10;
     Color healthColor;
@@ -24,14 +28,23 @@ public class Base : GameObjectList
 
     public Base() : base()
     {
+        type = Tower.Type.Base;
         healthColor = new Color(0, 255, 0);
         this.cannonTexture = SPR_BASEGUN;
         this.baseTexture = SPR_BASE;
+
+    }
+
+    public bool canShoot
+    {
+        get { return timer <= 0; }
     }
 
     public override void Update(object gameTime)
     {
         base.Update(gameTime);
+            timer--;
+
         if (myNodes == null)
         {
             myNodes = new List<GridNode>();
@@ -70,9 +83,13 @@ public class Base : GameObjectList
         double opposite = targetPos.Y - GlobalPosition.Y;
         double adjacent = targetPos.X - GlobalPosition.X;
         rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
-        if (inputHelper.MouseLeftButtonPressed())
+        if (inputHelper.MouseLeftButtonPressed() && inputHelper.MouseInGameWindow && canShoot)
         {
-            Add(new BaseProjectile(damage, speed));
+            if (FindByType<BaseProjectile>().Count < maxRockets)
+            {
+                Add(new BaseProjectile(damage, speed));
+                timer = TowerRate(type, stats);
+            }
         }
     }
 }

@@ -43,7 +43,7 @@ public class Rocket : Projectile
         }
         else
         {
-           rotation = rotation + 0.05f;
+           //rotation = rotation + 0.05f;
         }
         float x = (float)Math.Cos(rotation) * speed;
         float y = (float)Math.Sin(rotation) * speed;
