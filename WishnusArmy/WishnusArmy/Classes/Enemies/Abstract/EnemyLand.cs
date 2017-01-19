@@ -16,7 +16,7 @@ public class EnemyLand : Enemy
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         //Shadow
-        spriteBatch.Draw(sprite, GlobalPosition + new Vector2(15, -45), sheetRec, Color.Black * 0.4f, (float)Math.PI / 20, origin, new Vector2(1f, 1.5f), SpriteEffects.None, 0);
+        spriteBatch.Draw(sprite, GlobalPosition + new Vector2(15, -30), sheetRec, Color.Black * 0.4f, (float)Math.PI / 20, origin, new Vector2(1f, 1.15f), SpriteEffects.None, 0);
         base.Draw(gameTime, spriteBatch);
     }
 }

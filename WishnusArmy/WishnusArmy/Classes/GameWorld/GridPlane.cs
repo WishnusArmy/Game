@@ -80,6 +80,8 @@ public class GridPlane: GameObjectList
         //ADD LEVEL OBJECTS IN THE CAMERA CLASS.
         //ADDING THEM HERE WILL ADD THEM TO EVERY PLANE AL THE SAME
         Add(particleControl = new ParticleController());
+        WishnusArmy.WishnusArmy.startSorting = true;
+        SortingThread.AddRequest(this);
     }
 
     public GridNode NodeAt(Vector2 pos, bool throwClosest = true) //throwClosest=true will return the closest node if not found
@@ -124,6 +126,8 @@ public class GridPlane: GameObjectList
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
+        if (RANDOM.Next(8) == 0)
+            SortingThread.AddRequest(this);
         base.Draw(gameTime, spriteBatch);
         //Draw the grid outlines
         for (int i = 0; i < (LEVEL_SIZE.X + LEVEL_SIZE.Y); ++i)
