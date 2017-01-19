@@ -22,7 +22,7 @@ public class MainMenu : GameObjectList
 
     public MainMenu()
     {
-        buttonPosition = new Vector2(1200, SCREEN_SIZE.Y - 150);
+        buttonPosition = new Vector2(1275, SCREEN_SIZE.Y - 125);
         buttonColor = Color.LightGreen;
         hoverColor = Color.DarkGreen;
         buttonFont = Fonts.FNT_MENU;
