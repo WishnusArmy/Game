@@ -53,7 +53,7 @@ internal static class Constant
         switch (type)
         {
             case Tower.Type.RocketTower:
-                return (int)(70 + 30 * s);
+                return (int)(55 + 20 * s);
             case Tower.Type.LaserTower:
                 return (int)(4 + 1.5 * s);
             case Tower.Type.PulseTower:
@@ -100,11 +100,11 @@ internal static class Constant
         switch (type)
         {
             case Tower.Type.RocketTower:
-                return 150;
+                return 75;
             case Tower.Type.LaserTower:
                 return 30;
             case Tower.Type.PulseTower:
-                return 200;
+                return 100;
             case Tower.Type.Base:
                 return 150;
             default:
@@ -122,9 +122,9 @@ internal static class Constant
 
     public static readonly Dictionary<string, TowerInfo> TOWER_INFO = new Dictionary<string, TowerInfo>()
     {
-        { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 100, icon = SPR_LASER_TOWER, range = TowerRange(Tower.Type.LaserTower, new int[] {0,0,0})} },
-        { "RocketTower", new TowerInfo() { name = "Rocket Tower", cost = 350, icon = SPR_ROCKET_TOWER, range = TowerRange(Tower.Type.RocketTower, new int[] {0,0,0}) } },
-        { "PulseTower", new TowerInfo() { name = "PulseTower", cost = 700, icon = SPR_PULSE_TOWER, range = TowerRange(Tower.Type.PulseTower, new int[] {0,0,0}) } }
+        { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 50, icon = SPR_LASER_TOWER, range = TowerRange(Tower.Type.LaserTower, new int[] {0,0,0})} },
+        { "RocketTower", new TowerInfo() { name = "Rocket Tower", cost = 150, icon = SPR_ROCKET_TOWER, range = TowerRange(Tower.Type.RocketTower, new int[] {0,0,0}) } },
+        { "PulseTower", new TowerInfo() { name = "PulseTower", cost = 400, icon = SPR_PULSE_TOWER, range = TowerRange(Tower.Type.PulseTower, new int[] {0,0,0}) } }
     };
     
 
@@ -143,7 +143,7 @@ internal static class Constant
         switch (type)
         {
             case Enemy.Type.Tank:
-                return EnemyHealthFunction(3.0); 
+                return EnemyHealthFunction(2.5); 
             case Enemy.Type.Soldier:
                 return EnemyHealthFunction(0.6);
             case Enemy.Type.AirBaloon:
@@ -165,15 +165,15 @@ internal static class Constant
         switch (type)
         {
             case Enemy.Type.Tank:
-                return 30;
+                return (5 + 5 * GameStats.Wave);
             case Enemy.Type.Soldier:
-                return 10;
+                return (2 + 2 * GameStats.Wave);
             case Enemy.Type.AirBaloon:
-                return 40;
+                return (4 + 4 * GameStats.Wave);
             case Enemy.Type.Airplane:
-                return 50;
+                return (6 + 6 * GameStats.Wave);
             default:
-                return 10;
+                return 1;
         }
     }
 
