@@ -66,6 +66,9 @@ public class Camera : GameObjectList
         {
             planes[i].Update(gameTime);
         }
+
+        if (GameStats.BaseHealth < 0)
+            GameEnvironment.GameStateManager.SwitchTo("GameOverState");
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
