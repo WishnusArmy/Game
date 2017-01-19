@@ -88,6 +88,25 @@ internal static class Constant
                 return (int)(10-1.5*s);
             case Tower.Type.PulseTower:
                 return (int)(200 - 25 * s);
+            case Tower.Type.Base:
+                return 350;
+            default:
+                return 0;
+        }
+    }
+    internal static int UpgradeCost(Tower.Type type)
+    {
+        //multiplied by 1.5 for every successive level-up
+        switch (type)
+        {
+            case Tower.Type.RocketTower:
+                return 150;
+            case Tower.Type.LaserTower:
+                return 30;
+            case Tower.Type.PulseTower:
+                return 200;
+            case Tower.Type.Base:
+                return 150;
             default:
                 return 0;
         }
@@ -158,6 +177,24 @@ internal static class Constant
         }
     }
 
+    internal static int EnemyDamage(Enemy.Type type)
+    {
+        //0=Tank, 1=soldier, 2=airballoon, 3=airplane
+        switch (type)
+        {
+            case Enemy.Type.Tank:
+                return 30;
+            case Enemy.Type.Soldier:
+                return 10;
+            case Enemy.Type.AirBaloon:
+                return 40;
+            case Enemy.Type.Airplane:
+                return 50;
+            default:
+                return 10;
+        }
+    }
+
     //LEVEL BUILDER
     internal static readonly Point TOOLBAR_SIZE = new Point(SCREEN_SIZE.X, 150);
     internal static readonly Point TOOLBAR_SELECTOR_SIZE = new Point(400, SCREEN_SIZE.Y - TOOLBAR_SIZE.Y);
@@ -170,11 +207,13 @@ internal static class Constant
     {
         TEX_GRASS, //0
         TEX_GRASS_DIRT, //1
-        TEX_STONE_ROAD, //2
+        TEX_MOUNTAIN_1, //2
         TEX_DIRT, //3
         TEX_WATER, //4
         TEX_FOREST, //5 
-        TEX_AIR //5
+        TEX_AIR, //6
+        TEX_MOUNTAIN_2, //7
+        TEX_MOUNTAIN_3 //8
     };
 
     internal static readonly List<ToolBarObjectsItem> LIST_OBJECTS = new List<ToolBarObjectsItem>

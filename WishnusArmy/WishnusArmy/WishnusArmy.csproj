@@ -42,6 +42,7 @@
     <Compile Include="Classes\Button.cs" />
     <Compile Include="Classes\Enemies\Abstract\EnemyLand.cs" />
     <Compile Include="Classes\Enemies\Abstract\EnemyAir.cs" />
+    <Compile Include="Classes\Enemies\Abstract\EnemySpawner.cs" />
     <Compile Include="Classes\Enemies\Abstract\Enemy_AI.cs" />
     <Compile Include="Classes\Enemies\Abstract\PathfindingControl.cs" />
     <Compile Include="Classes\Enemies\Air\Airplane.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="Classes\Functional\DrawOnTop.cs" />
     <Compile Include="Classes\GameWorld\Camera.cs" />
     <Compile Include="Classes\GameWorld\HealthText.cs" />
+    <Compile Include="Classes\GameOverState.cs" />
     <Compile Include="Classes\ParticleEffects\BuildTowerParticleSystem.cs" />
     <Compile Include="Classes\ParticleEffects\ExplosionSmokeParticleSystem.cs" />
     <Compile Include="Classes\ParticleEffects\Particle.cs" />

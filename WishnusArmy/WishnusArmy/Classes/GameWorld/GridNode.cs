@@ -25,12 +25,14 @@ public class GridNode : GameObject
             _texture = value;
             switch(value)
             {
-                case 2: solid = true; break; //mountains;
+                case 7:
+                case 8:
+                case 2: solid = true; position.Y -= LIST_TEXTURES[texture].Height - IMAGE_NODE_SIZE.Y - 22; break; //mountains;
                 case 4: solid = true; break; //water
-                case 5: solid = true; break; //forest
+                case 5: solid = true; position.Y -= LIST_TEXTURES[texture].Height - IMAGE_NODE_SIZE.Y - 10;  break; //forest
                 default: solid = false; break;
             }
-            origin = new Vector2(IMAGE_NODE_SIZE.X / 2, LIST_TEXTURES[texture].Height - IMAGE_NODE_SIZE.Y / 2);
+            //origin = new Vector2(IMAGE_NODE_SIZE.X / 2, LIST_TEXTURES[texture].Height - IMAGE_NODE_SIZE.Y / 2);
         }
     }
 

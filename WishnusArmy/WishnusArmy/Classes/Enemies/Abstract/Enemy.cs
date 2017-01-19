@@ -22,6 +22,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
     protected float speed;
     protected int killReward;
     double _health;
+    public int damage = 10;
     int maxHealth;
     public HealthText healthText;
     public enum Type {Tank, Soldier, AirBaloon, Airplane }
@@ -37,6 +38,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
         : base(sprite, SheetIndex)
 
     {
+        damage = EnemyDamage(type);
         this.type = type;
         pathIndex = 0;
         maxHealth = EnemyHealth(type);
@@ -170,6 +172,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
             }
             else
             {
+                GameStats.BaseHealth -= damage;
                 Kill = true;
             }
         }

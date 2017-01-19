@@ -52,9 +52,15 @@ public class Camera : GameObjectList
         {
             for(int y=0; y<LEVEL_SIZE.Y; ++y)
             {
-                Land.grid[x, y].texture = list[0][x,y];
+                int tex = list[0][x, y];
+                if (tex == 2) //Mountain
+                {
+                    tex = Functions.choose(new List<int> { 2, 7, 8 });
+                    Land.grid[x, y].texture = tex;
+                }
             }
         }
+        currentPlane.Add(new EnemySpawner(currentPlane)); // The grid must be finished
     }
 
     public override void Update(object gameTime)
@@ -66,13 +72,8 @@ public class Camera : GameObjectList
             planes[i].Update(gameTime);
         }
 
-        int r = RANDOM.Next(80);
-        if (r == 0)
-        {
-            GridNode node = Land.grid[0, RANDOM.Next(LEVEL_SIZE.Y)];
-            Land.Add(new Tank { startNode = node, Position = node.Position - new Vector2(100,0) });
-            Land.Add(new Infantry { startNode = node, Position = node.Position - new Vector2(100, 0) });
-        }
+        if (GameStats.BaseHealth < 0)
+            GameEnvironment.GameStateManager.SwitchTo("GameOverState");
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
