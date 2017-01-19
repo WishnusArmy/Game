@@ -88,6 +88,8 @@ internal static class Constant
                 return (int)(10-1.5*s);
             case Tower.Type.PulseTower:
                 return (int)Efunction(120, -0.6 * s);
+            case Tower.Type.Base:
+                return 150;
             default:
                 return 0;
         }
@@ -141,6 +143,24 @@ internal static class Constant
     /// 0=Tank, 1=soldier, 2=airballoon, 3=airplane
     /// </summary>
     internal static int EnemyRewardMoney(Enemy.Type type)
+    {
+        //0=Tank, 1=soldier, 2=airballoon, 3=airplane
+        switch (type)
+        {
+            case Enemy.Type.Tank:
+                return 30;
+            case Enemy.Type.Soldier:
+                return 10;
+            case Enemy.Type.AirBaloon:
+                return 40;
+            case Enemy.Type.Airplane:
+                return 50;
+            default:
+                return 10;
+        }
+    }
+
+    internal static int EnemyDamage(Enemy.Type type)
     {
         //0=Tank, 1=soldier, 2=airballoon, 3=airplane
         switch (type)
