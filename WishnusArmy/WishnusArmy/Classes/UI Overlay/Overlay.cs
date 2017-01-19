@@ -11,7 +11,6 @@ using static DrawingHelper;
 using static ContentImporter.Fonts;
 using static ContentImporter.Sprites;
 using static ContentImporter.Icons;
-using static Economy;
 using static Functions;
 using static GameStats;
 

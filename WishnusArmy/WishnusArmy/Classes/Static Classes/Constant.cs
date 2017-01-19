@@ -89,7 +89,7 @@ internal static class Constant
             case Tower.Type.PulseTower:
                 return (int)(200 - 25 * s);
             case Tower.Type.Base:
-                return 250;
+                return 200;
             default:
                 return 0;
         }
@@ -149,7 +149,7 @@ internal static class Constant
             case Enemy.Type.AirBaloon:
                 return EnemyHealthFunction(1.5);
             case Enemy.Type.Airplane:
-                return EnemyHealthFunction(1.8);
+                return EnemyHealthFunction(2.2);
             default:
                 return EnemyHealthFunction(1);
         }

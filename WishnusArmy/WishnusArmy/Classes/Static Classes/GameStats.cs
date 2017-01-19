@@ -17,9 +17,11 @@ internal static class GameStats
     public static int TotalEnemiesKilled;
     public static int MaxBaseHealth;
     public static int BaseHealth;
+    public static int EcResources;
 
     public static void Initialize()
     {
+        EcResources = 500;
         MaxBaseHealth = 1000;
         BaseHealth = MaxBaseHealth;
         Wave = 0;

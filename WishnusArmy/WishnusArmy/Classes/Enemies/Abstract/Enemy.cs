@@ -79,7 +79,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
             {
                 kill = true;
                 TotalEnemiesKilled++;
-                Economy.EcResources += killReward;
+                GameStats.EcResources += killReward;
                 //PlaySound(SND_WILHELM_SCREAM);
             }
         }
