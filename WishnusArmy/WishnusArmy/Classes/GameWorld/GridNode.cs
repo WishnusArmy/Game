@@ -141,12 +141,12 @@ public class GridNode : GameObject
         //DrawingHelper.DrawText(spriteBatch, FNT_LEVEL_BUILDER, "D: " + Dval.ToString(), GlobalPosition + new Vector2(30, 10), Color.Red);
         if (selected)
         {
-            spriteBatch.Draw(LIST_TEXTURES[texture], GlobalPosition + origin, null, Color.Black * 0.4f, 0f,  origin, NODE_SIZE.toVector()/IMAGE_NODE_SIZE.toVector(), SpriteEffects.None, 0);
+            spriteBatch.Draw(LIST_TEXTURES[texture], GlobalPosition + origin + offset, null, Color.Black * 0.4f, 0f,  origin, NODE_SIZE.toVector()/IMAGE_NODE_SIZE.toVector(), SpriteEffects.None, 0);
         }
 
         if (beacon)
         {
-            spriteBatch.Draw(LIST_TEXTURES[texture], GlobalPosition + origin, null, Color.Blue * 0.4f, 0f, origin, NODE_SIZE.toVector() / IMAGE_NODE_SIZE.toVector(), SpriteEffects.None, 0);
+            spriteBatch.Draw(LIST_TEXTURES[texture], GlobalPosition + origin + offset, null, Color.Blue * 0.4f, 0f, origin, NODE_SIZE.toVector() / IMAGE_NODE_SIZE.toVector(), SpriteEffects.None, 0);
         }
         base.Draw(gameTime, spriteBatch); 
     }
