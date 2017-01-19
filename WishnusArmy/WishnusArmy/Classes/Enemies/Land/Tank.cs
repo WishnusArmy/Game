@@ -13,7 +13,6 @@ public class Tank : EnemyLand
     public Tank()
         : base(Type.Tank, SHEET_TANK)
     {
-        //damage = EnemyDamage(type);
         this.sprite = SHEET_TANK;
         this.speed = 1.5f;
         weakness = Tower.Type.RocketTower;

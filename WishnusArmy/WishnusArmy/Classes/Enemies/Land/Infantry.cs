@@ -13,7 +13,6 @@ public class Infantry : EnemyLand
     public Infantry()
         : base(Type.Tank, SHEET_INFANTRY)
     {
-        //damage = EnemyDamage(type);
         this.sprite = SHEET_INFANTRY;
         this.killReward = EnemyRewardMoney(type);
         this.speed = 2f;
