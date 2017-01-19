@@ -35,9 +35,9 @@ public class Overlay : DrawOnTopList
         selectedPossible = false;
         mousePos = Vector2.Zero;
         gridSize = 64;
-        gridWidth = OVERLAY_SIZE.X / gridSize;
+        gridWidth = 4;
         gridHeight = 4;
-        gridPos = new Vector2(SCREEN_SIZE.X - OVERLAY_SIZE.X + 2, 40);
+        gridPos = new Vector2(450 + 2, SCREEN_SIZE.Y - OVERLAY_SIZE.Y+2);
         List<string> TowerNames = new List<string>(TOWER_INFO.Keys);
         for(int i=0; i<TowerNames.Count; ++i)
         {
@@ -96,7 +96,7 @@ public class Overlay : DrawOnTopList
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         //Draw the background
-        DrawRectangleFilled(new Rectangle(new Point(SCREEN_SIZE.X - OVERLAY_SIZE.X, 0), new Point(OVERLAY_SIZE.X, SCREEN_SIZE.Y)), spriteBatch, Color.Black, 0.4f);
+        //DrawRectangleFilled(new Rectangle(new Point(SCREEN_SIZE.X - OVERLAY_SIZE.X, 0), new Point(OVERLAY_SIZE.X, SCREEN_SIZE.Y)), spriteBatch, Color.Black, 0.4f);
         DrawRectangleFilled(new Rectangle(new Point(0, SCREEN_SIZE.Y - OVERLAY_SIZE.Y), new Point(SCREEN_SIZE.X - OVERLAY_SIZE.X, OVERLAY_SIZE.Y)), spriteBatch, Color.Black, 0.4f);
         if (selected != null)
         {

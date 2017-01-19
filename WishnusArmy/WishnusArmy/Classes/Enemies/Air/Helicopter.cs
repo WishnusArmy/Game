@@ -13,5 +13,6 @@ public class Helicopter : EnemyAir
     {
         this.sprite = SHEET_HELICOPTER;
         this.speed = 2;
+        cost = 50;
     }
 }
