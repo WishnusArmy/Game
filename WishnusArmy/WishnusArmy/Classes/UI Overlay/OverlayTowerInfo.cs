@@ -48,7 +48,10 @@ public class OverlayTowerInfo : GameObjectList
                 obj = delegate 
                     {
                         if (tower.stats[z] < 4)
+                        {
                             tower.stats[z]++;
+                            Economy.EcResources -= (int)(UpgradeCost(tower.type)*Math.Pow(1.5,(tower.stats[z]-1)));
+                        }
                     },
                 Position = new Vector2(350, 84 + (blockSize.Y + blockSeperation + 15) * i),
                 padding = new Point(1)

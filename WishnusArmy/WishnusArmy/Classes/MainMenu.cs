@@ -22,7 +22,7 @@ public class MainMenu : GameObjectList
 
     public MainMenu()
     {
-        buttonPosition = new Vector2(1200, SCREEN_SIZE.Y - 150);
+        buttonPosition = new Vector2(1275, SCREEN_SIZE.Y - 125);
         buttonColor = Color.LightGreen;
         hoverColor = Color.DarkGreen;
         buttonFont = Fonts.FNT_MENU;
@@ -53,10 +53,13 @@ public class MainMenu : GameObjectList
         base.Update(gameTime);
 
         if (playButton.Pressed)
+        {
+            GameEnvironment.GameStateManager.AddGameState("PlayingState", new PlayingState());
             GameEnvironment.GameStateManager.SwitchTo("PlayingState");
-        else if (creditsButton.Pressed)    
+        }
+        else if (creditsButton.Pressed)
             GameEnvironment.GameStateManager.SwitchTo("CreditsState");
-        else if (helpButton.Pressed)     
+        else if (helpButton.Pressed)
             GameEnvironment.GameStateManager.SwitchTo("HelpState");
 
     }

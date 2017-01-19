@@ -89,6 +89,23 @@ internal static class Constant
             case Tower.Type.PulseTower:
                 return (int)Efunction(120, -0.6 * s);
             case Tower.Type.Base:
+                return 350;
+            default:
+                return 0;
+        }
+    }
+    internal static int UpgradeCost(Tower.Type type)
+    {
+        //multiplied by 1.5 for every successive level-up
+        switch (type)
+        {
+            case Tower.Type.RocketTower:
+                return 150;
+            case Tower.Type.LaserTower:
+                return 30;
+            case Tower.Type.PulseTower:
+                return 200;
+            case Tower.Type.Base:
                 return 150;
             default:
                 return 0;
