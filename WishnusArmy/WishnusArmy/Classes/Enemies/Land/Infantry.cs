@@ -11,11 +11,11 @@ using Microsoft.Xna.Framework.Graphics;
 public class Infantry : EnemyLand
 {
     public Infantry()
-        : base(Type.Tank, SHEET_INFANTRY)
+        : base(Type.Soldier, SHEET_INFANTRY)
     {
         this.sprite = SHEET_INFANTRY;
         this.killReward = EnemyRewardMoney(type);
-        this.speed = 2f;
+        this.speed = 2.5f;
         strongness = Tower.Type.PulseTower;
     }
 }

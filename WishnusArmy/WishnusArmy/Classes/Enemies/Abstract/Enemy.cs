@@ -46,7 +46,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
 
     public void dealDamage(double damage, Tower.Type type)
     {
-        health -= damage * (1 + 0.3 * (type == weakness).ToInt()) * (1 / (1 + 0.3 * (type == strongness).ToInt()));
+        health -= damage * (1 + 0.5 * (type == weakness).ToInt()) * (1 / (1 + 0.5 * (type == strongness).ToInt()));
     }
 
     double health
