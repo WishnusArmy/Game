@@ -997,3 +997,21 @@
 /processorParam:TextureFormat=Color
 /build:Content/Sprites/Icons/life.png
 
+#begin Content/Fonts/fnt_gamestats.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:Content/Fonts/fnt_gamestats.spritefont
+
+#begin Content/Sprites/Icons/wave.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Sprites/Icons/wave.png
+
