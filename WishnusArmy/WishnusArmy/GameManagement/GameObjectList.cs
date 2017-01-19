@@ -22,16 +22,6 @@ public class GameObjectList : GameObject
     public void Add(GameObject obj)
     {
         obj.Parent = this;
-        /*
-        for (int i = 0; i < children.Count; i++)
-        {
-            if (children[i].Layer > obj.Layer)
-            {
-                children.Insert(i, obj);
-                return;
-            }
-        }
-        */
         children.Add(obj);
         if (!WishnusArmy.WishnusArmy.startSorting) //For the initialization process
             return;

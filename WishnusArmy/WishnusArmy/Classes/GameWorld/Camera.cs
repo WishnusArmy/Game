@@ -55,6 +55,7 @@ public class Camera : GameObjectList
                 Land.grid[x, y].texture = list[0][x,y];
             }
         }
+        currentPlane.Add(new EnemySpawner(currentPlane)); // The grid must be finished
     }
 
     public override void Update(object gameTime)
@@ -64,14 +65,6 @@ public class Camera : GameObjectList
         for(int i=0; i<1; ++i)
         {
             planes[i].Update(gameTime);
-        }
-
-        int r = RANDOM.Next(80);
-        if (r == 0)
-        {
-            GridNode node = Land.grid[0, RANDOM.Next(LEVEL_SIZE.Y)];
-            Land.Add(new Tank { startNode = node, Position = node.Position - new Vector2(100,0) });
-            Land.Add(new Infantry { startNode = node, Position = node.Position - new Vector2(100, 0) });
         }
     }
 
