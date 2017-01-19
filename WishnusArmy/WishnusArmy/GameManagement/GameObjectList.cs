@@ -26,8 +26,8 @@ public class GameObjectList : GameObject
         if (!WishnusArmy.WishnusArmy.startSorting) //For the initialization process
             return;
 
-        if (obj is Tower || obj is Enemy)
-            SortingThread.AddRequest(this);
+        //if (obj is Tower || obj is Enemy)
+          //  SortingThread.AddRequest(this);
     }
 
     public void SortChildren()

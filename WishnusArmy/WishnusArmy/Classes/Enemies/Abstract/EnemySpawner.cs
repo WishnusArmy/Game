@@ -50,11 +50,11 @@ public class EnemySpawner : GameObjectList
             {
                 resources -= 100;
                 GridNode node = available[RANDOM.Next(available.Count)];
-                Add(new Tank() { startNode = node, Position = node.Position });
+                plane.Add(new Tank() { startNode = node, Position = node.Position });
             }
 
             bool AllDeath = true;
-            List<Enemy> list = FindByType<Enemy>();
+            List<Enemy> list = plane.FindByType<Enemy>();
             foreach(Enemy e in list)
             {
                 if (!e.kill)
