@@ -21,7 +21,7 @@ internal static class GameStats
     public static void Initialize()
     {
         MaxBaseHealth = 1000;
-        BaseHealth = 1000;
+        BaseHealth = MaxBaseHealth;
         Wave = 0;
         InWave = true;
         WaveTimer = 0;

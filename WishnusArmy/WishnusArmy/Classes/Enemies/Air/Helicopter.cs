@@ -7,12 +7,11 @@ using Microsoft.Xna.Framework;
 using static ContentImporter.Sheets;
 using static Constant;
 
-public class Airplane : EnemyAir
+public class Helicopter : EnemyAir
 {
-    public Airplane() : base(Type.Airplane, SHEET_AIRPLANE)
+    public Helicopter() : base(Type.Helicopter, SHEET_HELICOPTER)
     {
-        this.sprite = SHEET_AIRPLANE;
-        this.speed = 3;
-        cost = 500;
+        this.sprite = SHEET_HELICOPTER;
+        this.speed = 2;
     }
 }

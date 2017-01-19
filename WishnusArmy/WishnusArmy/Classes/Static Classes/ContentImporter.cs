@@ -19,6 +19,7 @@ internal static class ContentImporter
         Music.Initialize(Content);
         Sounds.Initialize(Content);
         Sheets.Initialize(Content);
+        Icons.Initialize(Content);
     }
 
     internal static class Sprites
@@ -116,17 +117,34 @@ internal static class ContentImporter
         }
     }
 
+    internal static class Icons
+    {
+        internal static Texture2D
+            ICON_KILLS,
+            ICON_COINS,
+            ICON_LIFE;
+
+        public static void Initialize(ContentManager Content)
+        {
+            ICON_COINS = Content.Load<Texture2D>("Content/Sprites/Icons/coin");
+            ICON_KILLS = Content.Load<Texture2D>("Content/Sprites/Icons/kill");
+            ICON_LIFE = Content.Load<Texture2D>("Content/Sprites/Icons/life");
+        }
+    }
+
     internal static class Sheets
     {
         internal static Texture2D
             SHEET_TANK,
             SHEET_AIRPLANE,
+            SHEET_HELICOPTER,
             SHEET_INFANTRY;
 
         public static void Initialize(ContentManager Content)
         {
             SHEET_TANK = Content.Load<Texture2D>("Content/Sheets/sheet_tank_upgraded@4x1");
             SHEET_AIRPLANE = Content.Load<Texture2D>("Content/Sheets/sheet_plane@4x1");
+            SHEET_HELICOPTER = Content.Load<Texture2D>("Content/Sheets/sheet_helicopter@4x1");
             SHEET_INFANTRY = Content.Load<Texture2D>("Content/Sheets/sheet_infantry@4x1");
         }
     }
@@ -139,7 +157,8 @@ internal static class ContentImporter
             FNT_GAMEOVER,
             FNT_OVERLAY,
             FNT_OVERLAY_INFO,
-            FNT_HEALTH_INFO;
+            FNT_HEALTH_INFO,
+            FNT_GAMESTATS;
 
         public static void Initialize(ContentManager Content)
         {
@@ -149,6 +168,7 @@ internal static class ContentImporter
             FNT_OVERLAY = Content.Load<SpriteFont>("Content/Fonts/fnt_overlay");
             FNT_OVERLAY_INFO = Content.Load<SpriteFont>("Content/Fonts/fnt_overlay_info");
             FNT_HEALTH_INFO = Content.Load<SpriteFont>("Content/Fonts/fnt_health_info");
+            FNT_GAMESTATS = Content.Load<SpriteFont>("Content/Fonts/fnt_gamestats");
         }
     }
 

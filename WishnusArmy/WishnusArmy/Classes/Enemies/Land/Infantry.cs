@@ -17,5 +17,6 @@ public class Infantry : EnemyLand
         this.killReward = EnemyRewardMoney(type);
         this.speed = 2.5f;
         strongness = Tower.Type.PulseTower;
+        cost = 20;
     }
 }

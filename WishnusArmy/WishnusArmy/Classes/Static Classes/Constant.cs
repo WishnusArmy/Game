@@ -226,6 +226,13 @@ internal static class Constant
         new ToolBarObjectsItem("ProjectileTower", SPR_ROCKET_TOWER)
     };
 
+    internal static readonly List<string> LIST_ENEMIES = new List<string>
+    {
+         "Airplane",
+         "Tank",
+         "Infantry"
+    };
+
     //BUTTON MARGIN
     internal static readonly Point BUTTON_MARGIN = new Point(20, 10);
 
