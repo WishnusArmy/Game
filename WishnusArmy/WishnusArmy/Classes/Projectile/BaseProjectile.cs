@@ -14,6 +14,7 @@ class BaseProjectile : Rocket
     Boolean shooting = false;
     float speed;
     int homingRange = 500;
+    List<Enemy> enemies;
 
     public BaseProjectile(double damage, float speed) : base(damage, speed)
     {
@@ -32,7 +33,8 @@ class BaseProjectile : Rocket
 
     public override Enemy findTarget()
     {
-        List<Enemy> enemies = MyPlane.FindByType<Enemy>();
+        if (enemies == null)
+           enemies = MyPlane.FindByType<Enemy>();
         enemies = enemies.OrderBy(o => o.CalculateDistance(o.GlobalPositionCenter, GlobalPositionCenter)).ToList();
         if (enemies.Count > 0)
         {
