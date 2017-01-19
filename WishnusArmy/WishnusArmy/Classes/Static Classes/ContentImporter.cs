@@ -121,12 +121,14 @@ internal static class ContentImporter
         internal static Texture2D
             SHEET_TANK,
             SHEET_AIRPLANE,
+            SHEET_HELICOPTER,
             SHEET_INFANTRY;
 
         public static void Initialize(ContentManager Content)
         {
             SHEET_TANK = Content.Load<Texture2D>("Content/Sheets/sheet_tank_upgraded@4x1");
             SHEET_AIRPLANE = Content.Load<Texture2D>("Content/Sheets/sheet_plane@4x1");
+            SHEET_HELICOPTER = Content.Load<Texture2D>("Content/Sheets/sheet_helicopter@4x1");
             SHEET_INFANTRY = Content.Load<Texture2D>("Content/Sheets/sheet_infantry@4x1");
         }
     }

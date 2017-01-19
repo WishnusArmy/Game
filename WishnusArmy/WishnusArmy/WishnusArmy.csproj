@@ -45,6 +45,7 @@
     <Compile Include="Classes\Enemies\Abstract\EnemySpawner.cs" />
     <Compile Include="Classes\Enemies\Abstract\Enemy_AI.cs" />
     <Compile Include="Classes\Enemies\Abstract\PathfindingControl.cs" />
+    <Compile Include="Classes\Enemies\Air\Helicopter.cs" />
     <Compile Include="Classes\Enemies\Air\Airplane.cs" />
     <Compile Include="Classes\Enemies\Land\Infantry.cs" />
     <Compile Include="Classes\Enemies\Land\Tank.cs" />

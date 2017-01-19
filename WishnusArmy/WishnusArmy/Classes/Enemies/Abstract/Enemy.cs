@@ -25,7 +25,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
     public int damage = 10;
     int maxHealth;
     public HealthText healthText;
-    public enum Type {Tank, Soldier, AirBaloon, Airplane }
+    public enum Type {Tank, Soldier, AirBaloon, Helicopter, Airplane }
     public Type type;
     public bool wait;
     public GridNode waitAt;
