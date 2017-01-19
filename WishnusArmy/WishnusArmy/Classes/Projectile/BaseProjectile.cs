@@ -14,7 +14,7 @@ class BaseProjectile : Rocket
     Vector2 cameraPosition;
     Boolean shooting = false;
     float speed;
-    int explosionRadius = 500;
+    int explosionRadius = 500, damageMultiplierInCenter = 4;
     float distance;
     Vector2 mousePos, targetPos, adjustment, cameraPos;
 
@@ -71,9 +71,10 @@ class BaseProjectile : Rocket
         List<Enemy> enemies = MyPlane.FindByType<Enemy>();
         foreach (Enemy x in enemies)
         {
-            if (CalculateDistance(GlobalPositionCenter, x.GlobalPositionCenter) < explosionRadius)
+            float radius = CalculateDistance(GlobalPositionCenter, x.GlobalPositionCenter);
+            if (radius < explosionRadius)
             {
-                x.dealDamage(damage, Tower.Type.Base);
+                x.dealDamage(damage*(damageMultiplierInCenter - (radius/explosionRadius)* damageMultiplierInCenter), Tower.Type.Base);
             }
         }
         MyParticleControl.AddExplosion(position + parent.Position);
