@@ -52,7 +52,12 @@ public class Camera : GameObjectList
         {
             for(int y=0; y<LEVEL_SIZE.Y; ++y)
             {
-                Land.grid[x, y].texture = list[0][x,y];
+                int tex = list[0][x, y];
+                if (tex == 2) //Mountain
+                {
+                    tex = Functions.choose(new List<int> { 2, 7, 8 });
+                    Land.grid[x, y].texture = tex;
+                }
             }
         }
         currentPlane.Add(new EnemySpawner(currentPlane)); // The grid must be finished
