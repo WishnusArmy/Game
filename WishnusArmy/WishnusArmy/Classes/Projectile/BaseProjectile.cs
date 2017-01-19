@@ -12,7 +12,6 @@ using static Constant;
 class BaseProjectile : Rocket
     {
     Vector2 cameraPosition;
-    Camera c = new Camera();
     Boolean shooting = false;
     float speed;
     int explosionRadius = 500;
@@ -27,7 +26,7 @@ class BaseProjectile : Rocket
     }
     public override void Update(object gameTime)
     {
-        c = GameWorld.FindByType<Camera>()[0];
+        Camera c = GameWorld.FindByType<Camera>()[0];
         cameraPosition = c.Position;
         base.Update(gameTime);
         if (OutOfScreen())

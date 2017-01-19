@@ -80,6 +80,7 @@ public class Base : GameObjectList
         rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
         if (inputHelper.MouseLeftButtonPressed() && inputHelper.MouseInGameWindow && canShoot)
         {
+            Console.WriteLine(FindByType<Overlay>().Count);
             if (FindByType<BaseProjectile>().Count < maxRockets)
             {
                 Add(new BaseProjectile(damage, speed));
