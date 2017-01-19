@@ -11,36 +11,36 @@ using static Constant;
 
 class BaseProjectile : Rocket
     {
+    Vector2 cameraPosition;
     Boolean shooting = false;
     float speed;
-    int homingRange = 500;
-    List<Enemy> enemies;
+    int explosionRadius = 500;
+    float distance;
+    Vector2 mousePos, targetPos, adjustment, cameraPos;
 
     public BaseProjectile(double damage, float speed) : base(damage, speed)
     {
-        sprite = SPR_ROCKET;
+        sprite = SPR_CANNONBALL;
         this.damage = damage;
         this.speed = speed;
     }
     public override void Update(object gameTime)
     {
+        Camera c = GameWorld.FindByType<Camera>()[0];
+        cameraPosition = c.Position;
         base.Update(gameTime);
         if (OutOfScreen())
         {
             Kill = true;
         }
+        if (shooting && CalculateDistance(GlobalPositionCenter, targetPos) < 10)
+        {
+            Explode();
+        }
     }
 
     public override Enemy findTarget()
     {
-        if (enemies == null)
-           enemies = MyPlane.FindByType<Enemy>();
-        enemies = enemies.OrderBy(o => o.CalculateDistance(o.GlobalPositionCenter, GlobalPositionCenter)).ToList();
-        if (enemies.Count > 0)
-        {
-            if (CalculateDistance(enemies[0].GlobalPositionCenter, GlobalPositionCenter) <= homingRange)
-            return enemies[0];
-        }
         return null;
     }
     public override void HandleInput(InputHelper inputHelper)
@@ -48,20 +48,52 @@ class BaseProjectile : Rocket
         base.HandleInput(inputHelper);
         if (target == null && !shooting)
         {
-            
-            Vector2 mousePos = inputHelper.MousePosition / Camera.scale;
-            double opposite = mousePos.Y - GlobalPositionCenter.Y;
-            double adjacent = mousePos.X - GlobalPositionCenter.X;
-            rotation = (float)Math.Atan2(opposite, adjacent);
-            targetRotation = (float)Math.Atan2(opposite, adjacent);
+            mousePos = inputHelper.MousePosition / Camera.scale + sprite.getOrigin();
             shooting = true;
+            cameraPos = cameraPosition;
+            distance = CalculateDistance(GlobalPositionCenter, targetPos);
         }
+        adjustment = cameraPosition - cameraPos;
+        targetPos = mousePos + adjustment;
+        
+        double opposite = targetPos.Y - GlobalPositionCenter.Y;
+        double adjacent = targetPos.X - GlobalPositionCenter.X;
+        targetRotation = (float)Math.Atan2(opposite, adjacent);
     }
     public Boolean OutOfScreen()
     {
         if ((GlobalPosition.X < -100) || GlobalPosition.Y < -100 || GlobalPosition.X > (LEVEL_SIZE.X * NODE_SIZE.X) || GlobalPosition.Y > (LEVEL_SIZE.Y * NODE_SIZE.Y))
             return true;
         return false;
+    }
+    public void Explode()
+    {
+        List<Enemy> enemies = MyPlane.FindByType<Enemy>();
+        foreach (Enemy x in enemies)
+        {
+            if (CalculateDistance(GlobalPositionCenter, x.GlobalPositionCenter) < explosionRadius)
+            {
+                x.dealDamage(damage, Tower.Type.Base);
+            }
+        }
+        MyParticleControl.AddExplosion(position + parent.Position);
+        Kill = true;
+    }
+    public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+    {
+        if (!visible)
+            return;
+        spriteBatch.Draw(
+            sprite,
+            GlobalPosition,
+            null,
+            null,
+            sprite.getOrigin(),
+            rotation + 0.5f * (float)Math.PI,
+            new Vector2(1f, 1f) * (-Math.Abs(((0.5f*distance - CalculateDistance(GlobalPositionCenter, targetPos)))/distance) + 0.75f),
+            Color.White,
+            SpriteEffects.None,
+            0f);
     }
 
 

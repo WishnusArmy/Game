@@ -34,6 +34,7 @@ internal static class ContentImporter
 
             SPR_PULSE,
             SPR_ROCKET,
+            SPR_CANNONBALL,
 
             // Towers
 
@@ -59,6 +60,7 @@ internal static class ContentImporter
             //Projectiles
             SPR_PULSE = Content.Load<Texture2D>("Content/Sprites/Projectiles/SPR_PULSE");
             SPR_ROCKET = Content.Load<Texture2D>("Content/Sprites/Projectiles/SPR_BULLET");
+            SPR_CANNONBALL = Content.Load<Texture2D>("Content/Sprites/Projectiles/cannonBall");
 
             //Towers
             SPR_ABSTRACT_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/abstractTower");

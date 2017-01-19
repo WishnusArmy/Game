@@ -88,6 +88,8 @@ internal static class Constant
                 return (int)(10-1.5*s);
             case Tower.Type.PulseTower:
                 return (int)Efunction(120, -0.6 * s);
+            case Tower.Type.Base:
+                return 150;
             default:
                 return 0;
         }
