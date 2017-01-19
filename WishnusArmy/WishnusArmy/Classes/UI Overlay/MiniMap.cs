@@ -20,6 +20,8 @@ class MiniMap : DrawOnTop
     Point enemySize;
     Point towerSize;
     Point baseSize;
+
+    Point tileSize;
     
     List<Enemy> enemies;
     List<Tower> towers;
@@ -27,22 +29,27 @@ class MiniMap : DrawOnTop
     Point cameraPosition;
     Vector2 scale;
 
+    GridNode[,] grid;
+
     public MiniMap() : base()
     {
         timer = 50;
         // can be edited
         overlayPosition = new Point(SCREEN_SIZE.X - OVERLAY_SIZE.X * 2, SCREEN_SIZE.Y - OVERLAY_SIZE.Y);
         minimapSize = new Point(OVERLAY_SIZE.X * 2, OVERLAY_SIZE.X);
-        
         // constant
         enemySize = new Point(minimapSize.X/50);
         towerSize = new Point(minimapSize.X/40);
         baseSize = new Point(minimapSize.X/15);
         enemies = new List<Enemy>();
         towers = new List<Tower>();
-
+        
+        tileSize = new Point(6);
         scale = new Vector2(1000,1000);
         cameraPosition = new Point(0, 0);
+
+        grid = new GridNode[0,0];
+
     }
 
     public override void Update(object gameTime)
@@ -58,6 +65,8 @@ class MiniMap : DrawOnTop
 
         enemies = GameWorld.FindByType<Enemy>();
         towers = GameWorld.FindByType<Tower>();
+
+        grid = GameWorld.FindByType<GridPlane>()[0].grid;
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -66,7 +75,38 @@ class MiniMap : DrawOnTop
         Point offset;
 
         // draw basic map
-        DrawRectangleFilled(new Rectangle(overlayPosition, minimapSize), spriteBatch, Color.Black, 0.5f);
+        DrawRectangleFilled(new Rectangle(overlayPosition, minimapSize), spriteBatch, Color.Black, 0.3f);
+
+        // draw solid tiles
+        Point position = new Point(0);
+        for (int x = 0; x < LEVEL_SIZE.X; x++)
+        {
+            for (int y = 0; y < LEVEL_SIZE.Y; y++)
+            {
+                if (grid[x, y].solid)
+                {
+                    position = new Point((int)((double)minimapSize.X * (double)((double)x / (double)LEVEL_SIZE.X)), (int)((double)minimapSize.Y * (double)((double)y / (double)LEVEL_SIZE.Y)));
+                    Color c = Color.White;
+                    Single s = 0.0f;
+                    switch (grid[x, y].texture)
+                    {
+                        case 2:
+                            s = 0.9f;
+                            break;  //mountain
+                        case 4:
+                            s = 0.2f; ;
+                            break;  //water
+                        case 5:
+                            s = 0.3f;
+                            break;  //forest
+                        default:
+                            break;
+                    }
+
+                    DrawRectangleFilled(new Rectangle(overlayPosition + position, tileSize), spriteBatch, Color.Black, s);
+                }
+            }
+        }
 
         // draw camera frame
         Point framesize = new Point((int)((minimapSize.X * 0.35)/scale.X), (int)((minimapSize.Y * 0.35)/scale.X));
@@ -76,9 +116,9 @@ class MiniMap : DrawOnTop
         {
             if (t.hover)
             {
-                int range = (int)(TowerRange(t.type, t.stats));
-                int miniMapRangeX = (int)((double)range * ((double)range / (double)realMapSize*2));
-                int miniMapRangeY = (int)((double)range * ((double)range / (double)realMapSize));
+                int range = TowerRange(t.type, t.stats);
+                int miniMapRangeX = (int)((double)range * ((double)minimapSize.X / (double)realMapSize*2));
+                int miniMapRangeY = (int)((double)range * ((double)minimapSize.Y / (double)(realMapSize/1.8)));
                 Color c = new Color(30, 30, 60, 20);
                 spriteBatch.Draw(TEX_DOT, new Rectangle(overlayPosition + toMiniMapPosition(t.Position) - new Point(miniMapRangeX / 2, miniMapRangeY / 2), new Point(miniMapRangeX, miniMapRangeY)), c);
             }
