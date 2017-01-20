@@ -31,6 +31,7 @@ public class GridNode : GameObject
                 case 2: solid = true; offset.Y = -LIST_TEXTURES[texture].Height + IMAGE_NODE_SIZE.Y + 15; break; //mountains;
                 case 4: solid = true; break; //water
                 case 5: solid = true; offset.Y = -LIST_TEXTURES[texture].Height + IMAGE_NODE_SIZE.Y + 8;  break; //forest
+                case 9: solid = true; break;
                 default: solid = false; break;
             }
             //origin = new Vector2(IMAGE_NODE_SIZE.X / 2, -LIST_TEXTURES[texture].Height - IMAGE_NODE_SIZE.Y- 20);
