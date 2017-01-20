@@ -91,12 +91,12 @@ public class Camera : GameObjectList
     {
         //zoom
         Vector2 oldScale = scale;
-        if (inputHelper.ScrollUp())
+        if (inputHelper.ScrollUp() || inputHelper.IsKeyDown(Keys.Q))
         {
             if (scale.X < 1f)
                 scale *= new Vector2(1.04f);
         }
-        if (inputHelper.ScrollDown())
+        if (inputHelper.ScrollDown() || inputHelper.IsKeyDown(Keys.A))
         {
             if ((LEVEL_SIZE.X * NODE_SIZE.X * scale.X > GAME_WINDOW_SIZE.X + 96))
                 scale *= new Vector2(1 / 1.04f);
