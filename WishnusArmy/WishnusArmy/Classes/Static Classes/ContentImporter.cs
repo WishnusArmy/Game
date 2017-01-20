@@ -83,6 +83,7 @@ internal static class ContentImporter
             SPR_CIRCLE = Content.Load<Texture2D>("Content/Sprites/Towers/radius");
             SPR_LASER_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/spr_laser_tower");
             SPR_PULSE_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/SPR_PULSE_TOWER");
+            SPR_ROCKET_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/SPR_ROCKET_TOWER");
 
             //Tower Icons
             SPR_CANNON_ICON = Content.Load<Texture2D>("Content/Sprites/spr_cannon");
