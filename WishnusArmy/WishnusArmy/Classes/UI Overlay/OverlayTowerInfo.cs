@@ -67,20 +67,19 @@ public class OverlayTowerInfo : GameObjectList
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
-        DrawRectangle(new Rectangle(position.toPoint(), new Point(400, OVERLAY_SIZE.Y)), spriteBatch, Color.White, 2);
         if (tower != null)
         {
-            spriteBatch.Draw(tower.baseTexture, position + new Vector2(20, 45), Color.White);
-            DrawText(spriteBatch, FNT_MENU, TOWER_INFO[tower.ToString()].name, position + new Vector2(100, 20), Color.White, true);
+            spriteBatch.Draw(tower.baseTexture, position + new Vector2(45, 40), Color.White);
+            DrawText(spriteBatch, FNT_MENU, TOWER_INFO[tower.ToString()].name, position + new Vector2(120, 25), Color.White, true);
 
             string[] str = new string[3] { "Damage:", "Range:", "Fire Rate:" };
             for (int z = 0; z < tower.stats.Length; ++z)
             {
-                DrawText(spriteBatch, FNT_LEVEL_BUILDER, str[z], position + new Vector2(110, 57 + (blockSize.Y + 15) * z), Color.White);
+                DrawText(spriteBatch, FNT_LEVEL_BUILDER, str[z], position + new Vector2(125, 57 + (blockSize.Y + 15) * z), Color.White);
                 for (int i = 0; i < 5; ++i)
                 {
-                    DrawRectangleFilled(new Rectangle(position.toPoint() + new Point(220 + (blockSize.X + blockSeperation) * i, 55 + (blockSize.Y + 15) * z), blockSize), spriteBatch, Color.Black, 0.4f);
-                    DrawRectangleFilled(new Rectangle(position.toPoint() + new Point(220 + (blockSize.X + blockSeperation) * i, 55 + (blockSize.Y + 15) * z), blockSize), spriteBatch, Color.White * (tower.stats[z] >= i).ToInt());
+                    DrawRectangleFilled(new Rectangle(position.toPoint() + new Point(235 + (blockSize.X + blockSeperation) * i, 55 + (blockSize.Y + 15) * z), blockSize), spriteBatch, Color.Black, 0.4f);
+                    DrawRectangleFilled(new Rectangle(position.toPoint() + new Point(235 + (blockSize.X + blockSeperation) * i, 55 + (blockSize.Y + 15) * z), blockSize), spriteBatch, Color.White * (tower.stats[z] >= i).ToInt());
                 }
             }
 
