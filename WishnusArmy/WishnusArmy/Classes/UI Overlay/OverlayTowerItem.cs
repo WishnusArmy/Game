@@ -26,7 +26,6 @@ public class OverlayTowerItem : GameObject
         }
     }
 
-    
     public OverlayTowerItem(string itemType, Vector2 pos = new Vector2()) : base()
     {
         this.itemType = itemType;
