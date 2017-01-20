@@ -24,9 +24,9 @@ public class LevelGenerator : GameObject
     public List<int[,]> GenerateNewLevel()
     {
         ClearGrid();
-        GenerateSpecialTiles(5, 42, 5);     //Populate the land level with forests
-        GenerateSpecialTiles(2, 42, 5);     //Populate the land level with mountains
-        GenerateSpecialTiles(4, 38, 5);     //Populate the land level with rivers
+        GenerateSpecialTiles(5, 43, 5);     //Populate the land level with forests
+        GenerateSpecialTiles(2, 43, 5);     //Populate the land level with mountains
+        GenerateSpecialTiles(4, 39, 5);     //Populate the land level with rivers
 
         List<int[,]> planes = new List<int[,]>();
         planes.Add(landGrid);
