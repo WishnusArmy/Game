@@ -57,7 +57,7 @@ public class OverlayTowerInfo : GameObjectList
                             }
                         }
                     },
-                Position = new Vector2(350, 84 + (blockSize.Y + blockSeperation + 15) * i),
+                Position = new Vector2(350, 60 + (blockSize.Y + blockSeperation + 15) * i),
                 padding = new Point(1)
             });
             Add(buttons[i]);
@@ -70,24 +70,23 @@ public class OverlayTowerInfo : GameObjectList
         DrawRectangle(new Rectangle(position.toPoint(), new Point(400, OVERLAY_SIZE.Y)), spriteBatch, Color.White, 2);
         if (tower != null)
         {
-            spriteBatch.Draw(tower.baseTexture, position + new Vector2(30, 80), Color.White);
-            DrawText(spriteBatch, FNT_MENU, TOWER_INFO[tower.ToString()].name, position + new Vector2(100, 25), Color.White, true);
+            spriteBatch.Draw(tower.baseTexture, position + new Vector2(20, 45), Color.White);
+            DrawText(spriteBatch, FNT_MENU, TOWER_INFO[tower.ToString()].name, position + new Vector2(100, 20), Color.White, true);
 
             string[] str = new string[3] { "Damage:", "Range:", "Fire Rate:" };
             for (int z = 0; z < tower.stats.Length; ++z)
             {
-                DrawText(spriteBatch, FNT_LEVEL_BUILDER, str[z], position + new Vector2(110, 82 + (blockSize.Y + 15) * z), Color.White);
+                DrawText(spriteBatch, FNT_LEVEL_BUILDER, str[z], position + new Vector2(110, 57 + (blockSize.Y + 15) * z), Color.White);
                 for (int i = 0; i < 5; ++i)
                 {
-                    DrawRectangleFilled(new Rectangle(position.toPoint() + new Point(220 + (blockSize.X + blockSeperation) * i, 80 + (blockSize.Y + 15) * z), blockSize), spriteBatch, Color.Black, 0.4f);
-                    DrawRectangleFilled(new Rectangle(position.toPoint() + new Point(220 + (blockSize.X + blockSeperation) * i, 80 + (blockSize.Y + 15) * z), blockSize), spriteBatch, Color.White * (tower.stats[z] >= i).ToInt());
+                    DrawRectangleFilled(new Rectangle(position.toPoint() + new Point(220 + (blockSize.X + blockSeperation) * i, 55 + (blockSize.Y + 15) * z), blockSize), spriteBatch, Color.Black, 0.4f);
+                    DrawRectangleFilled(new Rectangle(position.toPoint() + new Point(220 + (blockSize.X + blockSeperation) * i, 55 + (blockSize.Y + 15) * z), blockSize), spriteBatch, Color.White * (tower.stats[z] >= i).ToInt());
                 }
             }
 
             //Hover menu with costs
             for (int i = 0; i < buttons.Count; i++)
             {
-
                 if (buttons[i].hover)
                 {
                     DrawRectangleFilled(new Rectangle(buttons[i].GlobalPosition.toPoint() - new Point(0, 75), new Point(150, 75)), spriteBatch, Color.White);
