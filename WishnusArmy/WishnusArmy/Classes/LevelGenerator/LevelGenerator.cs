@@ -24,9 +24,9 @@ public class LevelGenerator : GameObject
     public List<int[,]> GenerateNewLevel()
     {
         ClearGrid();
-        GenerateSpecialTiles(5, 45, 5);     //Populate the land level with forests
-        GenerateSpecialTiles(2, 45, 5);     //Populate the land level with mountains
-        GenerateSpecialTiles(4, 40, 5);     //Populate the land level with rivers
+        GenerateSpecialTiles(5, 42, 5);     //Populate the land level with forests
+        GenerateSpecialTiles(2, 42, 5);     //Populate the land level with mountains
+        GenerateSpecialTiles(4, 38, 5);     //Populate the land level with rivers
 
         List<int[,]> planes = new List<int[,]>();
         planes.Add(landGrid);
@@ -69,10 +69,10 @@ public class LevelGenerator : GameObject
                 if (RANDOM.Next(100) < initialRatio)
                 {
                     //Keep a square in the center of the grid clear of special tiles in the initial distribution
-                    if ((x < LEVEL_CENTER.X - 5) || (x > LEVEL_CENTER.X + 5) || (y < LEVEL_CENTER.Y / 2 - 10) || (y > LEVEL_CENTER.Y / 2 + 10))
+                    if ((x < LEVEL_SIZE.X / 2 - 5) || (x > LEVEL_SIZE.X / 2 + 5) || (y < LEVEL_SIZE.Y / 2 - 10) || (y > LEVEL_SIZE.Y / 2 + 10))
                     {
                         //Keep a horizontal and vertical line through the center clear of special tiles in the initial distribution
-                        if ((x != LEVEL_CENTER.X) && (y != LEVEL_CENTER.Y))
+                        if ((x != LEVEL_SIZE.X / 2) && (y != LEVEL_SIZE.Y / 2))
                         {
                             distributionGrid[x, y] = true;
                         }
@@ -141,7 +141,7 @@ public class LevelGenerator : GameObject
         {
             for (int y = 4; y < LEVEL_SIZE.Y - 4; y++)
             {
-                if ((distributionGrid[x, y] == true) && (x != LEVEL_CENTER.X) && (y != LEVEL_CENTER.Y))
+                if ((distributionGrid[x, y] == true) && (x != LEVEL_SIZE.X / 2) && (y != LEVEL_SIZE.Y / 2))
                 {
                     landGrid[x, y] = tileType;
                 }
