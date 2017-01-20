@@ -21,7 +21,7 @@ internal static class Constant
     internal static Random RANDOM = new Random();
 
     //OVERLAY
-    internal static readonly Point OVERLAY_SIZE = new Point(256, 240);
+    internal static readonly Point OVERLAY_SIZE = new Point(256, 180);
     internal static readonly Point GAME_WINDOW_SIZE = new Point(SCREEN_SIZE.X, SCREEN_SIZE.Y - OVERLAY_SIZE.Y);
 
     //LEVEL
