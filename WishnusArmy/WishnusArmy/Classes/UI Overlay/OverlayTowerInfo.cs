@@ -49,8 +49,12 @@ public class OverlayTowerInfo : GameObjectList
                     {
                         if (tower.stats[z] < 4)
                         {
-                            tower.stats[z]++;
-                            GameStats.EcResources -= (int)(UpgradeCost(tower.type)*Math.Pow(1.5,(tower.stats[z]-1)));
+                            int cost = (int)(UpgradeCost(tower.type) * Math.Pow(1.5, (tower.stats[z] - 1)));
+                            if (cost <= GameStats.EcResources)
+                            {
+                                tower.stats[z]++;
+                                GameStats.EcResources -= cost;
+                            }
                         }
                     },
                 Position = new Vector2(350, 84 + (blockSize.Y + blockSeperation + 15) * i),

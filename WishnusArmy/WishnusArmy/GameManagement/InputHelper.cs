@@ -7,7 +7,7 @@ public class InputHelper
     protected MouseState currentMouseState, previousMouseState;
     protected KeyboardState currentKeyboardState, previousKeyboardState;
     protected Vector2 scale, offset;
-
+    protected int currentScrollState, previousScrollState;
 
     public InputHelper()
     {
@@ -21,6 +21,17 @@ public class InputHelper
         previousKeyboardState = currentKeyboardState;
         currentMouseState = Mouse.GetState();
         currentKeyboardState = Keyboard.GetState();
+        previousScrollState = currentScrollState;
+        currentScrollState = currentMouseState.ScrollWheelValue;
+    }
+
+    public bool ScrollUp()
+    {
+        return currentScrollState > previousScrollState;
+    }
+    public bool ScrollDown()
+    {
+        return currentScrollState < previousScrollState;
     }
 
     public Vector2 Scale
