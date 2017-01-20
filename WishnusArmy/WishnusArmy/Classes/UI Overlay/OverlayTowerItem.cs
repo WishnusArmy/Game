@@ -63,9 +63,9 @@ public class OverlayTowerItem : GameObject
         {
             DrawInfo(spriteBatch, gameTime); //Draw the info of the tower
             Texture2D edge = new Texture2D(Graphics, icon.Width, icon.Height);  //Make a new Texture2D container
-            Color[] tcolor = new Color[edge.Width*edge.Height]; //Make a Color[] container
+            Color[] tcolor = new Color[edge.Width * edge.Height]; //Make a Color[] container
             icon.GetData<Color>(tcolor);  //Get the pixel data from the icon texture
-            for(int i=0; i<tcolor.Length; ++i) //for a pixels
+            for (int i = 0; i < tcolor.Length; ++i) //for a pixels
             {
                 if (tcolor[i].A != 0) //if not opaque...
                 {
@@ -74,7 +74,7 @@ public class OverlayTowerItem : GameObject
             }
             edge.SetData<Color>(tcolor); //Set the pixel data in the "edge" container
             //Draw the edge 10 percent larget than the icon
-            spriteBatch.Draw(edge, GlobalPosition, null, Color.White * 0.6f, 0f, new Vector2(icon.Width, icon.Height)*0.05f, 1.1f, SpriteEffects.None, 0);
+            spriteBatch.Draw(edge, GlobalPosition, null, Color.White * 0.6f, 0f, new Vector2(icon.Width, icon.Height) * 0.05f, 1.1f, SpriteEffects.None, 0);
         }
         spriteBatch.Draw(icon, GlobalPosition, Color.White);
     }
