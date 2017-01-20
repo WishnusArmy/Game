@@ -9,16 +9,19 @@ using static ContentImporter.Sounds;
 using Microsoft.Xna.Framework.Graphics;
 using static Constant;
 
-class BaseProjectile : Rocket
+class BaseProjectile : DrawOnTop
     {
+    Texture2D sprite;
+    double damage;
     Vector2 cameraPosition;
     Boolean shooting = false;
     float speed;
     int explosionRadius = 500, damageMultiplierInCenter = 4;
     float distance;
     Vector2 mousePos, targetPos, adjustment, cameraPos;
+    float rotation;
 
-    public BaseProjectile(double damage, float speed) : base(damage, speed)
+    public BaseProjectile(double damage, float speed)
     {
         sprite = SPR_CANNONBALL;
         this.damage = damage;
@@ -33,32 +36,31 @@ class BaseProjectile : Rocket
         {
             Kill = true;
         }
-        if (shooting && CalculateDistance(GlobalPositionCenter, targetPos) < 10)
+        if (shooting && CalculateDistance(GlobalPosition, targetPos) < 10)
         {
             Explode();
         }
     }
 
-    public override Enemy findTarget()
-    {
-        return null;
-    }
     public override void HandleInput(InputHelper inputHelper)
     {
         base.HandleInput(inputHelper);
-        if (target == null && !shooting)
+        if (!shooting)
         {
-            mousePos = inputHelper.MousePosition / Camera.scale + sprite.getOrigin();
+            mousePos = inputHelper.MousePosition / Camera.scale;
             shooting = true;
             cameraPos = cameraPosition;
-            distance = CalculateDistance(GlobalPositionCenter, targetPos);
+            distance = CalculateDistance(GlobalPosition, targetPos);
         }
         adjustment = cameraPosition - cameraPos;
         targetPos = mousePos + adjustment;
         
-        double opposite = targetPos.Y - GlobalPositionCenter.Y;
-        double adjacent = targetPos.X - GlobalPositionCenter.X;
-        targetRotation = (float)Math.Atan2(opposite, adjacent);
+        double opposite = targetPos.Y - GlobalPosition.Y;
+        double adjacent = targetPos.X - GlobalPosition.X;
+        rotation = (float)Math.Atan2(opposite, adjacent);
+        float x = (float)Math.Cos(rotation) * speed;
+        float y = (float)Math.Sin(rotation) * speed;
+        velocity = new Vector2(x, y);
     }
     public Boolean OutOfScreen()
     {
@@ -71,7 +73,7 @@ class BaseProjectile : Rocket
         List<Enemy> enemies = MyPlane.FindByType<Enemy>();
         foreach (Enemy x in enemies)
         {
-            float radius = CalculateDistance(GlobalPositionCenter, x.GlobalPositionCenter);
+            float radius = CalculateDistance(GlobalPosition, x.GlobalPositionCenter);
             if (radius < explosionRadius)
             {
                 x.dealDamage(damage*(damageMultiplierInCenter - (radius/explosionRadius)* damageMultiplierInCenter), Tower.Type.Base);
@@ -91,10 +93,14 @@ class BaseProjectile : Rocket
             null,
             sprite.getOrigin(),
             rotation + 0.5f * (float)Math.PI,
-            new Vector2(1f, 1f) * (-Math.Abs(((0.5f*distance - CalculateDistance(GlobalPositionCenter, targetPos)))/distance) + 0.75f),
+            new Vector2(1f, 1f) * (-Math.Abs(((0.5f*distance - CalculateDistance(GlobalPosition, targetPos)))/distance) + 0.75f),
             Color.White,
             SpriteEffects.None,
             0f);
+    }
+    protected Vector2 Origin()
+    {
+        return new Vector2(sprite.Width / 2, sprite.Height / 2);
     }
 
 
