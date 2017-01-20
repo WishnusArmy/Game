@@ -55,7 +55,7 @@ internal static class Constant
             case Tower.Type.RocketTower:
                 return (int)(55 + 20 * s);
             case Tower.Type.LaserTower:
-                return (int)(5 + 2 * s);
+                return (int)(4 + 1.5 * s);
             case Tower.Type.PulseTower:
                 return (int)(50 + 25*s);
             default:
@@ -83,7 +83,7 @@ internal static class Constant
         switch (type)
         {
             case Tower.Type.RocketTower:
-                return (int)(100 - 15 * s);
+                return (int)(100 - 10 * s);
             case Tower.Type.LaserTower:
                 return (int)(10 - 1.5 * s);
             case Tower.Type.PulseTower:
@@ -100,13 +100,13 @@ internal static class Constant
         switch (type)
         {
             case Tower.Type.RocketTower:
-                return 75;
-            case Tower.Type.LaserTower:
-                return 35;
-            case Tower.Type.PulseTower:
-                return 100;
-            case Tower.Type.Base:
                 return 150;
+            case Tower.Type.LaserTower:
+                return 50;
+            case Tower.Type.PulseTower:
+                return 250;
+            case Tower.Type.Base:
+                return 250;
             default:
                 return 0;
         }
