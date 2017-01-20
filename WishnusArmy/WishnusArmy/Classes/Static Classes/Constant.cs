@@ -55,9 +55,9 @@ internal static class Constant
             case Tower.Type.RocketTower:
                 return (int)(55 + 20 * s);
             case Tower.Type.LaserTower:
-                return (int)(4 + 1.5 * s);
+                return (int)(5 + 2 * s);
             case Tower.Type.PulseTower:
-                return (int)(30 + 12*s);
+                return (int)(50 + 25*s);
             default:
                 return 0;
         }
@@ -72,7 +72,7 @@ internal static class Constant
             case Tower.Type.LaserTower:
                 return (int)Efunction(800, 0.6 * s);
             case Tower.Type.PulseTower:
-                return (int)Efunction(700, 0.8 * s);
+                return (int)Efunction(900, 0.8 * s);
             default:
                 return 0;
         }
@@ -131,7 +131,7 @@ internal static class Constant
     //ENEMIES
     internal static int EnemyHealthFunction(double mod)
     {
-        return (int)(mod * 100 + (GameStats.Wave * GameStats.Wave * 0.5 * 20));
+        return (int)(mod * 100 * Math.Sqrt(GameStats.Wave));
     }
 
     /// <summary>
@@ -143,7 +143,7 @@ internal static class Constant
         switch (type)
         {
             case Enemy.Type.Tank:
-                return EnemyHealthFunction(2.5); 
+                return EnemyHealthFunction(3.0); 
             case Enemy.Type.Soldier:
                 return EnemyHealthFunction(0.6);
             case Enemy.Type.AirBaloon:
@@ -165,13 +165,13 @@ internal static class Constant
         switch (type)
         {
             case Enemy.Type.Tank:
-                return (5 + 5 * GameStats.Wave);
+                return (50 + 5 * GameStats.Wave);
             case Enemy.Type.Soldier:
-                return (2 + 2 * GameStats.Wave);
+                return (20 + 2 * GameStats.Wave);
             case Enemy.Type.AirBaloon:
-                return (4 + 4 * GameStats.Wave);
+                return (40 + 4 * GameStats.Wave);
             case Enemy.Type.Airplane:
-                return (6 + 6 * GameStats.Wave);
+                return (60 + 6 * GameStats.Wave);
             default:
                 return 1;
         }
