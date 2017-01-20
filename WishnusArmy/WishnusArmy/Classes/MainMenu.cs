@@ -28,7 +28,7 @@ public class MainMenu : GameObjectList
         buttonFont = Fonts.FNT_MENU;
 
         //Add campaign button
-        playButton = new Button("Play", buttonColor, hoverColor, buttonFont);
+        playButton = new Button("PLAY", buttonColor, hoverColor, buttonFont);
         playButton.Position = buttonPosition;
         Add(playButton);
 
