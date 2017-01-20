@@ -13,6 +13,8 @@ public class Airplane : EnemyAir
     {
         this.sprite = SHEET_AIRPLANE;
         this.speed = 4.5f;
-        cost = 500;
+        cost = 450;
+        weakness = Tower.Type.RocketTower;
+        strongness = Tower.Type.LaserTower;
     }
 }

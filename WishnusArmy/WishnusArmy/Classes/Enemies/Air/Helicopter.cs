@@ -12,7 +12,8 @@ public class Helicopter : EnemyAir
     public Helicopter() : base(Type.Helicopter, SHEET_HELICOPTER)
     {
         this.sprite = SHEET_HELICOPTER;
-        this.speed = 2;
-        cost = 50;
+        this.speed = 2.7f;
+        cost = 80;
+        weakness = Tower.Type.LaserTower;
     }
 }
