@@ -213,7 +213,8 @@ internal static class Constant
         TEX_FOREST, //5 
         TEX_AIR, //6
         TEX_MOUNTAIN_2, //7
-        TEX_MOUNTAIN_3 //8
+        TEX_MOUNTAIN_3, //8
+        TEX_FOREST_2 //9
     };
 
     internal static readonly List<ToolBarObjectsItem> LIST_OBJECTS = new List<ToolBarObjectsItem>
@@ -228,10 +229,10 @@ internal static class Constant
 
     internal static readonly List<string> LIST_ENEMIES = new List<string>
     {
-         "Airplane",
-         "Tank",
          "Infantry",
-         "Helicopter"
+         "Tank",
+         "Helicopter",
+         "Airplane"
     };
 
     //BUTTON MARGIN

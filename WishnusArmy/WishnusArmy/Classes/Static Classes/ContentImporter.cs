@@ -90,6 +90,7 @@ internal static class ContentImporter
             TEX_DIRT,
             TEX_WATER,
             TEX_FOREST,
+            TEX_FOREST_2,
             TEX_AIR,
             TEX_MOUNTAIN_1,
             TEX_MOUNTAIN_2,
@@ -108,6 +109,7 @@ internal static class ContentImporter
             TEX_DIRT = Content.Load<Texture2D>("Content/Textures/tex_dirt");
             TEX_WATER = Content.Load<Texture2D>("Content/Textures/tex_water");
             TEX_FOREST = Content.Load<Texture2D>("Content/Textures/tex_woods_tile");
+            TEX_FOREST_2 = Content.Load<Texture2D>("Content/Textures/tex_forest");
             TEX_AIR = Content.Load<Texture2D>("Content/Textures/tex_air");
             TEX_MOUNTAIN_1 = Content.Load<Texture2D>("Content/Textures/tex_mountain_1");
             TEX_MOUNTAIN_2 = Content.Load<Texture2D>("Content/Textures/tex_mountain_2");

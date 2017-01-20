@@ -57,6 +57,10 @@ public class Camera : GameObjectList
                 {
                     tex = Functions.choose(new List<int> { 2, 7, 8 });
                 }
+                if (tex == 5)
+                {
+                    tex = Functions.choose(new List<int> { 5, 9 });
+                }
                 Land.grid[x, y].texture = tex;
             }
         }
