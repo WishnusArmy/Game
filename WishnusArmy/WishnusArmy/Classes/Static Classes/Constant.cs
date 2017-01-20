@@ -21,7 +21,7 @@ internal static class Constant
     internal static Random RANDOM = new Random();
 
     //OVERLAY
-    internal static readonly Point OVERLAY_SIZE = new Point(256, 240);
+    internal static readonly Point OVERLAY_SIZE = new Point(256, 180);
     internal static readonly Point GAME_WINDOW_SIZE = new Point(SCREEN_SIZE.X, SCREEN_SIZE.Y - OVERLAY_SIZE.Y);
 
     //LEVEL
@@ -55,7 +55,7 @@ internal static class Constant
             case Tower.Type.RocketTower:
                 return (int)(55 + 20 * s);
             case Tower.Type.LaserTower:
-                return (int)(5 + 2 * s);
+                return (int)(4 + 1.5 * s);
             case Tower.Type.PulseTower:
             	return (int)(50 + 25*s);
             case Tower.Type.Base:
@@ -85,7 +85,7 @@ internal static class Constant
         switch (type)
         {
             case Tower.Type.RocketTower:
-                return (int)(100 - 15 * s);
+                return (int)(100 - 10 * s);
             case Tower.Type.LaserTower:
                 return (int)(10 - 1.5 * s);
             case Tower.Type.PulseTower:
@@ -102,13 +102,13 @@ internal static class Constant
         switch (type)
         {
             case Tower.Type.RocketTower:
-                return 75;
-            case Tower.Type.LaserTower:
-                return 35;
-            case Tower.Type.PulseTower:
-                return 100;
-            case Tower.Type.Base:
                 return 150;
+            case Tower.Type.LaserTower:
+                return 50;
+            case Tower.Type.PulseTower:
+                return 250;
+            case Tower.Type.Base:
+                return 250;
             default:
                 return 0;
         }
@@ -156,10 +156,10 @@ internal static class Constant
                 return EnemyHealthFunction(3.0); 
             case Enemy.Type.Soldier:
                 return EnemyHealthFunction(0.6);
-            case Enemy.Type.AirBaloon:
+            case Enemy.Type.Helicopter:
                 return EnemyHealthFunction(1.5);
             case Enemy.Type.Airplane:
-                return EnemyHealthFunction(2.2);
+                return EnemyHealthFunction(2.6);
             default:
                 return EnemyHealthFunction(1);
         }
@@ -196,8 +196,8 @@ internal static class Constant
                 return 30;
             case Enemy.Type.Soldier:
                 return 10;
-            case Enemy.Type.AirBaloon:
-                return 40;
+            case Enemy.Type.Helicopter:
+                return 25;
             case Enemy.Type.Airplane:
                 return 50;
             default:

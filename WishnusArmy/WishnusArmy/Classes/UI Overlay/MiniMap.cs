@@ -35,8 +35,9 @@ class MiniMap : DrawOnTop
     {
         timer = 50;
         // can be edited
-        overlayPosition = new Point(SCREEN_SIZE.X - OVERLAY_SIZE.X * 2, SCREEN_SIZE.Y - OVERLAY_SIZE.Y);
-        minimapSize = new Point(OVERLAY_SIZE.X * 2, OVERLAY_SIZE.X);
+        minimapSize = new Point(OVERLAY_SIZE.Y * 2, OVERLAY_SIZE.Y);
+        overlayPosition = new Point(SCREEN_SIZE.X - minimapSize.X, SCREEN_SIZE.Y - minimapSize.Y);
+        
         // constant
         enemySize = new Point(minimapSize.X/50);
         towerSize = new Point(minimapSize.X/40);
