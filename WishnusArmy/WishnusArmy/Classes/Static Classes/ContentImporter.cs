@@ -81,16 +81,16 @@ internal static class ContentImporter
             SPR_PULSE_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/SPR_PULSE_TOWER");
 
             //Tower Icons
-            SPR_CANNON_ICON = Content.Load<Texture2D>("Content/Sprites/spr_cannon_icon");
-            SPR_FLAMETHROWER_ICON = Content.Load<Texture2D>("Content/Sprites/spr_flamethrower_icon");
-            SPR_GATTLING_ICON = Content.Load<Texture2D>("Content/Sprites/spr_gattling_icon");
-            SPR_GRENADE_ICON = Content.Load<Texture2D>("Content/Sprites/spr_grenade_icon");
-            SPR_LASER_ICON = Content.Load<Texture2D>("Content/Sprites/spr_laser_icon");
-            SPR_MACHINEGUN_ICON = Content.Load<Texture2D>("Content/Sprites/spr_machinegun_icon");
-            SPR_PULSE_ICON = Content.Load<Texture2D>("Content/Sprites/spr_pulse_icon");
-            SPR_ROCKETLAUNCHER_ICON = Content.Load<Texture2D>("Content/Sprites/spr_rocketlauncher_icon");
-            SPR_SNIPER_ICON = Content.Load<Texture2D>("Content/Sprites/spr_snipertower_icon");
-            SPR_TESLACOIL_ICON = Content.Load<Texture2D>("Content/Sprites/spr_teslacoil_icon");
+            SPR_CANNON_ICON = Content.Load<Texture2D>("Content/Sprites/spr_cannon");
+            SPR_FLAMETHROWER_ICON = Content.Load<Texture2D>("Content/Sprites/spr_flamethrower");
+            SPR_GATTLING_ICON = Content.Load<Texture2D>("Content/Sprites/spr_gattling");
+            SPR_GRENADE_ICON = Content.Load<Texture2D>("Content/Sprites/spr_grenade");
+            SPR_LASER_ICON = Content.Load<Texture2D>("Content/Sprites/spr_laser");
+            SPR_MACHINEGUN_ICON = Content.Load<Texture2D>("Content/Sprites/spr_machinegun");
+            SPR_PULSE_ICON = Content.Load<Texture2D>("Content/Sprites/spr_pulse");
+            SPR_ROCKETLAUNCHER_ICON = Content.Load<Texture2D>("Content/Sprites/spr_rocketlauncher");
+            SPR_SNIPER_ICON = Content.Load<Texture2D>("Content/Sprites/spr_snipertower");
+            SPR_TESLACOIL_ICON = Content.Load<Texture2D>("Content/Sprites/spr_tesla");
         }
     }
 
