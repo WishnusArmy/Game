@@ -13,9 +13,11 @@ using static ContentImporter.Fonts;
 public class GridNode : GameObject
 {
     public static Vector2 origin = IMAGE_NODE_SIZE.toVector() / 2;
+    public Vector2 offset;
     int _texture;
     public List<GridNode> neighbours, extendedNeighbours;
     public bool solid;
+    public bool available;
     public int texture
     {
         get { return _texture;  }
@@ -24,12 +26,14 @@ public class GridNode : GameObject
             _texture = value;
             switch(value)
             {
-                case 2: solid = true; break; //mountains;
+                case 7:
+                case 8:
+                case 2: solid = true; offset.Y = -LIST_TEXTURES[texture].Height + IMAGE_NODE_SIZE.Y + 15; break; //mountains;
                 case 4: solid = true; break; //water
-                case 5: solid = true; break; //forest
+                case 5: solid = true; offset.Y = -LIST_TEXTURES[texture].Height + IMAGE_NODE_SIZE.Y + 8;  break; //forest
                 default: solid = false; break;
             }
-            origin = new Vector2(IMAGE_NODE_SIZE.X / 2, LIST_TEXTURES[texture].Height - IMAGE_NODE_SIZE.Y / 2);
+            //origin = new Vector2(IMAGE_NODE_SIZE.X / 2, -LIST_TEXTURES[texture].Height - IMAGE_NODE_SIZE.Y- 20);
         }
     }
 
@@ -46,6 +50,7 @@ public class GridNode : GameObject
 
     public GridNode(Camera.Plane plane, Vector2 position, int texture) : base()
     {
+        offset = Vector2.Zero;
         neighbours = new List<GridNode>();
         extendedNeighbours = new List<GridNode>();
         this.texture = texture;
@@ -58,6 +63,7 @@ public class GridNode : GameObject
         pathParent = this;
         beacon = false;
         congestion = 0;
+        available = true;
     }
 
     public List<GridNode> Neighbours
@@ -131,16 +137,16 @@ public class GridNode : GameObject
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(LIST_TEXTURES[texture], GlobalPosition + origin, null, Color.White, 0f, origin, NODE_SIZE.toVector() / IMAGE_NODE_SIZE.toVector(), SpriteEffects.None, 0);
+        spriteBatch.Draw(LIST_TEXTURES[texture], GlobalPosition + origin + offset, null, Color.White, 0f, origin, NODE_SIZE.toVector() / IMAGE_NODE_SIZE.toVector(), SpriteEffects.None, 0);
         //DrawingHelper.DrawText(spriteBatch, FNT_LEVEL_BUILDER, "D: " + Dval.ToString(), GlobalPosition + new Vector2(30, 10), Color.Red);
         if (selected)
         {
-            spriteBatch.Draw(LIST_TEXTURES[texture], GlobalPosition + origin, null, Color.Black * 0.4f, 0f,  origin, NODE_SIZE.toVector()/IMAGE_NODE_SIZE.toVector(), SpriteEffects.None, 0);
+            spriteBatch.Draw(LIST_TEXTURES[texture], GlobalPosition + origin + offset, null, Color.Black * 0.4f, 0f,  origin, NODE_SIZE.toVector()/IMAGE_NODE_SIZE.toVector(), SpriteEffects.None, 0);
         }
 
         if (beacon)
         {
-            spriteBatch.Draw(LIST_TEXTURES[texture], GlobalPosition + origin, null, Color.Blue * 0.4f, 0f, origin, NODE_SIZE.toVector() / IMAGE_NODE_SIZE.toVector(), SpriteEffects.None, 0);
+            spriteBatch.Draw(LIST_TEXTURES[texture], GlobalPosition + origin + offset, null, Color.Blue * 0.4f, 0f, origin, NODE_SIZE.toVector() / IMAGE_NODE_SIZE.toVector(), SpriteEffects.None, 0);
         }
         base.Draw(gameTime, spriteBatch); 
     }

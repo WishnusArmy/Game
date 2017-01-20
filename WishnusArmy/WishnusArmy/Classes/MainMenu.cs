@@ -11,8 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 public class MainMenu : GameObjectList
 {
-    protected Button campaignButton;
-    protected Button survivalButton;
+    protected Button playButton;
     protected Button helpButton;
     protected Button creditsButton;
 
@@ -23,25 +22,19 @@ public class MainMenu : GameObjectList
 
     public MainMenu()
     {
-        buttonPosition = new Vector2(1200, SCREEN_SIZE.Y - 150);
+        buttonPosition = new Vector2(1275, SCREEN_SIZE.Y - 125);
         buttonColor = Color.LightGreen;
         hoverColor = Color.DarkGreen;
         buttonFont = Fonts.FNT_MENU;
 
         //Add campaign button
-        campaignButton = new Button("CAMPAIGN", buttonColor, hoverColor, buttonFont);
-        campaignButton.Position = buttonPosition;
-        Add(campaignButton);
-
-        //Add survival button
-        survivalButton = new Button("SURVIVAL", buttonColor, hoverColor, buttonFont);
-        survivalButton.Position = new Vector2(buttonPosition.X + campaignButton.Dimensions.X + 50, buttonPosition.Y);
-        buttonPosition = survivalButton.Position;
-        Add(survivalButton);
+        playButton = new Button("Play", buttonColor, hoverColor, buttonFont);
+        playButton.Position = buttonPosition;
+        Add(playButton);
 
         //Add help button
         helpButton = new Button("HELP", buttonColor, hoverColor, buttonFont);
-        helpButton.Position = new Vector2(buttonPosition.X + survivalButton.Dimensions.X + 50, buttonPosition.Y);
+        helpButton.Position = new Vector2(buttonPosition.X + playButton.Dimensions.X + 70, buttonPosition.Y);
         buttonPosition = helpButton.Position;
         Add(helpButton);
 
@@ -59,13 +52,14 @@ public class MainMenu : GameObjectList
     {
         base.Update(gameTime);
 
-        if (campaignButton.Pressed)
-            GameEnvironment.GameStateManager.SwitchTo("LevelBuilderState");
-        else if (survivalButton.Pressed)
-            GameEnvironment.GameStateManager.SwitchTo("LevelGeneratorState");
-        else if (creditsButton.Pressed)    
+        if (playButton.Pressed)
+        {
+            GameEnvironment.GameStateManager.AddGameState("PlayingState", new PlayingState());
+            GameEnvironment.GameStateManager.SwitchTo("PlayingState");
+        }
+        else if (creditsButton.Pressed)
             GameEnvironment.GameStateManager.SwitchTo("CreditsState");
-        else if (helpButton.Pressed)     
+        else if (helpButton.Pressed)
             GameEnvironment.GameStateManager.SwitchTo("HelpState");
 
     }

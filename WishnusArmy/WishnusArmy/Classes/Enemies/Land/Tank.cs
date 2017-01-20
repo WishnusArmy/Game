@@ -14,7 +14,9 @@ public class Tank : EnemyLand
         : base(Type.Tank, SHEET_TANK)
     {
         this.sprite = SHEET_TANK;
-        this.killReward = EnemyRewardMoney(0);
-        this.speed = 1.5f;
+        this.speed = 2.5f;
+        weakness = Tower.Type.RocketTower;
+        strongness = Tower.Type.LaserTower;
+        cost = 100;
     }
 }

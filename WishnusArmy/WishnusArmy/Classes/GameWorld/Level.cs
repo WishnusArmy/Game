@@ -11,7 +11,6 @@ public class Level : GameObjectList
 { 
     public Level() : base()
     {
-        Economy.Initialize();
         GameStats.Initialize();
         Overlay overlay;
         Add(overlay = new Overlay());

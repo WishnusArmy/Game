@@ -66,7 +66,7 @@ public abstract partial class Enemy
                     next[i].Gval = node.Gval + 10; //Update the Gval
                 }
             }
-            if (!openList.Contains(next[i]) && !closedList.Contains(next[i]) && !next[i].solid) //If neither on the openList or closedList and not solid
+            if (!openList.Contains(next[i]) && !closedList.Contains(next[i]) && (!next[i].solid || this is EnemyAir)) //If neither on the openList or closedList and not solid
             {
                 openList.Add(next[i]); //Add Neighbour to the openList
                 next[i].pathParent = node; //Make it a parent

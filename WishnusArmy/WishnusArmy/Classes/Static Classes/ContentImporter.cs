@@ -19,12 +19,14 @@ internal static class ContentImporter
         Music.Initialize(Content);
         Sounds.Initialize(Content);
         Sheets.Initialize(Content);
+        Icons.Initialize(Content);
     }
 
     internal static class Sprites
     {
         internal static Texture2D
             SPR_MAINBACKGROUND,
+            SPR_GAMEOVERBACKGROUND,
             SPR_CREDITSPLANE,
             SPR_ENEMY,
             SPR_SHADOW,
@@ -33,6 +35,7 @@ internal static class ContentImporter
             // Projectiles
             SPR_PULSE,
             SPR_ROCKET,
+            SPR_CANNONBALL,
 
             // Towers
             SPR_ABSTRACT_TOWER,
@@ -61,7 +64,8 @@ internal static class ContentImporter
             
             SPR_MAINBACKGROUND = Content.Load<Texture2D>("Content/Sprites/MainBackground");
             SPR_CREDITSPLANE = Content.Load<Texture2D>("Content/Sprites/Credits");
-            SPR_ENEMY = Content.Load<Texture2D>("Content/Sprites/enemySprite"); 
+            SPR_ENEMY = Content.Load<Texture2D>("Content/Sprites/enemySprite");
+            SPR_GAMEOVERBACKGROUND = Content.Load<Texture2D>("Content/Sprites/GameOver");
             //SPR_AIRPLANE = Content.Load<Texture2D>("Content/Sprites/plane");
             SPR_WHITEPIXEL = Content.Load<Texture2D>("Content/Sprites/WhitePixel");
             SPR_SHADOW = Content.Load<Texture2D>("Content/Sprites/shadow");
@@ -69,11 +73,11 @@ internal static class ContentImporter
             //Projectiles
             SPR_PULSE = Content.Load<Texture2D>("Content/Sprites/Projectiles/SPR_PULSE");
             SPR_ROCKET = Content.Load<Texture2D>("Content/Sprites/Projectiles/SPR_BULLET");
+            SPR_CANNONBALL = Content.Load<Texture2D>("Content/Sprites/Projectiles/cannonBall");
 
             //Towers
             SPR_ABSTRACT_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/abstractTower");
             SPR_ABSTRACT_CANNON = Content.Load<Texture2D>("Content/Sprites/Towers/cannon");
-            SPR_ROCKET_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/SPR_ROCKET_TOWER");
             SPR_BASE = Content.Load<Texture2D>("Content/Sprites/Towers/BaseSprite");
             SPR_BASEGUN = Content.Load<Texture2D>("Content/Sprites/Towers/BaseGun");
             SPR_CIRCLE = Content.Load<Texture2D>("Content/Sprites/Towers/radius");
@@ -108,6 +112,9 @@ internal static class ContentImporter
             TEX_WATER,
             TEX_FOREST,
             TEX_AIR,
+            TEX_MOUNTAIN_1,
+            TEX_MOUNTAIN_2,
+            TEX_MOUNTAIN_3,
             TEX_EXPLOSION,
             TEX_SMOKE;
 
@@ -121,10 +128,30 @@ internal static class ContentImporter
             TEX_STONE_ROAD = Content.Load<Texture2D>("Content/Textures/tex_stone_road");
             TEX_DIRT = Content.Load<Texture2D>("Content/Textures/tex_dirt");
             TEX_WATER = Content.Load<Texture2D>("Content/Textures/tex_water");
-            TEX_FOREST = Content.Load<Texture2D>("Content/Textures/tex_forest");
+            TEX_FOREST = Content.Load<Texture2D>("Content/Textures/tex_woods_tile");
             TEX_AIR = Content.Load<Texture2D>("Content/Textures/tex_air");
+            TEX_MOUNTAIN_1 = Content.Load<Texture2D>("Content/Textures/tex_mountain_1");
+            TEX_MOUNTAIN_2 = Content.Load<Texture2D>("Content/Textures/tex_mountain_2");
+            TEX_MOUNTAIN_3 = Content.Load<Texture2D>("Content/Textures/tex_mountain_3");
             TEX_EXPLOSION = Content.Load<Texture2D>("Content/Textures/Explosion");
             TEX_SMOKE = Content.Load<Texture2D>("Content/Textures/smoke");
+        }
+    }
+
+    internal static class Icons
+    {
+        internal static Texture2D
+            ICON_KILLS,
+            ICON_COINS,
+            ICON_WAVE,
+            ICON_LIFE;
+
+        public static void Initialize(ContentManager Content)
+        {
+            ICON_COINS = Content.Load<Texture2D>("Content/Sprites/Icons/coin");
+            ICON_KILLS = Content.Load<Texture2D>("Content/Sprites/Icons/kill");
+            ICON_WAVE = Content.Load<Texture2D>("Content/Sprites/Icons/wave");
+            ICON_LIFE = Content.Load<Texture2D>("Content/Sprites/Icons/life");
         }
     }
 
@@ -132,12 +159,16 @@ internal static class ContentImporter
     {
         internal static Texture2D
             SHEET_TANK,
-            SHEET_AIRPLANE;
+            SHEET_AIRPLANE,
+            SHEET_HELICOPTER,
+            SHEET_INFANTRY;
 
         public static void Initialize(ContentManager Content)
         {
             SHEET_TANK = Content.Load<Texture2D>("Content/Sheets/sheet_tank_upgraded@4x1");
             SHEET_AIRPLANE = Content.Load<Texture2D>("Content/Sheets/sheet_plane@4x1");
+            SHEET_HELICOPTER = Content.Load<Texture2D>("Content/Sheets/sheet_helicopter@4x1");
+            SHEET_INFANTRY = Content.Load<Texture2D>("Content/Sheets/sheet_infantry@4x1");
         }
     }
 
@@ -146,17 +177,21 @@ internal static class ContentImporter
         internal static SpriteFont
             FNT_LEVEL_BUILDER,
             FNT_MENU,
+            FNT_GAMEOVER,
             FNT_OVERLAY,
             FNT_OVERLAY_INFO,
-            FNT_HEALTH_INFO;
+            FNT_HEALTH_INFO,
+            FNT_GAMESTATS;
 
         public static void Initialize(ContentManager Content)
         {
             FNT_LEVEL_BUILDER = Content.Load<SpriteFont>("Content/Fonts/fnt_level_builder");
             FNT_MENU = Content.Load<SpriteFont>("Content/Fonts/fnt_menu");
+            FNT_GAMEOVER = Content.Load<SpriteFont>("Content/Fonts/fnt_gameover");
             FNT_OVERLAY = Content.Load<SpriteFont>("Content/Fonts/fnt_overlay");
             FNT_OVERLAY_INFO = Content.Load<SpriteFont>("Content/Fonts/fnt_overlay_info");
             FNT_HEALTH_INFO = Content.Load<SpriteFont>("Content/Fonts/fnt_health_info");
+            FNT_GAMESTATS = Content.Load<SpriteFont>("Content/Fonts/fnt_gamestats");
         }
     }
 
@@ -198,6 +233,7 @@ internal static class ContentImporter
             //Projectiles
             SND_ROCKET_IMPACT,
             SND_LASER,
+            SND_EXPLOSION,
 
             //Enemies
             SND_HELICOPTER_LOOPING,
@@ -211,6 +247,7 @@ internal static class ContentImporter
             //Projectiles
             SND_LASER = Content.Load<SoundEffect>("Content/SoundEffects/Projectiles/laser02");
             SND_ROCKET_IMPACT = Content.Load<SoundEffect>("Content/SoundEffects/Projectiles/rocketImpact");
+            SND_EXPLOSION = Content.Load<SoundEffect>("Content/SoundEffects/Projectiles/explosion");
 
             //Enemies
             SND_HELICOPTER_LOOPING = Content.Load<SoundEffect>("Content/SoundEffects/Enemies/helicopterLoop");

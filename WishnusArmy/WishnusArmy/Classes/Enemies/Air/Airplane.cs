@@ -12,7 +12,7 @@ public class Airplane : EnemyAir
     public Airplane() : base(Type.Airplane, SHEET_AIRPLANE)
     {
         this.sprite = SHEET_AIRPLANE;
-        this.killReward = EnemyRewardMoney(3);
-        this.speed = 3;
+        this.speed = 4.5f;
+        cost = 500;
     }
 }

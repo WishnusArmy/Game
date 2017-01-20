@@ -120,7 +120,7 @@ public abstract class GameObject : DrawableGameComponent, IGameLoopObject
         set { visible = value; }
     }
 
-    public GridPlane MyPlane
+    public virtual GridPlane MyPlane
     {
         get
         {

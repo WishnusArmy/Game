@@ -11,61 +11,22 @@ using static Constant;
 
 internal static class GameStats
 {
-    static int wave;
-    static int totalEnemiesKilled;
-    static int maxBaseHealth;
-    static int baseHealth;
+    public static int Wave;
+    public static bool InWave;
+    public static int WaveTimer;
+    public static int TotalEnemiesKilled;
+    public static int MaxBaseHealth;
+    public static int BaseHealth;
+    public static int EcResources;
 
     public static void Initialize()
     {
-        maxBaseHealth = 10000;
-        baseHealth = 10000;
-        wave = 0;
-        totalEnemiesKilled = 0;
-    }
-
-    internal static int TotalEnemiesKilled
-    {
-        get
-        {
-            return totalEnemiesKilled;
-        }
-        set
-        {
-            totalEnemiesKilled = value;
-        }
-    }
-
-    internal static int Wave
-    {
-        get
-        {
-            return wave;
-        }
-        set
-        {
-            wave = value;
-        }
-    }
-
-    internal static int MaxBaseHealth
-    {
-        get
-        {
-            return maxBaseHealth;
-        }
-    }
-
-    internal static int BaseHealth
-    {
-        get
-        {
-            return baseHealth;
-        }
-        set
-        {
-            baseHealth = value;
-        }
-    
+        EcResources = 500;
+        MaxBaseHealth = 1000;
+        BaseHealth = MaxBaseHealth;
+        Wave = 0;
+        InWave = true;
+        WaveTimer = 0;
+        TotalEnemiesKilled = 0;
     }
 }
