@@ -27,11 +27,9 @@ public class LevelGenerator : GameObject
         GenerateSpecialTiles(5, 45, 5);     //Populate the land level with forests
         GenerateSpecialTiles(2, 45, 5);     //Populate the land level with mountains
         GenerateSpecialTiles(4, 40, 5);     //Populate the land level with rivers
-        GenerateAirGrid();
 
         List<int[,]> planes = new List<int[,]>();
         planes.Add(landGrid);
-        planes.Add(airGrid);
         return planes;
     }
 
@@ -70,18 +68,11 @@ public class LevelGenerator : GameObject
             {
                 if (RANDOM.Next(100) < initialRatio)
                 {
-                    //Keep a square in the center of the grid clear of special tiles
-                    if ((x < LEVEL_SIZE.X / 2 - 5) || (x > LEVEL_SIZE.X / 2 + 5) || (y < LEVEL_SIZE.Y / 2 - 10) || (y > LEVEL_SIZE.Y / 2 + 10))
+                    //Keep a square in the center of the grid clear of special tiles in the initial distribution
+                    if ((x < LEVEL_CENTER.X - 5) || (x > LEVEL_CENTER.X + 5) || (y < LEVEL_CENTER.Y / 2 - 10) || (y > LEVEL_CENTER.Y / 2 + 10))
                     {
-                        //For mountains and rivers, keep a vertical line across the center of the grid clear of special tiles
-                        if ((tileType == 2) || (tileType == 4))
-                        {
-                            if (x != LEVEL_SIZE.X / 2)
-                            {
-                                distributionGrid[x, y] = true;
-                            }
-                        }
-                        else
+                        //Keep a horizontal and vertical line through the center clear of special tiles in the initial distribution
+                        if ((x != LEVEL_CENTER.X) && (y != LEVEL_CENTER.Y))
                         {
                             distributionGrid[x, y] = true;
                         }
@@ -137,14 +128,6 @@ public class LevelGenerator : GameObject
                         count++;
                     }
                 }
-                else
-                {
-                    //Count tiles outside of the grid as either true or false, based on the tiletype's initial ratio
-                    if (RANDOM.Next(100) < initialRatio)
-                    {
-                        count++;
-                    }
-                }
             }
         }
         return count;
@@ -153,11 +136,12 @@ public class LevelGenerator : GameObject
     //Use the distribution in distributionGrid to add special tiles to the level grid
     public void AddDistributionGrid(int tileType)
     {
-        for (int x = 0; x < LEVEL_SIZE.X; x++)
+        //Keep the borders and a line through the center clear of special tiles
+        for (int x = 2; x < LEVEL_SIZE.X - 2; x++)
         {
-            for (int y = 0; y < LEVEL_SIZE.Y; y++)
+            for (int y = 4; y < LEVEL_SIZE.Y - 4; y++)
             {
-                if (distributionGrid[x, y] == true)
+                if ((distributionGrid[x, y] == true) && (x != LEVEL_CENTER.X) && (y != LEVEL_CENTER.Y))
                 {
                     landGrid[x, y] = tileType;
                 }
@@ -177,21 +161,7 @@ public class LevelGenerator : GameObject
         }
     }
 
-    //Copy the mountain distribution to the airGrid
-    public void GenerateAirGrid()
-    {
-        for (int x = 0; x < LEVEL_SIZE.X; x++)
-        {
-            for (int y = 0; y < LEVEL_SIZE.Y; y++)
-            {
-                if (landGrid[x, y] == 2)
-                {
-                    airGrid[x, y] = 1;
-                }
-            }
-        }
-    }
-
+    /*
     public override void HandleInput(InputHelper inputHelper)
     {
         base.HandleInput(inputHelper);
@@ -204,9 +174,8 @@ public class LevelGenerator : GameObject
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        //base.Update(gameTime);
         Vector2 camPos = GameWorld.FindByType<Camera>()[0].Position;
-        GridPlane plane = GameWorld.FindByType<Camera>()[0].Land; 
+        GridPlane plane = GameWorld.FindByType<Camera>()[0].Land;
 
         for (int x = 0; x < LEVEL_SIZE.X; x++)
         {
@@ -253,5 +222,5 @@ public class LevelGenerator : GameObject
                 }
             }
         }
-    }
+    }*/
 }
