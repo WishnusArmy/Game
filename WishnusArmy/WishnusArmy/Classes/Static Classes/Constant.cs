@@ -154,10 +154,10 @@ internal static class Constant
                 return EnemyHealthFunction(3.0); 
             case Enemy.Type.Soldier:
                 return EnemyHealthFunction(0.6);
-            case Enemy.Type.AirBaloon:
+            case Enemy.Type.Helicopter:
                 return EnemyHealthFunction(1.5);
             case Enemy.Type.Airplane:
-                return EnemyHealthFunction(2.2);
+                return EnemyHealthFunction(2.6);
             default:
                 return EnemyHealthFunction(1);
         }
@@ -194,8 +194,8 @@ internal static class Constant
                 return 30;
             case Enemy.Type.Soldier:
                 return 10;
-            case Enemy.Type.AirBaloon:
-                return 40;
+            case Enemy.Type.Helicopter:
+                return 25;
             case Enemy.Type.Airplane:
                 return 50;
             default:
