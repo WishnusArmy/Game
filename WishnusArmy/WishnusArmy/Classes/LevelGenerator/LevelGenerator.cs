@@ -24,9 +24,9 @@ public class LevelGenerator : GameObject
     public List<int[,]> GenerateNewLevel()
     {
         ClearGrid();
-        GenerateSpecialTiles(5, 42, 5);     //Populate the land level with forests
-        GenerateSpecialTiles(2, 42, 5);     //Populate the land level with mountains
-        GenerateSpecialTiles(4, 38, 5);     //Populate the land level with rivers
+        GenerateSpecialTiles(5, 43, 5);     //Populate the land level with forests
+        GenerateSpecialTiles(2, 43, 5);     //Populate the land level with mountains
+        GenerateSpecialTiles(4, 39, 5);     //Populate the land level with rivers
 
         List<int[,]> planes = new List<int[,]>();
         planes.Add(landGrid);
@@ -62,16 +62,16 @@ public class LevelGenerator : GameObject
     //Generate initial spread of special tiles in distributionGrid. distributionGrid is used to hold and edit the distribution of special tiles before they are added to the level
     public void PopulateDistributionGrid(int tileType, int initialRatio)
     {
-        for (int x = 0; x < LEVEL_SIZE.X; x++)
+        //Keep the borders of the grid clear of special tiles during distribution
+        for (int x = 1; x < LEVEL_SIZE.X - 1; x++)
         {
-            for (int y = 0; y < LEVEL_SIZE.Y; y++)
+            for (int y = 2; y < LEVEL_SIZE.Y - 2; y++)
             {
                 if (RANDOM.Next(100) < initialRatio)
                 {
-                    //Keep a square in the center of the grid clear of special tiles in the initial distribution
+                    //Keep the center, as well as a horizontal and vertical line through the middle of the grid clear of special tiles during distribution
                     if ((x < LEVEL_SIZE.X / 2 - 5) || (x > LEVEL_SIZE.X / 2 + 5) || (y < LEVEL_SIZE.Y / 2 - 10) || (y > LEVEL_SIZE.Y / 2 + 10))
                     {
-                        //Keep a horizontal and vertical line through the center clear of special tiles in the initial distribution
                         if ((x != LEVEL_SIZE.X / 2) && (y != LEVEL_SIZE.Y / 2))
                         {
                             distributionGrid[x, y] = true;
@@ -89,7 +89,8 @@ public class LevelGenerator : GameObject
         {
             for (int y = 0; y < LEVEL_SIZE.Y; y++)
             {
-                int neighbouringTiles = GetSurroundings(x, y, initialRatio);
+                //Determine whether to change the current tile to true or false
+                int neighbouringTiles = GetSurroundings(x, y);
                 if (neighbouringTiles >= 5)
                 {
                     tempGrid[x, y] = true;
@@ -104,7 +105,7 @@ public class LevelGenerator : GameObject
     }
 
     //Count how many tiles neighbouring this tile are set to 'true'
-    public int GetSurroundings(int gridX, int gridY, int initialRatio)
+    public int GetSurroundings(int gridX, int gridY)
     {
         int count = 0;
 
@@ -122,7 +123,7 @@ public class LevelGenerator : GameObject
                         count++;
                     }
 
-                    //...and the top and bottom row (thus counting some again) to promote more vertical formations
+                    //...and the top and bottom row (thus counting the tiles directly above and below twice) to promote more vertical formations
                     if (((neighbourY == gridY - 1) || (neighbourY == gridY + 1)) && (distributionGrid[neighbourX, neighbourY] == true))
                     {
                         count++;
@@ -136,14 +137,21 @@ public class LevelGenerator : GameObject
     //Use the distribution in distributionGrid to add special tiles to the level grid
     public void AddDistributionGrid(int tileType)
     {
-        //Keep the borders and a line through the center clear of special tiles
-        for (int x = 2; x < LEVEL_SIZE.X - 2; x++)
+        //Keep the borders of the grid clear of special tiles
+        for (int x = 1; x < LEVEL_SIZE.X - 1; x++)
         {
-            for (int y = 4; y < LEVEL_SIZE.Y - 4; y++)
+            for (int y = 2; y < LEVEL_SIZE.Y - 2; y++)
             {
-                if ((distributionGrid[x, y] == true) && (x != LEVEL_SIZE.X / 2) && (y != LEVEL_SIZE.Y / 2))
+                //Keep the center, as well as a horizontal and vertical line through the middle of the grid clear of special tiles
+                if ((x < LEVEL_SIZE.X / 2 - 5) || (x > LEVEL_SIZE.X / 2 + 5) || (y < LEVEL_SIZE.Y / 2 - 10) || (y > LEVEL_SIZE.Y / 2 + 10))
                 {
-                    landGrid[x, y] = tileType;
+                    if ((x != LEVEL_SIZE.X / 2) && (y != LEVEL_SIZE.Y / 2))
+                    {
+                        if (distributionGrid[x, y] == true)
+                        {
+                            landGrid[x, y] = tileType;
+                        }
+                    }
                 }
             }
         }
@@ -160,67 +168,4 @@ public class LevelGenerator : GameObject
             }
         }
     }
-
-    /*
-    public override void HandleInput(InputHelper inputHelper)
-    {
-        base.HandleInput(inputHelper);
-        if (inputHelper.IsKeyDown(Keys.Space))
-        {
-            ClearGrid();
-            GenerateNewLevel();
-        }
-    }
-
-    public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-    {
-        Vector2 camPos = GameWorld.FindByType<Camera>()[0].Position;
-        GridPlane plane = GameWorld.FindByType<Camera>()[0].Land;
-
-        for (int x = 0; x < LEVEL_SIZE.X; x++)
-        {
-            for (int y = 0; y < LEVEL_SIZE.Y; y++)
-            {
-                //plane.grid[x, y].texture = landGrid[x, y];  //Draw as isometric grids
-
-                switch (landGrid[x, y])   //Draw as seperate topdown grids (for testing)
-                {
-                    case 0:
-                        spriteBatch.Draw(TEX_EMPTY_SMALL, new Vector2(12 * x + 725, 12 * y + 250) + camPos, Color.LawnGreen);
-                        break;
-
-                    case 5:
-                        spriteBatch.Draw(TEX_EMPTY_SMALL, new Vector2(12 * x + 725, 12 * y + 250) + camPos, Color.ForestGreen);
-                        break;
-
-                    case 2:
-                        spriteBatch.Draw(TEX_EMPTY_SMALL, new Vector2(12 * x + 725, 12 * y + 250) + camPos, Color.Brown);
-                        break;
-
-                    case 4:
-                        spriteBatch.Draw(TEX_EMPTY_SMALL, new Vector2(12 * x + 725, 12 * y + 250) + camPos, Color.CornflowerBlue);
-                        break;
-
-                    default:
-                        spriteBatch.Draw(TEX_EMPTY_SMALL, new Vector2(12 * x + 725, 12 * y + 250) + camPos, Color.White);
-                        break;
-                }
-
-                switch (airGrid[x, y])   //Draw as seperate topdown grids (for testing)
-                {
-                    case 0:
-                        spriteBatch.Draw(TEX_EMPTY_SMALL, new Vector2(12 * x + 100, 12 * y + 250) + camPos, Color.CornflowerBlue);
-                        break;
-
-                    case 1:
-                        spriteBatch.Draw(TEX_EMPTY_SMALL, new Vector2(12 * x + 100, 12 * y + 250) + camPos, Color.Brown);
-                        break;
-
-                    default:
-                        spriteBatch.Draw(TEX_EMPTY_SMALL, new Vector2(12 * x + 100, 12 * y + 250) + camPos, Color.White);
-                        break;
-                }
-            }
-        }
-    }*/
 }
