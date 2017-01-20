@@ -137,14 +137,6 @@ public class LevelGenerator : GameObject
                         count++;
                     }
                 }
-                else
-                {
-                    //Count tiles outside of the grid as either true or false, based on the tiletype's initial ratio
-                    if (RANDOM.Next(100) < initialRatio)
-                    {
-                        count++;
-                    }
-                }
             }
         }
         return count;
@@ -204,7 +196,6 @@ public class LevelGenerator : GameObject
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        //base.Update(gameTime);
         Vector2 camPos = GameWorld.FindByType<Camera>()[0].Position;
         GridPlane plane = GameWorld.FindByType<Camera>()[0].Land; 
 

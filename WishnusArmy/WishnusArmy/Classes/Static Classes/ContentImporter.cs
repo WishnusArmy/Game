@@ -47,7 +47,21 @@ internal static class ContentImporter
             SPR_CIRCLE,
             SPR_LASER_TOWER,
             SPR_PULSE_TOWER,
-            SPR_ROCKET_TOWER;
+            SPR_ROCKET_TOWER,
+
+            // Tower icons
+
+            SPR_CANNON_ICON,
+            SPR_FLAMETHROWER_ICON,
+            SPR_GATTLING_ICON,
+            SPR_GRENADE_ICON,
+            SPR_LASER_ICON,
+            SPR_MACHINEGUN_ICON,
+            SPR_PULSE_ICON,
+            SPR_ROCKETLAUNCHER_ICON,
+            SPR_SNIPER_ICON,
+            SPR_TESLACOIL_ICON;
+
 
         public static void Initialize(ContentManager Content)
         {
@@ -68,12 +82,24 @@ internal static class ContentImporter
             //Towers
             SPR_ABSTRACT_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/abstractTower");
             SPR_ABSTRACT_CANNON = Content.Load<Texture2D>("Content/Sprites/Towers/cannon");
-            SPR_ROCKET_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/SPR_ROCKET_TOWER");
             SPR_BASE = Content.Load<Texture2D>("Content/Sprites/Towers/BaseSprite");
             SPR_BASEGUN = Content.Load<Texture2D>("Content/Sprites/Towers/BaseGun");
             SPR_CIRCLE = Content.Load<Texture2D>("Content/Sprites/Towers/radius");
             SPR_LASER_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/spr_laser_tower");
             SPR_PULSE_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/SPR_PULSE_TOWER");
+            SPR_ROCKET_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/SPR_ROCKET_TOWER");
+
+            //Tower icons
+            SPR_CANNON_ICON = Content.Load<Texture2D>("Content/Sprites/spr_cannon_icon");
+            SPR_FLAMETHROWER_ICON = Content.Load<Texture2D>("Content/Sprites/spr_flamethrower_icon");
+            SPR_GATTLING_ICON = Content.Load<Texture2D>("Content/Sprites/spr_gattling_icon");
+            SPR_GRENADE_ICON = Content.Load<Texture2D>("Content/Sprites/spr_grenade_icon");
+            SPR_LASER_ICON = Content.Load<Texture2D>("Content/Sprites/spr_laser_icon");
+            SPR_MACHINEGUN_ICON = Content.Load<Texture2D>("Content/Sprites/spr_machinegun_icon");
+            SPR_PULSE_ICON = Content.Load<Texture2D>("Content/Sprites/spr_pulse_icon");
+            SPR_ROCKETLAUNCHER_ICON = Content.Load<Texture2D>("Content/Sprites/spr_rocketlauncher_icon");
+            SPR_SNIPER_ICON = Content.Load<Texture2D>("Content/Sprites/spr_snipertower_icon");
+            SPR_TESLACOIL_ICON = Content.Load<Texture2D>("Content/Sprites/spr_teslacoil_icon");
         }
     }
 
