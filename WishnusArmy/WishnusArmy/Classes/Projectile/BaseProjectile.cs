@@ -47,7 +47,7 @@ class BaseProjectile : DrawOnTop
         base.HandleInput(inputHelper);
         if (!shooting)
         {
-            mousePos = inputHelper.MousePosition / Camera.scale + sprite.getOrigin();
+            mousePos = inputHelper.MousePosition / Camera.scale;
             shooting = true;
             cameraPos = cameraPosition;
             distance = CalculateDistance(GlobalPosition, targetPos);
@@ -97,6 +97,10 @@ class BaseProjectile : DrawOnTop
             Color.White,
             SpriteEffects.None,
             0f);
+    }
+    protected Vector2 Origin()
+    {
+        return new Vector2(sprite.Width / 2, sprite.Height / 2);
     }
 
 
