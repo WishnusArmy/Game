@@ -155,6 +155,29 @@ class MiniMap : DrawOnTop
 
     }
 
+    public override void HandleInput(InputHelper inputHelper)
+    {
+        if (inputHelper.MouseLeftButtonDown())
+        {
+            Vector2 mp = inputHelper.MousePosition;
+            {
+                if (mp.X > overlayPosition.X && mp.X < overlayPosition.X + minimapSize.X &&
+                    mp.Y > overlayPosition.Y && mp.Y < overlayPosition.Y + minimapSize.Y)
+                {
+                    Console.WriteLine(new Vector2((mp.X - overlayPosition.X) / minimapSize.X * NODE_SIZE.X * LEVEL_SIZE.X, (mp.Y - overlayPosition.Y) / minimapSize.Y * NODE_SIZE.Y * LEVEL_SIZE.Y));
+                    GameWorld.FindByType<Camera>()[0].Position = -new Vector2((mp.X - overlayPosition.X) / minimapSize.X * NODE_SIZE.X * LEVEL_SIZE.X, (mp.Y - overlayPosition.Y) / minimapSize.Y * NODE_SIZE.Y * LEVEL_SIZE.Y/2) + GAME_WINDOW_SIZE.toVector()/2 / scale;
+                    //Make sure the camera doesn't move out of bounds
+                    if (position.X > -NODE_SIZE.X / 2 - GridNode.origin.X / 2) { position.X = -NODE_SIZE.X / 2 - GridNode.origin.X / 2; }
+                    if (position.Y > -NODE_SIZE.Y / 2 - GridNode.origin.Y) { position.Y = -NODE_SIZE.Y / 2 - GridNode.origin.Y; }
+
+                    if (position.X < -NODE_SIZE.X * LEVEL_SIZE.X + GAME_WINDOW_SIZE.X / scale.X) { position.X = -NODE_SIZE.X * LEVEL_SIZE.X + GAME_WINDOW_SIZE.X / scale.X; }
+                    if (position.Y < -NODE_SIZE.Y / 2 * LEVEL_SIZE.Y + GAME_WINDOW_SIZE.Y / scale.Y) { position.Y = -NODE_SIZE.Y / 2 * LEVEL_SIZE.Y + GAME_WINDOW_SIZE.Y / scale.Y; }
+                }
+            }
+        }
+        base.HandleInput(inputHelper);
+    }
+
     private Point toMiniMapPosition(Vector2 p)
     {
         double pX = p.X / (NODE_SIZE.X * LEVEL_SIZE.X);

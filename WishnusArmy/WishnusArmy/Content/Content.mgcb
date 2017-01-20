@@ -1009,7 +1009,6 @@
 /processorParam:TextureFormat=Compressed
 /build:Content/Fonts/fnt_gamestats.spritefont
 
-
 #begin Content/Sheets/sheet_helicopter@4x1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1022,9 +1021,26 @@
 /processorParam:TextureFormat=Color
 /build:Content/Sheets/sheet_helicopter@4x1.png
 
+
+#begin Content/Sheets/Thumbs.db
+/importer:
+/processor:
+/build:Content/Sheets/Thumbs.db
+
+#begin Content/Sprites/Projectiles/Thumbs.db
+/importer:
+/processor:
+/build:Content/Sprites/Projectiles/Thumbs.db
+
+#begin Content/Sprites/Towers/Thumbs.db
+/importer:
+/processor:
+/build:Content/Sprites/Towers/Thumbs.db
+
 #begin Content/Sprites/MainBackground.jpg
 
 #begin Content/Sprites/Icons/wave.png
+
 
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1035,7 +1051,17 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+/build:Content/Sprites/MainBackground.jpg
 
+#begin Content/Sprites/Thumbs.db
+/importer:
+/processor:
+/build:Content/Sprites/Thumbs.db
+
+#begin Content/Textures/Thumbs.db
+/importer:
+/processor:
+/build:Content/Textures/Thumbs.db
 /build:Content/Sprites/MainBackground.jpg
 
 #begin Content/Textures/tex_mountain1.png
@@ -1075,5 +1101,3 @@
 /build:Content/Textures/tex_woods.png
 
 /build:Content/Sheets/sheet_helicopter@4x1.png
-
-

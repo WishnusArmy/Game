@@ -22,7 +22,7 @@ internal static class Constant
 
     //OVERLAY
     internal static readonly Point OVERLAY_SIZE = new Point(256, 240);
-    internal static readonly Point GAME_WINDOW_SIZE = SCREEN_SIZE - OVERLAY_SIZE;
+    internal static readonly Point GAME_WINDOW_SIZE = new Point(SCREEN_SIZE.X, SCREEN_SIZE.Y - OVERLAY_SIZE.Y);
 
     //LEVEL
     internal const int NODE_TEXTURE_SIZE = 64; //The raw, square size of a node
@@ -230,7 +230,8 @@ internal static class Constant
     {
          "Airplane",
          "Tank",
-         "Infantry"
+         "Infantry",
+         "Helicopter"
     };
 
     //BUTTON MARGIN
