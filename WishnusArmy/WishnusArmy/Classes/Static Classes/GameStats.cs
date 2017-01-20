@@ -22,7 +22,7 @@ internal static class GameStats
     public static void Initialize()
     {
         EcResources = 500;
-        MaxBaseHealth = 1000;
+        MaxBaseHealth = 500;
         BaseHealth = MaxBaseHealth;
         Wave = 0;
         InWave = true;

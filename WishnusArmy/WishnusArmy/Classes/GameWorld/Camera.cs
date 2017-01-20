@@ -91,15 +91,15 @@ public class Camera : GameObjectList
     {
         //zoom
         Vector2 oldScale = scale;
-        if (inputHelper.IsKeyDown(Keys.Q))
+        if (inputHelper.ScrollUp() || inputHelper.IsKeyDown(Keys.Q))
         {
             if (scale.X < 1f)
-                scale *= new Vector2(1.015f);
+                scale *= new Vector2(1.04f);
         }
-        if (inputHelper.IsKeyDown(Keys.A))
+        if (inputHelper.ScrollDown() || inputHelper.IsKeyDown(Keys.A))
         {
             if ((LEVEL_SIZE.X * NODE_SIZE.X * scale.X > GAME_WINDOW_SIZE.X + 96))
-                scale *= new Vector2(1 / 1.01f);
+                scale *= new Vector2(1 / 1.04f);
         }
         Vector2 dScale = scale - oldScale;
         position -= (position + (SCREEN_SIZE.toVector())) * dScale/oldScale;
