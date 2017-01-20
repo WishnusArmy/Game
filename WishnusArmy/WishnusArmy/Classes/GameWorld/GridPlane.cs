@@ -126,6 +126,8 @@ public class GridPlane: GameObjectList
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
+        if (RANDOM.Next(8) == 0)
+            SortingThread.AddRequest(this);
         base.Draw(gameTime, spriteBatch);
         //Draw the grid outlines
         for (int i = 0; i < (LEVEL_SIZE.X + LEVEL_SIZE.Y); ++i)

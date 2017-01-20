@@ -10,7 +10,7 @@ using static Constant;
 using static DrawingHelper;
 using static ContentImporter.Fonts;
 using static ContentImporter.Sprites;
-using static Economy;
+using static ContentImporter.Icons;
 using static Functions;
 using static GameStats;
 
@@ -34,9 +34,9 @@ public class Overlay : DrawOnTopList
         selectedPossible = false;
         mousePos = Vector2.Zero;
         gridSize = 64;
-        gridWidth = OVERLAY_SIZE.X / gridSize;
+        gridWidth = 4;
         gridHeight = 4;
-        gridPos = new Vector2(SCREEN_SIZE.X - OVERLAY_SIZE.X + 2, 40);
+        gridPos = new Vector2(450 + 2, SCREEN_SIZE.Y - OVERLAY_SIZE.Y+2);
         List<string> TowerNames = new List<string>(TOWER_INFO.Keys);
         for(int i=0; i<TowerNames.Count; ++i)
         {
@@ -95,7 +95,7 @@ public class Overlay : DrawOnTopList
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         //Draw the background
-        DrawRectangleFilled(new Rectangle(new Point(SCREEN_SIZE.X - OVERLAY_SIZE.X, 0), new Point(OVERLAY_SIZE.X, SCREEN_SIZE.Y)), spriteBatch, Color.Black, 0.4f);
+        //DrawRectangleFilled(new Rectangle(new Point(SCREEN_SIZE.X - OVERLAY_SIZE.X, 0), new Point(OVERLAY_SIZE.X, SCREEN_SIZE.Y)), spriteBatch, Color.Black, 0.4f);
         DrawRectangleFilled(new Rectangle(new Point(0, SCREEN_SIZE.Y - OVERLAY_SIZE.Y), new Point(SCREEN_SIZE.X - OVERLAY_SIZE.X, OVERLAY_SIZE.Y)), spriteBatch, Color.Black, 0.4f);
         if (selected != null)
         {
@@ -105,9 +105,20 @@ public class Overlay : DrawOnTopList
                 spriteBatch.Draw(selected.icon, (node.GlobalPosition + new Vector2(NODE_SIZE.X/2, 0))*Camera.scale, null,  null, new Vector2(selected.icon.Width, selected.icon.Height)/2, 0f, Camera.scale, new Color(255,255*selectedPossible.ToInt(), 255*selectedPossible.ToInt(), selectedPossible.ToInt() + 0.5f), SpriteEffects.None, 0); //Draw the selected object at the mouse
             }
         }
-        DrawText(spriteBatch, FNT_OVERLAY, "Resources: " + EcResources.ToString(), new Vector2(400, SCREEN_SIZE.Y - OVERLAY_SIZE.Y + 20), Color.White);
-        DrawText(spriteBatch, FNT_OVERLAY, "Base Health: " + BaseHealth.ToString() +"/"+ MaxBaseHealth.ToString(), new Vector2(400, SCREEN_SIZE.Y - OVERLAY_SIZE.Y + 60), Color.White);
-        DrawText(spriteBatch, FNT_OVERLAY, "Total Kills: " + TotalEnemiesKilled.ToString(), new Vector2(400, SCREEN_SIZE.Y - OVERLAY_SIZE.Y + 100), Color.White);
+
+        //draw gamestats
+        spriteBatch.Draw(ICON_WAVE, new Rectangle(new Point(2,5), new Point(40, 40)), Color.White);
+        DrawText(spriteBatch, FNT_GAMESTATS, "Wave " +Wave.ToString(), new Vector2(55, 7), Color.White);
+
+        spriteBatch.Draw(ICON_KILLS,new Rectangle(new Point(0, 55),new Point(40, 50)), Color.White);
+        DrawText(spriteBatch, FNT_GAMESTATS, TotalEnemiesKilled.ToString(), new Vector2(55, 62), Color.White);
+
+        spriteBatch.Draw(ICON_COINS, new Rectangle(new Point(0,116), new Point(40, 50)), Color.White);
+        DrawText(spriteBatch, FNT_GAMESTATS, EcResources.ToString(), new Vector2(55, 114), Color.White);
+
+        spriteBatch.Draw(ICON_LIFE, new Rectangle(new Point(0, 177), new Point(40, 40)), Color.White);
+        DrawText(spriteBatch, FNT_GAMESTATS, BaseHealth.ToString() +"/"+ MaxBaseHealth.ToString(), new Vector2(55, 170), Color.White);
+        
         DrawGrid(spriteBatch);
 
         //Draw the WaveTime

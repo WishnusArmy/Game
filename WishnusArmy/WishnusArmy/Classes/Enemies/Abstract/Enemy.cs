@@ -25,7 +25,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
     public int damage = 10;
     int maxHealth;
     public HealthText healthText;
-    public enum Type {Tank, Soldier, AirBaloon, Airplane }
+    public enum Type {Tank, Soldier, AirBaloon, Helicopter, Airplane }
     public Type type;
     public bool wait;
     public GridNode waitAt;
@@ -33,6 +33,8 @@ public abstract partial class Enemy : IsometricMovingGameObject
     public List<GridNode> path;
     public int pathIndex;
     public Tower.Type weakness, strongness;
+    public int cost;
+
 
     public Enemy(Type type, Texture2D sprite, int SheetIndex = 0) 
         : base(sprite, SheetIndex)
@@ -48,7 +50,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
 
     public void dealDamage(double damage, Tower.Type type)
     {
-        health -= damage * (1 + 0.3 * (type == weakness).ToInt()) * (1 / (1 + 0.3 * (type == strongness).ToInt()));
+        health -= damage * (1 + 0.5 * (type == weakness).ToInt()) * (1 / (1 + 0.5 * (type == strongness).ToInt()));
     }
 
     double health
@@ -77,7 +79,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
             {
                 kill = true;
                 TotalEnemiesKilled++;
-                Economy.EcResources += killReward;
+                GameStats.EcResources += killReward;
                 //PlaySound(SND_WILHELM_SCREAM);
             }
         }
@@ -136,7 +138,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
         {
             if (pathIndex > 0)
             {
-                if (path[pathIndex - 1].solid && !wait) //Path has changed on the way.
+                if (path[pathIndex - 1].solid && !wait && !(this is EnemyAir)) //Path has changed on the way.
                 {
                     GridNode solidNode = path[pathIndex - 1];
                     startNode = path[pathIndex]; //set the startNode for the request

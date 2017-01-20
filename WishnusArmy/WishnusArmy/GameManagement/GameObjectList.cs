@@ -26,8 +26,8 @@ public class GameObjectList : GameObject
         if (!WishnusArmy.WishnusArmy.startSorting) //For the initialization process
             return;
 
-        if (obj is Tower || obj is Enemy)
-            SortingThread.AddRequest(this);
+        //if (obj is Tower || obj is Enemy)
+          //  SortingThread.AddRequest(this);
     }
 
     public void SortChildren()
@@ -50,7 +50,7 @@ public class GameObjectList : GameObject
 
         for (int i = childrenTemp.Count - 1; i >= 0; --i)
         {
-            if (childrenTemp[i] is DrawOnTop || childrenTemp[i] is DrawOnTopList) //If the current child should be drawn on top
+            if (childrenTemp[i] is DrawOnTop || childrenTemp[i] is DrawOnTopList || childrenTemp[i] is EnemyAir) //If the current child should be drawn on top
             {
                 GameObject temp = childrenTemp[i];
                 childrenTemp.RemoveAt(i);

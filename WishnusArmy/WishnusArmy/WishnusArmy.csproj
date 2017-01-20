@@ -45,6 +45,7 @@
     <Compile Include="Classes\Enemies\Abstract\EnemySpawner.cs" />
     <Compile Include="Classes\Enemies\Abstract\Enemy_AI.cs" />
     <Compile Include="Classes\Enemies\Abstract\PathfindingControl.cs" />
+    <Compile Include="Classes\Enemies\Air\Helicopter.cs" />
     <Compile Include="Classes\Enemies\Air\Airplane.cs" />
     <Compile Include="Classes\Enemies\Land\Infantry.cs" />
     <Compile Include="Classes\Enemies\Land\Tank.cs" />
@@ -71,7 +72,6 @@
     <Compile Include="Classes\Static Classes\Constant.cs" />
     <Compile Include="Classes\Static Classes\ContentImporter.cs" />
     <Compile Include="Classes\Enemies\Abstract\Enemy.cs" />
-    <Compile Include="Classes\GameWorld\Economy.cs" />
     <Compile Include="Classes\UI Overlay\MiniMap.cs" />
     <Compile Include="Classes\UI Overlay\Overlay.cs" />
     <Compile Include="Classes\HelpMenu.cs" />

@@ -27,7 +27,7 @@ public class SortingThread : GameObject
             Thread thread = new Thread(new ThreadStart(queue[0].SortChildren));
             thread.Start();
             queue.RemoveAt(0);
-            //Console.WriteLine("Granted Request, " + queue.Count() + " to go.");
+            Console.WriteLine("Granted Request, " + queue.Count() + " to go.");
         }
     }
 }
