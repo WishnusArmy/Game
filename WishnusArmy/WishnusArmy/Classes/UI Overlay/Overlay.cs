@@ -40,7 +40,7 @@ public class Overlay : DrawOnTopList
         List<string> TowerNames = new List<string>(TOWER_INFO.Keys);
         for(int i=0; i<TowerNames.Count; ++i)
         {
-            Add(new OverlayTowerItem(TowerNames[i], gridPos + new Vector2(gridSize, gridSize * (i%gridWidth))));
+            Add(new OverlayTowerItem(TowerNames[i], gridPos + new Vector2(gridSize*6*i, gridSize)));
         }
         Add(TowerInfo = new OverlayTowerInfo { Position = new Vector2(5, SCREEN_SIZE.Y - OVERLAY_SIZE.Y) });
         Add(new MiniMap());
@@ -119,8 +119,9 @@ public class Overlay : DrawOnTopList
 
         spriteBatch.Draw(ICON_LIFE, new Rectangle(new Point(0, 177), new Point(40, 40)), Color.White);
         DrawText(spriteBatch, FNT_GAMESTATS, BaseHealth.ToString() +"/"+ MaxBaseHealth.ToString(), new Vector2(55, 170), Color.White);
-        
-        DrawGrid(spriteBatch);
+
+        //
+        //DrawGrid(spriteBatch);
 
         //Draw the WaveTime
         if (!GameStats.InWave)
