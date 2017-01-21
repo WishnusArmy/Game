@@ -125,16 +125,9 @@ internal static class Constant
 
     public static readonly Dictionary<string, TowerInfo> TOWER_INFO = new Dictionary<string, TowerInfo>()
     {
-        { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 50, sprite = SPR_LASER_TOWER, icon = SPR_LASER_ICON, range = TowerRange(Tower.Type.LaserTower, new int[] {0,0,0})} },
-        { "RocketTower", new TowerInfo() { name = "Rocket Tower", cost = 150, sprite = SPR_ROCKET_TOWER, icon = SPR_ROCKETLAUNCHER_ICON, range = TowerRange(Tower.Type.RocketTower, new int[] {0,0,0}) } },
-        { "PulseTower", new TowerInfo() { name = "PulseTower", cost = 400, sprite = SPR_PULSE_TOWER, icon = SPR_PULSE_ICON, range = TowerRange(Tower.Type.PulseTower, new int[] {0,0,0}) } },
-        // { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 100, sprite = SPR_LASER_TOWER, icon = SPR_CANNON_ICON, range = TowerRange(Tower.Type.LaserTower, new int[] {0,0,0})} },
-        // { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 100, sprite = SPR_LASER_TOWER, icon = SPR_GATTLING_ICON, range = TowerRange(Tower.Type.LaserTower, new int[] {0,0,0})} },
-        // { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 100, sprite = SPR_LASER_TOWER, icon = SPR_GRENADE_ICON, range = TowerRange(Tower.Type.LaserTower, new int[] {0,0,0})} },
-        // { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 100, sprite = SPR_LASER_TOWER, icon = SPR_FLAMETHROWER_ICON, range = TowerRange(Tower.Type.LaserTower, new int[] {0,0,0})} },
-        // { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 100, sprite = SPR_LASER_TOWER, icon = SPR_SNIPER_ICON, range = TowerRange(Tower.Type.LaserTower, new int[] {0,0,0})} },
-        // { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 100, sprite = SPR_LASER_TOWER, icon = SPR_TESLACOIL_ICON, range = TowerRange(Tower.Type.LaserTower, new int[] {0,0,0})} },
-        // { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 100, sprite = SPR_LASER_TOWER, icon = SPR_MACHINEGUN_ICON, range = TowerRange(Tower.Type.LaserTower, new int[] {0,0,0})} },
+        { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 100, sprite = SPR_LASER_TOWER, icon = SPR_LASER_ICON, range = TowerRange(Tower.Type.LaserTower, new int[] {0,0,0})} },
+        { "RocketTower", new TowerInfo() { name = "Rocket Tower", cost = 250, sprite = SPR_ROCKET_TOWER, icon = SPR_ROCKETLAUNCHER_ICON, range = TowerRange(Tower.Type.RocketTower, new int[] {0,0,0}) } },
+        { "PulseTower", new TowerInfo() { name = "PulseTower", cost = 600, sprite = SPR_PULSE_TOWER, icon = SPR_PULSE_ICON, range = TowerRange(Tower.Type.PulseTower, new int[] {0,0,0}) } },
     };
 
 
@@ -166,27 +159,6 @@ internal static class Constant
 
     }
     //reward for killing an enemy
-    /// <summary>
-    /// 0=Tank, 1=soldier, 2=airballoon, 3=airplane
-    /// </summary>
-    internal static int EnemyRewardMoney(Enemy.Type type)
-    {
-        //0=Tank, 1=soldier, 2=airballoon, 3=airplane
-        switch (type)
-        {
-            case Enemy.Type.Tank:
-                return (50 + 5 * GameStats.Wave);
-            case Enemy.Type.Soldier:
-                return (20 + 2 * GameStats.Wave);
-            case Enemy.Type.AirBaloon:
-                return (40 + 4 * GameStats.Wave);
-            case Enemy.Type.Airplane:
-                return (60 + 6 * GameStats.Wave);
-            default:
-                return 1;
-        }
-    }
-
     internal static int EnemyDamage(Enemy.Type type)
     {
         //0=Tank, 1=soldier, 2=airballoon, 3=airplane

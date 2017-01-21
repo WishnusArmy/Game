@@ -83,9 +83,11 @@ public class Overlay : DrawOnTopList
             obj.Position = node.Position + new Vector2(NODE_SIZE.X / 2, 0); //Adjust the position to the middle of the GridNode
             plane.Add(obj); //Add it to the hierarchy
             obj.MyParticleControl.AddTowerBuildGlow(obj.Position); //Add particle effect
-            EcResources -= selected.cost; //Subract its cost from the resources
-            if(!inputHelper.IsKeyDown(Keys.LeftShift) || selected.cost > EcResources) //allow shift-clicking multiple towers
+            EcResources -= selected.cost; //Subtract its cost from the resources
+            if (!inputHelper.IsKeyDown(Keys.LeftShift) || selected.cost > EcResources) //allow shift-clicking multiple towers
+            {
                 selected = null; //Reset the selected object reference
+            }
         }
 
         if (inputHelper.KeyPressed(Keys.X) && selected != null)
@@ -141,6 +143,18 @@ public class Overlay : DrawOnTopList
         for (int y = 0; y < gridHeight; ++y)
         {
             DrawLine(spriteBatch, gridPos + new Vector2(0, gridSize * y), gridPos + new Vector2(gridSize * gridWidth, gridSize * y), Color.Black, 2, 0.4f);
+        }
+    }
+
+    public bool Busy
+    {
+        get
+        {
+            if (node == null)
+                return true;
+            if (TowerInfo.tower != null)
+                return (selected != null && !node.beacon);
+            return selected != null;
         }
     }
 }

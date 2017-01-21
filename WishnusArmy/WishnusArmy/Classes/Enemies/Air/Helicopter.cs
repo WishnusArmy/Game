@@ -14,6 +14,7 @@ public class Helicopter : EnemyAir
         this.sprite = SHEET_HELICOPTER;
         this.speed = 2.7f;
         cost = 80;
+        killReward = 40;
         weakness = Tower.Type.LaserTower;
     }
 }

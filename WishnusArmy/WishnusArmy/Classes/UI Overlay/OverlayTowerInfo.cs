@@ -93,7 +93,6 @@ public class OverlayTowerInfo : GameObjectList
                     spriteBatch.DrawString(FNT_LEVEL_BUILDER, "Costs: " + ((int)(UpgradeCost(tower.type) * Math.Pow(1.5, (tower.stats[i] - 1)))).ToString(), buttons[i].GlobalPosition - new Vector2(-23, 48), Color.Black);
                     DrawRectangle(new Rectangle(buttons[i].GlobalPosition.toPoint() - new Point(0, 75), new Point(150, 75)), spriteBatch, Color.Black, 3);
                 }
-
             }
         }
     }
