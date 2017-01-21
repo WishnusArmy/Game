@@ -18,7 +18,7 @@ public class Base : GameObjectList
     Tower.Type type;
     int[] stats = new int[] { 0, 0, 0 };
     static int maxRockets = 3;
-    int damage = 50;
+    double damage = 50;
     float speed = 10;
     Color healthColor;
     float rotation;
@@ -33,6 +33,7 @@ public class Base : GameObjectList
         healthColor = new Color(0, 255, 0);
         this.cannonTexture = SPR_BASEGUN;
         this.baseTexture = SPR_BASE;
+        damage = (TowerDamage(Tower.Type.Base, stats));
 
     }
 

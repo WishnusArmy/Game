@@ -57,7 +57,9 @@ internal static class Constant
             case Tower.Type.LaserTower:
                 return (int)(4 + 1.5 * s);
             case Tower.Type.PulseTower:
-                return (int)(50 + 25*s);
+            	return (int)(50 + 25*s);
+            case Tower.Type.Base:
+                return (int)(50 * Math.Pow(1.2, GameStats.Wave));
             default:
                 return 0;
         }

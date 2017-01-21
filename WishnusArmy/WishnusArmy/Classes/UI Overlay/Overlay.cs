@@ -84,7 +84,7 @@ public class Overlay : DrawOnTopList
             plane.Add(obj); //Add it to the hierarchy
             obj.MyParticleControl.AddTowerBuildGlow(obj.Position); //Add particle effect
             EcResources -= selected.cost; //Subract its cost from the resources
-            if(!inputHelper.IsKeyDown(Keys.LeftShift)) //allow shift-clicking multiple towers
+            if(!inputHelper.IsKeyDown(Keys.LeftShift) || selected.cost > EcResources) //allow shift-clicking multiple towers
                 selected = null; //Reset the selected object reference
         }
 
