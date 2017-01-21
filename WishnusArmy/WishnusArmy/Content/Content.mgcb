@@ -463,9 +463,6 @@
 /processorParam:Quality=Best
 /build:Content/Sprites/Music/mainMenu.mp3
 
-<<<<<<< HEAD
-#begin Content/Sprites/spr_cannon.png
-=======
 #begin Content/Fonts/fnt_gameover.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -539,7 +536,6 @@
 /build:Content/SoundEffects/Projectiles/laser02.mp3
 
 #begin Content/Sprites/Icons/coin.png
->>>>>>> master
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -599,30 +595,6 @@
 /processorParam:TextureFormat=Color
 /build:Content/Sprites/Projectiles/cannonBall.png
 
-#begin Content/Sprites/cannon tower.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Sprites/cannon tower.png
-
-#begin Content/Sprites/flame tower.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Sprites/flame tower.png
-
 #begin Content/Sprites/GameOver.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -634,50 +606,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Sprites/GameOver.jpg
-
-#begin Content/Sprites/gattling tower.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Sprites/gattling tower.png
-
-<<<<<<< HEAD
-#begin Content/Sprites/tesla tower.png
-=======
-#begin Content/Sprites/grenade tower.png
->>>>>>> master
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-<<<<<<< HEAD
-/build:Content/Sprites/tesla tower.png
-=======
-/build:Content/Sprites/grenade tower.png
->>>>>>> master
-
-#begin Content/Sprites/laser tower.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Sprites/laser tower.png
 
 #begin Content/Sprites/MainBackground.jpg
 /importer:TextureImporter
@@ -703,86 +631,6 @@
 /processorParam:TextureFormat=Color
 /build:Content/Sprites/plane.png
 
-#begin Content/Sprites/pulse tower 2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Sprites/pulse tower 2.png
-
-#begin Content/Sprites/rocket tower 2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Sprites/rocket tower 2.png
-
-<<<<<<< HEAD
-#begin Content/Sprites/spr_tesla.png
-=======
-#begin Content/Sprites/sniper tower.png
->>>>>>> master
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-<<<<<<< HEAD
-/build:Content/Sprites/spr_tesla.png
-
-#begin Content/Textures/tex_air.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Textures/tex_air.png
-=======
-/build:Content/Sprites/sniper tower.png
->>>>>>> master
-
-#begin Content/Sprites/soldier tower 2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Sprites/soldier tower 2.png
-
-#begin Content/Sprites/spr_cannon.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Sprites/spr_cannon.png
-
 #begin Content/Sprites/spr_cannon_icon.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -794,18 +642,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Sprites/spr_cannon_icon.png
-
-#begin Content/Sprites/spr_flamethrower.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Sprites/spr_flamethrower.png
 
 #begin Content/Sprites/spr_flamethrower_icon.png
 /importer:TextureImporter
@@ -819,18 +655,6 @@
 /processorParam:TextureFormat=Color
 /build:Content/Sprites/spr_flamethrower_icon.png
 
-#begin Content/Sprites/spr_gattling.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Sprites/spr_gattling.png
-
 #begin Content/Sprites/spr_gattling_icon.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -841,24 +665,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-<<<<<<< HEAD
-/build:Content/Textures/explosion.png
-
-#begin Content/Sprites/cannon tower.png
-=======
 /build:Content/Sprites/spr_gattling_icon.png
-
-#begin Content/Sprites/spr_grenade.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Sprites/spr_grenade.png
 
 #begin Content/Sprites/spr_grenade_icon.png
 /importer:TextureImporter
@@ -872,18 +679,6 @@
 /processorParam:TextureFormat=Color
 /build:Content/Sprites/spr_grenade_icon.png
 
-#begin Content/Sprites/spr_laser.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Sprites/spr_laser.png
-
 #begin Content/Sprites/spr_laser_icon.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -896,26 +691,7 @@
 /processorParam:TextureFormat=Color
 /build:Content/Sprites/spr_laser_icon.png
 
-#begin Content/Sprites/spr_machinegun.png
->>>>>>> master
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-<<<<<<< HEAD
-/build:Content/Sprites/cannon tower.png
-
-#begin Content/Sprites/flame tower.png
-=======
-/build:Content/Sprites/spr_machinegun.png
-
 #begin Content/Sprites/spr_machinegun_icon.png
->>>>>>> master
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -925,33 +701,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-<<<<<<< HEAD
-/build:Content/Sprites/flame tower.png
-
-#begin Content/Sprites/gattling tower.png
-=======
 /build:Content/Sprites/spr_machinegun_icon.png
 
-#begin Content/Sprites/spr_pulse.png
->>>>>>> master
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-<<<<<<< HEAD
-/build:Content/Sprites/gattling tower.png
-
-#begin Content/Sprites/grenade tower.png
-=======
-/build:Content/Sprites/spr_pulse.png
-
 #begin Content/Sprites/spr_pulse_icon.png
->>>>>>> master
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -961,33 +713,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-<<<<<<< HEAD
-/build:Content/Sprites/grenade tower.png
-
-#begin Content/Sprites/laser tower.png
-=======
 /build:Content/Sprites/spr_pulse_icon.png
 
-#begin Content/Sprites/spr_rocketlauncher.png
->>>>>>> master
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-<<<<<<< HEAD
-/build:Content/Sprites/laser tower.png
-
-#begin Content/Sprites/plane.png
-=======
-/build:Content/Sprites/spr_rocketlauncher.png
-
 #begin Content/Sprites/spr_rocketlauncher_icon.png
->>>>>>> master
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -997,33 +725,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-<<<<<<< HEAD
-/build:Content/Sprites/plane.png
-
-#begin Content/Sprites/pulse tower 2.png
-=======
 /build:Content/Sprites/spr_rocketlauncher_icon.png
 
-#begin Content/Sprites/spr_snipertower.png
->>>>>>> master
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-<<<<<<< HEAD
-/build:Content/Sprites/pulse tower 2.png
-
-#begin Content/Sprites/rocket tower 2.png
-=======
-/build:Content/Sprites/spr_snipertower.png
-
 #begin Content/Sprites/spr_snipertower_icon.png
->>>>>>> master
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1033,33 +737,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-<<<<<<< HEAD
-/build:Content/Sprites/rocket tower 2.png
-
-#begin Content/Sprites/sniper tower.png
-=======
 /build:Content/Sprites/spr_snipertower_icon.png
 
-#begin Content/Sprites/spr_tesla.png
->>>>>>> master
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-<<<<<<< HEAD
-/build:Content/Sprites/sniper tower.png
-
-#begin Content/Sprites/soldier tower 2.png
-=======
-/build:Content/Sprites/spr_tesla.png
-
 #begin Content/Sprites/spr_teslacoil_icon.png
->>>>>>> master
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1069,23 +749,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-<<<<<<< HEAD
-/build:Content/Sprites/soldier tower 2.png
-=======
 /build:Content/Sprites/spr_teslacoil_icon.png
-
-#begin Content/Sprites/tesla tower.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Sprites/tesla tower.png
->>>>>>> master
 
 #begin Content/Textures/abstractTower.png
 /importer:TextureImporter
@@ -1111,8 +775,6 @@
 /processorParam:TextureFormat=Color
 /build:Content/Textures/cannon.png
 
-<<<<<<< HEAD
-=======
 #begin Content/Textures/dot.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1245,4 +907,3 @@
 /processorParam:TextureFormat=Color
 /build:Content/Textures/tex_woods_tile.png
 
->>>>>>> master
