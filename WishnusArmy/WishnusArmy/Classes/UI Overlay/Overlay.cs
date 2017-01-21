@@ -40,7 +40,7 @@ public class Overlay : DrawOnTopList
         List<string> TowerNames = new List<string>(TOWER_INFO.Keys);
         for(int i=0; i<TowerNames.Count; ++i)
         {
-            Add(new OverlayTowerItem(TowerNames[i], gridPos + new Vector2(gridSize * (i%gridWidth), gridSize * (i/gridWidth))));
+            Add(new OverlayTowerItem(TowerNames[i], gridPos + new Vector2(gridSize*6*i, gridSize)));
         }
         Add(TowerInfo = new OverlayTowerInfo { Position = new Vector2(5, SCREEN_SIZE.Y - OVERLAY_SIZE.Y) });
         Add(new MiniMap());
@@ -98,7 +98,8 @@ public class Overlay : DrawOnTopList
     {
         //Draw the background
         //DrawRectangleFilled(new Rectangle(new Point(SCREEN_SIZE.X - OVERLAY_SIZE.X, 0), new Point(OVERLAY_SIZE.X, SCREEN_SIZE.Y)), spriteBatch, Color.Black, 0.4f);
-        DrawRectangleFilled(new Rectangle(new Point(0, SCREEN_SIZE.Y - OVERLAY_SIZE.Y), new Point(SCREEN_SIZE.X, OVERLAY_SIZE.Y)), spriteBatch, Color.DarkGray, 1f);
+        spriteBatch.Draw(SPR_OVERLAY, new Rectangle(new Point(0, SCREEN_SIZE.Y - OVERLAY_SIZE.Y - 24), new Point(SCREEN_SIZE.X, OVERLAY_SIZE.Y +24)), Color.White);
+        //DrawRectangleFilled(new Rectangle(new Point(20, SCREEN_SIZE.Y - OVERLAY_SIZE.Y), new Point(SCREEN_SIZE.X-45, OVERLAY_SIZE.Y-20)), spriteBatch, Color.DarkGray, 1f);
         if (selected != null)
         {
             if (node != null)
@@ -120,8 +121,9 @@ public class Overlay : DrawOnTopList
 
         spriteBatch.Draw(ICON_LIFE, new Rectangle(new Point(0, 177), new Point(40, 40)), Color.White);
         DrawText(spriteBatch, FNT_GAMESTATS, BaseHealth.ToString() +"/"+ MaxBaseHealth.ToString(), new Vector2(55, 170), Color.White);
-        
-        DrawGrid(spriteBatch);
+
+        //
+        //DrawGrid(spriteBatch);
 
         //Draw the WaveTime
         if (!GameStats.InWave)
