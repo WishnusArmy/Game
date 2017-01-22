@@ -33,14 +33,14 @@ public class Overlay : DrawOnTopList
         selected = null;
         selectedPossible = false;
         mousePos = Vector2.Zero;
-        gridSize = 64;
+        gridSize = 128;
         gridWidth = 4;
         gridHeight = 4;
         gridPos = new Vector2(450 + 2, SCREEN_SIZE.Y - OVERLAY_SIZE.Y+2);
         List<string> TowerNames = new List<string>(TOWER_INFO.Keys);
         for(int i=0; i<TowerNames.Count; ++i)
         {
-            Add(new OverlayTowerItem(TowerNames[i], gridPos + new Vector2(gridSize*6*i, gridSize)));
+            Add(new OverlayTowerItem(TowerNames[i], gridPos + new Vector2(gridSize*3*i, 16)));
         }
         Add(TowerInfo = new OverlayTowerInfo { Position = new Vector2(5, SCREEN_SIZE.Y - OVERLAY_SIZE.Y) });
         Add(new MiniMap());
