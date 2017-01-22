@@ -73,7 +73,7 @@ public class OverlayTowerItem : GameObject
                 }
             }
             edge.SetData<Color>(tcolor); //Set the pixel data in the "edge" container
-            //Draw the edge 10 percent larget than the icon
+            //Draw the edge 10 percent larger than the icon
             spriteBatch.Draw(edge, GlobalPosition, null, Color.White * 0.6f, 0f, new Vector2(icon.Width, icon.Height) * 0.05f, 1.1f, SpriteEffects.None, 0);
         }
         spriteBatch.Draw(icon, GlobalPosition, Color.White);

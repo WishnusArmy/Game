@@ -17,8 +17,7 @@ public class Base : GameObjectList
     int timer;
     Tower.Type type;
     int[] stats = new int[] { 0, 0, 0 };
-    static int maxRockets = 3;
-    int damage = 50;
+    double damage = 50;
     float speed = 10;
     Color healthColor;
     float rotation;
@@ -33,6 +32,7 @@ public class Base : GameObjectList
         healthColor = new Color(0, 255, 0);
         this.cannonTexture = SPR_BASEGUN;
         this.baseTexture = SPR_BASE;
+        damage = (TowerDamage(Tower.Type.Base, stats));
 
     }
 
@@ -86,10 +86,10 @@ public class Base : GameObjectList
         rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
         if (inputHelper.MouseLeftButtonPressed() && inputHelper.MouseInGameWindow && canShoot)
         {
-            Console.WriteLine(FindByType<Overlay>().Count);
-            if (FindByType<BaseProjectile>().Count < maxRockets)
+            Overlay ol = GameWorld.FindByType<Overlay>()[0] as Overlay;
+            if (!ol.Busy)
             {
-                Add(new BaseProjectile(damage, speed));
+                MyPlane.Add(new BaseProjectile(damage, speed) { Position = position });
                 timer = TowerRate(type, stats);
             }
         }

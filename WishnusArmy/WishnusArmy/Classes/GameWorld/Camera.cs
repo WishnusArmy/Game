@@ -57,6 +57,10 @@ public class Camera : GameObjectList
                 {
                     tex = Functions.choose(new List<int> { 2, 7, 8 });
                 }
+                if (tex == 5)
+                {
+                    tex = Functions.choose(new List<int> { 5, 9 });
+                }
                 Land.grid[x, y].texture = tex;
             }
         }
@@ -94,12 +98,12 @@ public class Camera : GameObjectList
         if (inputHelper.ScrollUp() || inputHelper.IsKeyDown(Keys.Q))
         {
             if (scale.X < 1f)
-                scale *= new Vector2(1.04f);
+                scale *= new Vector2(1.02f);
         }
         if (inputHelper.ScrollDown() || inputHelper.IsKeyDown(Keys.A))
         {
             if ((LEVEL_SIZE.X * NODE_SIZE.X * scale.X > GAME_WINDOW_SIZE.X + 96))
-                scale *= new Vector2(1 / 1.04f);
+                scale *= new Vector2(1 / 1.02f);
         }
         Vector2 dScale = scale - oldScale;
         position -= (position + (SCREEN_SIZE.toVector())) * dScale/oldScale;

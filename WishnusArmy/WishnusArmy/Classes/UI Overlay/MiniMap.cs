@@ -35,8 +35,8 @@ class MiniMap : DrawOnTop
     {
         timer = 50;
         // can be edited
-        minimapSize = new Point(OVERLAY_SIZE.Y * 2, OVERLAY_SIZE.Y);
-        overlayPosition = new Point(SCREEN_SIZE.X - minimapSize.X, SCREEN_SIZE.Y - minimapSize.Y);
+        minimapSize = new Point((OVERLAY_SIZE.Y-20) * 2, OVERLAY_SIZE.Y - 28);
+        overlayPosition = new Point(SCREEN_SIZE.X - minimapSize.X-26, SCREEN_SIZE.Y - minimapSize.Y- 24);
         
         // constant
         enemySize = new Point(minimapSize.X/50);
@@ -76,7 +76,7 @@ class MiniMap : DrawOnTop
         Point offset;
 
         // draw basic map
-        DrawRectangleFilled(new Rectangle(overlayPosition, minimapSize), spriteBatch, Color.Black, 0.3f);
+        //DrawRectangleFilled(new Rectangle(overlayPosition, minimapSize), spriteBatch, Color.Black, 0.3f);
 
         // draw solid tiles
         Point position = new Point(0);
@@ -89,24 +89,7 @@ class MiniMap : DrawOnTop
                 if (grid[x, y].solid)
                 {
                     position = new Point((int)((double)minimapSize.X * (double)((double)x / (double)LEVEL_SIZE.X)), (int)((double)minimapSize.Y * (double)((double)y / (double)LEVEL_SIZE.Y)));
-                    Color c = Color.White;
-                    Single s = 0.0f;
-                    switch (grid[x, y].texture)
-                    {
-                        case 2:
-                            s = 0.9f;
-                            break;  //mountain
-                        case 4:
-                            s = 0.2f; ;
-                            break;  //water
-                        case 5:
-                            s = 0.3f;
-                            break;  //forest
-                        default:
-                            break;
-                    }
-
-                    DrawRectangleFilled(new Rectangle(overlayPosition + position, tileSize), spriteBatch, Color.Black, s);
+                    DrawRectangleFilled(new Rectangle(overlayPosition + position, tileSize), spriteBatch, Color.Black, 1f);
                 }
             }
         }

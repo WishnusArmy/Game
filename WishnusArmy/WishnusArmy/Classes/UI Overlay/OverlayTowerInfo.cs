@@ -67,20 +67,19 @@ public class OverlayTowerInfo : GameObjectList
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
-        DrawRectangle(new Rectangle(position.toPoint(), new Point(400, OVERLAY_SIZE.Y)), spriteBatch, Color.White, 2);
         if (tower != null)
         {
-            spriteBatch.Draw(tower.baseTexture, position + new Vector2(20, 45), Color.White);
-            DrawText(spriteBatch, FNT_MENU, TOWER_INFO[tower.ToString()].name, position + new Vector2(100, 20), Color.White, true);
+            spriteBatch.Draw(tower.baseTexture, position + new Vector2(45, 40), Color.White);
+            DrawText(spriteBatch, FNT_MENU, TOWER_INFO[tower.ToString()].name, position + new Vector2(120, 25), Color.White, true);
 
             string[] str = new string[3] { "Damage:", "Range:", "Fire Rate:" };
             for (int z = 0; z < tower.stats.Length; ++z)
             {
-                DrawText(spriteBatch, FNT_LEVEL_BUILDER, str[z], position + new Vector2(110, 57 + (blockSize.Y + 15) * z), Color.White);
+                DrawText(spriteBatch, FNT_LEVEL_BUILDER, str[z], position + new Vector2(125, 57 + (blockSize.Y + 15) * z), Color.White);
                 for (int i = 0; i < 5; ++i)
                 {
-                    DrawRectangleFilled(new Rectangle(position.toPoint() + new Point(220 + (blockSize.X + blockSeperation) * i, 55 + (blockSize.Y + 15) * z), blockSize), spriteBatch, Color.Black, 0.4f);
-                    DrawRectangleFilled(new Rectangle(position.toPoint() + new Point(220 + (blockSize.X + blockSeperation) * i, 55 + (blockSize.Y + 15) * z), blockSize), spriteBatch, Color.White * (tower.stats[z] >= i).ToInt());
+                    DrawRectangleFilled(new Rectangle(position.toPoint() + new Point(235 + (blockSize.X + blockSeperation) * i, 55 + (blockSize.Y + 15) * z), blockSize), spriteBatch, Color.Black, 0.4f);
+                    DrawRectangleFilled(new Rectangle(position.toPoint() + new Point(235 + (blockSize.X + blockSeperation) * i, 55 + (blockSize.Y + 15) * z), blockSize), spriteBatch, Color.White * (tower.stats[z] >= i).ToInt());
                 }
             }
 
@@ -93,7 +92,6 @@ public class OverlayTowerInfo : GameObjectList
                     spriteBatch.DrawString(FNT_LEVEL_BUILDER, "Costs: " + ((int)(UpgradeCost(tower.type) * Math.Pow(1.5, (tower.stats[i] - 1)))).ToString(), buttons[i].GlobalPosition - new Vector2(-23, 48), Color.Black);
                     DrawRectangle(new Rectangle(buttons[i].GlobalPosition.toPoint() - new Point(0, 75), new Point(150, 75)), spriteBatch, Color.Black, 3);
                 }
-
             }
         }
     }
