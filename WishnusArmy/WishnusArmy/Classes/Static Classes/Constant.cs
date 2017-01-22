@@ -31,6 +31,9 @@ internal static class Constant
     internal static readonly Point LEVEL_SIZE = new Point(60, 120); //The size of the level grid
     internal static readonly Vector2 LEVEL_CENTER = new Vector2(LEVEL_SIZE.X * NODE_SIZE.X, LEVEL_SIZE.Y / 2 * NODE_SIZE.Y) / 2;
 
+    //HIGHSCORE
+    internal const int MAXSIZE_HIGHSCORELIST = 10;
+
     //CAMERA
     internal const int SLIDE_BORDER = 10; //Defines the width of the edge that will respond to the mouse.
     internal const int SLIDE_SPEED = 10; //The speed at which the window slides.

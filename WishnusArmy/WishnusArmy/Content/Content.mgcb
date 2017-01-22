@@ -949,3 +949,6 @@
 /processorParam:TextureFormat=Color
 /build:Content\Sprites\Icons\spr_sniper_icon.png
 
+#begin Content/Stats/HighScores.xml
+/copy:Content/Stats/HighScores.xml
+
