@@ -134,7 +134,7 @@ internal static class Constant
     //ENEMIES
     internal static int EnemyHealthFunction(double mod)
     {
-        return (int)(mod * (100 * Math.Sqrt(GameStats.Wave)));
+        return (int)(mod * (100 * Math.Sqrt(GameStats.Wave)) + (5 * GameStats.Wave * GameStats.Wave));
     }
 
     /// <summary>
