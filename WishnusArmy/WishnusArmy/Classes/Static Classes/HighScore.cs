@@ -33,8 +33,6 @@ public class HighScore : GameObject
         maxSizeOfList = MAXSIZE_HIGHSCORELIST;
         highScores = new List<Score>();
         ReadHighScores();
-
-        AddScore("wegschrijven werkt", 4);
     }
 
     public List<Score> List
