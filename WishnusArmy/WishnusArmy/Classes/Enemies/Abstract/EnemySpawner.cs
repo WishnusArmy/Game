@@ -88,7 +88,7 @@ public class EnemySpawner : GameObjectList
                 GameStats.InWave = true;
                 int x = GameStats.Wave++;
 
-                resources = (int)(500 + 2*Math.Pow(x, (Math.Sqrt(x / 100) + 1)) + 400 * (float)Math.Sqrt(x));
+                resources = (int)(500 + 2*Math.Pow(x, (Math.Sqrt(x / 100) + 1)) + 300 * x);
             }
         }
     }
