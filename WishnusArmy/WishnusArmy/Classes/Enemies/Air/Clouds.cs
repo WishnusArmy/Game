@@ -41,9 +41,6 @@ namespace WishnusArmy.Classes.Enemies.Air
             else
                 position += velocity;
 
-
-            Console.WriteLine(GlobalPosition);
-
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
