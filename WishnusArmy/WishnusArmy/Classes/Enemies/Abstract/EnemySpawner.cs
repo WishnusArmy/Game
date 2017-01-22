@@ -48,8 +48,8 @@ public class EnemySpawner : GameObjectList
         {
             if (RANDOM.Next(50) == 0 && resources > 0)
             {
-                double type_a = Math.Sqrt(Math.Min(LIST_ENEMIES.Count, (int)(GameStats.Wave / 0.3)));
-                double type_b = Math.Sqrt(Math.Min(LIST_ENEMIES.Count, (int)(GameStats.Wave / 0.3)));
+                double type_a = Math.Sqrt(Math.Min(LIST_ENEMIES.Count, (int)(GameStats.Wave / 3)));
+                double type_b = Math.Sqrt(Math.Min(LIST_ENEMIES.Count, (int)(GameStats.Wave / 3)));
                 string eType = LIST_ENEMIES[RANDOM.Next((int)(type_a*type_b))];
                 Type t = Type.GetType(eType); //Get the type of the object
                 object temp = Activator.CreateInstance(t); //Create an instance of that object
@@ -88,7 +88,7 @@ public class EnemySpawner : GameObjectList
                 GameStats.InWave = true;
                 int x = GameStats.Wave++;
 
-                resources = (int)(500 + 2*Math.Pow(x, (Math.Sqrt(x / 100) + 1)) + 300 * x);
+                resources = (int)(500 + 2*Math.Pow(x, (Math.Sqrt(x / 100) + 1)) + 400 * (float)Math.Sqrt(x));
             }
         }
     }
