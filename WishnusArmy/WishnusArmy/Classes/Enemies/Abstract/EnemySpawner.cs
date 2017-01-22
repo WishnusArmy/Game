@@ -48,7 +48,9 @@ public class EnemySpawner : GameObjectList
         {
             if (RANDOM.Next(50) == 0 && resources > 0)
             {
-                string eType = LIST_ENEMIES[RANDOM.Next(Math.Min(LIST_ENEMIES.Count, GameStats.Wave/3))];
+                double type_a = Math.Sqrt(Math.Min(LIST_ENEMIES.Count, (int)(GameStats.Wave / 3)));
+                double type_b = Math.Sqrt(Math.Min(LIST_ENEMIES.Count, (int)(GameStats.Wave / 3)));
+                string eType = LIST_ENEMIES[RANDOM.Next((int)(type_a*type_b))];
                 Type t = Type.GetType(eType); //Get the type of the object
                 object temp = Activator.CreateInstance(t); //Create an instance of that object
                 Enemy obj = temp as Enemy; //Cast it as an Enemy
