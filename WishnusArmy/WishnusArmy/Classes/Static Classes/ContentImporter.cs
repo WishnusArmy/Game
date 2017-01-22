@@ -28,6 +28,7 @@ internal static class ContentImporter
             SPR_MAINBACKGROUND,
             SPR_GAMEOVERBACKGROUND,
             SPR_CREDITSPLANE,
+            SPR_OVERLAY,
             SPR_ENEMY,
             SPR_SHADOW,
             SPR_WHITEPIXEL,
@@ -65,6 +66,7 @@ internal static class ContentImporter
             SPR_MAINBACKGROUND = Content.Load<Texture2D>("Content/Sprites/MainBackground");
             SPR_CREDITSPLANE = Content.Load<Texture2D>("Content/Sprites/Credits");
             SPR_ENEMY = Content.Load<Texture2D>("Content/Sprites/enemySprite");
+            SPR_OVERLAY = Content.Load<Texture2D>("Content/Sprites/overlaybackground");
             SPR_GAMEOVERBACKGROUND = Content.Load<Texture2D>("Content/Sprites/GameOver");
             //SPR_AIRPLANE = Content.Load<Texture2D>("Content/Sprites/plane");
             SPR_WHITEPIXEL = Content.Load<Texture2D>("Content/Sprites/WhitePixel");
@@ -112,6 +114,7 @@ internal static class ContentImporter
             TEX_DIRT,
             TEX_WATER,
             TEX_FOREST,
+            TEX_FOREST_2,
             TEX_AIR,
             TEX_MOUNTAIN_1,
             TEX_MOUNTAIN_2,
@@ -130,6 +133,7 @@ internal static class ContentImporter
             TEX_DIRT = Content.Load<Texture2D>("Content/Textures/tex_dirt");
             TEX_WATER = Content.Load<Texture2D>("Content/Textures/tex_water");
             TEX_FOREST = Content.Load<Texture2D>("Content/Textures/tex_woods_tile");
+            TEX_FOREST_2 = Content.Load<Texture2D>("Content/Textures/tex_forest");
             TEX_AIR = Content.Load<Texture2D>("Content/Textures/tex_air");
             TEX_MOUNTAIN_1 = Content.Load<Texture2D>("Content/Textures/tex_mountain_1");
             TEX_MOUNTAIN_2 = Content.Load<Texture2D>("Content/Textures/tex_mountain_2");
