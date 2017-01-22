@@ -134,7 +134,7 @@ internal static class Constant
     //ENEMIES
     internal static int EnemyHealthFunction(double mod)
     {
-        return (int)(mod * (100 * Math.Sqrt(GameStats.Wave)) + (5 * GameStats.Wave * GameStats.Wave));
+        return (int)(mod * (100 * Math.Sqrt(GameStats.Wave)) + mod * (0.2 * GameStats.Wave * GameStats.Wave * GameStats.Wave));
     }
 
     /// <summary>
@@ -150,9 +150,9 @@ internal static class Constant
             case Enemy.Type.Soldier:
                 return EnemyHealthFunction(0.6);
             case Enemy.Type.Helicopter:
-                return EnemyHealthFunction(1.3);
+                return EnemyHealthFunction(1.1);
             case Enemy.Type.Airplane:
-                return EnemyHealthFunction(2.6);
+                return EnemyHealthFunction(2.3);
             default:
                 return EnemyHealthFunction(1);
         }
