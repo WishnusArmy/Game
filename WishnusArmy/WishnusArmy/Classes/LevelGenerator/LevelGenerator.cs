@@ -20,7 +20,7 @@ public class LevelGenerator : GameObject
         GenerateNewLevel();
     }
 
-    //Generate the grids that make up the playing fields
+    //Generate the grid that makes up the playing fields
     public List<int[,]> GenerateNewLevel()
     {
         ClearGrid();
