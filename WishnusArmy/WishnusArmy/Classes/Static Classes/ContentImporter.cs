@@ -30,6 +30,8 @@ internal static class ContentImporter
             SPR_CREDITSPLANE,
             SPR_OVERLAY,
             SPR_ENEMY,
+            SPR_CLOUD1,
+            SPR_CLOUD2,
             SPR_SHADOW,
             SPR_WHITEPIXEL,
 
@@ -71,6 +73,8 @@ internal static class ContentImporter
             //SPR_AIRPLANE = Content.Load<Texture2D>("Content/Sprites/plane");
             SPR_WHITEPIXEL = Content.Load<Texture2D>("Content/Sprites/WhitePixel");
             SPR_SHADOW = Content.Load<Texture2D>("Content/Sprites/shadow");
+            SPR_CLOUD1 = Content.Load<Texture2D>("Content/Sprites/clouds1");
+            SPR_CLOUD2 = Content.Load<Texture2D>("Content/Sprites/clouds2");
 
             //Projectiles
             SPR_PULSE = Content.Load<Texture2D>("Content/Sprites/Projectiles/SPR_PULSE");

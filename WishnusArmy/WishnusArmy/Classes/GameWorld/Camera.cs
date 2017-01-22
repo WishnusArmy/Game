@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using static Constant;
 using static ContentImporter.Textures;
 using Microsoft.Xna.Framework.Graphics;
+using WishnusArmy.Classes.Enemies.Air;
 
 public class Camera : GameObjectList
 {
@@ -65,6 +66,9 @@ public class Camera : GameObjectList
             }
         }
         currentPlane.Add(new EnemySpawner(currentPlane)); // The grid must be finished
+
+        for (int i = 1; i <= 5; i+=2)
+            currentPlane.Add(new Clouds(new Vector2(-1500/i, SCREEN_SIZE.Y + 1800/i)));
     }
 
     public override void Update(object gameTime)
