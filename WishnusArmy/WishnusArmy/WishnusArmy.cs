@@ -11,8 +11,8 @@ namespace WishnusArmy
 {
     public class WishnusArmy : GameEnvironment
     {
-        [DllImport("kernel32")]
-        static extern bool AllocConsole();
+        //[DllImport("kernel32")]
+        //static extern bool AllocConsole();
 
         public static GameEnvironment self;
         public static bool startSorting;
@@ -28,7 +28,7 @@ namespace WishnusArmy
         {
             this.IsMouseVisible = true;
             Mouse.WindowHandle = Window.Handle;
-            AllocConsole();
+            //AllocConsole();
             Console.WriteLine("Hello World");
             Functions.Initialize(GraphicsDevice);
             ContentImporter.Initialize(Content);
