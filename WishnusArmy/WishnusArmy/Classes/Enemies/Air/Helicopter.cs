@@ -12,9 +12,9 @@ public class Helicopter : EnemyAir
     public Helicopter() : base(Type.Helicopter, SHEET_HELICOPTER)
     {
         this.sprite = SHEET_HELICOPTER;
-        this.speed = 2.7f;
+        this.speed = (2.5f + (0.1f * GameStats.Wave));
         cost = 80;
-        killReward = 40;
+        killReward = 40 + GameStats.Wave;
         weakness = Tower.Type.LaserTower;
     }
 }
