@@ -75,10 +75,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("wow");
                 }
-                
-
                 healthText.timer /= 2;
             }
             _health = value;

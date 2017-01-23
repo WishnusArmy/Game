@@ -98,7 +98,7 @@ internal static class Constant
             case Tower.Type.Base:
                 return 200;
             case Tower.Type.ResourceTower:
-                return (500 - s * 20);
+                return (800 - s * 40);
             default:
                 return 0;
         }
@@ -116,6 +116,8 @@ internal static class Constant
                 return 200;
             case Tower.Type.Base:
                 return 250;
+            case Tower.Type.ResourceTower:
+                return 280;
             default:
                 return 0;
         }
