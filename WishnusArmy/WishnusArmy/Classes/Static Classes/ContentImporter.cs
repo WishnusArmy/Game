@@ -44,6 +44,7 @@ internal static class ContentImporter
             SPR_ABSTRACT_TOWER,
             SPR_ABSTRACT_CANNON,
             SPR_BASE,
+            SPR_BASENOSHOOT,
             SPR_BASEGUN,
             SPR_CIRCLE,
             SPR_LASER_TOWER,
@@ -85,6 +86,7 @@ internal static class ContentImporter
             SPR_ABSTRACT_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/abstractTower");
             SPR_ABSTRACT_CANNON = Content.Load<Texture2D>("Content/Sprites/Towers/cannon");
             SPR_BASE = Content.Load<Texture2D>("Content/Sprites/Towers/BaseSprite");
+            SPR_BASENOSHOOT = Content.Load<Texture2D>("Content/Sprites/Towers/BaseSpriteNoShoot");
             SPR_BASEGUN = Content.Load<Texture2D>("Content/Sprites/Towers/BaseGun");
             SPR_CIRCLE = Content.Load<Texture2D>("Content/Sprites/Towers/radius");
             SPR_LASER_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/spr_laser_tower");

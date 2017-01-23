@@ -43,10 +43,12 @@ public class Base : GameObjectList
 
     public override void Update(object gameTime)
     {
+
         if (canShoot)
-            cannonColor = Color.White;
+            baseTexture = SPR_BASE;
         else
-            cannonColor = Color.Red;
+            baseTexture = SPR_BASENOSHOOT;
+            
         base.Update(gameTime);
             timer--;
 
@@ -74,7 +76,7 @@ public class Base : GameObjectList
         //spriteBatch.Draw(baseTexture, GlobalPosition, null, null, new Vector2(baseTexture.Width / 2, baseTexture.Height / 2), 0, null, healthColor);
         
         spriteBatch.Draw(baseTexture, GlobalPosition, null, null, new Vector2(baseTexture.Width / 2, baseTexture.Height / 2), 0f, new Vector2(1f), healthColor * (1f - 0.4f * hover.ToInt()), SpriteEffects.None, 0);
-        
+
         //Disabled the 2D cannon overlay
         //spriteBatch.Draw(cannonTexture, GlobalPosition, null, null, new Vector2(cannonTexture.Width / 2, cannonTexture.Height / 2), rotation, new Vector2(1f), cannonColor);
     }
