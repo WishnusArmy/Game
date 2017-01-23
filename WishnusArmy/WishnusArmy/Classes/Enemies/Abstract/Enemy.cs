@@ -62,14 +62,22 @@ public abstract partial class Enemy : IsometricMovingGameObject
                 float deltaHealth = (float)(value - _health);
                 if (deltaHealth > _health)
                     deltaHealth = (float)_health;
-                healthText = new HealthText(((int)(deltaHealth)), deltaHealth/maxHealth) { Position = GlobalPosition + new Vector2(0, -15) };
+                healthText = new HealthText(((int)(deltaHealth)).ToString(), deltaHealth/maxHealth) { Position = GlobalPosition + new Vector2(0, -15) };
                 MyPlane.Add(healthText);
             }
             else
             {
-                healthText.text += (int)(value - _health);
-                if (healthText.text > maxHealth)
-                    healthText.text = maxHealth;
+                try 
+                {
+                    healthText.text = Int32.Parse(healthText.text) + (int)(value - _health) + "";
+                    if (Int32.Parse(healthText.text.Substring(0, 2)) > maxHealth)
+                        healthText.text = maxHealth.ToString();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("wow");
+                }
+                
 
                 healthText.timer /= 2;
             }
