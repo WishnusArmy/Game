@@ -93,10 +93,13 @@ public class Overlay : DrawOnTopList
             {
                 selected = null; //Reset the selected object reference
             }
+
         }
 
-        if (inputHelper.KeyPressed(Keys.X) && selected != null)
+        //Cancel the current selection with X or right click
+        if (inputHelper.KeyPressed(Keys.X) && selected != null || inputHelper.MouseRightButtonPressed() && selected != null)
             selected = null;
+
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
