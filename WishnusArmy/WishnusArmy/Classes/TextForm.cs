@@ -44,11 +44,17 @@ public class TextForm : GameObject
         timer = 0;
         foreach (Keys k in inputHelper.CurrentPressedKeys())
             keys.Add(k);
-        
-        if ((int)keys[0] > 64 && (int)keys[0] < 91 && text.Length < 17)
+
+        int i = (int)keys[0];
+        if (((i > 64 && i < 91) || (i > 96 && i < 123)) && text.Length < 17)
         {
             text = text + keys[0].ToString();
         }
+        if (i == 32)
+            text = text + " ";
+        if ((i > 47 && i < 58))
+            text = text + "" + (i - 48);
+
         if (keys.Contains(Keys.Back) && text.Length != 0)
             text = text.Substring(0, text.Length - 1);
 
