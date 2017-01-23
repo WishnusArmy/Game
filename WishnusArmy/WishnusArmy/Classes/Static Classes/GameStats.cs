@@ -25,7 +25,7 @@ internal static class GameStats
     {
         EcResources = 500;
         totalResourcesGathered = 0;
-        MaxBaseHealth = 0;
+        MaxBaseHealth = 500;
         BaseHealth = MaxBaseHealth;
         Wave = 0;
         InWave = true;
