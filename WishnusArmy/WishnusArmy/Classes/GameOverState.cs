@@ -26,14 +26,13 @@ public class GameOverState : GameObjectList
 
         //Add back button
         backButton = new Button("BACK", Color.LightGreen, Color.DarkGreen, Fonts.FNT_MENU);
-        backButton.Position = new Vector2((SCREEN_SIZE.X - backButton.Dimensions.X) / 2, SCREEN_SIZE.Y - 170);
+        backButton.Position = new Vector2((SCREEN_SIZE.X - backButton.Dimensions.X) / 2, SCREEN_SIZE.Y - 70) + new Vector2(30, 0);
         Add(backButton);
 
-        scoreForm = new TextForm(new Rectangle(Point.Zero,Point.Zero), FNT_GAMESTATS, "", Color.White, Color.Black);
-        Add(scoreForm);
+        scoreForm = new TextForm(new Rectangle(new Point(SCREEN_SIZE.X/2 - 240, 780), new Point(480, 145)), FNT_GAMESTATS, "Enter your name here!", "", Color.Black, Color.White);
 
         scoreAdded = false;
-        worthy = true; //GameStats.highScore.Worthy(GameStats.FinalScore);
+        worthy = GameStats.highScore.Worthy(GameStats.FinalScore);
     }
 
     public override void Update(object gameTime)
@@ -42,7 +41,7 @@ public class GameOverState : GameObjectList
 
         if (!scoreAdded && worthy)
         {
-            //Add(scoreForm);
+            Add(scoreForm);
             scoreAdded = true;
         }
 
@@ -73,11 +72,11 @@ public class GameOverState : GameObjectList
         spriteBatch.DrawString(FNT_GAMEOVER, "SCORE: " + GameStats.FinalScore, new Vector2((SCREEN_SIZE.X - FNT_GAMEOVER.MeasureString("SCORE: " + GameStats.FinalScore).X) / 2, SCREEN_SIZE.Y - 400), Color.Black);
 
         // HIGHSCORES
-        DrawingHelper.DrawRectangleFilled(new Rectangle(new Point(SCREEN_SIZE.X - 500, 350), new Point(480, 710)), spriteBatch, Color.Black, 0.7f);
+        DrawingHelper.DrawRectangleFilled(new Rectangle(new Point(SCREEN_SIZE.X - 500, 340), new Point(480, 570)), spriteBatch, Color.Black, 0.7f);
         spriteBatch.DrawString(FNT_GAMESTATS, "High Scores", new Vector2(SCREEN_SIZE.X - 355, 365), Color.White);
         for (int i = 0; i < GameStats.highScore.List.Count; i++)
         {
-            Vector2 pos = new Vector2(SCREEN_SIZE.X - 480, 430 + i * ((SCREEN_SIZE.Y - 600) / MAXSIZE_HIGHSCORELIST));
+            Vector2 pos = new Vector2(SCREEN_SIZE.X - 480, 425 + i * ((SCREEN_SIZE.Y - 600) / MAXSIZE_HIGHSCORELIST));
             spriteBatch.DrawString(FNT_GAMESTATS, (i+1) + ".  " + GameStats.highScore.List[i].Amount, pos , Color.White);
             spriteBatch.DrawString(FNT_GAMESTATS, "- " + GameStats.highScore.List[i].Name, pos + new Vector2(175, 0), Color.White);
 

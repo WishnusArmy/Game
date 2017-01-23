@@ -10,18 +10,6 @@ using static ContentImporter.Sprites;
 using static Constant;
 using System.Xml;
 
-/*
-    scores afdrukken als:
-
-    foreach(Score s in GameWorld.FindByType<HighScore>()[0].List){
-        drawText(s.ToString(), font, .. , ..);
-    }
-
-    score toevoegen als:
-    
-    GameWorld.FindByType<HighScore>()[0].AddScore("Your Name", 420);
- */
-
 public class HighScore : GameObject
 {
 
@@ -54,7 +42,7 @@ public class HighScore : GameObject
     private void MaxSize()
     {
         if (highScores.Count > maxSizeOfList)
-        highScores = highScores.GetRange(0, maxSizeOfList - 1);
+        highScores = highScores.GetRange(0, maxSizeOfList);
     }
     
     private void Sort()
