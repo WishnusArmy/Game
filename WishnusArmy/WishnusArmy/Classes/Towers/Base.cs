@@ -72,8 +72,11 @@ public class Base : GameObjectList
         healthColor = new Color((int)(255 * (1 - p)), (int)(255 * p), 0);
         healthColor = Color.White;
         //spriteBatch.Draw(baseTexture, GlobalPosition, null, null, new Vector2(baseTexture.Width / 2, baseTexture.Height / 2), 0, null, healthColor);
+        
         spriteBatch.Draw(baseTexture, GlobalPosition, null, null, new Vector2(baseTexture.Width / 2, baseTexture.Height / 2), 0f, new Vector2(1f), healthColor * (1f - 0.4f * hover.ToInt()), SpriteEffects.None, 0);
-        spriteBatch.Draw(cannonTexture, GlobalPosition, null, null, new Vector2(cannonTexture.Width / 2, cannonTexture.Height / 2), rotation, new Vector2(1f), cannonColor);
+        
+        //Disabled the 2D cannon overlay
+        //spriteBatch.Draw(cannonTexture, GlobalPosition, null, null, new Vector2(cannonTexture.Width / 2, cannonTexture.Height / 2), rotation, new Vector2(1f), cannonColor);
     }
 
     public override void HandleInput(InputHelper inputHelper)
