@@ -137,7 +137,7 @@ internal static class Constant
         { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 100, sprite = SPR_LASER_TOWER, icon = SPR_LASER_ICON, range = TowerRange(Tower.Type.LaserTower, new int[] {0,0,0})} },
         { "RocketTower", new TowerInfo() { name = "Rocket Tower", cost = 200, sprite = SPR_ROCKET_TOWER, icon = SPR_ROCKETLAUNCHER_ICON, range = TowerRange(Tower.Type.RocketTower, new int[] {0,0,0}) } },
         { "PulseTower", new TowerInfo() { name = "PulseTower", cost = 600, sprite = SPR_PULSE_TOWER, icon = SPR_PULSE_ICON, range = TowerRange(Tower.Type.PulseTower, new int[] {0,0,0}) } },
-        { "ResourceTower", new TowerInfo() { name = "ResourceTower", cost = 1000, sprite = SPR_PULSE_TOWER, icon = SPR_PULSE_ICON, range = TowerRange(Tower.Type.ResourceTower, new int[] {0,0,0}) } },
+        { "ResourceTower", new TowerInfo() { name = "ResourceTower", cost = 1000, sprite = SPR_PULSE_TOWER, icon = SPR_MERCHANT_ICON, range = TowerRange(Tower.Type.ResourceTower, new int[] {0,0,0}) } },
     };
 
 

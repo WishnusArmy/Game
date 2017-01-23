@@ -15,7 +15,7 @@ class ResourceTower : Tower
     public ResourceTower() : base(Type.ResourceTower)
     {
         timer = 0;
-        baseTexture = ContentImporter.Sprites.SPR_ROCKET_TOWER;
+        baseTexture = ContentImporter.Sprites.SPR_MERCHANT_TOWER;
     }
 
     public override void Update(object gameTime)
