@@ -28,6 +28,9 @@ internal static class ContentImporter
             SPR_MAINBACKGROUND,
             SPR_GAMEOVERBACKGROUND,
             SPR_CREDITSPLANE,
+            SPR_HELP_1,
+            SPR_HELP_2,
+            SPR_HELP_3,
             SPR_OVERLAY,
             SPR_ENEMY,
             SPR_CLOUD1,
@@ -48,10 +51,12 @@ internal static class ContentImporter
             SPR_BASEGUN,
             SPR_CIRCLE,
             SPR_LASER_TOWER,
+            SPR_MERCHANT_TOWER,
             SPR_PULSE_TOWER,
             SPR_ROCKET_TOWER,
 
             // Tower Icons
+            SPR_MERCHANT_ICON,
             SPR_CANNON_ICON,
             SPR_FLAMETHROWER_ICON,
             SPR_GATTLING_ICON,
@@ -68,6 +73,9 @@ internal static class ContentImporter
             
             SPR_MAINBACKGROUND = Content.Load<Texture2D>("Content/Sprites/MainBackground");
             SPR_CREDITSPLANE = Content.Load<Texture2D>("Content/Sprites/Credits");
+            SPR_HELP_1 = Content.Load<Texture2D>("Content/Sprites/Help_1");
+            SPR_HELP_2 = Content.Load<Texture2D>("Content/Sprites/Help_2");
+            SPR_HELP_3 = Content.Load<Texture2D>("Content/Sprites/Help_3");
             SPR_ENEMY = Content.Load<Texture2D>("Content/Sprites/enemySprite");
             SPR_OVERLAY = Content.Load<Texture2D>("Content/Sprites/overlaybackground");
             SPR_GAMEOVERBACKGROUND = Content.Load<Texture2D>("Content/Sprites/GameOver");
@@ -90,10 +98,12 @@ internal static class ContentImporter
             SPR_BASEGUN = Content.Load<Texture2D>("Content/Sprites/Towers/BaseGun");
             SPR_CIRCLE = Content.Load<Texture2D>("Content/Sprites/Towers/radius");
             SPR_LASER_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/spr_laser_tower");
+            SPR_MERCHANT_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/spr_merchant_tower");
             SPR_PULSE_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/SPR_PULSE_TOWER");
             SPR_ROCKET_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/SPR_ROCKET_TOWER");
 
             //Tower Icons
+            SPR_MERCHANT_ICON = Content.Load<Texture2D>("Content/Sprites/Icons/spr_resourcegather_icon");
             SPR_CANNON_ICON = Content.Load<Texture2D>("Content/Sprites/Icons/spr_cannon_icon");
             SPR_FLAMETHROWER_ICON = Content.Load<Texture2D>("Content/Sprites/Icons/spr_flamethrower_icon");
             SPR_GATTLING_ICON = Content.Load<Texture2D>("Content/Sprites/Icons/spr_gattling_icon");
