@@ -81,7 +81,7 @@ public class Overlay : DrawOnTopList
             object temp = Activator.CreateInstance(t); //Create an instance of that object
             GameObject obj = temp as GameObject; //Cast it as a GameObject
             obj.Position = node.Position + new Vector2(NODE_SIZE.X / 2, 0); //Adjust the position to the middle of the GridNode
-            if ((selected.itemType.Equals("ResourceTower") && GameWorld.FindByType<ResourceTower>().Count > 2))
+            if (selected.itemType.Equals("ResourceTower") && GameWorld.FindByType<ResourceTower>().Count > 2)
             {
                 selected = null;
                 return;
