@@ -38,7 +38,7 @@ internal static class GameStats
     {
         get
         {
-            return TotalEnemiesKilled * 10 + Wave * 200 + totalResourcesGathered; ;
+            return TotalEnemiesKilled * 10 + Wave * 1000 + totalResourcesGathered; 
         }
     }
 }

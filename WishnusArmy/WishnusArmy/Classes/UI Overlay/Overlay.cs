@@ -40,7 +40,7 @@ public class Overlay : DrawOnTopList
         List<string> TowerNames = new List<string>(TOWER_INFO.Keys);
         for(int i=0; i<TowerNames.Count; ++i)
         {
-            Add(new OverlayTowerItem(TowerNames[i], gridPos + new Vector2(gridSize*3*i, 16)));
+            Add(new OverlayTowerItem(TowerNames[i], gridPos + new Vector2(gridSize*i, 16)));
         }
         Add(TowerInfo = new OverlayTowerInfo { Position = new Vector2(5, SCREEN_SIZE.Y - OVERLAY_SIZE.Y) });
         Add(new MiniMap());
@@ -81,6 +81,11 @@ public class Overlay : DrawOnTopList
             object temp = Activator.CreateInstance(t); //Create an instance of that object
             GameObject obj = temp as GameObject; //Cast it as a GameObject
             obj.Position = node.Position + new Vector2(NODE_SIZE.X / 2, 0); //Adjust the position to the middle of the GridNode
+            if (selected.itemType.Equals("ResourceTower") && GameWorld.FindByType<ResourceTower>().Count > 2)
+            {
+                selected = null;
+                return;
+            } 
             plane.Add(obj); //Add it to the hierarchy
             obj.MyParticleControl.AddTowerBuildGlow(obj.Position); //Add particle effect
             EcResources -= selected.cost; //Subtract its cost from the resources
