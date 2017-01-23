@@ -69,6 +69,7 @@
     <Compile Include="Classes\Static Classes\HighScore.cs" />
     <Compile Include="Classes\Static Classes\GameStats.cs" />
     <Compile Include="Classes\Static Classes\PopupScreen.cs" />
+    <Compile Include="Classes\TextForm.cs" />
     <Compile Include="Classes\Towers\Abstract\CannonTower.cs" />
     <Compile Include="Classes\Towers\Base.cs" />
     <Compile Include="Classes\Static Classes\Constant.cs" />

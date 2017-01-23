@@ -56,6 +56,7 @@ public class MainMenu : GameObjectList
         {
             GameEnvironment.GameStateManager.AddGameState("PlayingState", new PlayingState());
             GameEnvironment.GameStateManager.SwitchTo("PlayingState");
+            GameEnvironment.GameStateManager.SwitchTo("GameOverState");
         }
         else if (creditsButton.Pressed)
             GameEnvironment.GameStateManager.SwitchTo("CreditsState");

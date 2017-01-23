@@ -78,6 +78,20 @@ public class HighScore : GameObject
         }
     }
 
+    public bool Worthy(int score)
+    {
+        if (highScores.Count < MAXSIZE_HIGHSCORELIST)
+            return true;
+        foreach (Score s in highScores)
+        {
+            if ((new Score("", score)).greaterThan(s))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void ReadHighScores()
     {
         try
@@ -130,49 +144,47 @@ public class HighScore : GameObject
             Console.WriteLine("Kan HighScore niet wegschrijven");
         }
     }
+}
 
-    public class Score
+public class Score
+{
+    private string name;
+    private int score;
+
+    public Score(string name, int score)
     {
-        private string name;
-        private int score;
-
-        public Score(string name, int score)
-        {
-            this.name = name;
-            this.score = score;
-        }
-
-        public override string ToString()
-        {
-            return name + ": " + score;
-        }
-
-        public bool greaterThan(Score that)
-        {
-            if (this.score > that.score)
-                return true;
-            if (this.score < that.score)
-                return false;
-            if (this.name.CompareTo(that.name) == -1)
-                return true;
-            return false;
-        }
-
-        public string Name
-        {
-            get
-            {
-                return name;
-            }
-        }
-        public int Amount
-        {
-            get
-            {
-                return score;
-            }
-        }
+        this.name = name;
+        this.score = score;
     }
 
+    public override string ToString()
+    {
+        return score + " " + name;
+    }
 
+    public bool greaterThan(Score that)
+    {
+        if (this.score > that.score)
+            return true;
+        if (this.score < that.score)
+            return false;
+        if (this.name.CompareTo(that.name) == -1)
+            return true;
+        return false;
+    }
+
+    public string Name
+    {
+        get
+        {
+            return name;
+        }
+    }
+    public int Amount
+    {
+        get
+        {
+            return score;
+        }
+    }
 }
