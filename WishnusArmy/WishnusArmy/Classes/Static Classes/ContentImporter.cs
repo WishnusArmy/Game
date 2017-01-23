@@ -28,7 +28,10 @@ internal static class ContentImporter
             SPR_MAINBACKGROUND,
             SPR_GAMEOVERBACKGROUND,
             SPR_CREDITSPLANE,
+            SPR_OVERLAY,
             SPR_ENEMY,
+            SPR_CLOUD1,
+            SPR_CLOUD2,
             SPR_SHADOW,
             SPR_WHITEPIXEL,
 
@@ -65,10 +68,13 @@ internal static class ContentImporter
             SPR_MAINBACKGROUND = Content.Load<Texture2D>("Content/Sprites/MainBackground");
             SPR_CREDITSPLANE = Content.Load<Texture2D>("Content/Sprites/Credits");
             SPR_ENEMY = Content.Load<Texture2D>("Content/Sprites/enemySprite");
+            SPR_OVERLAY = Content.Load<Texture2D>("Content/Sprites/overlaybackground");
             SPR_GAMEOVERBACKGROUND = Content.Load<Texture2D>("Content/Sprites/GameOver");
             //SPR_AIRPLANE = Content.Load<Texture2D>("Content/Sprites/plane");
             SPR_WHITEPIXEL = Content.Load<Texture2D>("Content/Sprites/WhitePixel");
             SPR_SHADOW = Content.Load<Texture2D>("Content/Sprites/shadow");
+            SPR_CLOUD1 = Content.Load<Texture2D>("Content/Sprites/clouds1");
+            SPR_CLOUD2 = Content.Load<Texture2D>("Content/Sprites/clouds2");
 
             //Projectiles
             SPR_PULSE = Content.Load<Texture2D>("Content/Sprites/Projectiles/SPR_PULSE");
@@ -86,16 +92,16 @@ internal static class ContentImporter
             SPR_ROCKET_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/SPR_ROCKET_TOWER");
 
             //Tower Icons
-            SPR_CANNON_ICON = Content.Load<Texture2D>("Content/Sprites/spr_cannon_icon");
-            SPR_FLAMETHROWER_ICON = Content.Load<Texture2D>("Content/Sprites/spr_flamethrower_icon");
-            SPR_GATTLING_ICON = Content.Load<Texture2D>("Content/Sprites/spr_gattling_icon");
-            SPR_GRENADE_ICON = Content.Load<Texture2D>("Content/Sprites/spr_grenade_icon");
-            SPR_LASER_ICON = Content.Load<Texture2D>("Content/Sprites/spr_laser_icon");
-            SPR_MACHINEGUN_ICON = Content.Load<Texture2D>("Content/Sprites/spr_machinegun_icon");
-            SPR_PULSE_ICON = Content.Load<Texture2D>("Content/Sprites/spr_pulse_icon");
-            SPR_ROCKETLAUNCHER_ICON = Content.Load<Texture2D>("Content/Sprites/spr_rocketlauncher_icon");
-            SPR_SNIPER_ICON = Content.Load<Texture2D>("Content/Sprites/spr_snipertower_icon");
-            SPR_TESLACOIL_ICON = Content.Load<Texture2D>("Content/Sprites/spr_teslacoil_icon");
+            SPR_CANNON_ICON = Content.Load<Texture2D>("Content/Sprites/Icons/spr_cannon_icon");
+            SPR_FLAMETHROWER_ICON = Content.Load<Texture2D>("Content/Sprites/Icons/spr_flamethrower_icon");
+            SPR_GATTLING_ICON = Content.Load<Texture2D>("Content/Sprites/Icons/spr_gattling_icon");
+            SPR_GRENADE_ICON = Content.Load<Texture2D>("Content/Sprites/Icons/spr_grenade_icon");
+            SPR_LASER_ICON = Content.Load<Texture2D>("Content/Sprites/Icons/spr_laser_icon");
+            SPR_MACHINEGUN_ICON = Content.Load<Texture2D>("Content/Sprites/Icons/spr_machinegun_icon");
+            SPR_PULSE_ICON = Content.Load<Texture2D>("Content/Sprites/Icons/spr_pulse_icon");
+            SPR_ROCKETLAUNCHER_ICON = Content.Load<Texture2D>("Content/Sprites/Icons/spr_rocketlauncher_icon");
+            SPR_SNIPER_ICON = Content.Load<Texture2D>("Content/Sprites/Icons/spr_sniper_icon");
+            SPR_TESLACOIL_ICON = Content.Load<Texture2D>("Content/Sprites/Icons/spr_teslacoil_icon");
         }
     }
 
@@ -112,6 +118,7 @@ internal static class ContentImporter
             TEX_DIRT,
             TEX_WATER,
             TEX_FOREST,
+            TEX_FOREST_2,
             TEX_AIR,
             TEX_MOUNTAIN_1,
             TEX_MOUNTAIN_2,
@@ -130,6 +137,7 @@ internal static class ContentImporter
             TEX_DIRT = Content.Load<Texture2D>("Content/Textures/tex_dirt");
             TEX_WATER = Content.Load<Texture2D>("Content/Textures/tex_water");
             TEX_FOREST = Content.Load<Texture2D>("Content/Textures/tex_woods_tile");
+            TEX_FOREST_2 = Content.Load<Texture2D>("Content/Textures/tex_forest");
             TEX_AIR = Content.Load<Texture2D>("Content/Textures/tex_air");
             TEX_MOUNTAIN_1 = Content.Load<Texture2D>("Content/Textures/tex_mountain_1");
             TEX_MOUNTAIN_2 = Content.Load<Texture2D>("Content/Textures/tex_mountain_2");
@@ -245,6 +253,7 @@ internal static class ContentImporter
             soundManagerSFX = new SoundManager();
             //Buttons
             SND_BUTTON_BASIC = Content.Load<SoundEffect>("Content/SoundEffects/Buttons/click_basic");
+
             //Projectiles
             SND_LASER = Content.Load<SoundEffect>("Content/SoundEffects/Projectiles/laser02");
             SND_ROCKET_IMPACT = Content.Load<SoundEffect>("Content/SoundEffects/Projectiles/rocketImpact");

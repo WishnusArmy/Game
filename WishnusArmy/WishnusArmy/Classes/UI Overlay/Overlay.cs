@@ -33,14 +33,14 @@ public class Overlay : DrawOnTopList
         selected = null;
         selectedPossible = false;
         mousePos = Vector2.Zero;
-        gridSize = 64;
+        gridSize = 128;
         gridWidth = 4;
         gridHeight = 4;
         gridPos = new Vector2(450 + 2, SCREEN_SIZE.Y - OVERLAY_SIZE.Y+2);
         List<string> TowerNames = new List<string>(TOWER_INFO.Keys);
         for(int i=0; i<TowerNames.Count; ++i)
         {
-            Add(new OverlayTowerItem(TowerNames[i], gridPos + new Vector2(gridSize * (i%gridWidth), gridSize * (i/gridWidth))));
+            Add(new OverlayTowerItem(TowerNames[i], gridPos + new Vector2(gridSize*3*i, 16)));
         }
         Add(TowerInfo = new OverlayTowerInfo { Position = new Vector2(5, SCREEN_SIZE.Y - OVERLAY_SIZE.Y) });
         Add(new MiniMap());
@@ -83,9 +83,11 @@ public class Overlay : DrawOnTopList
             obj.Position = node.Position + new Vector2(NODE_SIZE.X / 2, 0); //Adjust the position to the middle of the GridNode
             plane.Add(obj); //Add it to the hierarchy
             obj.MyParticleControl.AddTowerBuildGlow(obj.Position); //Add particle effect
-            EcResources -= selected.cost; //Subract its cost from the resources
-            if(!inputHelper.IsKeyDown(Keys.LeftShift) || selected.cost > EcResources) //allow shift-clicking multiple towers
+            EcResources -= selected.cost; //Subtract its cost from the resources
+            if (!inputHelper.IsKeyDown(Keys.LeftShift) || selected.cost > EcResources) //allow shift-clicking multiple towers
+            {
                 selected = null; //Reset the selected object reference
+            }
         }
 
         if (inputHelper.KeyPressed(Keys.X) && selected != null)
@@ -96,7 +98,8 @@ public class Overlay : DrawOnTopList
     {
         //Draw the background
         //DrawRectangleFilled(new Rectangle(new Point(SCREEN_SIZE.X - OVERLAY_SIZE.X, 0), new Point(OVERLAY_SIZE.X, SCREEN_SIZE.Y)), spriteBatch, Color.Black, 0.4f);
-        DrawRectangleFilled(new Rectangle(new Point(0, SCREEN_SIZE.Y - OVERLAY_SIZE.Y), new Point(SCREEN_SIZE.X, OVERLAY_SIZE.Y)), spriteBatch, Color.DarkGray, 1f);
+        spriteBatch.Draw(SPR_OVERLAY, new Rectangle(new Point(0, SCREEN_SIZE.Y - OVERLAY_SIZE.Y - 24), new Point(SCREEN_SIZE.X, OVERLAY_SIZE.Y +24)), Color.White);
+        //DrawRectangleFilled(new Rectangle(new Point(20, SCREEN_SIZE.Y - OVERLAY_SIZE.Y), new Point(SCREEN_SIZE.X-45, OVERLAY_SIZE.Y-20)), spriteBatch, Color.DarkGray, 1f);
         if (selected != null)
         {
             if (node != null)
@@ -107,19 +110,20 @@ public class Overlay : DrawOnTopList
         }
 
         //draw gamestats
-        spriteBatch.Draw(ICON_WAVE, new Rectangle(new Point(2,5), new Point(40, 40)), Color.White);
+        spriteBatch.Draw(ICON_WAVE, new Rectangle(new Point(5,9), new Point(40, 28)), Color.White);
         DrawText(spriteBatch, FNT_GAMESTATS, "Wave " +Wave.ToString(), new Vector2(55, 7), Color.White);
 
-        spriteBatch.Draw(ICON_KILLS,new Rectangle(new Point(0, 55),new Point(40, 50)), Color.White);
+        spriteBatch.Draw(ICON_KILLS,new Rectangle(new Point(3, 52),new Point(40, 50)), Color.White);
         DrawText(spriteBatch, FNT_GAMESTATS, TotalEnemiesKilled.ToString(), new Vector2(55, 62), Color.White);
 
-        spriteBatch.Draw(ICON_COINS, new Rectangle(new Point(0,116), new Point(40, 50)), Color.White);
+        spriteBatch.Draw(ICON_COINS, new Rectangle(new Point(3,113), new Point(40, 50)), Color.White);
         DrawText(spriteBatch, FNT_GAMESTATS, EcResources.ToString(), new Vector2(55, 114), Color.White);
 
-        spriteBatch.Draw(ICON_LIFE, new Rectangle(new Point(0, 177), new Point(40, 40)), Color.White);
+        spriteBatch.Draw(ICON_LIFE, new Rectangle(new Point(3, 174), new Point(40, 40)), Color.White);
         DrawText(spriteBatch, FNT_GAMESTATS, BaseHealth.ToString() +"/"+ MaxBaseHealth.ToString(), new Vector2(55, 170), Color.White);
-        
-        DrawGrid(spriteBatch);
+
+        //
+        //DrawGrid(spriteBatch);
 
         //Draw the WaveTime
         if (!GameStats.InWave)
@@ -141,6 +145,18 @@ public class Overlay : DrawOnTopList
         for (int y = 0; y < gridHeight; ++y)
         {
             DrawLine(spriteBatch, gridPos + new Vector2(0, gridSize * y), gridPos + new Vector2(gridSize * gridWidth, gridSize * y), Color.Black, 2, 0.4f);
+        }
+    }
+
+    public bool Busy
+    {
+        get
+        {
+            if (node == null)
+                return true;
+            if (TowerInfo.tower != null)
+                return (selected != null && !node.beacon);
+            return selected != null;
         }
     }
 }

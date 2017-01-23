@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using static Constant;
 using static ContentImporter.Textures;
 using Microsoft.Xna.Framework.Graphics;
+using WishnusArmy.Classes.Enemies.Air;
 
 public class Camera : GameObjectList
 {
@@ -57,10 +58,17 @@ public class Camera : GameObjectList
                 {
                     tex = Functions.choose(new List<int> { 2, 7, 8 });
                 }
+                if (tex == 5)
+                {
+                    tex = Functions.choose(new List<int> { 5, 9 });
+                }
                 Land.grid[x, y].texture = tex;
             }
         }
         currentPlane.Add(new EnemySpawner(currentPlane)); // The grid must be finished
+
+        for (int i = 1; i <= 5; i+=2)
+            currentPlane.Add(new Clouds(new Vector2(-1500/i, SCREEN_SIZE.Y + 1800/i)));
     }
 
     public override void Update(object gameTime)
@@ -73,7 +81,10 @@ public class Camera : GameObjectList
         }
 
         if (GameStats.BaseHealth < 0)
+        {
+            GameEnvironment.GameStateManager.AddGameState("GameOverState", new GameOverState());
             GameEnvironment.GameStateManager.SwitchTo("GameOverState");
+        }
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -94,12 +105,12 @@ public class Camera : GameObjectList
         if (inputHelper.ScrollUp() || inputHelper.IsKeyDown(Keys.Q))
         {
             if (scale.X < 1f)
-                scale *= new Vector2(1.04f);
+                scale *= new Vector2(1.02f);
         }
         if (inputHelper.ScrollDown() || inputHelper.IsKeyDown(Keys.A))
         {
             if ((LEVEL_SIZE.X * NODE_SIZE.X * scale.X > GAME_WINDOW_SIZE.X + 96))
-                scale *= new Vector2(1 / 1.04f);
+                scale *= new Vector2(1 / 1.02f);
         }
         Vector2 dScale = scale - oldScale;
         position -= (position + (SCREEN_SIZE.toVector())) * dScale/oldScale;

@@ -45,7 +45,6 @@ public abstract partial class Enemy : IsometricMovingGameObject
         pathIndex = 0;
         maxHealth = EnemyHealth(type);
         _health = (int)maxHealth;
-        killReward = EnemyRewardMoney(type);
     }
 
     public void dealDamage(double damage, Tower.Type type)
@@ -80,6 +79,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
                 kill = true;
                 TotalEnemiesKilled++;
                 GameStats.EcResources += killReward;
+                GameStats.totalResourcesGathered += killReward;
                 //PlaySound(SND_WILHELM_SCREAM);
             }
         }
