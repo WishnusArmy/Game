@@ -60,7 +60,7 @@ public class GameEnvironment : Game
 
     public bool FullScreen
     {
-        get { return graphics.IsFullScreen; }
+        get { return Window.IsBorderless; }
         set
         {
             ApplyResolutionSettings(value);
@@ -73,14 +73,18 @@ public class GameEnvironment : Game
         {
             graphics.PreferredBackBufferWidth = windowSize.X;
             graphics.PreferredBackBufferHeight = windowSize.Y;
+            Window.Position = (Constant.SCREEN_SIZE - windowSize) / new Point(2);
             graphics.IsFullScreen = false;
+            Window.IsBorderless = false;
             graphics.ApplyChanges();
         }
         else
         {
             graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-            graphics.IsFullScreen = true;
+            //graphics.IsFullScreen = true;
+            Window.Position = Point.Zero;
+            Window.IsBorderless = true;
             graphics.ApplyChanges();
         }
 

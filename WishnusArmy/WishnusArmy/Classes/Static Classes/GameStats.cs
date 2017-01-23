@@ -18,15 +18,27 @@ internal static class GameStats
     public static int MaxBaseHealth;
     public static int BaseHealth;
     public static int EcResources;
+    public static int totalResourcesGathered;
+    public static HighScore highScore;
 
     public static void Initialize()
     {
         EcResources = 500;
+        totalResourcesGathered = 0;
         MaxBaseHealth = 500;
         BaseHealth = MaxBaseHealth;
         Wave = 0;
         InWave = true;
         WaveTimer = 0;
         TotalEnemiesKilled = 0;
+        highScore = new HighScore();
+    }
+
+    public static int FinalScore
+    {
+        get
+        {
+            return TotalEnemiesKilled * 10 + Wave * 200 + totalResourcesGathered; ;
+        }
     }
 }

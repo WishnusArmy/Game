@@ -110,16 +110,16 @@ public class Overlay : DrawOnTopList
         }
 
         //draw gamestats
-        spriteBatch.Draw(ICON_WAVE, new Rectangle(new Point(2,5), new Point(40, 40)), Color.White);
+        spriteBatch.Draw(ICON_WAVE, new Rectangle(new Point(5,9), new Point(40, 28)), Color.White);
         DrawText(spriteBatch, FNT_GAMESTATS, "Wave " +Wave.ToString(), new Vector2(55, 7), Color.White);
 
-        spriteBatch.Draw(ICON_KILLS,new Rectangle(new Point(0, 55),new Point(40, 50)), Color.White);
+        spriteBatch.Draw(ICON_KILLS,new Rectangle(new Point(3, 52),new Point(40, 50)), Color.White);
         DrawText(spriteBatch, FNT_GAMESTATS, TotalEnemiesKilled.ToString(), new Vector2(55, 62), Color.White);
 
-        spriteBatch.Draw(ICON_COINS, new Rectangle(new Point(0,116), new Point(40, 50)), Color.White);
+        spriteBatch.Draw(ICON_COINS, new Rectangle(new Point(3,113), new Point(40, 50)), Color.White);
         DrawText(spriteBatch, FNT_GAMESTATS, EcResources.ToString(), new Vector2(55, 114), Color.White);
 
-        spriteBatch.Draw(ICON_LIFE, new Rectangle(new Point(0, 177), new Point(40, 40)), Color.White);
+        spriteBatch.Draw(ICON_LIFE, new Rectangle(new Point(3, 174), new Point(40, 40)), Color.White);
         DrawText(spriteBatch, FNT_GAMESTATS, BaseHealth.ToString() +"/"+ MaxBaseHealth.ToString(), new Vector2(55, 170), Color.White);
 
         //

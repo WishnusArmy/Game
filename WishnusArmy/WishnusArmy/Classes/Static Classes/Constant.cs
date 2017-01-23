@@ -31,6 +31,9 @@ internal static class Constant
     internal static readonly Point LEVEL_SIZE = new Point(60, 120); //The size of the level grid
     internal static readonly Vector2 LEVEL_CENTER = new Vector2(LEVEL_SIZE.X * NODE_SIZE.X, LEVEL_SIZE.Y / 2 * NODE_SIZE.Y) / 2;
 
+    //HIGHSCORE
+    internal const int MAXSIZE_HIGHSCORELIST = 10;
+
     //CAMERA
     internal const int SLIDE_BORDER = 10; //Defines the width of the edge that will respond to the mouse.
     internal const int SLIDE_SPEED = 10; //The speed at which the window slides.
@@ -53,11 +56,11 @@ internal static class Constant
         switch (type)
         {
             case Tower.Type.RocketTower:
-                return (int)(55 + 20 * s);
+                return (int)(55 + 22 * s);
             case Tower.Type.LaserTower:
                 return (int)(4 + 1.5 * s);
             case Tower.Type.PulseTower:
-            	return (int)(50 + 25*s);
+            	return (int)(75 + 35 * s);
             case Tower.Type.Base:
                 return (int)(50 * Math.Pow(1.2, GameStats.Wave));
             default:
@@ -85,11 +88,11 @@ internal static class Constant
         switch (type)
         {
             case Tower.Type.RocketTower:
-                return (int)(100 - 10 * s);
+                return (int)(120 - 10 * s);
             case Tower.Type.LaserTower:
                 return (int)(10 - 1.5 * s);
             case Tower.Type.PulseTower:
-                return (int)(200 - 25 * s);
+                return (int)(200 - 30 * s);
             case Tower.Type.Base:
                 return 200;
             default:
@@ -102,11 +105,11 @@ internal static class Constant
         switch (type)
         {
             case Tower.Type.RocketTower:
-                return 150;
+                return 130;
             case Tower.Type.LaserTower:
-                return 50;
+                return 60;
             case Tower.Type.PulseTower:
-                return 250;
+                return 200;
             case Tower.Type.Base:
                 return 250;
             default:
@@ -126,7 +129,7 @@ internal static class Constant
     public static readonly Dictionary<string, TowerInfo> TOWER_INFO = new Dictionary<string, TowerInfo>()
     {
         { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 100, sprite = SPR_LASER_TOWER, icon = SPR_LASER_ICON, range = TowerRange(Tower.Type.LaserTower, new int[] {0,0,0})} },
-        { "RocketTower", new TowerInfo() { name = "Rocket Tower", cost = 250, sprite = SPR_ROCKET_TOWER, icon = SPR_ROCKETLAUNCHER_ICON, range = TowerRange(Tower.Type.RocketTower, new int[] {0,0,0}) } },
+        { "RocketTower", new TowerInfo() { name = "Rocket Tower", cost = 200, sprite = SPR_ROCKET_TOWER, icon = SPR_ROCKETLAUNCHER_ICON, range = TowerRange(Tower.Type.RocketTower, new int[] {0,0,0}) } },
         { "PulseTower", new TowerInfo() { name = "PulseTower", cost = 600, sprite = SPR_PULSE_TOWER, icon = SPR_PULSE_ICON, range = TowerRange(Tower.Type.PulseTower, new int[] {0,0,0}) } },
     };
 
@@ -134,7 +137,7 @@ internal static class Constant
     //ENEMIES
     internal static int EnemyHealthFunction(double mod)
     {
-        return (int)(mod * 100 * Math.Sqrt(GameStats.Wave));
+        return (int)(mod * (100 * Math.Sqrt(GameStats.Wave)) + mod * (0.2 * GameStats.Wave * GameStats.Wave * GameStats.Wave));
     }
 
     /// <summary>
@@ -150,9 +153,9 @@ internal static class Constant
             case Enemy.Type.Soldier:
                 return EnemyHealthFunction(0.6);
             case Enemy.Type.Helicopter:
-                return EnemyHealthFunction(1.5);
+                return EnemyHealthFunction(1.1);
             case Enemy.Type.Airplane:
-                return EnemyHealthFunction(2.6);
+                return EnemyHealthFunction(2.3);
             default:
                 return EnemyHealthFunction(1);
         }
