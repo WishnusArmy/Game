@@ -70,7 +70,7 @@ public class LevelGenerator : GameObject
                 if (RANDOM.Next(100) < initialRatio)
                 {
                     //Keep the center, as well as a horizontal and vertical line through the middle of the grid clear of special tiles during distribution
-                    if ((x < LEVEL_SIZE.X / 2 - 5) || (x > LEVEL_SIZE.X / 2 + 5) || (y < LEVEL_SIZE.Y / 2 - 10) || (y > LEVEL_SIZE.Y / 2 + 10))
+                    if ((x < LEVEL_SIZE.X / 2 - 3) || (x > LEVEL_SIZE.X / 2 + 3) || (y < LEVEL_SIZE.Y / 2 - 6) || (y > LEVEL_SIZE.Y / 2 + 6))
                     {
                         if ((x != LEVEL_SIZE.X / 2) && (y != LEVEL_SIZE.Y / 2))
                         {
@@ -143,7 +143,7 @@ public class LevelGenerator : GameObject
             for (int y = 2; y < LEVEL_SIZE.Y - 2; y++)
             {
                 //Keep the center, as well as a horizontal and vertical line through the middle of the grid clear of special tiles
-                if ((x < LEVEL_SIZE.X / 2 - 5) || (x > LEVEL_SIZE.X / 2 + 5) || (y < LEVEL_SIZE.Y / 2 - 10) || (y > LEVEL_SIZE.Y / 2 + 10))
+                if ((x < LEVEL_SIZE.X / 2 - 3) || (x > LEVEL_SIZE.X / 2 + 3) || (y < LEVEL_SIZE.Y / 2 - 6) || (y > LEVEL_SIZE.Y / 2 + 6))
                 {
                     if ((x != LEVEL_SIZE.X / 2) && (y != LEVEL_SIZE.Y / 2))
                     {
