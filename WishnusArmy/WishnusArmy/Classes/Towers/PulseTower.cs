@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using static ContentImporter.Sprites;
+using static ContentImporter.Sounds;
 using static Constant;
 
 class PulseTower : Tower
@@ -21,6 +22,7 @@ class PulseTower : Tower
         if(canShoot && target != null)
         {
             Add(new Pulse(TowerDamage(type, stats), TowerRange(type, stats), enemies));
+            PlaySound(SND_PULSE);
         }
     }
 }
