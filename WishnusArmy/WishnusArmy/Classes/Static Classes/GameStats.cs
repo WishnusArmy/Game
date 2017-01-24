@@ -27,7 +27,7 @@ internal static class GameStats
         totalResourcesGathered = 0;
         MaxBaseHealth = 500;
         BaseHealth = MaxBaseHealth;
-        Wave = 500;
+        Wave = 0;
         InWave = true;
         WaveTimer = 0;
         TotalEnemiesKilled = 0;
