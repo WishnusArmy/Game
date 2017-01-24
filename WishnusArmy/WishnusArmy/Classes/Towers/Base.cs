@@ -32,7 +32,6 @@ public class Base : GameObjectList
         healthColor = new Color(0, 255, 0);
         this.cannonTexture = SPR_BASEGUN;
         this.baseTexture = SPR_BASE;
-
     }
 
     public bool canShoot
@@ -57,7 +56,7 @@ public class Base : GameObjectList
             myNodes.AddRange(myNodes[0].ExtendedNeighbours);
         }
         hover = false;
-        foreach(GridNode  node in myNodes)
+        foreach(GridNode node in myNodes)
         {
             if (node.selected)
                 hover = true;
@@ -89,8 +88,8 @@ public class Base : GameObjectList
         rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
         if (inputHelper.MouseLeftButtonDown() && inputHelper.MouseInGameWindow && canShoot)
         {
-            Overlay ol = GameWorld.FindByType<Overlay>()[0] as Overlay;
-            if (!ol.Busy)
+            Overlay overlay = GameWorld.FindByType<Overlay>()[0] as Overlay;
+            if (!overlay.Busy)
             {
                 MyPlane.Add(new BaseProjectile(TowerDamage(Tower.Type.Base, stats), speed) { Position = position });
                 timer = TowerRate(type, stats);

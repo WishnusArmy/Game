@@ -32,12 +32,11 @@ class ResourceTower : Tower
             return;
         timer = 0;
         GatherResources();
-
     }
 
     private void GatherResources()
     {
-        int resource = (int)TowerDamage(type, stats);
+        int resource = (int)TowerDamage(type, stats) + stats[1]*2;
         GameStats.EcResources += resource;
         GameStats.totalResourcesGathered += resource;
         if (healthText == null || healthText.p > 0.7f)
@@ -48,8 +47,7 @@ class ResourceTower : Tower
             MyPlane.Add(healthText);
         }
     }
-
-
+    
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
