@@ -32,7 +32,6 @@ public class Base : GameObjectList
         healthColor = new Color(0, 255, 0);
         this.cannonTexture = SPR_BASEGUN;
         this.baseTexture = SPR_BASE;
-        damage = (TowerDamage(Tower.Type.Base, stats));
     }
 
     public bool canShoot
@@ -42,7 +41,6 @@ public class Base : GameObjectList
 
     public override void Update(object gameTime)
     {
-
         if (canShoot)
             baseTexture = SPR_BASE;
         else
@@ -88,12 +86,12 @@ public class Base : GameObjectList
         double opposite = targetPos.Y - GlobalPosition.Y;
         double adjacent = targetPos.X - GlobalPosition.X;
         rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
-        if (inputHelper.MouseLeftButtonPressed() && inputHelper.MouseInGameWindow && canShoot)
+        if (inputHelper.MouseLeftButtonDown() && inputHelper.MouseInGameWindow && canShoot)
         {
             Overlay overlay = GameWorld.FindByType<Overlay>()[0] as Overlay;
             if (!overlay.Busy)
             {
-                MyPlane.Add(new BaseProjectile(damage, speed) { Position = position });
+                MyPlane.Add(new BaseProjectile(TowerDamage(Tower.Type.Base, stats), speed) { Position = position });
                 timer = TowerRate(type, stats);
             }
         }
