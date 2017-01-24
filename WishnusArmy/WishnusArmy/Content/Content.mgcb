@@ -1038,3 +1038,15 @@
 /processorParam:TextureFormat=Color
 /build:Content/Sprites/Icons/spr_resourcegather_icon.png
 
+#begin Content/SoundEffects/Projectiles/pulse.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Content/SoundEffects/Projectiles/pulse.wav
+
+#begin Content/SoundEffects/towerplacement.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Content/SoundEffects/towerplacement.wav
+
