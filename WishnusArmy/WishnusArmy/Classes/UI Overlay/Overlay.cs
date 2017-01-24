@@ -11,6 +11,7 @@ using static DrawingHelper;
 using static ContentImporter.Fonts;
 using static ContentImporter.Sprites;
 using static ContentImporter.Icons;
+using static ContentImporter.Sounds;
 using static Functions;
 using static GameStats;
 
@@ -89,6 +90,8 @@ public class Overlay : DrawOnTopList
             plane.Add(obj); //Add it to the hierarchy
             obj.MyParticleControl.AddTowerBuildGlow(obj.Position); //Add particle effect
             EcResources -= selected.cost; //Subtract its cost from the resources
+            PlaySound(SND_TOWERPLACE);
+
             if (!inputHelper.IsKeyDown(Keys.LeftShift) || selected.cost > EcResources) //allow shift-clicking multiple towers
             {
                 selected = null; //Reset the selected object reference

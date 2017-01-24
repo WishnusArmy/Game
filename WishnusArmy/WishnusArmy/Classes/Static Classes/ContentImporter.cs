@@ -251,8 +251,12 @@ internal static class ContentImporter
             //Buttons
             SND_BUTTON_BASIC,
 
+            //Tower placement
+            SND_TOWERPLACE,
+
             //Projectiles
             SND_ROCKET_IMPACT,
+            SND_PULSE,
             SND_LASER,
             SND_EXPLOSION,
 
@@ -266,9 +270,13 @@ internal static class ContentImporter
             //Buttons
             SND_BUTTON_BASIC = Content.Load<SoundEffect>("Content/SoundEffects/Buttons/click_basic");
 
+            //Tower placement
+            SND_TOWERPLACE = Content.Load<SoundEffect>("Content/SoundEffects/towerplacement");
+
             //Projectiles
             SND_LASER = Content.Load<SoundEffect>("Content/SoundEffects/Projectiles/laser02");
             SND_ROCKET_IMPACT = Content.Load<SoundEffect>("Content/SoundEffects/Projectiles/rocketImpact");
+            SND_PULSE = Content.Load<SoundEffect>("Content/SoundEffects/Projectiles/pulse");
             SND_EXPLOSION = Content.Load<SoundEffect>("Content/SoundEffects/Projectiles/explosion");
 
             //Enemies
