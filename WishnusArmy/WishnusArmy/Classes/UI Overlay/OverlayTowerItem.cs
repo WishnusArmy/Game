@@ -82,9 +82,8 @@ public class OverlayTowerItem : GameObject
 
     public void DrawInfo(SpriteBatch spriteBatch, GameTime gameTime)
     {
-        Vector2 size = new Vector2(250, 400); //The size of the overlay rectangle
-        Vector2 offset = new Vector2(SCREEN_SIZE.X - OVERLAY_SIZE.X - size.X, 0); //The position of the overlay rectangle
-        DrawRectangleFilled(new Rectangle((int)offset.X, (int)offset.Y, (int)size.X, (int)size.Y), spriteBatch, Color.Black, 0.3f); //Draw the rectangle
+        Vector2 size = new Vector2(250, 20); //The size of the overlay rectangle
+        Vector2 offset = new Vector2(SCREEN_SIZE.X - 525 - size.X, SCREEN_SIZE.Y - 165); //The position of the overlay rectangle
         SpriteFont font = FNT_OVERLAY_INFO; //Reference a uniform font
         int lineHeight = (int)font.MeasureString("#").Y + 4; //Measure it to define line height
         DrawText(spriteBatch, font, name, offset + new Vector2(20, 20), Color.White); //Draw the name of the object

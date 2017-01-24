@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using static Constant;
 
 public class EnemySpawner : GameObjectList
@@ -76,7 +77,7 @@ public class EnemySpawner : GameObjectList
             if (AllDeath && GameStats.InWave && resources <= 0)
             {
                 GameStats.InWave = false;
-                GameStats.WaveTimer = 5 * 60;
+                GameStats.WaveTimer = 10 * 60;
             }
         }
 
@@ -90,6 +91,17 @@ public class EnemySpawner : GameObjectList
 
                 resources = (int)(500 + 2*Math.Pow(x, (Math.Sqrt(x / 100) + 1)) + 400 * (float)Math.Sqrt(x));
             }
+        }
+    }
+
+    public override void HandleInput(InputHelper inputHelper)
+    {
+        if (!GameStats.InWave && inputHelper.KeyPressed(Keys.Enter))
+        {
+            GameStats.InWave = true;
+            int x = GameStats.Wave++;
+
+            resources = (int)(500 + 2 * Math.Pow(x, (Math.Sqrt(x / 100) + 1)) + 400 * (float)Math.Sqrt(x));
         }
     }
 }

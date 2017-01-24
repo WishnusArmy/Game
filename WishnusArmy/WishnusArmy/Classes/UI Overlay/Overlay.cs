@@ -96,8 +96,7 @@ public class Overlay : DrawOnTopList
             {
                 selected = null; //Reset the selected object reference
             }
-
-        }
+}
 
         //Cancel the current selection with X or right click
         if (inputHelper.KeyPressed(Keys.X) && selected != null || inputHelper.MouseRightButtonPressed() && selected != null)
@@ -140,6 +139,7 @@ public class Overlay : DrawOnTopList
         if (!GameStats.InWave)
         {
             DrawText(spriteBatch, FNT_MENU, "Next wave in: " + (int)(GameStats.WaveTimer / 60), GAME_WINDOW_SIZE.toVector() / 2, Color.White, true);
+            DrawText(spriteBatch, FNT_MENU, "Press enter to call wave early", GAME_WINDOW_SIZE.toVector() / 2 + new Vector2(0, 50), Color.White, true);
         }
 
         base.Draw(gameTime, spriteBatch);

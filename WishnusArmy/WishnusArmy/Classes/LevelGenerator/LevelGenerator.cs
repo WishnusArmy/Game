@@ -12,7 +12,7 @@ using static ContentImporter.Textures;
 
 public class LevelGenerator : GameObject
 {
-    int[,] landGrid = new int[LEVEL_SIZE.X, LEVEL_SIZE.Y], airGrid = new int[LEVEL_SIZE.X, LEVEL_SIZE.Y];
+    int[,] landGrid = new int[LEVEL_SIZE.X, LEVEL_SIZE.Y];
     bool[,] distributionGrid = new bool[LEVEL_SIZE.X, LEVEL_SIZE.Y], tempGrid = new bool[LEVEL_SIZE.X, LEVEL_SIZE.Y];
 
     public LevelGenerator() : base()
@@ -20,7 +20,7 @@ public class LevelGenerator : GameObject
         GenerateNewLevel();
     }
 
-    //Generate the grid that makes up the playing fields
+    //Generate the grid that makes up the playing field
     public List<int[,]> GenerateNewLevel()
     {
         ClearGrid();
@@ -41,7 +41,6 @@ public class LevelGenerator : GameObject
             for (int y = 0; y < LEVEL_SIZE.Y; y++)
             {
                 landGrid[x, y] = 0;
-                airGrid[x, y] = 0;
             }
         }
     }
