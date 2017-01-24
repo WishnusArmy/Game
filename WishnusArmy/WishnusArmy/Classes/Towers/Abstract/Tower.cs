@@ -25,12 +25,15 @@ public abstract class Tower : GameObjectList
     {
         get
         {
+            /*
             if (!gotEnemies)
             {
                 Tower._enemies = MyPlane.FindByType<Enemy>();
                 gotEnemies = true;
             }
             return Tower._enemies;
+            */
+           return allEnemies;
         }
     }
 
@@ -38,6 +41,7 @@ public abstract class Tower : GameObjectList
 
     public Tower(Type type) : base()
     {
+
         this.type = type;
         stats = new int[] {0, 0, 0}; // damage, range, rate
         timer = 0;

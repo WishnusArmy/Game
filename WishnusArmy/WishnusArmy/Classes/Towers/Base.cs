@@ -43,6 +43,7 @@ public class Base : GameObjectList
 
     public override void Update(object gameTime)
     {
+        allEnemies = GameWorld.FindByType<Enemy>();
         if (canShoot)
             cannonColor = Color.White;
         else

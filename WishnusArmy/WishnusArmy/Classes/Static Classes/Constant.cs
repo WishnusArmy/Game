@@ -43,6 +43,9 @@ internal static class Constant
     internal const int LASER_TIME = 4;
     internal const int BULLET_SPEED = 10;
 
+    //ENEMYLIST
+    internal static List<Enemy> allEnemies = new List<Enemy>();
+
     //TOWERS
     private static double Efunction(double max, double slope)
     {
@@ -135,6 +138,7 @@ internal static class Constant
 
 
     //ENEMIES
+
     internal static int EnemyHealthFunction(double mod)
     {
         return (int)(mod * (100 * Math.Sqrt(GameStats.Wave)) + mod * (0.2 * GameStats.Wave * GameStats.Wave * GameStats.Wave));
