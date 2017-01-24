@@ -45,6 +45,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
         pathIndex = 0;
         maxHealth = EnemyHealth(type);
         _health = (int)maxHealth;
+        //allEnemies.Add(this);
     }
 
     public void dealDamage(double damage, Tower.Type type)

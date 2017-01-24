@@ -80,7 +80,7 @@ public class Camera : GameObjectList
             planes[i].Update(gameTime);
         }
 
-        if (GameStats.BaseHealth < 0)
+        if (GameStats.BaseHealth <= 0)
         {
             GameEnvironment.GameStateManager.AddGameState("GameOverState", new GameOverState());
             GameEnvironment.GameStateManager.SwitchTo("GameOverState");

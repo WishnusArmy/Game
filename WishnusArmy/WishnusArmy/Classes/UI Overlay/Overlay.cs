@@ -96,8 +96,7 @@ public class Overlay : DrawOnTopList
             {
                 selected = null; //Reset the selected object reference
             }
-
-        }
+}
 
         //Cancel the current selection with X or right click
         if (inputHelper.KeyPressed(Keys.X) && selected != null || inputHelper.MouseRightButtonPressed() && selected != null)

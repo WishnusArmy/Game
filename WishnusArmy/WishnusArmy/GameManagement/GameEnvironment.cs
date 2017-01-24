@@ -138,7 +138,7 @@ public class GameEnvironment : Game
         {
             soundManager.PlayMusic("default");
         }
-        
+
     }
 
     protected override void Draw(GameTime gameTime)
