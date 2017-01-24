@@ -12,7 +12,7 @@ using static Constant;
 
 public class OverlayTowerItem : GameObject
 {
-    public Texture2D icon;
+    public Texture2D icon, sprite;
     public string itemType;
     public int cost, range;
     public string name;
@@ -33,6 +33,7 @@ public class OverlayTowerItem : GameObject
         cost = TOWER_INFO[itemType].cost;
         name = TOWER_INFO[itemType].name;
         range = TOWER_INFO[itemType].range;
+        sprite = TOWER_INFO[itemType].sprite;
 
         Position = pos;
     }
