@@ -17,7 +17,7 @@ public class Tank : EnemyLand
         this.speed = (2.0f + (0.1f * GameStats.Wave));
         weakness = Tower.Type.RocketTower;
         strongness = Tower.Type.LaserTower;
-        killReward = 30 + GameStats.Wave;
+        killReward = 30 + 3*GameStats.Wave;
         cost = 100;
     }
 }
