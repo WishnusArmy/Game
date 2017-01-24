@@ -41,7 +41,7 @@ public class Overlay : DrawOnTopList
         List<string> TowerNames = new List<string>(TOWER_INFO.Keys);
         for(int i=0; i<TowerNames.Count; ++i)
         {
-            Add(new OverlayTowerItem(TowerNames[i], gridPos + new Vector2(gridSize*i, 16)));
+            Add(new OverlayTowerItem(TowerNames[i], gridPos + new Vector2((gridSize+40)*i, 16)));
         }
         Add(TowerInfo = new OverlayTowerInfo { Position = new Vector2(5, SCREEN_SIZE.Y - OVERLAY_SIZE.Y) });
         Add(new MiniMap());

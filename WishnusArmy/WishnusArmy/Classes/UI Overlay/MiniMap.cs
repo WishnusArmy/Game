@@ -89,7 +89,7 @@ class MiniMap : DrawOnTop
                 if (grid[x, y].solid)
                 {
                     position = new Point((int)((double)minimapSize.X * (double)((double)x / (double)LEVEL_SIZE.X)), (int)((double)minimapSize.Y * (double)((double)y / (double)LEVEL_SIZE.Y)));
-                    DrawRectangleFilled(new Rectangle(overlayPosition + position, tileSize), spriteBatch, Color.Black, 1f);
+                    DrawRectangleFilled(new Rectangle(overlayPosition + position, tileSize), spriteBatch, Color.Black, 0.2f);
                 }
             }
         }
