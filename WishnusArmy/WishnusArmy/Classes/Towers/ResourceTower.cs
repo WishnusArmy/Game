@@ -32,7 +32,6 @@ class ResourceTower : Tower
             return;
         timer = 0;
         GatherResources();
-
     }
 
     private void GatherResources()
@@ -48,8 +47,7 @@ class ResourceTower : Tower
             MyPlane.Add(healthText);
         }
     }
-
-
+    
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
