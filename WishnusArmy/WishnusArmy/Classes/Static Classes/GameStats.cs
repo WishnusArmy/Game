@@ -23,14 +23,14 @@ internal static class GameStats
 
     public static void Initialize()
     {
-        EcResources = 502786320;
+        EcResources = 500;
         totalResourcesGathered = 0;
-        MaxBaseHealth = -500;
+        MaxBaseHealth = 500;
         BaseHealth = MaxBaseHealth;
-        Wave = 69;
+        Wave = 0;
         InWave = true;
         WaveTimer = 0;
-        TotalEnemiesKilled = 420420;
+        TotalEnemiesKilled = 0;
         highScore = new HighScore();
     }
 
