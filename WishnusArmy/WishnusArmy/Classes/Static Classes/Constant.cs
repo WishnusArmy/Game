@@ -43,6 +43,9 @@ internal static class Constant
     internal const int LASER_TIME = 4;
     internal const int BULLET_SPEED = 10;
 
+    //ENEMYLIST
+    internal static List<Enemy> allEnemies = new List<Enemy>();
+
     //TOWERS
     private static double Efunction(double max, double slope)
     {
@@ -62,7 +65,7 @@ internal static class Constant
             case Tower.Type.PulseTower:
             	return (int)(75 + 35 * s);
             case Tower.Type.Base:
-                return (int)(50 * Math.Pow(1.2, GameStats.Wave));
+                return (int)(50 * Math.Pow(1.40, GameStats.Wave));
             case Tower.Type.ResourceTower:
                 return (int)(20 + 5 * s);
             default:
@@ -96,7 +99,7 @@ internal static class Constant
             case Tower.Type.PulseTower:
                 return (int)(200 - 30 * s);
             case Tower.Type.Base:
-                return 200;
+                return (int)(200 * Math.Pow(0.9, GameStats.Wave));
             case Tower.Type.ResourceTower:
                 return (800 - s * 40);
             default:
@@ -142,6 +145,7 @@ internal static class Constant
 
 
     //ENEMIES
+
     internal static int EnemyHealthFunction(double mod)
     {
         return (int)(mod * (100 * Math.Sqrt(GameStats.Wave)) + mod * (0.2 * GameStats.Wave * GameStats.Wave * GameStats.Wave));

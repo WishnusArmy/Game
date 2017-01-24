@@ -18,7 +18,7 @@ public class Base : GameObjectList
     Tower.Type type;
     int[] stats = new int[] { 0, 0, 0 };
     double damage = 50;
-    float speed = 10;
+    float speed = 15;
     Color healthColor;
     float rotation;
     Texture2D cannonTexture, baseTexture;

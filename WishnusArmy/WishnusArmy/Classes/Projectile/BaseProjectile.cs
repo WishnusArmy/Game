@@ -36,7 +36,7 @@ class BaseProjectile : DrawOnTop
         {
             Kill = true;
         }
-        if (shooting && CalculateDistance(GlobalPosition, targetPos) < 10)
+        if (shooting && CalculateDistance(GlobalPosition, targetPos) < 15)
         {
             Explode();
             PlaySound(SND_EXPLOSION);
