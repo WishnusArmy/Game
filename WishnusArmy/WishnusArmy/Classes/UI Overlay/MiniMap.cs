@@ -118,12 +118,14 @@ class MiniMap : DrawOnTop
             pos = e.Position;
             if (pos.X < - NODE_SIZE.X/4 || pos.Y < -NODE_SIZE.X/4 || pos.X > realMapSize+NODE_SIZE.X/4 || pos.Y > (realMapSize/2)+ NODE_SIZE.Y/4)
                 continue;
-            if(e is Tank)
+            if (e is Tank)
                 spriteBatch.Draw(TEX_DOT, new Rectangle(overlayPosition + toMiniMapPosition(e.Position) - offset, enemySize), Color.Red);
             if (e is Infantry)
                 spriteBatch.Draw(TEX_DOT, new Rectangle(overlayPosition + toMiniMapPosition(e.Position) - offset, new Point((int)(enemySize.X/1.7))), Color.Salmon);
             if (e is Airplane)
                 spriteBatch.Draw(TEX_DOT, new Rectangle(overlayPosition + toMiniMapPosition(e.Position) - offset, enemySize), Color.Yellow);
+            if (e is Helicopter)
+                spriteBatch.Draw(TEX_DOT, new Rectangle(overlayPosition + toMiniMapPosition(e.Position) - offset, enemySize), Color.MonoGameOrange);
         }
 
         // draw towers
