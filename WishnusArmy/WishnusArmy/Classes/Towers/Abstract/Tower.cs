@@ -25,14 +25,12 @@ public abstract class Tower : GameObjectList
     {
         get
         {
-            /*
             if (!gotEnemies)
             {
                 Tower._enemies = MyPlane.FindByType<Enemy>();
                 gotEnemies = true;
             }
             return Tower._enemies;
-            */
            return allEnemies;
         }
     }
