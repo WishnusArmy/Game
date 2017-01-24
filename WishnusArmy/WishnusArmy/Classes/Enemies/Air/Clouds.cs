@@ -35,7 +35,7 @@ namespace WishnusArmy.Classes.Enemies.Air
         {
             if (GlobalPosition.Y + Origin.Y * 10 < 0 && GlobalPosition.X + Origin.X * 10 > SCREEN_SIZE.X)
             {
-                opacity = (float)RANDOM.NextDouble() * 0.5f;
+                opacity = (float)RANDOM.NextDouble() * 0.3f;
                 position = new Vector2(-Origin.X * 10, SCREEN_SIZE.Y + Origin.Y * 10);
             }
             else
