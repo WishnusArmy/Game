@@ -37,7 +37,7 @@ class ResourceTower : Tower
 
     private void GatherResources()
     {
-        int resource = (int)TowerDamage(type, stats);
+        int resource = (int)TowerDamage(type, stats) + stats[1]*2;
         GameStats.EcResources += resource;
         GameStats.totalResourcesGathered += resource;
         if (healthText == null || healthText.p > 0.7f)
