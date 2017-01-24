@@ -682,16 +682,6 @@
 /processor:
 /build:Content/Sprites/Projectiles/Thumbs.db
 
-#begin Content/Sprites/Towers/Thumbs.db
-/importer:
-/processor:
-/build:Content/Sprites/Towers/Thumbs.db
-
-#begin Content/Sprites/Thumbs.db
-/importer:
-/processor:
-/build:Content/Sprites/Thumbs.db
-
 #begin Content/Textures/abstractTower.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -975,4 +965,76 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Sprites/clouds2.png
+
+#begin Content/Sprites/Towers/BaseSpriteNoShoot.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Sprites/Towers/BaseSpriteNoShoot.png
+
+#begin Content/Sprites/help_1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Sprites/help_1.png
+
+#begin Content/Sprites/help_2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Sprites/help_2.png
+
+#begin Content/Sprites/help_3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Sprites/help_3.png
+
+#begin Content/Sprites/Towers/spr_merchant_tower.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Sprites/Towers/spr_merchant_tower.png
+
+#begin Content/Sprites/Icons/spr_resourcegather_icon.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Sprites/Icons/spr_resourcegather_icon.png
 
