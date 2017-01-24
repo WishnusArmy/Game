@@ -65,7 +65,7 @@ internal static class Constant
             case Tower.Type.PulseTower:
             	return (int)(75 + 35 * s);
             case Tower.Type.Base:
-                return (int)(50 * Math.Pow(1.40, GameStats.Wave));
+                return (int)(50 * Math.Pow(1.10, GameStats.Wave));
             case Tower.Type.ResourceTower:
                 return (int)(20 + 5 * s);
             default:
@@ -99,7 +99,7 @@ internal static class Constant
             case Tower.Type.PulseTower:
                 return (int)(200 - 30 * s);
             case Tower.Type.Base:
-                return (int)(200 * Math.Pow(0.9, GameStats.Wave));
+                return (int)(200 * Math.Pow(0.93, GameStats.Wave));
             case Tower.Type.ResourceTower:
                 return (800 - s * 40);
             default:
@@ -140,7 +140,7 @@ internal static class Constant
         { "LaserTower", new TowerInfo() { name = "Laser Tower", cost = 100, sprite = SPR_LASER_TOWER, icon = SPR_LASER_ICON, range = TowerRange(Tower.Type.LaserTower, new int[] {0,0,0})} },
         { "RocketTower", new TowerInfo() { name = "Rocket Tower", cost = 200, sprite = SPR_ROCKET_TOWER, icon = SPR_ROCKETLAUNCHER_ICON, range = TowerRange(Tower.Type.RocketTower, new int[] {0,0,0}) } },
         { "PulseTower", new TowerInfo() { name = "PulseTower", cost = 600, sprite = SPR_PULSE_TOWER, icon = SPR_PULSE_ICON, range = TowerRange(Tower.Type.PulseTower, new int[] {0,0,0}) } },
-        { "ResourceTower", new TowerInfo() { name = "ResourceTower", cost = 1000, sprite = SPR_PULSE_TOWER, icon = SPR_MERCHANT_ICON, range = TowerRange(Tower.Type.ResourceTower, new int[] {0,0,0}) } },
+        { "ResourceTower", new TowerInfo() { name = "ResourceTower", cost = 1000, sprite = SPR_MERCHANT_TOWER, icon = SPR_MERCHANT_ICON, range = TowerRange(Tower.Type.ResourceTower, new int[] {0,0,0}) } },
     };
 
 

@@ -14,7 +14,7 @@ public class Airplane : EnemyAir
         this.sprite = SHEET_AIRPLANE;
         this.speed = (4.0f + (0.1f * GameStats.Wave));
         cost = 450;
-        killReward = 55 + GameStats.Wave;
+        killReward = 55 + 3*GameStats.Wave;
         weakness = Tower.Type.RocketTower;
         strongness = Tower.Type.LaserTower;
     }
