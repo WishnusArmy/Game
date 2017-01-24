@@ -34,7 +34,7 @@ public abstract class Tower : GameObjectList
         }
     }
 
-    public enum Type { RocketTower, LaserTower, PulseTower, Base}
+    public enum Type { RocketTower, LaserTower, PulseTower, Base, ResourceTower}
 
     public Tower(Type type) : base()
     {

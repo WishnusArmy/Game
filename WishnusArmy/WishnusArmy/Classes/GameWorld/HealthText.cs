@@ -12,17 +12,17 @@ using static ContentImporter.Fonts;
 
 public class HealthText : DrawOnTop
 {
-    public int text;
+    public string text;
     public int timer;
     public int maxTimer;
     public float p;
     public float impact;
-    protected static Color startColor = Color.Red;
-    protected static Color endColor = Color.Pink;
+    public Color startColor = Color.Red;
+    public Color endColor = Color.Pink;
     protected int height;
     protected static SpriteFont font = FNT_HEALTH_INFO;
 
-    public HealthText(int text, float impact) : base()
+    public HealthText(string text, float impact) : base()
     {
         this.text = text;
         maxTimer = 50;
