@@ -15,7 +15,7 @@ public class Infantry : EnemyLand
     {
         this.sprite = SHEET_INFANTRY;
         this.speed = (3.0f + (0.1f * GameStats.Wave));
-        killReward = 10 + GameStats.Wave;
+        killReward = 10 + 3*GameStats.Wave;
         strongness = Tower.Type.PulseTower;
         cost = 20;
     }
