@@ -67,7 +67,7 @@ internal static class Constant
             case Tower.Type.Base:
                 return (int)(50 * Math.Pow(1.10, GameStats.Wave));
             case Tower.Type.ResourceTower:
-                return (int)(20 + 5 * s);
+                return (int)(40 + 15 * s);
             default:
                 return 0;
         }
@@ -101,7 +101,7 @@ internal static class Constant
             case Tower.Type.Base:
                 return (int)(200 * Math.Pow(0.93, GameStats.Wave));
             case Tower.Type.ResourceTower:
-                return (800 - s * 40);
+                return (800 - s * 150);
             default:
                 return 0;
         }
@@ -120,7 +120,7 @@ internal static class Constant
             case Tower.Type.Base:
                 return 250;
             case Tower.Type.ResourceTower:
-                return 280;
+                return 250;
             default:
                 return 0;
         }
