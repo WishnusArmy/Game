@@ -28,8 +28,7 @@ namespace WishnusArmy
         {
             this.IsMouseVisible = true;
             Mouse.WindowHandle = Window.Handle;
-            AllocConsole();
-            Console.WriteLine("Hello World");
+            //AllocConsole(); //Console is only for testing purposes
             Functions.Initialize(GraphicsDevice);
             ContentImporter.Initialize(Content);
             DrawingHelper.Initialize(GraphicsDevice, Content);
