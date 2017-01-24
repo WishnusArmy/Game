@@ -140,7 +140,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
 
 
         //The position never truly equals the target position so 5 pixels lower or higher.
-        if (CalculateDistance(targetNode.Position, position) < 5)
+        if (CalculateDistance(targetNode.Position, position) < speed)
         {
             if (pathIndex > 0)
             {
