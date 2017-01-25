@@ -84,8 +84,9 @@ public abstract partial class Enemy : IsometricMovingGameObject
             {
                 kill = true;
                 TotalEnemiesKilled++;
-                GameStats.EcResources += killReward;
-                GameStats.totalResourcesGathered += killReward;
+                EcResources += killReward;
+                totalResourcesGathered += killReward;
+                GameWorld.FindByType<UltimateTimer>()[0].Timer += 150;
                 //PlaySound(SND_WILHELM_SCREAM);
             }
         }

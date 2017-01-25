@@ -13,11 +13,11 @@ public class Button : GameObject
 {
     protected bool pressed;
     public bool hover;
-    protected string buttonText;
+    public string buttonText;
     public Point padding;
 
-    protected Color buttonColor;
-    protected Color hoverColor;
+    public Color buttonColor;
+    public Color hoverColor;
     protected Rectangle buttonBox;
     protected SpriteFont buttonFont;
 

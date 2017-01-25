@@ -96,6 +96,7 @@
     <Compile Include="Classes\Towers\Abstract\Tower.cs" />
     <Compile Include="Classes\UI Overlay\OverlayTowerInfo.cs" />
     <Compile Include="Classes\UI Overlay\OverlayTowerItem.cs" />
+    <Compile Include="Classes\UI Overlay\UltimateTimer.cs" />
     <Compile Include="GameManagement\AnimatedGameObject.cs" />
     <Compile Include="GameManagement\Animation.cs" />
     <Compile Include="GameManagement\AssetManager.cs" />
