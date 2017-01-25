@@ -22,7 +22,7 @@ namespace WishnusArmy.Classes.Enemies.Air
             rotation = RANDOM.Next(1, 20);
             this.position = position;
 
-            opacity = (float)RANDOM.NextDouble() * 0.4f;
+            opacity = (float)RANDOM.NextDouble() * 0.3f;
 
             if (RANDOM.NextDouble() > 0.5)
                 currentTexture = Sprites.SPR_CLOUD1;

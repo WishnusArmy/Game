@@ -45,7 +45,7 @@ namespace WishnusArmy
             screen = SCREEN_SIZE;
             windowSize = WINDOW_SIZE;
             ApplyResolutionSettings();
-            FullScreen = false;
+            FullScreen = true;
 
             gameStateManager.AddGameState("MainMenuState", new MainMenuState());
             gameStateManager.AddGameState("CreditsState", new CreditsState());

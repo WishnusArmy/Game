@@ -86,7 +86,7 @@ public class Base : GameObjectList
         double opposite = targetPos.Y - GlobalPosition.Y;
         double adjacent = targetPos.X - GlobalPosition.X;
         rotation = (float)Math.Atan2(opposite, adjacent) + 0.5f * (float)Math.PI;
-        if (inputHelper.MouseLeftButtonDown() && inputHelper.MouseInGameWindow && canShoot)
+        if (inputHelper.MouseRightButtonDown() && inputHelper.MouseInGameWindow && canShoot)
         {
             Overlay overlay = GameWorld.FindByType<Overlay>()[0] as Overlay;
             if (!overlay.Busy)

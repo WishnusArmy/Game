@@ -32,7 +32,17 @@ public class GameObjectList : GameObject
 
     public void SortChildren()
     {
-        List<GameObject> childrenTemp = children.OrderBy(o => o.GlobalPosition.Y).ToList(); //Sort all the children
+        List<GameObject> childrenTemp = children;
+        try
+        {
+
+            childrenTemp = children.OrderBy(o => o.GlobalPosition.Y).ToList(); //Sort all the children
+        }
+        catch (Exception e)
+        {
+
+        }
+
         int lastNode = 0;
         for (int i = 0; i < childrenTemp.Count; ++i) //Iterate through all the children
         {
