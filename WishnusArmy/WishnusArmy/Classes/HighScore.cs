@@ -12,9 +12,8 @@ using System.Xml;
 
 public class HighScore : GameObject
 {
-
-    private List<Score> highScores;
     private int maxSizeOfList;
+    private List<Score> highScores;
 
     public HighScore()
     {
