@@ -41,7 +41,6 @@ public class GameObjectList : GameObject
         {
             childrenTemp = new List<GameObject>(); 
         }
-        
         int lastNode = 0;
         for (int i = 0; i < childrenTemp.Count; ++i) //Iterate through all the children
         {
