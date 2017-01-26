@@ -11,15 +11,15 @@ using static Constant;
 
 class BaseProjectile : DrawOnTop
     {
-    Texture2D sprite;
-    double damage;
-    Vector2 cameraPosition;
-    Boolean shooting = false;
-    float speed;
-    int explosionRadius = 500, damageMultiplierInCenter = 4;
-    float distance;
-    Vector2 mousePos, targetPos, adjustment, cameraPos;
-    float rotation;
+    protected Texture2D sprite;
+    protected double damage;
+    protected Vector2 cameraPosition;
+    protected Boolean shooting = false;
+    protected float speed;
+    protected int explosionRadius = 500, damageMultiplierInCenter = 4;
+    protected float distance;
+    protected Vector2 mousePos, targetPos, adjustment, cameraPos, scale = new Vector2(1f,1f);
+    protected float rotation;
 
     public BaseProjectile(double damage, float speed)
     {
@@ -51,7 +51,7 @@ class BaseProjectile : DrawOnTop
             mousePos = inputHelper.MousePosition / Camera.scale;
             shooting = true;
             cameraPos = cameraPosition;
-            distance = CalculateDistance(GlobalPosition, targetPos);
+            distance = CalculateDistance(GlobalPosition, mousePos);
         }
         adjustment = cameraPosition - cameraPos;
         targetPos = mousePos + adjustment;
@@ -94,7 +94,7 @@ class BaseProjectile : DrawOnTop
             null,
             sprite.getOrigin(),
             rotation + 0.5f * (float)Math.PI,
-            new Vector2(1f, 1f) * (-Math.Abs(((0.5f*distance - CalculateDistance(GlobalPosition, targetPos)))/distance) + 0.75f),
+            scale * (-Math.Abs(((0.5f*distance - CalculateDistance(GlobalPosition, targetPos)))/distance) + 0.75f),
             Color.White,
             SpriteEffects.None,
             0f);

@@ -62,6 +62,7 @@
     <Compile Include="Classes\ParticleEffects\ParticleSystem.cs" />
     <Compile Include="Classes\Projectile\Abstract\Projectile.cs" />
     <Compile Include="Classes\Projectile\BaseProjectile.cs" />
+    <Compile Include="Classes\Projectile\Bomb.cs" />
     <Compile Include="Classes\Projectile\Bullet.cs" />
     <Compile Include="Classes\ParticleEffects\ExplosionParticleSystem.cs" />
     <Compile Include="Classes\Projectile\Rocket.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Classes\Static Classes\Constant.cs" />
     <Compile Include="Classes\Static Classes\ContentImporter.cs" />
     <Compile Include="Classes\Enemies\Abstract\Enemy.cs" />
+    <Compile Include="Classes\Towers\BombTower.cs" />
     <Compile Include="Classes\Towers\ResourceTower.cs" />
     <Compile Include="Classes\UI Overlay\MiniMap.cs" />
     <Compile Include="Classes\UI Overlay\Overlay.cs" />
