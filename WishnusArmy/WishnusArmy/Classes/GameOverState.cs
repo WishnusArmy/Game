@@ -13,6 +13,7 @@ using static Constant;
 public class GameOverState : GameObjectList
 {
     protected Button backButton;
+    protected Button clearHighScoreButton;
     protected TextForm scoreForm;
     private ParticleController pc;
 
@@ -28,6 +29,10 @@ public class GameOverState : GameObjectList
         backButton = new Button("BACK", Color.LightGreen, Color.DarkGreen, Fonts.FNT_MENU);
         backButton.Position = new Vector2((SCREEN_SIZE.X - backButton.Dimensions.X) / 2, SCREEN_SIZE.Y - 70) + new Vector2(30, 0);
         Add(backButton);
+
+        clearHighScoreButton = new Button("CLEAR", Color.LightGreen, Color.DarkGreen, Fonts.FNT_MENU);
+        clearHighScoreButton.Position = new Vector2(SCREEN_SIZE.X - clearHighScoreButton.Dimensions.X, SCREEN_SIZE.Y - clearHighScoreButton.Dimensions.Y) + new Vector2(30, 0);
+        Add(clearHighScoreButton);
 
         scoreForm = new TextForm(new Rectangle(new Point(SCREEN_SIZE.X/2 - 240, 780), new Point(480, 145)), FNT_GAMESTATS, "Enter your name here!", "", Color.Black, Color.White);
 
@@ -46,9 +51,10 @@ public class GameOverState : GameObjectList
         }
 
         if (backButton.Pressed)
-        {
             GameEnvironment.GameStateManager.SwitchTo("MainMenuState");
-        }
+
+        if (clearHighScoreButton.Pressed)
+            GameStats.highScore.ClearAll();
 
         if (RANDOM.NextDouble() > 0.97)
         {

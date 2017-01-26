@@ -100,6 +100,15 @@ public class Camera : GameObjectList
 
     public override void HandleInput(InputHelper inputHelper)
     {
+        if (inputHelper.CurrentPressedKeys().ToList().Contains(Keys.D) && inputHelper.CurrentPressedKeys().ToList().Contains(Keys.LeftShift))
+        {
+            GameEnvironment.GameStateManager.AddGameState("GameOverState", new GameOverState());
+            GameEnvironment.GameStateManager.SwitchTo("GameOverState");
+        }
+        if (inputHelper.CurrentPressedKeys().ToList().Contains(Keys.W) && inputHelper.CurrentPressedKeys().ToList().Contains(Keys.LeftShift))
+        {
+            GameStats.Wave++;
+        }
         //zoom
         Vector2 oldScale = scale;
         if (inputHelper.ScrollUp() || inputHelper.IsKeyDown(Keys.Q))

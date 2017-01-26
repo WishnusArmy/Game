@@ -12,9 +12,8 @@ using System.Xml;
 
 public class HighScore : GameObject
 {
-
-    private List<Score> highScores;
     private int maxSizeOfList;
+    private List<Score> highScores;
 
     public HighScore()
     {
@@ -31,11 +30,31 @@ public class HighScore : GameObject
         }
     }
 
-    public void AddScore(string name, int score)
+    public void AddScore(string name, int amount)
     {
-        highScores.Add(new Score(name, score));
+        Score removethis = new Score("", 0);
+        foreach(Score s in highScores)
+        {
+            if (s.Name.Equals(name))
+            {
+                if (s.Amount >= amount)
+                    return;
+                else
+                    removethis = s;
+            }
+        }
+        if (highScores.Contains(removethis))
+            highScores.Remove(removethis);
+
+        highScores.Add(new Score(name, amount));
         Sort();
         MaxSize();
+        WriteHighScores();
+    }
+
+    public void ClearAll()
+    {
+        highScores.Clear();
         WriteHighScores();
     }
 
