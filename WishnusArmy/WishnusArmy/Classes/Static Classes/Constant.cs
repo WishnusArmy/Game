@@ -68,6 +68,8 @@ internal static class Constant
                 return (int)(50 * Math.Pow(1.10, GameStats.Wave));
             case Tower.Type.ResourceTower:
                 return (int)(40 + 15 * s);
+            case Tower.Type.BombTower:
+                return (int)(150 + 75 * s);
             default:
                 return 0;
         }
@@ -83,6 +85,8 @@ internal static class Constant
                 return (int)Efunction(800, 0.6 * s);
             case Tower.Type.PulseTower:
                 return (int)Efunction(900, 0.8 * s);
+            case Tower.Type.BombTower:
+                return (int)Efunction(2000, 0.8 * s);
             default:
                 return 0;
         }
@@ -102,6 +106,8 @@ internal static class Constant
                 return (int)(200 * Math.Pow(0.93, GameStats.Wave));
             case Tower.Type.ResourceTower:
                 return (800 - s * 150);
+            case Tower.Type.BombTower:
+                return (int) (300 - 30*s);
             default:
                 return 0;
         }
@@ -121,6 +127,8 @@ internal static class Constant
                 return 250;
             case Tower.Type.ResourceTower:
                 return 250;
+            case Tower.Type.BombTower:
+                return 400;
             default:
                 return 0;
         }
@@ -141,6 +149,7 @@ internal static class Constant
         { "RocketTower", new TowerInfo() { name = "Rocket Tower", cost = 200, sprite = SPR_ROCKET_TOWER, icon = SPR_ROCKETLAUNCHER_ICON, range = TowerRange(Tower.Type.RocketTower, new int[] {0,0,0}) } },
         { "PulseTower", new TowerInfo() { name = "PulseTower", cost = 600, sprite = SPR_PULSE_TOWER, icon = SPR_PULSE_ICON, range = TowerRange(Tower.Type.PulseTower, new int[] {0,0,0}) } },
         { "ResourceTower", new TowerInfo() { name = "ResourceTower", cost = 1000, sprite = SPR_MERCHANT_TOWER, icon = SPR_MERCHANT_ICON, range = TowerRange(Tower.Type.ResourceTower, new int[] {0,0,0}) } },
+        { "BombTower", new TowerInfo() { name = "BombTower", cost = 2000, sprite = SPR_ROCKET_TOWER, icon = SPR_GRENADE_ICON, range = TowerRange(Tower.Type.BombTower, new int[] {0,0,0}) } },
     };
 
 
@@ -220,7 +229,8 @@ internal static class Constant
         new ToolBarObjectsItem("Base", SPR_BASE),
         new ToolBarObjectsItem("LaserTower", SPR_LASER_TOWER),
         new ToolBarObjectsItem("PulseTower", SPR_PULSE_TOWER),
-        new ToolBarObjectsItem("ProjectileTower", SPR_ROCKET_TOWER)
+        new ToolBarObjectsItem("ProjectileTower", SPR_ROCKET_TOWER),
+        new ToolBarObjectsItem("BombTower", SPR_ROCKET_TOWER)
     };
 
     internal static readonly List<string> LIST_ENEMIES = new List<string>

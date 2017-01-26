@@ -31,11 +31,10 @@ public abstract class Tower : GameObjectList
                 gotEnemies = true;
             }
             return Tower._enemies;
-           return allEnemies;
         }
     }
 
-    public enum Type { RocketTower, LaserTower, PulseTower, Base, ResourceTower}
+    public enum Type { RocketTower, LaserTower, PulseTower, Base, ResourceTower, BombTower}
 
     public Tower(Type type) : base()
     {
