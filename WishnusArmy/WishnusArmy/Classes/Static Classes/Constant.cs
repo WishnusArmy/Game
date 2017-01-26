@@ -69,7 +69,7 @@ internal static class Constant
             case Tower.Type.ResourceTower:
                 return (int)(40 + 15 * s);
             case Tower.Type.BombTower:
-                return (int)(150 + 75 * s);
+                return (int)(150 + 75 * s); //blastRadius scaled mee met damage.
             default:
                 return 0;
         }
