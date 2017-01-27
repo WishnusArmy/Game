@@ -12,6 +12,7 @@ using static ContentImporter.Sprites;
 public abstract class Tower : GameObjectList
 {
     static List<Enemy> _enemies;
+    int lagReducer = 1;
     public Texture2D baseTexture;
     public Vector2 gridPosition, mousePosition, previousPosition = new Vector2(0, 0);
     protected Enemy target;
@@ -19,7 +20,7 @@ public abstract class Tower : GameObjectList
     public bool hover;
     public Type type;
     public int[] stats;
-    int timer;
+    protected int timer;
     bool gotEnemies;
     public List<Enemy> enemies
     {
@@ -38,7 +39,7 @@ public abstract class Tower : GameObjectList
 
     public Tower(Type type) : base()
     {
-
+        towerAmount += 1;
         this.type = type;
         stats = new int[] {0, 0, 0}; // damage, range, rate
         timer = 0;
@@ -65,6 +66,10 @@ public abstract class Tower : GameObjectList
         {
             GameWorld.FindByType<Overlay>()[0].TowerInfo.tower = this;
         }
+        if (inputHelper.KeyPressed(Keys.Y))
+            lagReducer += 1;
+        if (inputHelper.KeyPressed(Keys.U))
+            lagReducer -= 1;
     }
 
     public bool canShoot
@@ -74,11 +79,20 @@ public abstract class Tower : GameObjectList
 
     public override void Update(object gameTime)
     {
+        lagReducer = 1+ (towerAmount / 20);
         base.Update(gameTime);
-        gotEnemies = false;
+        if (timer % lagReducer ==0)
+            gotEnemies = false;
 
         if (timer <= 0)
+        {
+            if (target != null)
+            {
+                Attack();
+            }
             timer = TowerRate(type, stats);
+
+        }
         else if (timer > 0)
             timer--;
 

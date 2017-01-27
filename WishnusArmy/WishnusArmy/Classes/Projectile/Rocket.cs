@@ -85,7 +85,7 @@ public class Rocket : Projectile
     {
         rotation = targetRotation;
         base.Update(gameTime);
-        findTarget();
+        //findTarget();
         if (!HasTarget)
         {
             target = findTarget();

@@ -37,7 +37,7 @@ public class GameObjectList : GameObject
         {
             childrenTemp = children.OrderBy(o => o.GlobalPosition.Y).ToList(); //Sort all the children
         }
-        catch(NullReferenceException e)
+        catch(Exception e)
         {
             childrenTemp = new List<GameObject>(); 
         }
