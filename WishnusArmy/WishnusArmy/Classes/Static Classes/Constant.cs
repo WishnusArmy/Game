@@ -47,6 +47,7 @@ internal static class Constant
     internal static List<Enemy> allEnemies = new List<Enemy>();
 
     //TOWERS
+    internal static int towerAmount = 0;
     private static double Efunction(double max, double slope)
     {
         return max / (1 + Math.Pow(Math.E, -slope));

@@ -14,11 +14,7 @@ class BombTower : RocketTower
     }
     public override void Attack()
     {
-        if (canShoot && CalculateDistance(target.Position, position) < TowerRange(type, stats))
-        {
             MyPlane.Add(new Bomb(TowerDamage(Tower.Type.BombTower, stats), 7) { Position = position });
             return;
-        }
-
     }
 }

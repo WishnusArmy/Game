@@ -24,17 +24,12 @@ class RocketTower : Tower
     public override void Update(object gameTime)
     {
         base.Update(gameTime);
-        if (target != null)
-            Attack();
     }
     public override void Attack()
     {
-        
         //foreach (Enemy enemy in enemies)
         //{
-            if (FindByType<Rocket>().Count < maxRockets && 
-                canShoot && 
-                CalculateDistance(target.Position, position) < TowerRange(type, stats))
+        if ( FindByType<Rocket>().Count < maxRockets)
             {
             Add(new Rocket((int)TowerDamage(type, stats), BULLET_SPEED));
                 return;
