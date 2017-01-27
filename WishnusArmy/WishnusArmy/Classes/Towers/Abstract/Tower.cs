@@ -66,10 +66,6 @@ public abstract class Tower : GameObjectList
         {
             GameWorld.FindByType<Overlay>()[0].TowerInfo.tower = this;
         }
-        if (inputHelper.KeyPressed(Keys.Y))
-            lagReducer += 1;
-        if (inputHelper.KeyPressed(Keys.U))
-            lagReducer -= 1;
     }
 
     public bool canShoot
