@@ -23,11 +23,31 @@ public class GameObjectList : GameObject
     {
         obj.Parent = this;
         children.Add(obj);
+
+        // add object to the static class for efficiency
+        AddToLists(obj);
+
         if (!WishnusArmy.WishnusArmy.startSorting) //For the initialization process
             return;
 
         //if (obj is Tower || obj is Enemy)
           //  SortingThread.AddRequest(this);
+    }
+
+    private void AddToLists(GameObject obj)
+    {
+        if (obj is Enemy)
+            ObjectLists.Enemies.Add(obj as Enemy);
+        if (obj is Tower)
+            ObjectLists.Towers.Add(obj as Tower);
+    }
+
+    private void RemoveFromLists(GameObject obj)
+    {
+        if (obj is Enemy)
+            ObjectLists.Enemies.Remove(obj as Enemy);
+        if (obj is Tower)
+            ObjectLists.Towers.Remove(obj as Tower);
     }
 
     public void SortChildren()
@@ -81,6 +101,7 @@ public class GameObjectList : GameObject
 
     public void Remove(GameObject obj)
     {
+        RemoveFromLists(obj);
         children.Remove(obj);
         obj.Parent = null;
     }
@@ -143,7 +164,7 @@ public class GameObjectList : GameObject
             if (children[i].active == true)
                 children[i].Update(gameTime);
             if (children[i].Kill)
-                children.RemoveAt(i);
+                Remove(children[i]);
         }
     }
 

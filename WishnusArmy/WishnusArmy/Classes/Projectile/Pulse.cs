@@ -37,7 +37,7 @@ class Pulse : Projectile
 
         List<Enemy> e = new List<Enemy>();
         //if (ultimate)
-            e = GameWorld.FindByType<Enemy>();
+            e = ObjectLists.Enemies;
         //else
         //    e = myTower.enemies;
 

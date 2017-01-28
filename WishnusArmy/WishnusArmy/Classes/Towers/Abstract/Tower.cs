@@ -18,6 +18,7 @@ public abstract class Tower : GameObjectList
     protected Enemy target;
     public GridNode myNode;
     public bool hover;
+    private bool select;
     public Type type;
     public int[] stats;
     protected int timer;
@@ -28,7 +29,7 @@ public abstract class Tower : GameObjectList
         {
             if (!gotEnemies)
             {
-                Tower._enemies = MyPlane.FindByType<Enemy>();
+                Tower._enemies = ObjectLists.Enemies;
                 gotEnemies = true;
             }
             return Tower._enemies;
@@ -44,6 +45,7 @@ public abstract class Tower : GameObjectList
         stats = new int[] {0, 0, 0}; // damage, range, rate
         timer = 0;
         gotEnemies = false;
+        select = true;
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -75,6 +77,12 @@ public abstract class Tower : GameObjectList
 
     public override void Update(object gameTime)
     {
+        if (select)
+        {
+            GameWorld.FindByType<Overlay>()[0].TowerInfo.tower = this;
+            select = false;
+        }
+
         lagReducer = 1+ (towerAmount / 20);
         base.Update(gameTime);
         if (timer % lagReducer ==0)

@@ -40,7 +40,7 @@ class UltimateTimer : DrawOnTop
         if (button.Pressed && ready)
         {
             timer = 0;
-            Pulse p = new Pulse(Wave * 1000, SCREEN_SIZE.X * 1.8, GameWorld.FindByType<Enemy>());
+            Pulse p = new Pulse(Wave * 1000, SCREEN_SIZE.X * 1.8, ObjectLists.Enemies);
             p.ultimate = true;
             p.color = Color.Red;
             p.speed = 25;

@@ -71,8 +71,7 @@ class BaseProjectile : DrawOnTop
     }
     public void Explode()
     {
-        List<Enemy> enemies = MyPlane.FindByType<Enemy>();
-        foreach (Enemy x in enemies)
+        foreach (Enemy x in ObjectLists.Enemies)
         {
             float radius = CalculateDistance(GlobalPosition, x.GlobalPositionCenter);
             if (radius < explosionRadius)

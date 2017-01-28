@@ -150,7 +150,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
                     GridNode solidNode = path[pathIndex - 1];
                     startNode = path[pathIndex]; //set the startNode for the request
                     requestPath(); //Request a new path around the obstacle
-                    List<Enemy> enemies = MyPlane.FindByType<Enemy>();
+                    List<Enemy> enemies = ObjectLists.Enemies;
                     enemies = enemies.OrderBy(o => o.CalculateDistance(o.position, position)).ToList();
                     foreach (Enemy enemy in enemies)
                     {
