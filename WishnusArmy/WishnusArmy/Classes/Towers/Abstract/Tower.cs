@@ -27,7 +27,7 @@ public abstract class Tower : GameObjectList
     {
         get
         {
-            if (!gotEnemies)
+            if (true)
             {
                 Tower._enemies = ObjectLists.EnemiesCopy;
                 gotEnemies = true;

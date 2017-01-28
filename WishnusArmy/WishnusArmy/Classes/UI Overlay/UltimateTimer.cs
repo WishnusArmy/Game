@@ -18,12 +18,11 @@ class UltimateTimer : DrawOnTop
     int coolDownTime;
     Button button;
     bool ready;
-    //Vector2 position;
 
     public UltimateTimer() : base()
     {
         timer = 0;
-        this.coolDownTime = 70000;
+        this.coolDownTime = 700;
         position = new Vector2(SCREEN_SIZE.X - 440, SCREEN_SIZE.Y - 100);
 
         button = new Button("0%", Color.Transparent, Color.Transparent, FNT_GAMEOVER);
@@ -47,6 +46,7 @@ class UltimateTimer : DrawOnTop
             List<Base> list = GameWorld.FindByType<Base>();
             if (list.Count > 0)
                 list[0].Add(p);
+            ready = false;
         }
         button.Update(gameTime);
         button.buttonText = (int)(((double)timer / (double)coolDownTime) * 100) + "%";
