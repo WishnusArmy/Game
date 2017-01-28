@@ -20,6 +20,19 @@ internal static class ObjectLists
         get { return enemies; }
     }
 
+    public static List<Enemy> EnemiesCopy
+    {
+        get
+        {
+            List<Enemy> list = new List<Enemy>();
+            foreach(Enemy e in Enemies)
+            {
+                list.Add(e);
+            }
+            return list;
+        }
+    }
+
     public static List<Tower> Towers
     {
         get  { return towers; }
