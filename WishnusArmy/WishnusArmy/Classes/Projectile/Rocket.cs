@@ -26,7 +26,7 @@ public class Rocket : Projectile
 
     public virtual Enemy findTarget()
     {
-        List<Enemy> enemies = ObjectLists.EnemiesCopy;
+        List<Enemy> enemies = ObjectLists.Enemies;
         enemies = enemies.OrderBy(o => o.CalculateDistance(o.GlobalPositionCenter, GlobalPositionCenter)).ToList();
         if (enemies.Count > 0)
             return enemies[0];
