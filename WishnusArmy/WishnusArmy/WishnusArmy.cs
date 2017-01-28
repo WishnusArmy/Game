@@ -11,6 +11,8 @@ namespace WishnusArmy
 {
     public class WishnusArmy : GameEnvironment
     {
+        static bool consoleON = false; //Console is only for testing purposes
+
         [DllImport("kernel32")]
         static extern bool AllocConsole();
 
@@ -28,7 +30,8 @@ namespace WishnusArmy
         {
             this.IsMouseVisible = true;
             Mouse.WindowHandle = Window.Handle;
-            //AllocConsole(); //Console is only for testing purposes
+            if(consoleON)
+                AllocConsole(); 
             Functions.Initialize(GraphicsDevice);
             ContentImporter.Initialize(Content);
             DrawingHelper.Initialize(GraphicsDevice, Content);
@@ -45,7 +48,7 @@ namespace WishnusArmy
             screen = SCREEN_SIZE;
             windowSize = WINDOW_SIZE;
             ApplyResolutionSettings();
-            FullScreen = true;
+            FullScreen = false;
 
             gameStateManager.AddGameState("MainMenuState", new MainMenuState());
             gameStateManager.AddGameState("CreditsState", new CreditsState());

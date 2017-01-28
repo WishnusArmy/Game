@@ -71,13 +71,12 @@ class BaseProjectile : DrawOnTop
     }
     public void Explode()
     {
-        List<Enemy> enemies = MyPlane.FindByType<Enemy>();
-        foreach (Enemy x in enemies)
+        foreach (Enemy e in ObjectLists.Enemies)
         {
-            float radius = CalculateDistance(GlobalPosition, x.GlobalPositionCenter);
+            float radius = CalculateDistance(GlobalPosition, e.GlobalPositionCenter);
             if (radius < explosionRadius)
             {
-                x.dealDamage(damage*(damageMultiplierInCenter - (radius/explosionRadius)* damageMultiplierInCenter), Tower.Type.Base);
+                e.dealDamage(damage*(damageMultiplierInCenter - (radius/explosionRadius)* damageMultiplierInCenter), Tower.Type.Base);
             }
         }
         MyParticleControl.AddExplosion(position + parent.Position);

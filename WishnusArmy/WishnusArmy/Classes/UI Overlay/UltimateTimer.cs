@@ -18,15 +18,15 @@ class UltimateTimer : DrawOnTop
     int coolDownTime;
     Button button;
     bool ready;
-    //Vector2 position;
 
     public UltimateTimer() : base()
     {
         timer = 0;
-        this.coolDownTime = 70000;
+        this.coolDownTime = 700;
         position = new Vector2(SCREEN_SIZE.X - 440, SCREEN_SIZE.Y - 100);
 
-        button = new Button("0%", Color.Transparent, Color.Transparent, FNT_GAMEOVER);
+        button = new Button("0%", Color.Transparent, Color.Transparent, FNT_ULTIMATE);
+        button.textColor = Color.White;
         button.Position = position;
     }
     public override void Update(object gameTime)
@@ -40,13 +40,14 @@ class UltimateTimer : DrawOnTop
         if (button.Pressed && ready)
         {
             timer = 0;
-            Pulse p = new Pulse(Wave * 1000, SCREEN_SIZE.X * 1.8, GameWorld.FindByType<Enemy>());
+            Pulse p = new Pulse(Wave * 1000, SCREEN_SIZE.X * 1.8, ObjectLists.Enemies);
             p.ultimate = true;
             p.color = Color.Red;
             p.speed = 25;
             List<Base> list = GameWorld.FindByType<Base>();
             if (list.Count > 0)
                 list[0].Add(p);
+            ready = false;
         }
         button.Update(gameTime);
         button.buttonText = (int)(((double)timer / (double)coolDownTime) * 100) + "%";
@@ -58,7 +59,7 @@ class UltimateTimer : DrawOnTop
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(SPR_CIRCLE, new Rectangle(position.ToPoint() - new Point(75,70), new Point(140, 140)), new Color(255, 30, 30, 255 -(int)(((double)timer / (double)coolDownTime) * 255)));
+        spriteBatch.Draw(SPR_ULTIMATE, new Rectangle(position.ToPoint() - new Point(75, 70), new Point(140, 140)), Color.White);//new Color(255, 30, 30, 255 -(int)(((double)timer / (double)coolDownTime) * 255)));
         button.Draw(gameTime, spriteBatch);  
     }
 

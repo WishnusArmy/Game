@@ -36,10 +36,10 @@ class Pulse : Projectile
         myTower = parent as Tower;
 
         List<Enemy> e = new List<Enemy>();
-        //if (ultimate)
-            e = GameWorld.FindByType<Enemy>();
-        //else
-        //    e = myTower.enemies;
+        if (ultimate)
+            e = ObjectLists.Enemies;
+        else
+            e = myTower.enemies;
 
         foreach (Enemy enemy in e)
         {

@@ -16,6 +16,7 @@ public class MainMenuState : IGameLoopObject
         PopupScreen.ClearButtons();
         PopupScreen.AddButton("Exit to Desktop", delegate { WishnusArmy.WishnusArmy.self.Exit(); });
         menu = new MainMenu();
+
     }
 
     public void HandleInput(InputHelper inputHelper)

@@ -22,9 +22,6 @@ class MiniMap : DrawOnTop
     Point baseSize;
 
     Point tileSize;
-    
-    List<Enemy> enemies;
-    List<Tower> towers;
 
     Point cameraPosition;
     Vector2 scale;
@@ -42,19 +39,17 @@ class MiniMap : DrawOnTop
         enemySize = new Point(minimapSize.X/50);
         towerSize = new Point(minimapSize.X/40);
         baseSize = new Point(minimapSize.X/15);
-        enemies = new List<Enemy>();
-        towers = new List<Tower>();
         
         tileSize = new Point(6);
         scale = new Vector2(1000,1000);
         cameraPosition = new Point(0, 0);
-
-        grid = new GridNode[0,0];
-
     }
 
     public override void Update(object gameTime)
     {
+        if (grid == null)
+            grid = GameWorld.FindByType<GridPlane>()[0].grid;
+
         Camera c = GameWorld.FindByType<Camera>()[0];
         cameraPosition = (c.Position * -1).toPoint();
         scale = c.Scale;
@@ -63,11 +58,6 @@ class MiniMap : DrawOnTop
         if (timer < 30)
             return;
         timer = 0;
-
-        enemies = GameWorld.FindByType<Enemy>();
-        towers = GameWorld.FindByType<Tower>();
-
-        grid = GameWorld.FindByType<GridPlane>()[0].grid;
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -98,7 +88,7 @@ class MiniMap : DrawOnTop
         Point framesize = new Point((int)((minimapSize.X * 0.35)/scale.X), (int)((minimapSize.Y * 0.35)/scale.X));
         DrawRectangle(new Rectangle(toMiniMapPosition(cameraPosition.toVector()) + overlayPosition - new Point(5, 3), framesize), spriteBatch, Color.Yellow, 2, 0.5f);
 
-        foreach (Tower t in towers)
+        foreach (Tower t in ObjectLists.Towers)
         {
             if (t.hover)
             {
@@ -113,7 +103,7 @@ class MiniMap : DrawOnTop
         // draw enemies
         Vector2 pos;
         offset = new Point(enemySize.X/2, enemySize.Y/2);
-        foreach (Enemy e in enemies)
+        foreach (Enemy e in ObjectLists.Enemies)
         {
             pos = e.Position;
             if (pos.X < - NODE_SIZE.X/4 || pos.Y < -NODE_SIZE.X/4 || pos.X > realMapSize+NODE_SIZE.X/4 || pos.Y > (realMapSize/2)+ NODE_SIZE.Y/4)
@@ -130,7 +120,7 @@ class MiniMap : DrawOnTop
 
         // draw towers
         offset = new Point(towerSize.X / 2, towerSize.Y / 2);
-        foreach (Tower t in towers)
+        foreach (Tower t in ObjectLists.Towers)
         {
             spriteBatch.Draw(TEX_DOT, new Rectangle(overlayPosition + toMiniMapPosition(t.Position) - offset, towerSize), Color.LightBlue);
         }
@@ -150,7 +140,7 @@ class MiniMap : DrawOnTop
                 if (mp.X > overlayPosition.X && mp.X < overlayPosition.X + minimapSize.X &&
                     mp.Y > overlayPosition.Y && mp.Y < overlayPosition.Y + minimapSize.Y)
                 {
-                    Console.WriteLine(new Vector2((mp.X - overlayPosition.X) / minimapSize.X * NODE_SIZE.X * LEVEL_SIZE.X, (mp.Y - overlayPosition.Y) / minimapSize.Y * NODE_SIZE.Y * LEVEL_SIZE.Y));
+                    //Console.WriteLine(new Vector2((mp.X - overlayPosition.X) / minimapSize.X * NODE_SIZE.X * LEVEL_SIZE.X, (mp.Y - overlayPosition.Y) / minimapSize.Y * NODE_SIZE.Y * LEVEL_SIZE.Y));
                     GameWorld.FindByType<Camera>()[0].Position = -new Vector2((mp.X - overlayPosition.X) / minimapSize.X * NODE_SIZE.X * LEVEL_SIZE.X, (mp.Y - overlayPosition.Y) / minimapSize.Y * NODE_SIZE.Y * LEVEL_SIZE.Y/2) + GAME_WINDOW_SIZE.toVector()/2 / scale;
                     //Make sure the camera doesn't move out of bounds
                     if (position.X > -NODE_SIZE.X / 2 - GridNode.origin.X / 2) { position.X = -NODE_SIZE.X / 2 - GridNode.origin.X / 2; }

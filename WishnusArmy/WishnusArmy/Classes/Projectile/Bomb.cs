@@ -49,7 +49,7 @@ using static ContentImporter.Sounds;
 
         public virtual Enemy findTarget()
         {
-            List<Enemy> enemies = MyPlane.FindByType<Enemy>();
+            List<Enemy> enemies = ObjectLists.Enemies;
             enemies = enemies.OrderBy(o => o.CalculateDistance(o.GlobalPositionCenter, GlobalPosition)).ToList();
             if (enemies.Count > 0)
                 return enemies[0];

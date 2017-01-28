@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using static Constant;
 using static ContentImporter.Fonts;
+using static ContentImporter.Sprites;
 using static DrawingHelper;
 using static Functions;
 
@@ -35,10 +36,10 @@ public static class PopupScreen
         size = new Point(600, 800);
         center = true;
         alpha = 1f;
+        buttonColor = Color.LightGreen;
+        buttonHoverColor = Color.DarkGreen;
         backgroundColor = Color.Gray;
         edgeColor = Color.Black;
-        buttonColor = Color.White;
-        buttonHoverColor = Color.CornflowerBlue;
         buttonFont = FNT_MENU;
         edgeSize = 5;
         titleFont = FNT_OVERLAY;
@@ -57,14 +58,19 @@ public static class PopupScreen
 
     public static void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        DrawRectangleFilled(new Rectangle(position.X - (size.X/2) * center.ToInt() - edgeSize, position.Y - (size.Y/2) * center.ToInt() - edgeSize, size.X + 2* edgeSize, size.Y + 2*edgeSize), spriteBatch, edgeColor);
-        DrawRectangleFilled(new Rectangle(position.X - (size.X/2)*center.ToInt(), position.Y - (size.Y/2)*center.ToInt(), size.X, size.Y), spriteBatch, backgroundColor);
+        //Plain popup background
+        //DrawRectangleFilled(new Rectangle(position.X - (size.X/2)*center.ToInt(), position.Y - (size.Y/2)*center.ToInt(), size.X, size.Y), spriteBatch, backgroundColor);
+
+        DrawRectangleFilled(new Rectangle(position.X - (size.X / 2) * center.ToInt() - edgeSize, position.Y - (size.Y / 2) * center.ToInt() - edgeSize, size.X + 2 * edgeSize, size.Y + 2 * edgeSize), spriteBatch, edgeColor);
+        spriteBatch.Draw(SPR_POPUP, new Vector2(position.X - (size.X / 2) * center.ToInt(), position.Y - (size.Y / 2) * center.ToInt()), Color.White);
 
         int buttonHeight = (int)buttonFont.MeasureString("#").Y + 2*BUTTON_MARGIN.Y + 20;
         Vector2 offset = new Vector2(20, -200);
-        for(int i=0; i<buttons.Count; ++i)
+
+        spriteBatch.DrawString(FNT_GAMEOVER, "GAME PAUSED", position.toVector() - new Vector2(FNT_GAMEOVER.MeasureString("GAME PAUSED").X / 2, size.Y * 0.38f), Color.Black);
+        for(int i=0; i < buttons.Count; ++i)
         {
-            buttons[i].Position = position.toVector() + new Vector2(0, -size.Y/2 + size.Y * 0.2f) + new Vector2(0, buttonHeight * i);
+            buttons[i].Position = position.toVector() + new Vector2(0, -size.Y/2 + size.Y * 0.38f) + new Vector2(0, buttonHeight * i);
             buttons[i].Draw(gameTime, spriteBatch);
         }
     }
