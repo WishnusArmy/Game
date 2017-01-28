@@ -19,7 +19,7 @@ class PulseTower : Tower
     public override void Update(object gameTime)
     {
         base.Update(gameTime);
-        if(canShoot && target != null)
+        if (canShoot && target != null)
         {
             Add(new Pulse(TowerDamage(type, stats), TowerRange(type, stats), enemies));
             PlaySound(SND_PULSE);

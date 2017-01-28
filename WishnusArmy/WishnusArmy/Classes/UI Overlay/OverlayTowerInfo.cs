@@ -27,8 +27,6 @@ public class OverlayTowerInfo : GameObjectList
             if (_tower != null)
                 _tower.myNode.beacon = false; //Unselected the current tower
             _tower = value; //set the new tower
-            if (_tower !=  null) //If the new tower isn't null...
-                _tower.myNode.beacon = true; //Select the new tower.
 
             foreach (Button but in buttons)
                 but.active = (tower != null);
@@ -63,6 +61,27 @@ public class OverlayTowerInfo : GameObjectList
             Add(buttons[i]);
         }
     }
+
+    public override void HandleInput(InputHelper inputHelper)
+    {
+        base.HandleInput(inputHelper);
+        if (tower == null)
+            return;
+
+        _tower.myNode.beacon = true; //Select the new tower.
+
+        if (inputHelper.MouseLeftButtonPressed() && inputHelper.MouseInGameWindow && !tower.myNode.selected)
+        {
+            tower = null;
+        }
+    }
+    public override void Update(object gameTime)
+    {
+        base.Update(gameTime);
+        if (tower != null)
+        tower.hover = true;
+    }
+
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {

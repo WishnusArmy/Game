@@ -10,13 +10,14 @@ using static Constant;
 
 class Pulse : Projectile
 {
-    static int speed = 15;
+    public int speed = 15;
     private int radiusCurrent;
     private List<Enemy> targetsHit;
-    private Color color;
+    public Color color;
     double range;
     float p;
     Tower myTower;
+    public bool ultimate;
 
     public Pulse(double damage, double range, List<Enemy> enemies) : base(damage)
     {
@@ -27,12 +28,20 @@ class Pulse : Projectile
         this.range = range;
         p = 0;
         myTower = Parent as Tower;
+        ultimate = false;
     }
 
     public void CheckCollision()
     {
         myTower = parent as Tower;
-        foreach (Enemy enemy in  myTower.enemies)
+
+        List<Enemy> e = new List<Enemy>();
+        if (ultimate)
+            e = ObjectLists.Enemies;
+        else
+            e = myTower.enemies;
+
+        foreach (Enemy enemy in e)
         {
             if (!targetsHit.Contains(enemy) && !(enemy is EnemyAir))
             {
@@ -74,6 +83,14 @@ class Pulse : Projectile
         radiusCurrent += speed;
         CheckCollision();
         Kill = radiusCurrent > range;
+    }
+
+    public Tower MyTower
+    {
+        set
+        {
+            myTower = value;
+        }
     }
     
 }

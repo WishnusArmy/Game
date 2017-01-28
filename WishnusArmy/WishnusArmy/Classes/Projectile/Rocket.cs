@@ -26,7 +26,7 @@ public class Rocket : Projectile
 
     public virtual Enemy findTarget()
     {
-        List<Enemy> enemies = MyPlane.FindByType<Enemy>();
+        List<Enemy> enemies = ObjectLists.Enemies;
         enemies = enemies.OrderBy(o => o.CalculateDistance(o.GlobalPositionCenter, GlobalPositionCenter)).ToList();
         if (enemies.Count > 0)
             return enemies[0];
@@ -85,7 +85,7 @@ public class Rocket : Projectile
     {
         rotation = targetRotation;
         base.Update(gameTime);
-        findTarget();
+        //findTarget();
         if (!HasTarget)
         {
             target = findTarget();

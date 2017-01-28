@@ -1050,7 +1050,11 @@
 /processorParam:Quality=Best
 /build:Content/SoundEffects/towerplacement.wav
 
+
 #begin Content/Sprites/popup.jpg
+
+#begin Content/Sprites/Icons/spr_sniper_icon.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1060,9 +1064,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Content/Sprites/popup.jpg
 
 #begin Content/Sprites/Towers/SPR_BOMB_TOWER.png
+
+/build:Content/Sprites/Icons/spr_sniper_icon.png
+
+#begin Content/Sprites/Projectiles/grenade.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1072,9 +1082,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Content/Sprites/Towers/SPR_BOMB_TOWER.png
 
 #begin Content/Sprites/Icons/spr_bomb_icon.png
+
+/build:Content/Sprites/Projectiles/grenade.png
+
+#begin Content/Sprites/spr_laser_icon.png
+
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1084,5 +1100,33 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+
 /build:Content/Sprites/Icons/spr_bomb_icon.png
+
+/build:Content/Sprites/spr_laser_icon.png
+
+#begin Content/Sprites/spr_pulse_icon.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Sprites/spr_pulse_icon.png
+
+#begin Content/Sprites/spr_rocketlauncher_icon.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Sprites/spr_rocketlauncher_icon.png
+
 

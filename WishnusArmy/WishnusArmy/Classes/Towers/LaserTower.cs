@@ -27,13 +27,13 @@ class LaserTower : Tower
     public override void Update(object gameTime)
     {
         base.Update(gameTime);
-        if (canShoot && target != null)
-        {
-            Add(new Laser(TowerDamage(type, stats), TowerRange(type, stats), TowerRate(type, stats)) { target = target });
-        }
-
 
         // laser.Position = gridPosition * NODE_SIZE.X + new Vector2(baseTexture.Width/2, baseTexture.Height/2)+ GlobalPosition;
+    }
+    public override void Attack()
+    {
+        base.Attack();
+            Add(new Laser(TowerDamage(type, stats), TowerRange(type, stats), TowerRate(type, stats)) { target = target });
     }
 }
 
