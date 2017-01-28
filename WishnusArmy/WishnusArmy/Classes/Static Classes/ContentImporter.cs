@@ -31,6 +31,7 @@ internal static class ContentImporter
             SPR_HELP_1,
             SPR_HELP_2,
             SPR_HELP_3,
+            SPR_POPUP,
             SPR_OVERLAY,
             SPR_ENEMY,
             SPR_CLOUD1,
@@ -76,6 +77,7 @@ internal static class ContentImporter
             SPR_HELP_1 = Content.Load<Texture2D>("Content/Sprites/Help_1");
             SPR_HELP_2 = Content.Load<Texture2D>("Content/Sprites/Help_2");
             SPR_HELP_3 = Content.Load<Texture2D>("Content/Sprites/Help_3");
+            SPR_POPUP = Content.Load<Texture2D>("Content/Sprites/popup");
             SPR_ENEMY = Content.Load<Texture2D>("Content/Sprites/enemySprite");
             SPR_OVERLAY = Content.Load<Texture2D>("Content/Sprites/overlaybackground");
             SPR_GAMEOVERBACKGROUND = Content.Load<Texture2D>("Content/Sprites/GameOver");

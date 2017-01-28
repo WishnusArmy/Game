@@ -55,6 +55,10 @@
     <Compile Include="Classes\GameWorld\Camera.cs" />
     <Compile Include="Classes\GameWorld\HealthText.cs" />
     <Compile Include="Classes\GameOverState.cs" />
+    <Compile Include="Classes\HighScore\HighScoreTable.cs" />
+    <Compile Include="Classes\HighScore\OnlineHighscore.cs" />
+    <Compile Include="Classes\HighScore\onlinetest.cs" />
+    <Compile Include="Classes\HighScore\SecureSend.cs" />
     <Compile Include="Classes\ParticleEffects\BuildTowerParticleSystem.cs" />
     <Compile Include="Classes\ParticleEffects\ExplosionSmokeParticleSystem.cs" />
     <Compile Include="Classes\ParticleEffects\Particle.cs" />

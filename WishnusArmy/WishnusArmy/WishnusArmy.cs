@@ -28,7 +28,7 @@ namespace WishnusArmy
         {
             this.IsMouseVisible = true;
             Mouse.WindowHandle = Window.Handle;
-            //AllocConsole(); //Console is only for testing purposes
+            AllocConsole(); //Console is only for testing purposes
             Functions.Initialize(GraphicsDevice);
             ContentImporter.Initialize(Content);
             DrawingHelper.Initialize(GraphicsDevice, Content);
@@ -45,7 +45,7 @@ namespace WishnusArmy
             screen = SCREEN_SIZE;
             windowSize = WINDOW_SIZE;
             ApplyResolutionSettings();
-            FullScreen = true;
+            FullScreen = false;
 
             gameStateManager.AddGameState("MainMenuState", new MainMenuState());
             gameStateManager.AddGameState("CreditsState", new CreditsState());
