@@ -55,8 +55,10 @@ internal static class ContentImporter
             SPR_MERCHANT_TOWER,
             SPR_PULSE_TOWER,
             SPR_ROCKET_TOWER,
+            SPR_BOMB_TOWER,
 
             // Tower Icons
+            SPR_BOMB_ICON,
             SPR_MERCHANT_ICON,
             SPR_CANNON_ICON,
             SPR_FLAMETHROWER_ICON,
@@ -103,9 +105,11 @@ internal static class ContentImporter
             SPR_MERCHANT_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/spr_merchant_tower");
             SPR_PULSE_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/SPR_PULSE_TOWER");
             SPR_ROCKET_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/SPR_ROCKET_TOWER");
+            SPR_BOMB_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/SPR_BOMB_TOWER");
 
             //Tower Icons
             SPR_MERCHANT_ICON = Content.Load<Texture2D>("Content/Sprites/Icons/spr_resourcegather_icon");
+            SPR_BOMB_ICON = Content.Load<Texture2D>("Content/Sprites/Icons/spr_bomb_icon");
             SPR_CANNON_ICON = Content.Load<Texture2D>("Content/Sprites/Icons/spr_cannon_icon");
             SPR_FLAMETHROWER_ICON = Content.Load<Texture2D>("Content/Sprites/Icons/spr_flamethrower_icon");
             SPR_GATTLING_ICON = Content.Load<Texture2D>("Content/Sprites/Icons/spr_gattling_icon");
