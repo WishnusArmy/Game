@@ -25,7 +25,8 @@ class UltimateTimer : DrawOnTop
         this.coolDownTime = 700;
         position = new Vector2(SCREEN_SIZE.X - 440, SCREEN_SIZE.Y - 100);
 
-        button = new Button("0%", Color.Transparent, Color.Transparent, FNT_GAMEOVER);
+        button = new Button("0%", Color.Transparent, Color.Transparent, FNT_ULTIMATE);
+        button.textColor = Color.White;
         button.Position = position;
     }
     public override void Update(object gameTime)
@@ -58,7 +59,7 @@ class UltimateTimer : DrawOnTop
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(SPR_CIRCLE, new Rectangle(position.ToPoint() - new Point(75,70), new Point(140, 140)), new Color(255, 30, 30, 255 -(int)(((double)timer / (double)coolDownTime) * 255)));
+        spriteBatch.Draw(SPR_ULTIMATE, new Rectangle(position.ToPoint() - new Point(75, 70), new Point(140, 140)), Color.White);//new Color(255, 30, 30, 255 -(int)(((double)timer / (double)coolDownTime) * 255)));
         button.Draw(gameTime, spriteBatch);  
     }
 

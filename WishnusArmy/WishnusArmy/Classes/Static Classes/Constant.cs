@@ -150,7 +150,7 @@ internal static class Constant
         { "RocketTower", new TowerInfo() { name = "Rocket Tower", cost = 200, sprite = SPR_ROCKET_TOWER, icon = SPR_ROCKETLAUNCHER_ICON, range = TowerRange(Tower.Type.RocketTower, new int[] {0,0,0}) } },
         { "PulseTower", new TowerInfo() { name = "PulseTower", cost = 600, sprite = SPR_PULSE_TOWER, icon = SPR_PULSE_ICON, range = TowerRange(Tower.Type.PulseTower, new int[] {0,0,0}) } },
         { "ResourceTower", new TowerInfo() { name = "ResourceTower", cost = 1000, sprite = SPR_MERCHANT_TOWER, icon = SPR_MERCHANT_ICON, range = TowerRange(Tower.Type.ResourceTower, new int[] {0,0,0}) } },
-        { "BombTower", new TowerInfo() { name = "BombTower", cost = 2000, sprite = SPR_ROCKET_TOWER, icon = SPR_GRENADE_ICON, range = TowerRange(Tower.Type.BombTower, new int[] {0,0,0}) } },
+        { "BombTower", new TowerInfo() { name = "BombTower", cost = 2000, sprite = SPR_BOMB_TOWER, icon = SPR_BOMB_ICON, range = TowerRange(Tower.Type.BombTower, new int[] {0,0,0}) } },
     };
 
 
@@ -231,7 +231,7 @@ internal static class Constant
         new ToolBarObjectsItem("LaserTower", SPR_LASER_TOWER),
         new ToolBarObjectsItem("PulseTower", SPR_PULSE_TOWER),
         new ToolBarObjectsItem("ProjectileTower", SPR_ROCKET_TOWER),
-        new ToolBarObjectsItem("BombTower", SPR_ROCKET_TOWER)
+        new ToolBarObjectsItem("BombTower", SPR_BOMB_TOWER)
     };
 
     internal static readonly List<string> LIST_ENEMIES = new List<string>

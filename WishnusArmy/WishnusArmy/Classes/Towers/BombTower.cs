@@ -9,7 +9,7 @@ class BombTower : RocketTower
 {
     public BombTower() 
     {
-        baseTexture = ContentImporter.Sprites.SPR_ROCKET_TOWER;
+        baseTexture = ContentImporter.Sprites.SPR_BOMB_TOWER;
         this.type = Tower.Type.BombTower;
     }
     public override void Attack()

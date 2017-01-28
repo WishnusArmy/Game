@@ -39,6 +39,8 @@ internal static class ContentImporter
             SPR_SHADOW,
             SPR_WHITEPIXEL,
 
+            SPR_ULTIMATE,
+
             // Projectiles
             SPR_PULSE,
             SPR_ROCKET,
@@ -89,6 +91,8 @@ internal static class ContentImporter
             SPR_SHADOW = Content.Load<Texture2D>("Content/Sprites/shadow");
             SPR_CLOUD1 = Content.Load<Texture2D>("Content/Sprites/clouds1");
             SPR_CLOUD2 = Content.Load<Texture2D>("Content/Sprites/clouds2");
+
+            SPR_ULTIMATE = Content.Load<Texture2D>("Content/Sprites/SPR_BUTTON_ULTIMATE");
 
             //Projectiles
             SPR_PULSE = Content.Load<Texture2D>("Content/Sprites/Projectiles/SPR_PULSE");
@@ -206,6 +210,7 @@ internal static class ContentImporter
         internal static SpriteFont
             FNT_LEVEL_BUILDER,
             FNT_MENU,
+            FNT_ULTIMATE,
             FNT_GAMEOVER,
             FNT_OVERLAY,
             FNT_OVERLAY_INFO,
@@ -216,6 +221,7 @@ internal static class ContentImporter
         {
             FNT_LEVEL_BUILDER = Content.Load<SpriteFont>("Content/Fonts/fnt_level_builder");
             FNT_MENU = Content.Load<SpriteFont>("Content/Fonts/fnt_menu");
+            FNT_ULTIMATE = Content.Load<SpriteFont>("Content/Fonts/fnt_ultimate");
             FNT_GAMEOVER = Content.Load<SpriteFont>("Content/Fonts/fnt_gameover");
             FNT_OVERLAY = Content.Load<SpriteFont>("Content/Fonts/fnt_overlay");
             FNT_OVERLAY_INFO = Content.Load<SpriteFont>("Content/Fonts/fnt_overlay_info");

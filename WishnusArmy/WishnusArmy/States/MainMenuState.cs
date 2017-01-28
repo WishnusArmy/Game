@@ -10,15 +10,13 @@ using Microsoft.Xna.Framework.Graphics;
 public class MainMenuState : IGameLoopObject
 {
     MainMenu menu;
-    onlinetest ot;
 
     public MainMenuState()
     {
         PopupScreen.ClearButtons();
         PopupScreen.AddButton("Exit to Desktop", delegate { WishnusArmy.WishnusArmy.self.Exit(); });
         menu = new MainMenu();
-        ot = new onlinetest();
-        ot.zendtest();
+
     }
 
     public void HandleInput(InputHelper inputHelper)
