@@ -1,4 +1,5 @@
 ﻿using System;
+using static GameStats;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ using Microsoft.Xna.Framework.Input;
 
 public class TextForm : GameObject
 {
+    private HandleHighscores hh;
     private int timer;
     Rectangle pos;
     SpriteFont textFont;
@@ -25,6 +27,7 @@ public class TextForm : GameObject
 
     public TextForm(Rectangle position, SpriteFont textFont, string title, string text, Color boxColor, Color fontColor, int layer = 0, string id = "")
     {
+        hh = new HandleHighscores();
         timer = 100;
         this.pos = position;
         this.textFont = textFont;
@@ -60,7 +63,7 @@ public class TextForm : GameObject
 
         if (keys.Contains(Keys.Enter))
         {
-            GameStats.highScore.AddScore(text, GameStats.FinalScore);
+            hh.SubmitScore(text, Wave, TotalEnemiesKilled, totalResourcesGathered, FinalScore);
             Kill = true;
             return;
         }

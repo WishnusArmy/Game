@@ -55,6 +55,7 @@
     <Compile Include="Classes\GameWorld\Camera.cs" />
     <Compile Include="Classes\GameWorld\HealthText.cs" />
     <Compile Include="Classes\GameOverState.cs" />
+    <Compile Include="Classes\HighScore\HandleHighscores.cs" />
     <Compile Include="Classes\HighScore\HighScoreTable.cs" />
     <Compile Include="Classes\HighScore\OnlineHighscore.cs" />
     <Compile Include="Classes\HighScore\onlinetest.cs" />
@@ -71,7 +72,7 @@
     <Compile Include="Classes\ParticleEffects\ExplosionParticleSystem.cs" />
     <Compile Include="Classes\Projectile\Rocket.cs" />
     <Compile Include="Classes\Static Classes\Functions.cs" />
-    <Compile Include="Classes\HighScore.cs" />
+    <Compile Include="Classes\HighScore\HighScore.cs" />
     <Compile Include="Classes\Static Classes\GameStats.cs" />
     <Compile Include="Classes\Static Classes\ObjectLists.cs" />
     <Compile Include="Classes\Static Classes\PopupScreen.cs" />
