@@ -15,7 +15,9 @@ public class Level : GameObjectList
         GameStats.Initialize();
         Overlay overlay;
         Add(overlay = new Overlay());
-        Add(new Camera() { overlay = overlay });
+        Camera camera = new Camera() { overlay = overlay };
+        Add(camera);
+        ObjectLists.Camera = camera;
         Add(new PathfindingControl());
         Add(new SortingThread());
     }

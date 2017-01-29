@@ -15,6 +15,5 @@ class BombTower : RocketTower
     public override void Attack()
     {
             MyPlane.Add(new Bomb(TowerDamage(Tower.Type.BombTower, stats), 7) { Position = position });
-            return;
     }
 }

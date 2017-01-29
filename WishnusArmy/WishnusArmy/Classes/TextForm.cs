@@ -41,27 +41,22 @@ public class TextForm : GameObject
     
     public override void HandleInput(InputHelper inputHelper)
     {
-        timer++;
-        if (timer < 8 || inputHelper.CurrentPressedKeys().Length == 0)
-            return;
-        timer = 0;
-        foreach (Keys k in inputHelper.CurrentPressedKeys())
-            keys.Add(k);
-
-        int i = (int)keys[0];
-        if (((i > 64 && i < 91) || (i > 96 && i < 123)) && text.Length < 17)
+        for (int i = 65; i < 91; i++)
         {
-            text = text + keys[0].ToString();
+            Keys k = (Keys)i ;
+            if (inputHelper.KeyPressed(k))
+            {
+                string pressed = k.ToString();
+                if (!inputHelper.CurrentPressedKeys().Contains(Keys.LeftShift))
+                    pressed = pressed.ToLower();
+                text = text + pressed;
+            }
         }
-        if (i == 32)
-            text = text + " ";
-        if ((i > 47 && i < 58))
-            text = text + "" + (i - 48);
-
-        if (keys.Contains(Keys.Back) && text.Length != 0)
+        if (inputHelper.KeyPressed(Keys.Back) && text.Length > 0)
+        {
             text = text.Substring(0, text.Length - 1);
-
-        if (keys.Contains(Keys.Enter))
+        }
+            if (inputHelper.KeyPressed(Keys.Enter))
         {
             hh.SubmitScore(text, Wave, TotalEnemiesKilled, totalResourcesGathered, FinalScore);
             Kill = true;
