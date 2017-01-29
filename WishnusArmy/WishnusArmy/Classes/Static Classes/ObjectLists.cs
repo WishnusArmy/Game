@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ internal static class ObjectLists
 {
     private static List<Enemy> enemies;
     private static List<Tower> towers;
+    private static Camera camera;
 
     public static void Initialize()
     {
@@ -36,5 +38,41 @@ internal static class ObjectLists
     public static List<Tower> Towers
     {
         get  { return towers; }
+    }
+
+    public static Camera Camera
+    {
+        set
+        {
+            camera = value;
+        }
+    }
+
+    public static Vector2 CameraPosition
+    {
+        get
+        {
+            return camera.Position;
+        }
+        set
+        {
+            camera.Position = value;
+        }
+    }
+
+    public static Vector2 CameraScale
+    {
+        get
+        {
+            return camera.Scale;
+        }
+    }
+
+    public static GridPlane CameraGridPlane
+    {
+        get
+        {
+            return camera.currentPlane;
+        }
     }
 }
