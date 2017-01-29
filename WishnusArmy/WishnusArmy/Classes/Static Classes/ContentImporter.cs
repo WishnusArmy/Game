@@ -27,6 +27,7 @@ internal static class ContentImporter
         internal static Texture2D
             SPR_MAINBACKGROUND,
             SPR_GAMEOVERBACKGROUND,
+            SPR_LEADERBOARD,
             SPR_CREDITSPLANE,
             SPR_HELP_1,
             SPR_HELP_2,
@@ -78,6 +79,7 @@ internal static class ContentImporter
         {
             
             SPR_MAINBACKGROUND = Content.Load<Texture2D>("Content/Sprites/MainBackground");
+            SPR_LEADERBOARD = Content.Load<Texture2D>("Content/Sprites/leaderboard");
             SPR_CREDITSPLANE = Content.Load<Texture2D>("Content/Sprites/Credits");
             SPR_HELP_1 = Content.Load<Texture2D>("Content/Sprites/Help_1");
             SPR_HELP_2 = Content.Load<Texture2D>("Content/Sprites/Help_2");

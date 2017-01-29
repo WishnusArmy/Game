@@ -7,30 +7,28 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-public class MainMenuState : IGameLoopObject
+public class LeaderBoardState : IGameLoopObject
 {
-    MainMenu menu;
+    LeaderBoard leaderBoard;
 
-    public MainMenuState()
+    public LeaderBoardState()
     {
-        PopupScreen.ClearButtons();
-        PopupScreen.AddButton("Exit to Desktop", delegate { WishnusArmy.WishnusArmy.self.Exit(); });
-        menu = new MainMenu();
+        leaderBoard = new LeaderBoard();
     }
 
     public void HandleInput(InputHelper inputHelper)
     {
-        menu.HandleInput(inputHelper);
+        leaderBoard.HandleInput(inputHelper);
     }
 
     public void Update(object gameTime)
     {
-        menu.Update(gameTime);
+        leaderBoard.Update(gameTime);
     }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        menu.Draw(gameTime, spriteBatch);
+        leaderBoard.Draw(gameTime, spriteBatch);
     }
 
     public void Reset()
