@@ -44,7 +44,6 @@ namespace WishnusArmy
             // Create a new SpriteBatch, which can be used to draw textures.
             base.LoadContent();
 
-
             screen = SCREEN_SIZE;
             windowSize = WINDOW_SIZE;
             ApplyResolutionSettings();
