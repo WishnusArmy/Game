@@ -13,11 +13,13 @@ public class LeaderBoard : GameObjectList
 {
     private OnlineHighScore highscoreManager;
     private highScoreTable board;
+    private int updateTimer;
 
     public LeaderBoard()
     {
         highscoreManager = new OnlineHighScore();
         board = highscoreManager.getScores();
+        updateTimer = 0;
     }
     public override void HandleInput(InputHelper inputHelper)
     {
@@ -27,6 +29,14 @@ public class LeaderBoard : GameObjectList
     public override void Update(object gameTime)
     {
         base.Update(gameTime);
+        if (updateTimer > 500)
+        {
+            board = highscoreManager.getScores();
+            Console.WriteLine("update...");
+            updateTimer = 0;
+        }
+
+        updateTimer++;
 
     }
 
