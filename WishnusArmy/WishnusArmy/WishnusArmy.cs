@@ -11,7 +11,7 @@ namespace WishnusArmy
 {
     public class WishnusArmy : GameEnvironment
     {
-        static bool consoleON = false; //Console is only for testing purposes
+        static bool consoleON = true; //Console is only for testing purposes
 
         [DllImport("kernel32")]
         static extern bool AllocConsole();

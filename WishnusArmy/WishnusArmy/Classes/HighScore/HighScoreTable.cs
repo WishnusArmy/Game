@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 class highScoreTable
 {
-    public int[] ranks = new int[10];
-    string[] names = new string[10];
+    int[] ranks = new int[10];
+    public string[] names = new string[10];
     int[] kills = new int[10];
     int[] waves = new int[10];
     int[] resources = new int[10];

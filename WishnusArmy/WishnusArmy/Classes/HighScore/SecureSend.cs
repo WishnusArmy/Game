@@ -18,10 +18,10 @@ partial class OnlineHighScore
     }
 
     //The following code can be called to send out a new score to the server. It returns the new unique server ID of the high score entry as string.
-    public string sendScore(string name, int kills, int waves, int resources, int score)
+    public string sendScore(string name, int waves, int kills, int resources, int score)
     {
-        string highscoreString = name + kills + waves + resources + score + "SuperSecretPasswordString";
-        string postString = "&Name=" + name + "&Kills=" + kills + "&Waves=" + waves + "&Resources=" + resources + "&Score=" + score + "&Hash=" + hashString(highscoreString);
+        string highscoreString = name + waves + kills + resources + score + "SuperSecretPasswordString";
+        string postString = "&Name=" + name + "&Waves=" + waves + "&Kills=" + kills + "&Resources=" + resources + "&Score=" + score + "&Hash=" + hashString(highscoreString);
         string response = null;
         response = webPost("https://wishnusarmy.000webhostapp.com/newscore.php", postString);
         Console.WriteLine(postString);

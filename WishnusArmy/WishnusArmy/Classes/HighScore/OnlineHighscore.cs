@@ -96,11 +96,11 @@ partial class OnlineHighScore
         return responseString;
     }
 
-    //format = top 10 
-    public highScoreTable getScores(string format)
+    
+    public highScoreTable getScores()
     {
-        string postString = "&Format=" + format;
-        return parseToHighscoreTable(webPost("https://wishnusarmy.000webhostapp.com/connectandget.php", postString));
+        //string postString = "&Format=" + format;
+        return parseToHighscoreTable(webPost("https://wishnusarmy.000webhostapp.com/connectandget.php", ""));
     }
 }
 
