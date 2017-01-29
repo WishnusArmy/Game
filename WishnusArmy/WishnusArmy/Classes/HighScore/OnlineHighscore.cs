@@ -72,8 +72,16 @@ partial class OnlineHighScore
         request.ContentType = CONTENT_TYPE;
         // Set the ContentLength property of the WebRequest.
         request.ContentLength = byteArray.Length;
-        // Get the request stream.
-        dataStream = request.GetRequestStream();
+        try
+        {
+            // Get the request stream.
+            dataStream = request.GetRequestStream();
+        }catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return "";
+        }
+
         // Write the data to the request stream.
         dataStream.Write(byteArray, 0, byteArray.Length);
         // Close the Stream object.

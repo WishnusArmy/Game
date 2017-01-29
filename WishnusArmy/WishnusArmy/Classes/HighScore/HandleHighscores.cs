@@ -22,14 +22,14 @@ class HandleHighscores : GameObject
     public HandleHighscores()
     {
         highscoreHandler = new OnlineHighScore();
-        ScoreBoard = highscoreHandler.getScores();
+        scoreBoard = highscoreHandler.getScores();
     }
 
     public override void Update(object gameTime)
     {
         if (updateTimer > 500)
         {
-            highscoreHandler.getScores();
+            scoreBoard = highscoreHandler.getScores();
             Console.WriteLine("update...");
             updateTimer = 0;
         }
@@ -48,12 +48,12 @@ class HandleHighscores : GameObject
     public void SubmitScore(string name, int waves, int kills, int resources, int score)
     {
         highscoreHandler.sendScore(name, waves, kills, resources, score);
-        ScoreBoard = highscoreHandler.getScores();
+        //scoreBoard = highscoreHandler.getScores(); Slows down the system too much, better to wait on the updateTimer interval
     }
 
     public void FetchScore()
     {
-        ScoreBoard = highscoreHandler.getScores();
+        scoreBoard = highscoreHandler.getScores();
     }
 
     public void ScoreDrawer(SpriteBatch spriteBatch)
@@ -74,22 +74,24 @@ class HandleHighscores : GameObject
                 posScore = new Vector2(SCREEN_SIZE.X - 470, 463 + (i - 5) * ((SCREEN_SIZE.Y - 600) / MAXSIZE_HIGHSCORELIST * 2));
             }
 
-                if (ScoreBoard.Names != null)
+            try
+            {
+                if (scoreBoard.Names != null)
                 {
-                    spriteBatch.DrawString(FNT_GAMESTATS, ScoreBoard.Names[i], posName, Color.White);
+                    spriteBatch.DrawString(FNT_GAMESTATS, scoreBoard.Names[i], posName, Color.White);
                 }
 
-                if (ScoreBoard.Scores != null)
+                if (scoreBoard.Scores != null)
                 {
-                    spriteBatch.DrawString(FNT_GAMESTATS, ScoreBoard.Scores[i].ToString(), posScore, Color.White);
+                    spriteBatch.DrawString(FNT_GAMESTATS, scoreBoard.Scores[i].ToString(), posScore, Color.White);
                 }
+            }catch(Exception e)
+            {
+                spriteBatch.DrawString(FNT_GAMESTATS, "Unable to connect...", new Vector2(95, 600), Color.White);
+                spriteBatch.DrawString(FNT_GAMESTATS, "Unable to connect...", new Vector2(SCREEN_SIZE.X - 420, 600 ), Color.White);
+            }
+
 
         }
-    }
-
-    public highScoreTable ScoreBoard
-    {
-        get { return scoreBoard; }
-        set { scoreBoard = value; }
     }
 }
