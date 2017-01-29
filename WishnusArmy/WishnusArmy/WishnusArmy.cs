@@ -11,7 +11,7 @@ namespace WishnusArmy
 {
     public class WishnusArmy : GameEnvironment
     {
-        static bool consoleON = false; //Console is only for testing purposes
+        static bool consoleON = true; //Console is only for testing purposes
 
         [DllImport("kernel32")]
         static extern bool AllocConsole();
@@ -57,7 +57,7 @@ namespace WishnusArmy
             gameStateManager.AddGameState("LevelBuilderState", new LevelBuilderState());
             gameStateManager.AddGameState("LevelGeneratorState", new LevelGeneratorState());
             gameStateManager.AddGameState("GameOverState", new GameOverState());
-            gameStateManager.SwitchTo("MainMenuState");
+            gameStateManager.SwitchTo("GameOverState");
             startSorting = true;
         }
 

@@ -72,8 +72,16 @@ partial class OnlineHighScore
         request.ContentType = CONTENT_TYPE;
         // Set the ContentLength property of the WebRequest.
         request.ContentLength = byteArray.Length;
-        // Get the request stream.
-        dataStream = request.GetRequestStream();
+        try
+        {
+            // Get the request stream.
+            dataStream = request.GetRequestStream();
+        }catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return "";
+        }
+
         // Write the data to the request stream.
         dataStream.Write(byteArray, 0, byteArray.Length);
         // Close the Stream object.
@@ -96,11 +104,11 @@ partial class OnlineHighScore
         return responseString;
     }
 
-    //format = top 10 
-    public highScoreTable getScores(string format)
+    
+    public highScoreTable getScores()
     {
-        string postString = "&Format=" + format;
-        return parseToHighscoreTable(webPost("https://wishnusarmy.000webhostapp.com/connectandget.php", postString));
+        //string postString = "&Format=" + format;
+        return parseToHighscoreTable(webPost("https://wishnusarmy.000webhostapp.com/connectandget.php", ""));
     }
 }
 

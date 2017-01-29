@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 class highScoreTable
 {
-    public int[] ranks = new int[10];
+    int[] ranks = new int[10];
     string[] names = new string[10];
     int[] kills = new int[10];
     int[] waves = new int[10];
@@ -23,5 +23,37 @@ class highScoreTable
         this.resources = resources;
         this.scores = scores;
     }
+
+    #region Highscore Properties
+    public int[] Ranks
+    {
+        get { return ranks; }
+    }
+
+    public string[] Names
+    {
+        get { return names; }
+    }
+
+    public int[] Kills
+    {
+        get { return kills; }
+    }
+
+    public int[] Waves
+    {
+        get { return waves; }
+    }
+
+    public int[] Resources
+    {
+        get { return resources; }
+    }
+
+    public int[] Scores
+    {
+        get { return scores; }
+    }
+    #endregion
 }
 
