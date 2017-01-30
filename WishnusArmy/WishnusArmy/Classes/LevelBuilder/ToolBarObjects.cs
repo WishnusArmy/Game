@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using static Constant;
+using static ObjectLists;
 using static ContentImporter.Fonts;
 
 public class ToolBarObjects : GameObject
@@ -26,17 +27,14 @@ public class ToolBarObjects : GameObject
 
         if (inputHelper.MouseLeftButtonPressed() && inputHelper.MouseInGameWindow)
         {
-            GridPlane currentPlane;
             try
             {
-                Camera cam = GameWorld.FindByType<Camera>()[0]; //Get a reference to the camera
-                currentPlane = cam.currentPlane; //Get the index for the current plane
-                GridNode nodeAt = currentPlane.NodeAt(inputHelper.MousePosition - cam.Position);  //Get the node at the mouse
+                GridNode nodeAt = CameraGridPlane.NodeAt(inputHelper.MousePosition - CameraPosition);  //Get the node at the mouse
                 Type t = Type.GetType(toolList[selected].name); //Get the type of the object
                 object temp = Activator.CreateInstance(t); //Create an instance of that object
                 GameObject obj = temp as GameObject; //Cast it as a GameObject
                 obj.Position = nodeAt.Position; //Set it's position at the mouse node
-                currentPlane.Add(obj); //Add it to the plane
+                CameraGridPlane.Add(obj); //Add it to the plane
             }
             catch (Exception e)
             {

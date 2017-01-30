@@ -44,7 +44,6 @@ namespace WishnusArmy
             // Create a new SpriteBatch, which can be used to draw textures.
             base.LoadContent();
 
-
             screen = SCREEN_SIZE;
             windowSize = WINDOW_SIZE;
             ApplyResolutionSettings();
@@ -57,7 +56,8 @@ namespace WishnusArmy
             gameStateManager.AddGameState("LevelBuilderState", new LevelBuilderState());
             gameStateManager.AddGameState("LevelGeneratorState", new LevelGeneratorState());
             gameStateManager.AddGameState("GameOverState", new GameOverState());
-            gameStateManager.SwitchTo("GameOverState");
+            gameStateManager.AddGameState("LeaderBoardState", new LeaderBoardState());
+            gameStateManager.SwitchTo("MainMenuState");
             startSorting = true;
         }
 

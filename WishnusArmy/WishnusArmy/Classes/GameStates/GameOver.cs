@@ -10,7 +10,7 @@ using static ContentImporter;
 using static ContentImporter.Fonts;
 using static Constant;
 
-public class GameOverState : GameObjectList
+public class GameOver : GameObjectList
 {
     protected Button backButton;
     protected Button clearHighScoreButton;
@@ -21,7 +21,7 @@ public class GameOverState : GameObjectList
     protected bool scoreAdded;
     protected bool worthy;
 
-    public GameOverState()
+    public GameOver()
     {
         pc = new ParticleController();
         Add(pc);
@@ -78,4 +78,3 @@ public class GameOverState : GameObjectList
 
     }
 }
-
