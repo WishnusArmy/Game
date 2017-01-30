@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 public class LeaderBoard : GameObjectList
 {
+    private Button backButton;
     private OnlineHighScore highscoreManager;
     private highScoreTable board;
     private int updateTimer;
@@ -20,6 +21,11 @@ public class LeaderBoard : GameObjectList
         highscoreManager = new OnlineHighScore();
         board = highscoreManager.getScores();
         updateTimer = 0;
+
+        //Add back button
+        backButton = new Button("BACK", Color.LightGreen, Color.DarkGreen, Fonts.FNT_MENU);
+        backButton.Position = SCREEN_SIZE.ToVector2() - backButton.Dimensions;
+        Add(backButton);
     }
     public override void HandleInput(InputHelper inputHelper)
     {
@@ -37,6 +43,9 @@ public class LeaderBoard : GameObjectList
         }
 
         updateTimer++;
+
+        if (backButton.Pressed)
+            GameEnvironment.GameStateManager.SwitchTo("MainMenuState");
 
     }
 

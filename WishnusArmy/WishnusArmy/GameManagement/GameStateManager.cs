@@ -36,6 +36,7 @@ public class GameStateManager : IGameLoopObject
                 case "MainMenuState":
                 case "HelpState":
                 case "CreditsState":
+                case "HighscoreState":
                     PopupScreen.ClearButtons();
                     PopupScreen.AddButton("Exit to Desktop", delegate { WishnusArmy.WishnusArmy.self.Exit(); });
                     break;

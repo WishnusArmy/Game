@@ -14,6 +14,7 @@ public class MainMenu : GameObjectList
     protected Button playButton;
     protected Button helpButton;
     protected Button creditsButton;
+    protected Button highscoreButton;
 
     protected Vector2 buttonPosition;
     protected Color buttonColor;
@@ -22,7 +23,7 @@ public class MainMenu : GameObjectList
 
     public MainMenu()
     {
-        buttonPosition = new Vector2(1425, SCREEN_SIZE.Y - 125);
+        buttonPosition = new Vector2(1125, SCREEN_SIZE.Y - 125);
         buttonColor = Color.LightGreen;
         hoverColor = Color.DarkGreen;
         buttonFont = Fonts.FNT_MENU;
@@ -38,10 +39,16 @@ public class MainMenu : GameObjectList
         buttonPosition = helpButton.Position;
         Add(helpButton);
 
+        //Add highscore button
+        highscoreButton = new Button("HIGHSCORES", buttonColor, hoverColor, buttonFont);
+        highscoreButton.Position = new Vector2(buttonPosition.X + helpButton.Dimensions.X + 123, buttonPosition.Y);
+        buttonPosition = highscoreButton.Position;
+        Add(highscoreButton);
+
         //Add credits button
         creditsButton = new Button("CREDITS", buttonColor, hoverColor, buttonFont);
-        creditsButton.Position = new Vector2(buttonPosition.X + helpButton.Dimensions.X + 90, buttonPosition.Y);
-        Add(creditsButton);        
+        creditsButton.Position = new Vector2(buttonPosition.X + highscoreButton.Dimensions.X + 48, buttonPosition.Y);
+        Add(creditsButton);
     }
     public override void HandleInput(InputHelper inputHelper)
     {
@@ -61,6 +68,8 @@ public class MainMenu : GameObjectList
             GameEnvironment.GameStateManager.SwitchTo("CreditsState");
         else if (helpButton.Pressed)
             GameEnvironment.GameStateManager.SwitchTo("HelpState");
+        else if (highscoreButton.Pressed)
+            GameEnvironment.GameStateManager.SwitchTo("LeaderBoardState");
 
     }
 
