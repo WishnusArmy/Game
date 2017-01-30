@@ -122,6 +122,7 @@
     <Compile Include="GameManagement\IsometricMovingGameObject.cs" />
     <Compile Include="GameManagement\SpriteSheet.cs" />
     <Compile Include="GameManagement\TextGameObject.cs" />
+    <Compile Include="States\HighScoreState.cs" />
     <Compile Include="States\LevelGeneratorState.cs" />
     <Compile Include="Classes\GameStates\MainMenu.cs" />
     <Compile Include="Classes\Projectile\Laser.cs" />
