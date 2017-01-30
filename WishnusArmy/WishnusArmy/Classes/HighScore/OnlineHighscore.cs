@@ -17,8 +17,8 @@ partial class OnlineHighScore
         string toParse = tableString.Trim().Substring(SERVER_VALID_DATA_HEADER.Length);
 
         string[] names = new string[10];
-        int[] kills = new int[10];
         int[] waves = new int[10];
+        int[] kills = new int[10];
         int[] resources = new int[10];
         int[] scores = new int[10];
         int[] ranks = new int[10];
@@ -32,8 +32,8 @@ partial class OnlineHighScore
                 if (cols.Length == 6)
                 {
                     names[i] = cols[0].Trim();
-                    kills[i] = int.Parse(cols[1]);
-                    waves[i] = int.Parse(cols[2]);
+                    waves[i] = int.Parse(cols[1]);
+                    kills[i] = int.Parse(cols[2]);
                     resources[i] = int.Parse(cols[3]);
                     scores[i] = int.Parse(cols[4]);
                     ranks[i] = int.Parse(cols[5].Trim());
@@ -49,7 +49,7 @@ partial class OnlineHighScore
                 ranks[i] = 0;
             }
         }
-        return new highScoreTable(ranks, names, kills, waves, resources, scores);
+        return new highScoreTable(ranks, names, waves, kills, resources, scores);
     }
 
     private string webPost(string _URL, string _postString)

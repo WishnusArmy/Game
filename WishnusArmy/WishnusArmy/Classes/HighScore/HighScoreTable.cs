@@ -14,12 +14,12 @@ class highScoreTable
     int[] resources = new int[10];
     int[] scores = new int[10];
 
-    public highScoreTable(int[] ranks, string[] names, int[] kills, int[] waves, int[] resources, int[] scores)
+    public highScoreTable(int[] ranks, string[] names, int[] waves, int[] kills, int[] resources, int[] scores)
     {
         this.ranks = ranks;
         this.names = names;
-        this.kills = kills;
         this.waves = waves;
+        this.kills = kills;
         this.resources = resources;
         this.scores = scores;
     }

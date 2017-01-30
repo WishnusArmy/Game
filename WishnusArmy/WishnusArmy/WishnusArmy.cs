@@ -51,14 +51,13 @@ namespace WishnusArmy
 
             gameStateManager.AddGameState("MainMenuState", new MainMenuState());
             gameStateManager.AddGameState("CreditsState", new CreditsState());
-            gameStateManager.AddGameState("HighscoreState", new HighScoreState());
             gameStateManager.AddGameState("HelpState", new HelpState());
             gameStateManager.AddGameState("PlayingState", new PlayingState());
             gameStateManager.AddGameState("LevelBuilderState", new LevelBuilderState());
             gameStateManager.AddGameState("LevelGeneratorState", new LevelGeneratorState());
             gameStateManager.AddGameState("GameOverState", new GameOverState());
             gameStateManager.AddGameState("LeaderBoardState", new LeaderBoardState());
-            gameStateManager.SwitchTo("MainMenuState");
+            gameStateManager.SwitchTo("GameOverState");
             startSorting = true;
         }
 
