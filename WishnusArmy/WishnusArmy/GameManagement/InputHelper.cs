@@ -100,6 +100,10 @@ public class InputHelper
     {
         return currentKeyboardState.IsKeyDown(k);
     }
+    public bool IsKeyUp(Keys k)
+    {
+        return !IsKeyDown(k);
+    }
 
     public bool AnyKeyPressed
     {

@@ -56,6 +56,7 @@
     <Compile Include="Classes\GameWorld\Camera.cs" />
     <Compile Include="Classes\GameWorld\HealthText.cs" />
     <Compile Include="Classes\GameStates\GameOverState.cs" />
+    <Compile Include="States\GameOverState.cs" />
     <Compile Include="Classes\HighScore\HandleHighscores.cs" />
     <Compile Include="Classes\HighScore\HighScoreTable.cs" />
     <Compile Include="Classes\HighScore\OnlineHighscore.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="GameManagement\IsometricMovingGameObject.cs" />
     <Compile Include="GameManagement\SpriteSheet.cs" />
     <Compile Include="GameManagement\TextGameObject.cs" />
+    <Compile Include="States\HighScoreState.cs" />
     <Compile Include="States\LevelGeneratorState.cs" />
     <Compile Include="Classes\GameStates\MainMenu.cs" />
     <Compile Include="Classes\Projectile\Laser.cs" />
