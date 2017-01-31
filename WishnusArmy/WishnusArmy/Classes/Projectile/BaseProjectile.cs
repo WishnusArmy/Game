@@ -29,8 +29,15 @@ class BaseProjectile : DrawOnTop
     }
     public override void Update(object gameTime)
     {
-        Camera c = GameWorld.FindByType<Camera>()[0];
-        cameraPosition = c.Position;
+        try
+        {
+            Camera c = GameWorld.FindByType<Camera>()[0];
+            cameraPosition = c.Position;
+        }catch(Exception e)
+        {
+            cameraPosition = new Vector2(0);
+        }
+
         base.Update(gameTime);
         if (OutOfScreen())
         {
