@@ -11,7 +11,7 @@ namespace WishnusArmy
 {
     public class WishnusArmy : GameEnvironment
     {
-        static bool consoleON = true; //Console is only for testing purposes
+        static bool consoleON = false; //Console is only for testing purposes
 
         [DllImport("kernel32")]
         static extern bool AllocConsole();
@@ -47,7 +47,7 @@ namespace WishnusArmy
             screen = SCREEN_SIZE;
             windowSize = WINDOW_SIZE;
             ApplyResolutionSettings();
-            FullScreen = false;
+            FullScreen = true;
 
             gameStateManager.AddGameState("MainMenuState", new MainMenuState());
             gameStateManager.AddGameState("CreditsState", new CreditsState());
