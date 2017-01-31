@@ -22,13 +22,15 @@ using static ContentImporter.Sounds;
             //base.HandleInput(inputHelper);
             if (!shooting)
             {
-            mousePos = findTarget().Position;
+                Enemy enemy = findTarget();
+            if (enemy == null)
+                return;
+
+                mousePos = enemy.Position;
                 shooting = true;
-                cameraPos = cameraPosition;
                 distance = CalculateDistance(Position, targetPos);
             }
-        adjustment = (cameraPosition - cameraPos);
-        targetPos = mousePos;// + adjustment;
+        targetPos = mousePos;
 
             double opposite = targetPos.Y - Position.Y;
             double adjacent = targetPos.X - Position.X;

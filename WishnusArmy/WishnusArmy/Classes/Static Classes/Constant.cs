@@ -68,7 +68,7 @@ internal static class Constant
             case Tower.Type.Base:
                 return (int)(50 * Math.Pow(1.10, GameStats.Wave));
             case Tower.Type.ResourceTower:
-                return (int)(40 + 15 * s);
+                return (int)(40 + 10 * s);
             case Tower.Type.BombTower:
                 return (int)(150 + 75 * s); //blastRadius scaled mee met damage.
             default:
@@ -106,7 +106,7 @@ internal static class Constant
             case Tower.Type.Base:
                 return (int)(200 * Math.Pow(0.93, GameStats.Wave));
             case Tower.Type.ResourceTower:
-                return (800 - s * 150);
+                return (800 - s * 100);
             case Tower.Type.BombTower:
                 return (int) (300 - 30*s);
             default:
