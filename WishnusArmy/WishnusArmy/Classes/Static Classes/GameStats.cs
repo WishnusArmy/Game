@@ -23,7 +23,7 @@ internal static class GameStats
 
     public static void Initialize()
     {
-        EcResources = 500000;
+        EcResources = 500;
         totalResourcesGathered = 0;
         MaxBaseHealth = 500;
         BaseHealth = MaxBaseHealth;

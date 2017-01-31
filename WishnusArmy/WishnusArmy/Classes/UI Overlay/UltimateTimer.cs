@@ -22,7 +22,7 @@ class UltimateTimer : DrawOnTop
     public UltimateTimer() : base()
     {
         timer = 0;
-        this.coolDownTime = 700;
+        this.coolDownTime = 32000;
         position = new Vector2(SCREEN_SIZE.X - 440, SCREEN_SIZE.Y - 100);
 
         button = new Button("0%", Color.Transparent, Color.Transparent, FNT_ULTIMATE);
@@ -31,27 +31,40 @@ class UltimateTimer : DrawOnTop
     }
     public override void Update(object gameTime)
     {
-        timer++;
+        List<Base> baseList = GameWorld.FindByType<Base>();
+        if (baseList.Count > 0 && !baseList[0].InUltimate)
+            timer++;
+        
+        button.buttonText = (int)(((double)timer / (double)coolDownTime) * 100) + "%";
+
         if (timer > coolDownTime)
         {
             timer = coolDownTime;
             ready = true;
         }
+        else
+        {
+            return;
+        }
+
+        button.Update(gameTime);
+
         if (button.Pressed && ready)
         {
             timer = 0;
+            ready = false;
             Pulse p = new Pulse(Wave * 1000, SCREEN_SIZE.X * 1.8, ObjectLists.Enemies);
             p.ultimate = true;
             p.color = Color.Red;
             p.speed = 25;
-            List<Base> list = GameWorld.FindByType<Base>();
-            if (list.Count > 0)
-                list[0].Add(p);
-            ready = false;
+            if (baseList.Count > 0)
+            {
+                baseList[0].Add(p);
+                baseList[0].InUltimate = true;
+            }
         }
-        button.Update(gameTime);
-        button.buttonText = (int)(((double)timer / (double)coolDownTime) * 100) + "%";
     }
+
     public override void HandleInput(InputHelper inputHelper)
     {
         button.HandleInput(inputHelper);

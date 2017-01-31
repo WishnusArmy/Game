@@ -88,12 +88,12 @@ public class OverlayTowerInfo : GameObjectList
         base.Draw(gameTime, spriteBatch);
         if (tower != null)
         {
-            spriteBatch.Draw(tower.baseTexture, position + new Vector2(45, 40), Color.White);
-            DrawText(spriteBatch, FNT_MENU, TOWER_INFO[tower.ToString()].name, position + new Vector2(120, 25), Color.White, true);
+            spriteBatch.Draw(tower.baseTexture, position + new Vector2(45, 52), null, Color.White, 0f, Vector2.Zero, 0.7f, SpriteEffects.None, 0f );
+            DrawText(spriteBatch, FNT_MENU, TOWER_INFO[tower.ToString()].name, position + new Vector2(130, 25), Color.White, true);
 
             string[] str = new string[3] { "Damage:", "Range:", "Fire Rate:" };
             if (tower is ResourceTower)
-                str = new string[3] { "Investment:", "Area:", "Gather Rate:" };
+                str = new string[3] { "Investment:", "Area:", "Rate:" };
             for (int z = 0; z < tower.stats.Length; ++z)
             {
                 DrawText(spriteBatch, FNT_LEVEL_BUILDER, str[z], position + new Vector2(125, 57 + (blockSize.Y + 15) * z), Color.White);

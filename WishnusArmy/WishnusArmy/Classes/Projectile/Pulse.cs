@@ -83,6 +83,8 @@ class Pulse : Projectile
         radiusCurrent += speed;
         CheckCollision();
         Kill = radiusCurrent > range;
+        if (Kill && ultimate)
+            GameWorld.FindByType<Base>()[0].InUltimate = false;
     }
 
     public Tower MyTower
