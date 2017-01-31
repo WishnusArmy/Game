@@ -22,7 +22,7 @@ class UltimateTimer : DrawOnTop
     public UltimateTimer() : base()
     {
         timer = 0;
-        this.coolDownTime = 700;
+        this.coolDownTime = 14000;
         position = new Vector2(SCREEN_SIZE.X - 440, SCREEN_SIZE.Y - 100);
 
         button = new Button("0%", Color.Transparent, Color.Transparent, FNT_ULTIMATE);
