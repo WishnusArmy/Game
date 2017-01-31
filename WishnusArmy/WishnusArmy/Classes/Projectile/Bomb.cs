@@ -22,7 +22,11 @@ using static ContentImporter.Sounds;
             //base.HandleInput(inputHelper);
             if (!shooting)
             {
-                mousePos = findTarget().Position;
+                Enemy enemy = findTarget();
+            if (enemy == null)
+                return;
+
+                mousePos = enemy.Position;
                 shooting = true;
                 distance = CalculateDistance(Position, targetPos);
             }
