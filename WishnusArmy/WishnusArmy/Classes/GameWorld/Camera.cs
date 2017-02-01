@@ -105,10 +105,26 @@ public class Camera : GameObjectList
             GameEnvironment.GameStateManager.AddGameState("GameOverState", new GameOverState());
             GameEnvironment.GameStateManager.SwitchTo("GameOverState");
         }
-        if (inputHelper.CurrentPressedKeys().ToList().Contains(Keys.W) && inputHelper.CurrentPressedKeys().ToList().Contains(Keys.LeftShift))
+        if (inputHelper.IsKeyDown(Keys.LeftShift) && inputHelper.IsKeyDown(Keys.H))
         {
-            GameStats.Wave++;
+            if (inputHelper.IsKeyDown(Keys.W))
+            {
+                GameStats.Wave++;
+            }
+            if (inputHelper.IsKeyDown(Keys.D))
+            {
+                GameStats.Wave++;
+            }
+            if (inputHelper.IsKeyDown(Keys.R))
+            {
+                GameStats.EcResources+=10;
+            }
+            if(inputHelper.IsKeyDown(Keys.L))
+            {
+                GameStats.BaseHealth+=2;
+            }
         }
+
         //zoom
         Vector2 oldScale = scale;
         if (inputHelper.ScrollUp())
