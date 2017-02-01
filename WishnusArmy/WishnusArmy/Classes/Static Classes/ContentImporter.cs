@@ -27,10 +27,12 @@ internal static class ContentImporter
         internal static Texture2D
             SPR_MAINBACKGROUND,
             SPR_GAMEOVERBACKGROUND,
+            SPR_LEADERBOARD,
             SPR_CREDITSPLANE,
             SPR_HELP_1,
             SPR_HELP_2,
             SPR_HELP_3,
+            SPR_POPUP,
             SPR_OVERLAY,
             SPR_ENEMY,
             SPR_CLOUD1,
@@ -38,10 +40,13 @@ internal static class ContentImporter
             SPR_SHADOW,
             SPR_WHITEPIXEL,
 
+            SPR_ULTIMATE,
+
             // Projectiles
             SPR_PULSE,
             SPR_ROCKET,
             SPR_CANNONBALL,
+            SPR_GRENADE,
 
             // Towers
             SPR_ABSTRACT_TOWER,
@@ -54,8 +59,10 @@ internal static class ContentImporter
             SPR_MERCHANT_TOWER,
             SPR_PULSE_TOWER,
             SPR_ROCKET_TOWER,
+            SPR_BOMB_TOWER,
 
             // Tower Icons
+            SPR_BOMB_ICON,
             SPR_MERCHANT_ICON,
             SPR_CANNON_ICON,
             SPR_FLAMETHROWER_ICON,
@@ -72,10 +79,12 @@ internal static class ContentImporter
         {
             
             SPR_MAINBACKGROUND = Content.Load<Texture2D>("Content/Sprites/MainBackground");
+            SPR_LEADERBOARD = Content.Load<Texture2D>("Content/Sprites/leaderboard");
             SPR_CREDITSPLANE = Content.Load<Texture2D>("Content/Sprites/Credits");
             SPR_HELP_1 = Content.Load<Texture2D>("Content/Sprites/Help_1");
             SPR_HELP_2 = Content.Load<Texture2D>("Content/Sprites/Help_2");
             SPR_HELP_3 = Content.Load<Texture2D>("Content/Sprites/Help_3");
+            SPR_POPUP = Content.Load<Texture2D>("Content/Sprites/popup");
             SPR_ENEMY = Content.Load<Texture2D>("Content/Sprites/enemySprite");
             SPR_OVERLAY = Content.Load<Texture2D>("Content/Sprites/overlaybackground");
             SPR_GAMEOVERBACKGROUND = Content.Load<Texture2D>("Content/Sprites/GameOver");
@@ -85,10 +94,13 @@ internal static class ContentImporter
             SPR_CLOUD1 = Content.Load<Texture2D>("Content/Sprites/clouds1");
             SPR_CLOUD2 = Content.Load<Texture2D>("Content/Sprites/clouds2");
 
+            SPR_ULTIMATE = Content.Load<Texture2D>("Content/Sprites/SPR_BUTTON_ULTIMATE");
+
             //Projectiles
             SPR_PULSE = Content.Load<Texture2D>("Content/Sprites/Projectiles/SPR_PULSE");
             SPR_ROCKET = Content.Load<Texture2D>("Content/Sprites/Projectiles/SPR_BULLET");
             SPR_CANNONBALL = Content.Load<Texture2D>("Content/Sprites/Projectiles/cannonBall");
+            SPR_GRENADE = Content.Load<Texture2D>("Content/Sprites/Projectiles/grenade");
 
             //Towers
             SPR_ABSTRACT_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/abstractTower");
@@ -101,9 +113,11 @@ internal static class ContentImporter
             SPR_MERCHANT_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/spr_merchant_tower");
             SPR_PULSE_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/SPR_PULSE_TOWER");
             SPR_ROCKET_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/SPR_ROCKET_TOWER");
+            SPR_BOMB_TOWER = Content.Load<Texture2D>("Content/Sprites/Towers/SPR_BOMB_TOWER");
 
             //Tower Icons
             SPR_MERCHANT_ICON = Content.Load<Texture2D>("Content/Sprites/Icons/spr_resourcegather_icon");
+            SPR_BOMB_ICON = Content.Load<Texture2D>("Content/Sprites/Icons/spr_bomb_icon");
             SPR_CANNON_ICON = Content.Load<Texture2D>("Content/Sprites/Icons/spr_cannon_icon");
             SPR_FLAMETHROWER_ICON = Content.Load<Texture2D>("Content/Sprites/Icons/spr_flamethrower_icon");
             SPR_GATTLING_ICON = Content.Load<Texture2D>("Content/Sprites/Icons/spr_gattling_icon");
@@ -198,6 +212,7 @@ internal static class ContentImporter
         internal static SpriteFont
             FNT_LEVEL_BUILDER,
             FNT_MENU,
+            FNT_ULTIMATE,
             FNT_GAMEOVER,
             FNT_OVERLAY,
             FNT_OVERLAY_INFO,
@@ -208,6 +223,7 @@ internal static class ContentImporter
         {
             FNT_LEVEL_BUILDER = Content.Load<SpriteFont>("Content/Fonts/fnt_level_builder");
             FNT_MENU = Content.Load<SpriteFont>("Content/Fonts/fnt_menu");
+            FNT_ULTIMATE = Content.Load<SpriteFont>("Content/Fonts/fnt_ultimate");
             FNT_GAMEOVER = Content.Load<SpriteFont>("Content/Fonts/fnt_gameover");
             FNT_OVERLAY = Content.Load<SpriteFont>("Content/Fonts/fnt_overlay");
             FNT_OVERLAY_INFO = Content.Load<SpriteFont>("Content/Fonts/fnt_overlay_info");

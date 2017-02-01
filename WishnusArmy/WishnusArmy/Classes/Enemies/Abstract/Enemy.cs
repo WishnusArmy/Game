@@ -84,8 +84,10 @@ public abstract partial class Enemy : IsometricMovingGameObject
             {
                 kill = true;
                 TotalEnemiesKilled++;
-                GameStats.EcResources += killReward;
-                GameStats.totalResourcesGathered += killReward;
+                EcResources += killReward;
+                totalResourcesGathered += killReward;
+                if (!GameWorld.FindByType<Base>()[0].InUltimate)
+                    GameWorld.FindByType<UltimateTimer>()[0].Timer += 150;
                 //PlaySound(SND_WILHELM_SCREAM);
             }
         }
@@ -140,7 +142,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
 
 
         //The position never truly equals the target position so 5 pixels lower or higher.
-        if (CalculateDistance(targetNode.Position, position) < 5)
+        if (CalculateDistance(targetNode.Position, position) < speed)
         {
             if (pathIndex > 0)
             {
@@ -149,7 +151,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
                     GridNode solidNode = path[pathIndex - 1];
                     startNode = path[pathIndex]; //set the startNode for the request
                     requestPath(); //Request a new path around the obstacle
-                    List<Enemy> enemies = MyPlane.FindByType<Enemy>();
+                    List<Enemy> enemies = ObjectLists.Enemies;
                     enemies = enemies.OrderBy(o => o.CalculateDistance(o.position, position)).ToList();
                     foreach (Enemy enemy in enemies)
                     {

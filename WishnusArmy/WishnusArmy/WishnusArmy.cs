@@ -11,6 +11,8 @@ namespace WishnusArmy
 {
     public class WishnusArmy : GameEnvironment
     {
+        static bool consoleON = false; //Console is only for testing purposes
+
         [DllImport("kernel32")]
         static extern bool AllocConsole();
 
@@ -28,7 +30,8 @@ namespace WishnusArmy
         {
             this.IsMouseVisible = true;
             Mouse.WindowHandle = Window.Handle;
-            //AllocConsole(); //Console is only for testing purposes
+            if(consoleON)
+                AllocConsole(); 
             Functions.Initialize(GraphicsDevice);
             ContentImporter.Initialize(Content);
             DrawingHelper.Initialize(GraphicsDevice, Content);
@@ -41,11 +44,10 @@ namespace WishnusArmy
             // Create a new SpriteBatch, which can be used to draw textures.
             base.LoadContent();
 
-
             screen = SCREEN_SIZE;
             windowSize = WINDOW_SIZE;
             ApplyResolutionSettings();
-            FullScreen = false;
+            FullScreen = true;
 
             gameStateManager.AddGameState("MainMenuState", new MainMenuState());
             gameStateManager.AddGameState("CreditsState", new CreditsState());
@@ -54,6 +56,7 @@ namespace WishnusArmy
             gameStateManager.AddGameState("LevelBuilderState", new LevelBuilderState());
             gameStateManager.AddGameState("LevelGeneratorState", new LevelGeneratorState());
             gameStateManager.AddGameState("GameOverState", new GameOverState());
+            gameStateManager.AddGameState("LeaderBoardState", new LeaderBoardState());
             gameStateManager.SwitchTo("MainMenuState");
             startSorting = true;
         }

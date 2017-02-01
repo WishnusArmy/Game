@@ -31,6 +31,7 @@ namespace WishnusArmy.GameManagement
                 case "MainMenuState":
                 case "HelpState":
                 case "CreditsState":
+                case "HighscoreState":
                     song = SNG_MAINMENU; repeating = true;  break;
                 default:
                     //het is blijkbaar onmogelijk om een list van songs te maken dus dan maar zo.

@@ -86,6 +86,11 @@ public class InputHelper
         return currentMouseState.LeftButton == ButtonState.Pressed;
     }
 
+    public bool MouseRightButtonDown()
+    {
+        return currentMouseState.RightButton == ButtonState.Pressed;
+    }
+
     public bool KeyPressed(Keys k)
     {
         return currentKeyboardState.IsKeyDown(k) && previousKeyboardState.IsKeyUp(k);
@@ -94,6 +99,10 @@ public class InputHelper
     public bool IsKeyDown(Keys k)
     {
         return currentKeyboardState.IsKeyDown(k);
+    }
+    public bool IsKeyUp(Keys k)
+    {
+        return !IsKeyDown(k);
     }
 
     public bool AnyKeyPressed

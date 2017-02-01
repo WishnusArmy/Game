@@ -13,13 +13,15 @@ public class Button : GameObject
 {
     protected bool pressed;
     public bool hover;
-    protected string buttonText;
+    public string buttonText;
     public Point padding;
 
-    protected Color buttonColor;
-    protected Color hoverColor;
+    public Color buttonColor;
+    public Color hoverColor;
     protected Rectangle buttonBox;
     protected SpriteFont buttonFont;
+
+    public Color textColor;
 
     public Button(string buttonText, Color buttonColor, Color hoverColor, SpriteFont buttonFont, int layer = 0, string id = "")
     {
@@ -28,6 +30,7 @@ public class Button : GameObject
         this.buttonColor = buttonColor;
         this.hoverColor = hoverColor;
         this.buttonFont = buttonFont;
+        textColor = Color.Black;
         padding = BUTTON_MARGIN;
     }
 
@@ -55,12 +58,12 @@ public class Button : GameObject
         if (hover)
         {
             spriteBatch.Draw(SPR_WHITEPIXEL, buttonBox, hoverColor);
-            spriteBatch.DrawString(buttonFont, buttonText, GlobalPosition - buttonFont.MeasureString(buttonText)/2, Color.Black);
+            spriteBatch.DrawString(buttonFont, buttonText, GlobalPosition - buttonFont.MeasureString(buttonText)/2, textColor);
         }
         else
         {
             spriteBatch.Draw(SPR_WHITEPIXEL, buttonBox, buttonColor);
-            spriteBatch.DrawString(buttonFont, buttonText, GlobalPosition - buttonFont.MeasureString(buttonText)/2, Color.Black);
+            spriteBatch.DrawString(buttonFont, buttonText, GlobalPosition - buttonFont.MeasureString(buttonText)/2, textColor);
         }
     }
 
