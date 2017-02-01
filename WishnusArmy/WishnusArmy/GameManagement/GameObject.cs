@@ -138,7 +138,14 @@ public abstract class GameObject : DrawableGameComponent, IGameLoopObject
     {
         get
         {
-            return MyPlane.particleControl;
+            try
+            {
+                return MyPlane.particleControl;
+            }
+            catch(Exception e)
+            {
+                return GameWorld.FindByType<GridPlane>()[0].particleControl;
+            }
         }
     }
 
