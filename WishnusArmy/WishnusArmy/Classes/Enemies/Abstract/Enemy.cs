@@ -80,7 +80,7 @@ public abstract partial class Enemy : IsometricMovingGameObject
                 healthText.timer /= 2;
             }
             _health = value;
-            if (_health <= 0)
+            if (_health <= 0 && !kill)
             {
                 kill = true;
                 TotalEnemiesKilled++;
