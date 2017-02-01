@@ -111,12 +111,22 @@ public class Camera : GameObjectList
         }
         //zoom
         Vector2 oldScale = scale;
-        if (inputHelper.ScrollUp() || inputHelper.IsKeyDown(Keys.Q))
+        if (inputHelper.ScrollUp())
+        {
+            if (scale.X < 1f)
+                scale *= new Vector2(1.07f);
+        }
+        if (inputHelper.ScrollDown())
+        {
+            if ((LEVEL_SIZE.X * NODE_SIZE.X * scale.X > GAME_WINDOW_SIZE.X + 96))
+                scale *= new Vector2(1 / 1.07f);
+        }
+        if (inputHelper.IsKeyDown(Keys.Q))
         {
             if (scale.X < 1f)
                 scale *= new Vector2(1.02f);
         }
-        if (inputHelper.ScrollDown() || inputHelper.IsKeyDown(Keys.A))
+        if (inputHelper.IsKeyDown(Keys.A))
         {
             if ((LEVEL_SIZE.X * NODE_SIZE.X * scale.X > GAME_WINDOW_SIZE.X + 96))
                 scale *= new Vector2(1 / 1.02f);
